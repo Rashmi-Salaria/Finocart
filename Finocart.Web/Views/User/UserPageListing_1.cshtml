@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Finocart.Model.User
+@{
+    Layout = "_Layout";
+    //ViewBag.Title = "User Pages List";
+
+}
+<div class="container">
+    <div class="titleheader">
+        <h3 class="pull-left pagetitle">@ViewBag.Title</h3>
+
+        <p class="pull-right">
+            <a href="@Url.Action("AddUser")" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Add New User
+            </a>
+
+        </p>
+    </div>
+    
+    <div class="row pt-5">
+        <div class="col-sm-12">
+            <table id="tlbUser" class="table table-bordered table-sortable bg-white">
+                <thead>
+                    <h2>User Pages List </h2>
+                    <tr class="text-center">
+                        <th style="min-width: 80px;max-width:inherit; width: 80px;">ID</th>
+                        <th style="min-width: 80px;max-width:inherit; width: 80px;">Name</th>
+                        <th style="min-width: 80px;max-width:inherit; width: 80px;">Mobile</th>
+                        <th style="min-width: 80px;max-width:inherit; width: 80px;">Email</th>
+                        <th style="min-width: 80px;max-width:inherit; width: 80px;">Designation</th>
+                        <th style="min-width: 80px;max-width:inherit; width: 80px;">Roles Access</th>
+                        <th style="min-width: 80px;max-width:inherit; width: 80px;">Created At</th>
+                        <th style="min-width: 80px;max-width:inherit; width: 80px;">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewBag.UserList)
+                    {
+
+                        <tr>
+                            <td data-id="tr_1">@item.UserID</td>
+                            <td><p>@item.Name</p></td>
+                            <td><p>@item.Mobile</p></td>
+                            <td><p>@item.Email</p></td>
+                            <td><p>@item.Designation</p></td>
+                            <td><p>@item.RolesAccess</p></td>
+                            <td><p>@item.CreatedDate</p></td>
+                            <td>
+                                <span style="display:flex;">@Html.ActionLink(" ", "EditUserPage", "User", new { id = @item.UserID }, new { @class = "glyphicon glyphicon-pencil", @style = "color: #87b87f; font-size: 20px;text-align:center;display:block;margin:auto;", title = "Edit" })@Html.ActionLink(" ", "DeleteUserPage", "User", new { id = @item.UserID }, new { @class = "glyphicon glyphicon-trash", @style = "color: #87b87f; font-size: 20px;text-align:center;display:block;margin:auto;", title = "Delete", onclick = "return confirm('Are you sure you want to delete?')" })</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+
+    @*<script src="~/User/UserListing.js"></script>*@
+    <script src="~/js/datatable.min.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#tlbUser').DataTable({
+                "drawCallback": function (settings) {
+                    $(this).wrap("<div class='table-responsive'></div>");
+                }
+            });
+        });
+    </script>
+
+
+}

@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "BankSetLimit";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<style>
+    
+    .charts-section .charts-title {
+        position: relative;
+        overflow: hidden;
+        background-color: #454545;
+        padding: 13px 10px 10px 10px;
+        border: 1px solid #ececec;
+        border-bottom: 1px solid #a2a2a2;
+        width: 100%;
+    }
+
+    .charts-title .form-control-graph {
+        width: 130px;
+        padding: 4px;
+        font-size: 14px;
+        color: #ffffff;
+        margin-left: 5px;
+        background-color: #a2a2a2;
+        outline: none;
+        border: 1px solid #fff;
+        height: 30px;
+        line-height: 36px;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+
+    .charts-section .charts-title h5 {
+        display: table;
+        float: left;
+        margin: 0;
+        line-height: 2;
+        color: #ffffff;
+        text-transform: capitalize;
+        font-weight: 600;
+    }
+
+    .charts-section .chart-div {
+        height: 315px;
+        text-align: center;
+        border: 1px solid #ececec;
+        font-weight: bold;
+        background-color: #454545;
+        color: #ffffff;
+        padding-top: 15px;
+        border-top: 0;
+        width: 100%;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="~/BankCompany/BankSetLimit.js"></script>
+<script>
+    var GetBankSetLimitList = '@Url.Action("GetBankSetLimitList", "BankCompany")';
+</script>
+
+
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div id="eInvoices" class="tab-pane fade in active">
+                    <div class="row" id="eAnchorCompInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="search-box-main clearfix">
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_CompanyNameSearch", null, new { placeholder = "Search by Anchor Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll">
+                                <div class="table-responsive">
+                                    <table id="tbl_BankSetLimitList" class="table table-responsive table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Anchor Name</th>
+                                                <th>Anchor Email</th>
+                                                <th>Avalaible Limits (INR)</th>
+                                                <th>Utilized Limits (INR)</th>
+                                                <th>Intrest Rate (% P.A.)</th>
+                                                <th>Validity From Date</th>
+                                                <th>Validity Upto</th>
+                                                <th>Modify Limits</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div>
+
+

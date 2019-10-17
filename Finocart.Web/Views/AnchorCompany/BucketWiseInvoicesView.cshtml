@@ -1,0 +1,65 @@
+﻿@model Finocart.CustomModel.VendorBucketAwaitedInvViewModel
+@{
+    ViewData["Title"] = "BucketWiseInvoicesView";
+}
+<script src="~/AnchorCompany/BucketWiseInvoiceView.js"></script>
+<script>
+    var GetBucketWiseInvoiceViewList = '@Url.Action("GetBucketWiseInvoiceViewList", "AnchorCompDashboard")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <div class="col-xs-12 col-sm-1 col-md-1 padding">
+                        <a class="backbtn" onclick="BackBtn()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_InvoiceID", null, new { placeholder = "Search by Invoice ID", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_POID", null, new { placeholder = "Search by Po ID", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        @*<button id="btnBucketFilter" class="filterbtn">
+            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+        </button>*@
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <input type="hidden" id="hdnCompanyName" value="@Model.BucketName" />
+                        <label style="margin-top:15px;margin-bottom:0px;font-size:15px;margin-left:13px;">Vendor Company:</label>
+                        <label style="margin-top:15px;margin-bottom:0px;font-size:15px;" id="lblcompanyName"></label>
+                        @Html.HiddenFor(m => m.VendorID)
+                        @Html.HiddenFor(m => m.BucketID)
+                        <table id="tbl_BucketsWiseInvoiceView" class="table table-responsive table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>PO ID</th>
+                                    <th>Invoice ID</th>
+                                    @*<th>Vendor Name</th>*@
+                                    <th>Invoice Creation Date</th>
+                                    <th>Invoice Amount(INR)</th>
+                                    <th>Approved Amount(INR)</th>
+                                    <th>Discount Rate</th>
+                                    <th>Discount Offered Dateth>
+                                    <th>Payment Due Date</th>
+
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

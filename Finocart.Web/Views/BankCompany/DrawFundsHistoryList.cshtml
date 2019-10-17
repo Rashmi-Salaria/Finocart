@@ -1,0 +1,234 @@
+﻿
+@{
+    ViewData["Title"] = "DrawFundsHistoryList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<script>
+    var GetBankLimitLogList = '@Url.Action("GetBankLimitLogList", "BankCompany")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div class="row" id="">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll" style="padding:15px;">
+                            <h4 style="font-size:15px;font-weight:bold;">Draw Funds Request History</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll">
+                            <div class="table-responsive">
+                                <table id="DrawFundsList_tb" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th hidden>ID</th>
+                                            <th>Bank ID</th>
+                                            <th>Name of Bank</th>
+                                            <th>Facility</th>
+                                            <th>Available Limit INR</th>
+                                            @*<th>Utilized  Limit INR</th>*@
+                                            <th>Rate (%)</th>
+                                            <th>Validity From</th>
+                                            @*<th>Valid Upto Months</th>*@
+                                            <th>Validity Upto</th>
+                                            <th>Draw Funds INR</th>
+                                            <th style="display:none;">KYC Status</th>
+                                            <th style="width:10%">Documentation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="frview" class="modal fade frview" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="width:950px;">
+            <div class="modal-body">
+                <div class="frview-tab">
+                    <div id="dvFundingReqAmount">
+                        <table class="table table-responsive" id="tblBankSetLimitLogView" >
+                            <thead>
+                                <tr>
+                                    @*<th hidden>ID</th>*@
+                                    @*<th>Anchor Name</th>
+                                        <th>Contact Name</th>
+                                        <th>Anchor Email</th>
+                                        <th>Contact Number</th>*@
+                                    <th>Available Limits (INR)</th>
+                                    <th>Utilized Limits (INR)</th>
+                                    <th>Facility</th>
+                                    <th>Interest Rate (% P.A.)</th>
+                                    <th>Validity From Date</th>
+                                    <th>Validity Upto</th>
+                                    <th>Modified Date</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+
+        $(document).on("click", "#btnModify", function (e) {
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            var bankName = $buttonClicked.attr('data-bankName');
+            var available_bal = $buttonClicked.attr('data-remaining_avail_bal');
+
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: '../BankCompany/EditFundsFromBankDetail',
+                contentType: "application/json; charset=utf-8",
+                data: { "ID": id, isFromHistory: true },
+                datatype: "json",
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+                    $("#lblBankName").text(bankName);
+                    $("#lblAvailableBal").text(available_bal);
+                },
+
+                error: function () {
+                    alert("Dynamic content load failed.");
+                }
+            });
+
+
+        });
+
+
+        $('#DrawFundsList_tb').dataTable({
+
+            "processing": true,
+            "serverSide": true,
+
+            "dom": '"ltipr"',
+          
+
+            "ajax": {
+                "url": "../BankCompany/FundsHistoryList",
+                "type": "POST",
+                "datatype": "json",
+            },
+            "columns": [
+                { "data": "id", "name": "id", "autoWidth": true, "class": "hidden", "visible": false, "searchable": false },
+                { "data": "bankID", "name": "bankID", "autoWidth": true, "visible": false, "searchable": false },
+                { "data": "bankName", "name": "bankName", "autoWidth": true },
+                { "data": "odbd", "name": "odbd", "autoWidth": true },
+                { "data": "available_Limits", "name": "available_Limits", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) },
+                //{ "data": "utilized_Limits", "name": "utilized_Limits", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0)  }, 
+                { "data": "interest_rate", "name": "Interest_rate", "autoWidth": true },
+                {
+                    "data": "validityFromto", "name": "ValidityFromto", "autoWidth": true, "format": "dd/MM/YYYY"
+                },
+
+                //{ "data": "interest_rate_month", "name": "Interest_rate_month", "autoWidth": true }, 
+                {
+                    "data": "validity_upto", "name": "validity_upto", "autoWidth": true, "format": "dd/MM/YYYY"
+                },
+                { "data": "draw_funds", "name": "Draw_funds", "autoWidth": true, render: $.fn.dataTable.render.number(',', 0) },
+                { "data": "status", "name": "status", "autoWidth": true, "visible": false },
+                {
+                    "data": function (data, type, row) {
+                        var Available_bal = $.fn.dataTable.render.number(',', '').display(data.remaining_avail_bal);  
+                        return "<a href='javascript:void(0)' onclick='GetLogView(" + data.id + ")' class='actions-ico' data-toggle='modal' data-target='#frview' ><img src='../Content/images/shape-4.png' title='View' class='img-responsive' /></a><a href='javascript:void(0)' id='btnModify' data-bankName='" + data.bankName + "'  data-remaining_avail_bal='" + Available_bal + "'  class='actions-ico' data-id=" + data.id + "><img  src='../Content/images/edit.png' title='Edit' class='img-responsive' /></a>";
+                    }
+                }
+            ],
+
+        });
+    });
+    function GetLogView(setLimitId) {
+        $('#tblBankSetLimitLogView').DataTable().destroy();
+        $('#tblBankSetLimitLogView').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "searching": true,
+            "dom": '"ltipr"',
+            //"scrollX": true,
+            "ajax": {
+                "url": GetBankLimitLogList,
+                "data": { setLimitId: setLimitId },
+                "type": "POST",
+                "datatype": "json",
+                "async": false
+            },
+            "columns": [
+                //{
+                //    "data": function (data, type, row) {
+                //        debugger;
+                //        return "<input type='hidden' value='" + data.setLimitId + "'/>";
+                //    }
+                //},
+                //{ "data": "company_name", "name": "Company_name", "autoWidth": true },
+                //{ "data": "contact_Name", "name": "Contact_Name", "autoWidth": true },
+                //{ "data": "contact_email", "name": "Contact_email", "autoWidth": true },
+                //{ "data": "contact_mobile", "name": "Contact_mobile", "autoWidth": true },
+                { "data": "available_Limits", "name": "Available_Limits", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) },
+                { "data": "utilized_Limits", "name": "Utilized_Limits", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) },
+                { "data": "odbd", "name": "ODBD", "autoWidth": true },
+                {
+                    "data": null,
+                    "render": function (data, type, full) {
+                        console.log(data.interest_rate);
+                        if (data.interest_rate === null && data.interest_rate_month === null)
+                            return '';
+                        else
+                            return data.interest_rate + '%';
+
+                    }
+                },
+                {
+                    "data": "validityFromto", "name": "ValidityFromto", "autoWidth": true, "class": "clsCreatedDate", "format": "dd/MM/YYYY"
+                },
+                {
+                    "data": "validity_upto", "name": "Validity_upto", "autoWidth": true, "class": "clsCreatedDate", "format": "dd/MM/YYYY"
+                },
+                {
+                    "data": "modifiedDate", "name": "Validity_upto", "autoWidth": true, "class": "clsModifiedDate"
+                }
+                //{
+                //    "data": function (data, type, row) {
+                //        return "<a href='#' id='btnModify' class='actions-ico' data-email=" + data.contact_email + " data-anchorname=" + data.company_name + " data-id=" + data.setLimitId + " ><img  src='../Content/images/edit.png' title='Edit' class='img-responsive' /></a>" +
+                //            "<a href='#' id='btnView' class='actions-ico' data-email=" + data.contact_email + " data-anchorname=" + data.company_name + " data-id=" + data.setLimitId + " ><img  src='../Content/images/edit.png' title='Edit' class='img-responsive' /></a>";
+                //    }
+                //}
+            ]
+            //'columnDefs': [
+            //    {
+            //        'targets': 0,
+            //        'className': 'hide_column',
+            //    }]
+        });
+    }
+</script>

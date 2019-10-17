@@ -1,0 +1,252 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+<script src="~/Scripts/fusioncharts.js"></script>
+<script src="~/Scripts/fusioncharts.theme.fusion.js"></script>
+<script type="text/javascript"
+        src="https://rawgit.com/fusioncharts/fusioncharts-jquery-plugin/develop/dist/fusioncharts.jqueryplugin.min.js"></script>
+
+<style>
+
+
+    .charts-section .charts-title {
+        position: relative;
+        overflow: hidden;
+        background-color: #454545;
+        padding: 13px 10px 10px 10px;
+        border: 1px solid #ececec;
+        border-bottom: 1px solid #a2a2a2;
+        width: 100%;
+    }
+
+    .charts-title .form-control-graph {
+        /*width: 130px;*/
+        padding: 4px;
+        font-size: 14px;
+        color: #ffffff;
+        margin-left: 5px;
+        background-color: #a2a2a2;
+        outline: none;
+        border: 1px solid #fff;
+        height: 30px;
+        line-height: 36px;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+
+    .charts-section .charts-title h5 {
+        display: table;
+        float: left;
+        margin: 0;
+        line-height: 2;
+        color: #ffffff;
+        text-transform: capitalize;
+        font-weight: 600;
+    }
+
+    .charts-section .chart-div {
+        height: 315px;
+        text-align: center;
+        border: 1px solid #ececec;
+        font-weight: bold;
+        background-color: #454545;
+        color: #ffffff;
+        padding-top: 15px;
+        border-top: 0;
+        width: 100%;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .cls-error {
+        display: block;
+        color: red;
+    }
+</style>
+
+<script src="~/BankCompany/BankSetLimitgraph.js"></script>
+@*<script>
+   var GetTopAnchorCompList = '@Url.Action("GetDiscAnchorCompList", "AnchorCompany")';
+</script>*@
+
+<div class="row">
+    <h4 style="margin-left:13px;font-size:15px;font-weight:bold;">Dashboard</h4>
+    @*<div class="charts-section">*@
+        <div class="top-boxes clearfix anchor">
+            <div class="col-xs-12 col-sm-6 col-md-2">
+                <a href="#" onclick="location.href='@Url.Action("BankAnchorList","BankCompany")'">
+                <div class="box1">
+                    <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                        @*<img src="~/Content/images/box-1.png" class="img-responsive" />*@
+                        <p>New Anchors</p>
+                    </h4>
+                    <h4>@ViewData["TOTALNEWANCHOR"]</h4>
+                </div>
+                </a>
+
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2">
+                <a href="#" onclick="location.href='@Url.Action("AwaitedInvoiceApproval","AnchorCompDashboard")'">
+                    <div class="box2">
+                        <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                            @*<img src="~/Content/images/box-2.png" class="img-responsive" />*@
+                            <p>Existing Anchors</p>
+
+                        </h4>
+                        <h4>@ViewData["TOTALEXISTINGANCHOR"]</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2">
+
+                <a href="#" onclick="location.href='@Url.Action("BankLimitAnchorListing","BankCompany")'">
+                    <div class="box3">
+                        <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                            @*<img src="~/Content/images/box-3.png" class="img-responsive" />*@
+                            <p>Total Set limit</p>
+                        </h4>
+                        <h4>@ViewData["TOTALBANKLIMITANCHORLIST"]</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2">
+
+                <a href="#" onclick="location.href='@Url.Action("DisbursementsListing","BankCompany")'">
+                    <div class="box4">
+                        <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                            @*<img src="~/Content/images/box-3.png" class="img-responsive" />*@
+                            <p>Total Disbersement limit</p>
+                        </h4>
+                        <h4>@ViewData["TOTALUTILIZEDBANKLIMIT"]</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-2">
+
+                <a href="#" onclick="location.href='@Url.Action("KycUploadListdata","BankCompany")'">
+                    <div class="box3">
+                        <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                            @*<img src="~/Content/images/box-3.png" class="img-responsive" />*@
+                            <p>Total Pending KYC</p>
+                        </h4>
+                        <h4>@ViewData["TOTALPENDINGKYC"]</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    @*</div>*@
+    @*<div class="col-xs-12 col-sm-6 col-md-6">*@
+        <label style="margin: 0 0 7px 0; font-weight: 600;color: #222;">
+            Disbursement Request Received Today INR <span>@ViewBag.requestAmountReceiveToday</span>
+        </label>
+        <span style="float:right;"><a href="~/BankCompany/BankAnchorList" id="btnSetLimitList" class="dowte">Set Limit</a></span>
+        <div class="col-xs-12 col-sm-6 col-md-6 charts-section">
+            <div class="charts-title">
+                <!-- Select Div Start -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5>Clash Flow</h5>
+                    </div>
+                    <div class="col-md-9 zindex5">
+                        <div class="form-inline rightAlign">
+                            <div class="form-group" style="float:right;">
+
+                                <select id="SetLimitforAnchor" class="form-control-graph"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- Select Div End -->
+            </div>
+            <div id="chart-container"></div>
+        </div>
+           
+        @*</div>*@
+    <div class="col-xs-12 col-sm-6 col-md-6" style="padding-right:0;">
+        <h4 style="margin-top: 0;font-size: 12px;">Top Customers (Anchor Companies) <span style="float:right;">3 Months</span></h4>
+        <div class="bottom-listing">
+            <div class="main-table-box page-scroll ten-tab-scroll">
+                <div class="table-responsive">
+                    <table id="tbl_TopAnchorCompany" class="table table-responsive table-bordered table-hover internalusermtable">
+                        <thead>
+                            <tr>
+                                <th>Anchor Name</th>
+                                <th>Anchor ID</th>
+                                <th>Limit Available (INR)</th>
+                                <th>Limit Utilize (INR)</th>
+                            </tr>
+
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Rule of Engine Model Popup-->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog addengine">
+
+        <!-- Modal content-->
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Rule of Engine</h4>
+                </div>
+                <div class="modal-body engine-box">
+                    <div class="form-group">
+                        <input type="text" id="rule_percentage" name="model_popup" placeholder="Enter Percentage" onkeypress="return isNumberKey(event)" class="form-control" />
+                        <label id="lblrule_percentageError" class="error" style="color:red;display: none;">Please Enter Value</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="rule_limit" name="model_popup" placeholder="Enter Limit/Day" onkeypress="return isNumberKey(event)" class="form-control" />
+                        <label id="lblrule_limitError" class="error" style="color:red;display: none;">Please Enter Value</label>
+                        <label id="lblrule_limitError_radio" class="error" style="color:red;display: none;">Please Select Value</label>
+                    </div>
+                    <div class="form-group">
+                        <label><input style="vertical-align: bottom;margin-right: 5px;" type="radio" name="status" value="yes" id="status_yes">Yes</label>
+                        <label><input style="vertical-align: bottom;margin-right: 5px;" type="radio" name="status" value="no" id="status_no">No</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-close" data-dismiss="modal" style="margin:0;">Close</button>
+                    <button type="button" class="btn confirmbutton" id="submit_rule_engine">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/BankCompany/BankDashboard.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#tbl_TopAnchorCompany').dataTable({
+
+            "processing": true,
+            "serverSide": true,
+
+            "dom": '"ltipr"',
+            "scrollX": false,
+
+            "ajax": {
+                "url": "../BankCompany/GetTopAnchorData",
+                "type": "POST",
+                "datatype": "json",
+            },
+            "columns": [
+                { "data": "anchor_Name", "name": "anchor_Name", "autoWidth": true }, //index 1
+                { "data": "anchor_id", "name": "anchor_id", "autoWidth": true }, //index 2
+                { "data": "available_Limits", "name": "available_Limits", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) }, //index 3
+                { "data": "utilized_Limits", "name": "utilized_Limits", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) } //index 4
+
+
+            ],
+        });
+    });
+</script>

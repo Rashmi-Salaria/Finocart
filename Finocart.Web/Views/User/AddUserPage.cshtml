@@ -1,0 +1,149 @@
+﻿@model Tuple<Finocart.CustomModel.UserModel, IEnumerable<Finocart.Model.LookupDetails>, IEnumerable<Finocart.Model.LookupDetails>, IEnumerable<Finocart.Model.LookupDetails>>
+
+@{
+    ViewBag.Title = "Add User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<script>
+    var CheckIfEmailIdExists = '@Url.Action("CheckIfEmailIdExists", "Common")'
+</script>
+@using (Html.BeginForm("AddUser", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitLogin" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="main-inner-section">
+        <div class="content-upper-section">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="main-head" style="font-size:20px;">
+                        <a class="backbtn" href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                        @if (Model.Item1.UserID != 0)
+                        {<h2>Edit User</h2> }
+                        else
+                        {<h2>Add User</h2>}
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                    
+                    <div class="main-content-box page-scroll">
+                        <div class="registration-form">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.Hidden("UserID", Model.Item1.UserID)
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Name<label style="color:red;font-size: 15px;">*</label>:</label>
+                                    @Html.TextBox("Name", Model.Item1.Name, new { @class = "form-control", placeholder = "Enter Your Name*" })
+                                    <label id="lblNameError" class="error" style="color:red;display: none;">Name Cannot Be Blank</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Email ID<label style="color:red;font-size: 15px;">*</label>:</label>
+                                    @Html.TextBox("Email", Model.Item1.Email, new { @class = "form-control", placeholder = "Enter Email ID*", })
+                                    <label id="lblEmailError" class="error" style="color:red;display: none;">Email cannot be empty</label>
+                                    <label id="lblEmailInvalidError" class="error" style="color:red;display: none;">Enter proper email id</label>
+                                    <label id="lblDuplicateEmailError" class="error" style="color:red;display: none;">Email id already exists</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Mobile Number<label style="color:red;font-size: 15px;">*</label>:</label>
+                                    @Html.TextBox("Mobile", Model.Item1.Mobile, new { @class = "form-control", placeholder = "Enter Mobile Number*" })
+                                    <label id="lblMobileError" class="error" style="color:red;display: none;">Mobile number cannot be empty</label>
+                                    <label id="lblMobileInvalidError" class="error" style="color:red;display: none;">Enter proper mobile number</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Designation<label style="color:red;font-size: 15px;">*</label>:</label>
+                                    @Html.TextBox("Designation", Model.Item1.Designation, new { @class = "form-control", placeholder = "Enter Designation*" })
+                                    <label id="lblDesignationError" class="error" style="color:red;display: none;">Designation cannot be empty</label>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Access<label style="color:red;font-size: 15px;">*</label>:</label>
+                                    <select class="selectaccess form-control" id="ddl_Access">
+                                        <option value=0>Select Access</option>
+                                        @foreach (var item in Model.Item3)
+                                        {
+                                            <option value='@item.Id'>@item.LookupValue</option>
+                                        }
+                                    </select>
+                                    @Html.Hidden("AccessViewID", Model.Item1.AccessViewID)
+                                    <label id="lblSelRoleAccessError" class="error" style="color:red;display: none">Select a role access</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Role access<label style="color:red;font-size: 15px;">*</label>:</label>
+                                    <select class="selectstatus form-control" id="ddl_Status">
+                                        <option value=0>Select Status</option>
+                                        @foreach (var item in Model.Item2)
+                                        {
+                                            <option value='@item.Id'>@item.LookupValue</option>
+                                        }
+                                    </select>
+                                    @Html.Hidden("RoleAccessID", Model.Item1.RoleAccessID)
+                                    @Html.Hidden("RolesAccess", Model.Item1.RolesAccess, new { htmlAttributes = new { @class = "form-control", @id = "hdnRoleID" } })
+                                    <label id="lblSelStatusErr" class="error" style="color:red;display: none">Select a status</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <button id="btnSave" class="submit-btn" type="submit">Submit</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <button id="btnCancel" class="cancel-btn" type="button" onclick="goBack()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/User/AddUserPage.js"></script>
+    <script type="text/javascript">
+
+
+        function goBack() {
+            debugger
+            parent.history.back();
+        }
+        $(document).ready(function () {
+            $("#ddl_Status option").filter(function () {
+                return $(this).text() == $("input[name=RolesAccess]").val();
+            }).prop('selected', true);
+
+            $("#ddl_Access option").filter(function () {
+                return $(this).val() == $("input[name=AccessViewID]").val();
+            }).prop('selected', true);
+
+            $("#ddl_RoleType option").filter(function () {
+                return $(this).val() == $("input[name=RoleID]").val();
+            }).prop('selected', true);
+
+            $("#ddl_Status").change(function () {
+                $("#RoleAccessID").val($("#ddl_Status").val());
+                $("#lblSelStatusErr").hide();
+            });
+
+            $("#ddl_Access").change(function () {
+                $("#AccessViewID").val($("#ddl_Access").val());
+                $("#lblSelRoleAccessError").hide();
+            });
+
+            $("#ddl_RoleType").change(function () {
+                $("#RoleID").val($("#ddl_RoleType").val());
+                $("#lblSelRoleTypeError").hide();
+            })
+        });
+
+
+
+
+    </script>
+}
+
+
+
+
+
+

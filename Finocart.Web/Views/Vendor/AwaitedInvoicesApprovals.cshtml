@@ -1,0 +1,86 @@
+﻿@model Tuple<IEnumerable<Finocart.Model.ModuleMaster>, IEnumerable<Finocart.Model.SearchHistory>>
+@{
+    ViewData["Title"] = "AwaitedInvoicesApprovals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var GetAnchorCompListByVendorID = '@Url.Action("getAwaitedInvoiceList", "VendorDashboard")';
+   
+</script>
+<script src="~/AwaitedAnchCompList/AwaitedAnchrCompList.js"></script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <h4 style="font-size:15px;font-weight:bold;">Awaited Approval</h4>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            @Html.DropDownList("pagechange",new List<SelectListItem>
+                                {
+                                new SelectListItem{ Text="Awaited Approval in INR",Value="1"},
+                                 new SelectListItem{ Text="Receivables Due Today in INR",Value="2"},
+                                 new SelectListItem{ Text="Amount Approved Today in INR",Value="3"},
+                                 new SelectListItem{ Text="Available for Funding Today in INR",Value="4"},
+                                 new SelectListItem{ Text="Invoices Status",Value="5"}
+                            }, new { @class = "searchTerm ext-box", @style = "border-right: 1px solid #dadbdc;max-width: 100%;" })
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input type="text" class="searchTerm" id="txt_AnchorCompanyName" placeholder="Search by Anchor Company Name" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <input type="text" class="searchTerm" id="txt_AppInvoiceAmnt" placeholder="Search by Total Invoice Amount" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <button id="ExportAwtedAppInvoiceCSV" class="excelbutton" style="margin-right:0;">
+                                <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                            </button>
+
+                        </div>
+                        @*<div class="col-xs-12 col-sm-4 col-md-4">
+                <h6 style="margin: 5px 0 0;font-size:11px;">Anchor Company wise Approval Awaited Invoices</h6>
+            </div>*@
+
+                    </div>
+                </div>
+                </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll">
+                                <div class="table-responsive">
+                                    <table id="tbl_AwaitedInvoice" class="table table-responsive table-bordered table-hover tbl_UserList">
+                                        <thead>
+                                            <tr>
+                                                <th hidden>Anchor Comp ID</th>
+                                                <th>Anchor Comp Name</th>
+                                                <th>No. of Disc. Offered Inv</th>
+                                                <th>Total Inv. Amt(INR)</th>
+                                                <th>Total Approved Amt(INR)</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 footer-btn">
+                                <div class="row">
+                                   
+                                    <div class="col-xs-12 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <label class="footer-label">Total Invoices: <span id="lbAwaitTotalInvoices"></span></label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <label class="footer-label">Total Invoice Amount (INR): <span id="lbAwaitTotalInvoicesAmt"></span></label>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>

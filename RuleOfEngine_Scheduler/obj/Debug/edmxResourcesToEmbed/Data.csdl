@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinocartDemo1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Login_Id" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InterestedAs" Type="Int32" />
+    <Property Name="CompanyType" Type="Int32" />
+    <Property Name="Pan_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Title" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PercentageRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InvoiceLimitAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Contact_CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsTemporaryPassword" Type="Boolean" />
+    <Property Name="IsCritical" Type="Boolean" />
+    <Property Name="InvAmtLimitStatus" Type="Int32" />
+    <Property Name="NoOfDays" Type="Int64" />
+    <Property Name="MSME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UANNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InternalFundLimit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BankLimit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="AnchorRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsLimitUnlimited" Type="Boolean" />
+    <Property Name="FactoryOrReverseFactory" Type="Int64" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="PaymentDays" Type="Int32" />
+    <Property Name="LoginAttempt" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="FinocartDemo1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="AnchorNotifications" EntityType="FinocartDemo1Model.AnchorNotification" />
+    <EntitySet Name="Invoices" EntityType="FinocartDemo1Model.Invoice" />
+    <EntitySet Name="LookupDetails" EntityType="FinocartDemo1Model.LookupDetail" />
+    <EntitySet Name="Users" EntityType="FinocartDemo1Model.User" />
+    <AssociationSet Name="FK_User_LookupDetails" Association="FinocartDemo1Model.FK_User_LookupDetails">
+      <End Role="LookupDetail" EntitySet="LookupDetails" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="ModuleMasters" EntityType="FinocartDemo1Model.ModuleMaster" />
+    <AssociationSet Name="FK_Invoice_ModuleMaster" Association="FinocartDemo1Model.FK_Invoice_ModuleMaster">
+      <End Role="ModuleMaster" EntitySet="ModuleMasters" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <EntitySet Name="PaymentDueTodayTemplates" EntityType="FinocartDemo1Model.PaymentDueTodayTemplate" />
+    <EntitySet Name="SetBankAmountLimits" EntityType="FinocartDemo1Model.SetBankAmountLimit" />
+    <EntitySet Name="BankNotifications" EntityType="FinocartDemo1Model.BankNotification" />
+    <EntitySet Name="BankSetLimitMailTemplates" EntityType="FinocartDemo1Model.BankSetLimitMailTemplate" />
+  </EntityContainer>
+  <EntityType Name="AnchorNotification">
+    <Key>
+      <PropertyRef Name="AnchrNotificationID" />
+    </Key>
+    <Property Name="AnchrNotificationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" />
+    <Property Name="RoleID" Type="Int64" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ReadOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PONumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PODate" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VendorID" Type="Int32" />
+    <Property Name="AnchorCompID" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentDueDate" Type="DateTime" Precision="3" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Days" Type="Int64" />
+    <Property Name="InvoiceStatus" Type="Int32" />
+    <Property Name="RejectionReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ApprovedAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UploadInvoice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UploadDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceApprovePayDays" Type="Int32" />
+    <Property Name="InvoiceApprovalDate" Type="DateTime" Precision="3" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Earning" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FinoLimUnLim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UTRDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Limits" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ModuleMaster" Relationship="FinocartDemo1Model.FK_Invoice_ModuleMaster" FromRole="Invoice" ToRole="ModuleMaster" />
+  </EntityType>
+  <EntityType Name="LookupDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LookupKey" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="LookupValue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LookupFor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="FinocartDemo1Model.FK_User_LookupDetails" FromRole="LookupDetail" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RolesAccess" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleAccessID" Type="Int32" />
+    <Property Name="AccessViewID" Type="Int32" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="PANNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsTemporaryPassword" Type="Boolean" Nullable="false" />
+    <Property Name="LoginAttempt" Type="Int32" />
+    <NavigationProperty Name="LookupDetail" Relationship="FinocartDemo1Model.FK_User_LookupDetails" FromRole="User" ToRole="LookupDetail" />
+  </EntityType>
+  <Association Name="FK_User_LookupDetails">
+    <End Type="FinocartDemo1Model.LookupDetail" Role="LookupDetail" Multiplicity="0..1" />
+    <End Type="FinocartDemo1Model.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="AccessViewID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ModuleMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Invoices" Relationship="FinocartDemo1Model.FK_Invoice_ModuleMaster" FromRole="ModuleMaster" ToRole="Invoice" />
+  </EntityType>
+  <Association Name="FK_Invoice_ModuleMaster">
+    <End Type="FinocartDemo1Model.ModuleMaster" Role="ModuleMaster" Multiplicity="0..1" />
+    <End Type="FinocartDemo1Model.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="InvoiceStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PaymentDueTodayTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Template" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SetBankAmountLimit">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Anchor_id" Type="Int32" Nullable="false" />
+    <Property Name="Anchor_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Available_Limits" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Utilized_Limits" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Interest_rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Validity_upto" Type="DateTime" Precision="3" />
+    <Property Name="Draw_funds" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Additional_document" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NumberOfDays" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RequestStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Documentation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AnchorEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedUserName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ValidityFromto" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="ODBD" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="Approvaldate" Type="DateTime" Precision="3" />
+    <Property Name="Remaining_avail_bal" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="KYCStatus" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BankNotification">
+    <Key>
+      <PropertyRef Name="BankNotificationID" />
+    </Key>
+    <Property Name="BankNotificationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" />
+    <Property Name="RoleID" Type="Int64" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsRead" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ReadOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BankSetLimitMailTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Template" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

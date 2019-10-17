@@ -1,0 +1,138 @@
+﻿@model Finocart.CustomModel.SetBankAmountLimit
+@{
+
+    ViewData["Title"] = "ModifyFundsRequestedAmount";
+}
+<div class="main-inner-section" style="padding:0;">
+    @*@using (Html.BeginForm("EditFundsRequestFromBank", "BankCompany", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitRegister" }))
+        {*@
+    <div class="content-upper-section editfunds">
+        <div class="modal-header">
+            <div class="main-heads" style="padding:0;">
+                <h2 class="modal-title">Available Balance: <span id="lblAvailableBal"></span></h2>
+                <h2 class="modal-title">Bank Name: <span id="lblBankName"></span></h2>
+            </div>
+            <div style="display:none" id="divsuccess">@TempData["success"]</div>
+            <button type="button" class="close new-close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-content-box" style="padding:0 15px;">
+                        <div class="row">
+                            @Html.HiddenFor(m => m.Id, new { @id = "field" })
+                            <div class="table-responsive tablescroll">
+                                <table id="DrawFundsHistoryperBank" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>withdrawal Fund (INR)</th>
+                                            <th>Remaining Balance Limit(INR)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            @{
+                                if (!ViewBag.isFromHistory)
+                                {
+                                    <label class="control-label" style="font-size: 13px;font-weight: 600;">How much funds Do you required from Bank?</label>
+                                    @Html.TextBoxFor(m => m.Draw_funds, new { @class = "form-control ", @placeholder = "Draw funds", @maxLength = "250", autocomplete = "off", @id = "Draw_funds" })
+                                    <label id="lblAvailabeLimit" class="cls-error" style="color:red;display:none">Please Enter Value</label>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-xs-12">
+                @*<input class="submit-btn" type="submit" id="btnSubmit" value="Submit">*@
+                @if (!ViewBag.isFromHistory)
+                {
+                    <input class="submit-btn" type="submit" id="btnSubmit" value="Submit" />
+                }
+                <button class="cancel-btn" type="button" onclick="ClearAllControls()" style="margin-right:15px;">Cancel</button>
+            </div>
+        </div>
+    </div>
+    @*}*@
+</div>
+<script>
+
+
+    $(document).ready(function () {
+        debugger;
+        var id = $('#field').val();
+
+        $('#DrawFundsHistoryperBank').dataTable({
+
+            "processing": true,
+            "serverSide": true,
+
+            "dom": '"ltipr"',
+            "scrollX": false,
+
+            "ajax": {
+                "url": '../BankCompany/GetFundWithDrawDetailsperBank?ID=' + id,
+                "type": "POST",
+                "datatype": "json",
+            },
+            "columns": [
+                {
+                    "data": "transaction_History", "name": "Transaction_History", "autoWidth": true, "render": function (data) {
+
+                        var date = new Date(data);
+                        var month = date.getMonth() + 1;
+                        return date.getDate().toString() + "/" + (month.length > 1 ? month : "0" + month) + "/" + date.getFullYear();
+                    }
+                },
+                { "data": "draw_funds", "name": "Draw_funds", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) },
+                { "data": "remaining_avail_bal", "name": "Remaining_avail_bal", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) },
+            ]
+        });
+    });
+
+</script>
+<script>
+
+    function ClearAllControls() {
+        $('#myModalContent').html('');
+        $('#myModal').modal('hide');
+    }
+    $(document).ready(function () {
+        $('#Draw_funds').val('');
+        $("#btnSubmit").click(function (e) {
+            debugger
+            //var cheklimit = '../BankCompany/GetAvailableLimit';
+
+            var $buttonClicked = $(this);
+            var id = $('#field').val()
+            var drawfunds = $('#Draw_funds').val();
+
+            if (drawfunds === "") {
+                $('#lblAvailabeLimit').show();
+                return false;
+            }
+            window.location.reload();
+
+            //var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+
+                url: '../BankCompany/EditFundsRequestFromBank',
+                type: "POST",
+                data: { Id: id, Draw_funds: drawfunds },
+                success: function (data) {
+                    if (drawfunds > data) {
+                        alert("Amount shoul not greater then the avaiable amount");
+                        return false;
+                    }
+
+                },
+            });
+        });
+
+    });
+</script>

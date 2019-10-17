@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "FundRequest";
+}
+<script src="~/Bank/BankSetLimit.js"></script>
+<script>
+    var GetFundWithdrawHistory= '@Url.Action("GetFundWithdrawHistory", "BankCompany")';
+</script>
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div id="eInvoices" class="tab-pane fade in active">
+                    <div class="row" id="eAnchorCompInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="search-box-main clearfix">
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("Txt_FundsHitoryAmount", null, new { placeholder = "Search by Request Amount ", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_FundHistoryRequestDate", null, new { placeholder = "Search by Request Date", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+                                    <button id="btnInvoiceFilter" class="filterbtn">
+                                        <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll ">
+                                <div class="table-responsive">
+                                    <table id="tbl_FundsRequstHistoryList" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th>Drawing Request ID</th>
+                                                <th>Funds Requested</th>
+                                              
+                                                <th>Funds Requested Date</th>
+                                                <th style="width:10%">Actions</th>
+                                            </tr>
+
+                                        </thead>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

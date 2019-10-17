@@ -1,0 +1,51 @@
+﻿@model Finocart.CustomModel.InvoiceModel
+@{
+    ViewData["Title"] = "Invoice Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/PurchaseOrder/PurchaseOrderList.js"></script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        <input type="text" class="searchTerm" id="txt_VendorName" placeholder="Search by Vendor Name" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        <input type="text" class="searchTerm" id="txt_PurchaseOrder" placeholder="Search by Purchase Order" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportPOCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="tbl_PurchaseOrder" class="table table-responsive table-hover table-bordered internalusermtable">
+                            <thead>
+                                <tr>
+                                    <th>PO ID</th>
+                                    <th>Number Of Invoices</th>
+                                    <th>Vendor Name</th>
+                                    <th>Total Invoice Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

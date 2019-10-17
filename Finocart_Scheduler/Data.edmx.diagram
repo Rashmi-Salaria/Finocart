@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="02216bf8f27a46d7b72d7512b3ab1388" Name="Diagram1" ZoomLevel="57">
+        <EntityTypeShape EntityType="FinocartModel.Admin" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.AnchorCompanies" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.AnchorCompanyDocument" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.AnchorNotification" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.AutoFundingRate" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.Company" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.CompanyDocuments" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.EmailTemplate" Width="1.5" PointX="10.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.Employee" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.ErrorTracer" Width="1.5" PointX="7.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.FinocartMaster" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.Invoice" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.InvoiceApprovalOrder" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.InvoiceJourneyHistory" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.LogManagement" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.LookupDetails" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.ModuleMaster" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.Notification" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.ProcedureErrorTracer" Width="1.5" PointX="9.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.RolesAccessMaster" Width="1.5" PointX="11.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.SAPConfiguration" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.SearchHistory" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.sysdiagrams" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.User" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.Vendor" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.VendorAssociatedCompany" Width="1.5" PointX="5.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.VendorDiscMap" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartModel.VendorDocument" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="FinocartModel.FK_Company_LookupDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_Invoice_AnchorCompanies" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_tblVendorDiscMap_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_User_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_VendorAssociatedCompany_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_VendorAssociatedCompany_Company1" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_Invoice_ModuleMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_InvoiceJourneyHistory_ModuleMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_User_LookupDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_tblVendorDet_VendorStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_tblVendorDiscMap_VendorID" ManuallyRouted="false" />
+        <AssociationConnector Association="FinocartModel.FK_tblVendorDiscMap_tblVendorDiscMap" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FinocartModel.BucketManagement" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FinocartModel.InvoiceBucket" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FinocartModel.SetBankAmountLimit" Width="1.5" PointX="16.375" PointY="16.75" />
+        <EntityTypeShape EntityType="FinocartModel.HolidayList" Width="1.5" PointX="5.375" PointY="17.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

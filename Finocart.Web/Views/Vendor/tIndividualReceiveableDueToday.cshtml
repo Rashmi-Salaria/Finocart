@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Finocart.CustomModel.ReceivabledueIndividual>
+
+@{
+    ViewData["Title"] = "tIndividualReceiveableDueToday";
+}
+<script src="~/Vendor/IndividualRecDue.js"></script>
+<script>
+   
+   var GetTodayRecAmount = '@Url.Action("GetTodayRecAmount", "Vendor")';
+</script>
+ <div class="main-inner-section">
+        <div class="content-upper-section" id="AnchorCompany">
+
+            <div class="tabsec-main">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-table-box page-scroll">
+                        <div class="col-xs-12 col-sm-1 col-md-1 padding">
+                            <a class="backbtn" onclick="BackBtn()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                        </div>
+                        <div class="table-responsive">
+                            <input type="hidden" id="companyID" />
+                            <input type="hidden" id="companyInvoicesID" />
+                            <table id="tbl_AnchorCompList" class="table table-responsive table-hover table-bordered tbl_UserList">
+                                <thead>
+                                    <tr>
+                                        @*<th><input type="checkbox" id="AnchorComp-select-all" /></th>*@
+                                        <th>PO ID</th>
+                                        <th>Invoice ID</th>
+                                        <th>Invoice  Date</th>
+                                        <th>Invoice Amount(INR)</th>
+                                        <th>Approved Amount(INR)</th>
+                                        <th>Discount</th>
+                                        <th>Net Receivable Amount(INR)</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Finocart_V1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company_name" Type="varchar" MaxLength="250" />
+    <Property Name="Login_Id" Type="varchar" MaxLength="70" />
+    <Property Name="Password" Type="varchar" MaxLength="150" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="InterestedAs" Type="int" />
+    <Property Name="CompanyType" Type="int" />
+    <Property Name="Pan_number" Type="varchar" MaxLength="10" />
+    <Property Name="Contact_Title" Type="varchar" MaxLength="5" />
+    <Property Name="Contact_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Contact_Designation" Type="varchar" MaxLength="50" />
+    <Property Name="Contact_email" Type="varchar" MaxLength="150" />
+    <Property Name="Contact_mobile" Type="varchar" MaxLength="15" />
+    <Property Name="Contact_Comments" Type="varchar" MaxLength="500" />
+    <Property Name="PercentageRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="InvoiceLimitAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="Contact_CIN" Type="varchar" MaxLength="50" />
+    <Property Name="IsTemporaryPassword" Type="bit" />
+    <Property Name="IsCritical" Type="bit" />
+    <Property Name="InvAmtLimitStatus" Type="int" />
+    <Property Name="NoOfDays" Type="bigint" />
+    <Property Name="MSME" Type="varchar" MaxLength="10" />
+    <Property Name="UANNumber" Type="varchar" MaxLength="50" />
+    <Property Name="InternalFundLimit" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BankLimit" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="AnchorRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsLimitUnlimited" Type="bit" />
+    <Property Name="FactoryOrReverseFactory" Type="bigint" />
+    <Property Name="status" Type="int" />
+    <Property Name="PaymentDays" Type="int" />
+    <Property Name="LoginAttempt" Type="int" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PONumber" Type="varchar(max)" />
+    <Property Name="PODate" Type="datetime" />
+    <Property Name="InvoiceNo" Type="varchar(max)" />
+    <Property Name="VendorID" Type="int" />
+    <Property Name="AnchorCompID" Type="int" Nullable="false" />
+    <Property Name="InvoiceAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentDueDate" Type="datetime" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Days" Type="bigint" />
+    <Property Name="InvoiceStatus" Type="int" />
+    <Property Name="RejectionReason" Type="varchar(max)" />
+    <Property Name="ApprovedAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UploadInvoice" Type="varchar(max)" />
+    <Property Name="UploadDocument" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="InvoiceApprovePayDays" Type="int" />
+    <Property Name="InvoiceApprovalDate" Type="datetime" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="AmountPaid" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Earning" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FinoLimUnLim" Type="varchar" MaxLength="50" />
+    <Property Name="UTRDetails" Type="varchar(max)" />
+    <Property Name="Limits" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="InvoiceMailTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Template" Type="nvarchar(max)" />
+    <Property Name="TableTag" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="LookupDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LookupKey" Type="varchar" MaxLength="150" />
+    <Property Name="LookupValue" Type="varchar" MaxLength="250" />
+    <Property Name="LookupFor" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ModuleMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModuleName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UploadExcelPath">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Path" Type="varchar" MaxLength="500" />
+    <Property Name="FileName" Type="varchar" MaxLength="50" />
+    <Property Name="Uploaded" Type="bigint" />
+    <Property Name="Remaining" Type="bigint" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="CompanyID" Type="bigint" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="100" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="bigint" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Logs" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="VendorAssociatedCompany">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VendorId" Type="int" Nullable="false" />
+    <Property Name="CompanyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VendorRegisterMailTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Template" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Invoice_ModuleMaster">
+    <End Role="ModuleMaster" Type="Self.ModuleMaster" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="InvoiceStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Proc_getLookupDetailsByGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LookupFor" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_InsertExcelData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FullPath" Type="varchar(max)" Mode="In" />
+    <Parameter Name="FileName" Type="varchar" Mode="In" />
+    <Parameter Name="Upload" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="bigint" Mode="In" />
+    <Parameter Name="CompanyName" Type="varchar" Mode="In" />
+    <Parameter Name="LogPath" Type="varchar" Mode="In" />
+    <Parameter Name="ReturnValue" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="proc_InsertInvoiceData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PONumber" Type="varchar(max)" Mode="In" />
+    <Parameter Name="PODate" Type="datetime" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="InvoiceAmt" Type="decimal" Mode="In" />
+    <Parameter Name="PaymentDueDate" Type="datetime" Mode="In" />
+    <Parameter Name="ApprovedAmt" Type="decimal" Mode="In" />
+    <Parameter Name="ReturnValue" Type="int" Mode="InOut" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_InsertVendorData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchorCompID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="PanNumber" Type="varchar" Mode="In" />
+    <Parameter Name="MIME" Type="varchar" Mode="In" />
+    <Parameter Name="UANNumber" Type="varchar" Mode="In" />
+    <Parameter Name="ContactPersonName" Type="varchar" Mode="In" />
+    <Parameter Name="ContactPersonDesignation" Type="varchar" Mode="In" />
+    <Parameter Name="EmailID" Type="varchar" Mode="In" />
+    <Parameter Name="ContactNumber" Type="varchar" Mode="In" />
+    <Parameter Name="ReturnValue" Type="int" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="Finocart_V1ModelStoreContainer">
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceMailTemplate" EntityType="Self.InvoiceMailTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupDetails" EntityType="Self.LookupDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleMaster" EntityType="Self.ModuleMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadExcelPath" EntityType="Self.UploadExcelPath" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendorAssociatedCompany" EntityType="Self.VendorAssociatedCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendorRegisterMailTemplate" EntityType="Self.VendorRegisterMailTemplate" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Invoice_ModuleMaster" Association="Self.FK_Invoice_ModuleMaster">
+      <End Role="ModuleMaster" EntitySet="ModuleMaster" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

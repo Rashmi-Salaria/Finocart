@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "DrawFundsList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<script>
+    var GetBankLimitLogList = '@Url.Action("GetBankLimitLogList", "BankCompany")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div class="row" id="">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll" style="padding:15px 15px 0 15px;">
+                            <h4 style="font-size:15px;font-weight:bold;margin-top:0;">Upload KYC</h4>
+                        </div>
+                        <div class="search-box-main clearfix" style="padding:0 15px 0;">
+                            <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                @Html.TextBox("txtSearchfield", null, new { placeholder = "Search by Bank Name,KYC status", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll">
+                            <div class="table-responsive">
+                                <table id="DrawFundsList_tb" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th hidden>ID</th>
+                                            <th>Bank ID</th>
+                                            <th>Name of Bank</th>
+                                            <th>KYC Status</th>
+                                            <th style="width:10%">Documentation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*</div>*@
+<div id="frview" class="modal fade frview" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="frview-tab">
+                    <div id="dvFundingReqAmount">
+                        <table class="table table-responsive" id="tblBankSetLimitLogView">
+                            <thead>
+                                <tr>
+                                    @*<th hidden>ID</th>*@
+                                    @*<th>Anchor Name</th>
+                                        <th>Contact Name</th>
+                                        <th>Anchor Email</th>
+                                        <th>Contact Number</th>*@
+                                    <th>Available Limits (INR)</th>
+                                    <th>Utilized Limits (INR)</th>
+                                    <th>ODBD</th>
+                                    <th>Interest Rate (% P.A.)</th>
+                                    <th>Validity From Date</th>
+                                    <th>Validity Upto</th>
+                                    <th>Modified Date</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#DrawFundsList_tb').dataTable({
+
+            "processing": true,
+            "serverSide": true,
+
+            "dom": '"ltipr"',
+            "scrollX": false,
+
+            "ajax": {
+                "url": "../BankCompany/FundsList",
+                "type": "POST",
+                "datatype": "json",
+            },
+            "columns": [
+                { "data": "id", "name": "id", "autoWidth": true, "class": "hidden", "visible": false, "searchable": false },
+                { "data": "bankID", "name": "bankID", "autoWidth": true, "visible": false, "searchable": false},
+                { "data": "bankName", "name": "bankName", "autoWidth": true }, 
+                //{ "data": "odbd", "name": "odbd", "autoWidth": true }, 
+                //{ "data": "available_Limits", "name": "available_Limits", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0)  }, 
+                ////{ "data": "utilized_Limits", "name": "utilized_Limits", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0)  }, 
+                //{ "data": "interest_rate", "name": "Interest_rate", "autoWidth": true }, 
+                //{
+                //    "data": "validityFromto", "name": "ValidityFromto", "autoWidth": true, "format": "dd/MM/YYYY"
+                //},
+                
+                ////{ "data": "interest_rate_month", "name": "Interest_rate_month", "autoWidth": true }, 
+                //{
+                //    "data": "validity_upto", "name": "validity_upto", "autoWidth": true, "format": "dd/MM/YYYY" },
+                //{ "data": "draw_funds", "name": "Draw_funds", "autoWidth": true, render: $.fn.dataTable.render.number(',', 0) }, 
+                { "data": "status", "name": "status", "autoWidth": true }, 
+                {
+                    "data": function (data, type, row) {
+                        return "<a class='btnDocument' data-status=" + data.status + " data-id=" + data.bankID + " data-bank=" + data.bankName +" ><img src='../Content/images/shape-4.png' title='View' class='img-responsive' /></a>";
+                            //+"<a href='#' onclick='GetLogView(" + data.id + ")' class='actions-ico' data-toggle='modal' data-target='#frview' ><img  src='../Content/images/shape-4.png' title='View' class='img-responsive' /></a>";
+                    }
+                }
+            ],
+           
+        });
+
+
+        //oTable1 = $('#txtSearchfield').DataTable();
+        $('.searchTerm').on('keyup', function () {
+            debugger;
+            oTable1.columns(2).search($('#txtSearchfield').val().trim());
+            oTable1.columns(3).search($('#txtSearchfield').val().trim());
+            oTable1.draw();
+        });
+    });
+    $(document).on("click", ".btnDocument", function (e) {
+        $('#divsuccess').html('');
+        var $buttonClicked = $(this);
+        var status = $buttonClicked.attr('data-status');
+        var ID = $buttonClicked.attr('data-id');
+        var BankName = $buttonClicked.attr('data-bank');
+        //if (status == 'Approved') {
+        //    //alert(status);
+        //    //alert('KYC document approved by bank');
+        //    //return false;
+        //}
+        url = "../BankCompany/DrawFundsDocumentList/?ID=" + ID + "&BankName=" + BankName + "&Status=" + status;
+        window.location.href = url;
+
+        //href = '../BankCompany/DrawFundsDocumentList/?ID=" + data.bankID + "&BankName=" + data.bankName + "' data - status=" + data.status + "
+    });
+</script>

@@ -1,0 +1,119 @@
+﻿@model Finocart.Model.Admin;
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@*@using (Html.BeginForm("ValidateAdminLogOn", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitLogin" }))*@
+@using (Html.BeginForm("ValidateAdminLogOn", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitLogin" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="login-box">
+        <div class="col-xs-12 logbox log-big">
+            <div class="login-box clearfix">
+                <div style="display: inline-flex;position: relative;">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding hidden-xs">
+                        <div class="left-box clearfix">
+
+                            <img src="~/Content/images/login-logo.png" class="img-responsive" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding" id="logsec">
+                        <div class="right-box">
+                            @*<form>*@
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h3>Login</h3>
+                                    <label class="log-valid" id="lblerror">@ViewBag.InvalidCredential</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    @if (ViewBag.PANNumber != null)
+                                    {
+                                        <input type="text" value="@ViewBag.PANNumber" class="form-control" placeholder="Pan Number" />
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(m => m.PANNumber, new { @class = "form-control", placeholder = "Pan Number", id = "pannumber" })
+
+                                    }
+                                    <label class="log-valid" id="ErrEmailId" style="display:none">Pan Number can't be left blank</label>
+                                </div>
+                                <div class="col-xs-12">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", id = "password" })
+                                    <label class="log-valid" id="ErrPassword" style="display:none">Password can't be left blank</label>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    @if (ViewBag.PANNumber != null)
+                                    {
+                                        <p class="rem-me"><input id="chkIsRemember" type="checkbox" checked /><input type="hidden" id="IsRemember" value="1" name="IsRemember" /><label>Remember Me</label></p>
+                                    }
+                                    else
+                                    {
+                                        <p class="rem-me"><input id="chkIsRemember" type="checkbox" /><input type="hidden" id="IsRemember" value="0" name="IsRemember" /><label>Remember Me</label></p>
+                                    }
+                                </div>
+                                <div class="col-xs-6">
+                                    <p class="frgt-pass"><a href="#" id="ForgotPassword">Forgot Password?</a></p>
+                                </div>
+                                <div class="col-xs-12">
+                                    @Html.Partial("_GoogleCaptchaPartial")
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6">
+                                            <button class="login-btn" type="button" id="Btn_Submit">Login</button>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <button class="clear-btn" type="button" id="btnclear">Clear</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                @*</form>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+<script>
+
+    $(document).ready(function () {
+        $("#ForgotPassword").click(function () {
+            var Role = btoa("MasterAdmin");
+            url = "../Account/ForgetPassword?Role=" + Role;
+            window.location.href = url;
+        })
+        $('#chkIsRemember').click(function () {
+            if ($('#chkIsRemember').is(':checked')) {
+                $('#IsRemember').val('1');
+            }
+            else {
+                $('#IsRemember').val('0');
+            }
+        });
+        $(document).on('keypress', function (e) {
+            if (e.which == 13) {
+                document.getElementById("Btn_Submit").focus();
+                event.preventDefault();
+                document.getElementById("Btn_Submit").click();
+            }
+        });
+        $('#btnclear').click(function () {
+            debugger
+            $('#pannumber').val("");
+            $('#password').val("");
+
+        });
+
+    });
+    function ClearAllControls(formid) {
+        Common.ClearAllControls(formid)
+    }
+</script>
+
+

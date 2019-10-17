@@ -1,0 +1,90 @@
+﻿@model Tuple<IEnumerable<Finocart.Model.ModuleMaster>, IEnumerable<Finocart.Model.SearchHistory>>
+
+@{
+    ViewData["Title"] = "Invoice Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    var GetInvoiceList = '@Url.Action("getInvoiceList", "Invoice")';
+    var GetLastSearchhistory = '@Url.Action("GetLastSearchhistory", "Invoice")';
+    var InsertbucketDetails='@Url.Action("InsertBucketDetails", "Invoice")';
+</script>
+<script src="~/Invoice/InvoiceList.js"></script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <input type="hidden" id="MaxSearchLimit" value="@ViewData["MaxSearchCount"]" />
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        <input type="text" class="searchTerm" id="txt_AnchorName" placeholder="Search by Name" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <select id="ddl_Status" class="selectstatus" type="button" data-toggle="dropdown">
+                            <option value=0>Select Status</option>
+                            @foreach (var item in Model.Item1)
+                            {
+                                <option value='@item.ID'>@item.Value</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        <button id="btnFilter" class="filterbtn">
+                            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                        </button>
+                    </div>
+
+                    
+                </div>
+                <div class="search-box-main clearfix" id="dvMainlstSrch">
+                    <div class="col-xs-12 padding" id="dvlstSrch">
+                        @{int count = 0; }
+                        Recent Searches <i class="fas fa-long-arrow-alt-right" style="margin-right:10px;"></i>@foreach (var lstitem in Model.Item2)
+                        {
+                            string str = lstitem.SearchKeyValue.Split(':')[1];
+                            <span style="position:relative;"><input type="text" class="recent-search" id="txt_LastSearch_@(count)" placeholder="Search by Name" value="@str" /><i class="fas fa-times rsclose"></i></span>
+                            count++;
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="tbl_Invoice" class="table table-responsive table-hover table-bordered internalusermtable">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>PO ID</th>
+                                    <th>Invoice ID</th>
+                                    <th>Anchor Company Name</th>
+                                    <th>Invoice Creation Date</th>
+                                    <th>Invoice Amount</th>
+                                    <th>Discount Rate</th>
+                                    <th>Days</th>
+                                    <th>Payment Due Date</th>
+                                    <th>Invoice Status with Date</th>
+                                    <th>Reason for Rejection</th>
+                                    <th>Amount Approved</th>
+                                    <th style="display:none">InvoiceID</th>
+
+                                </tr>
+                    </thead>
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

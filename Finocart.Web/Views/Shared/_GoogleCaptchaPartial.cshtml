@@ -1,0 +1,4 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+<script src='//www.google.com/recaptcha/api.js'></script>
+<div class="g-recaptcha captcha-cus" data-sitekey="@(Configuration.GetValue<String>("GoogleReCaptcha:ClientKey"))"></div>

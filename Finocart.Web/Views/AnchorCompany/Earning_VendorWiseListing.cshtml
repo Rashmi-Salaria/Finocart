@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewData["Title"] = "Earning_VendorWiseListing";
+    
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="~/AnchorCompany/EarningVendorWise.js"></script>
+<script>
+    var GetVenderwiseEarning = '@Url.Action("GetVenderwiseEarning", "AnchorCompDashboard")';
+
+    var GetAmountDiscountRatewiseList = '@Url.Action("GetAmountDiscountRatewiseList", "AnchorCompDashboard")';
+
+    var GetPercentAmountDiscountRatewiseList = '@Url.Action("GetPercentAmountDiscountRatewiseList", "AnchorCompDashboard")';
+</script>
+<style>
+    .hide-column {
+        display: none;
+    }
+    #ViewData {margin-left: 50px;}
+</style>
+
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <h4 style="font-size:15px;font-weight:bold;">Earning</h4>
+                    <div class="col-xs-12 col-sm-2 col-md-2 padding" style="display:none">
+                        <button id="MarkAllRead" class="adduserbutton">
+                            <img src="~/Content/images/plusicon.png" class="img-responsive" style="display: inline;" />Mark All Read
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 ana-fr" style="display: inline-table;">
+                        <span class="input-group-addon datepic">
+                            <label class="ana-lab">From:</label>
+                        </span>
+                        <div class='input-group date' id="FromClender">
+                            <input placeholder="Select from date" style="border-right: 1px solid #dadbdc;min-width: 100%;margin: 0;" type="text" class="searchTerm" id="FundReqFromDate" readonly> @*<span class="searchButton" style="margin-right: 15px;"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>*@
+                            <span class="input-group-addon" style="border: 1px solid #dadbdc;padding:5px 10px;border-left: 0;">
+                                <i class="fas fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                        <label id="lblErrMsg" style="display:none;padding:0;">Kindly Select From Date</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 ana-fr" style="display: inline-table;">
+                        <span class="input-group-addon datepic">
+                            <label class="ana-lab">To:</label>
+                        </span>
+                        <div class="input-group date" id="Toclender">
+
+                            <input placeholder="Select to date" style="border-right: 1px solid #dadbdc;min-width: 100%;margin: 0;" type="text" class="searchTerm" id="FundReqToDate" readonly />@*<span class="searchButton" style="margin-right: 15px;"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>*@
+                            <span class="input-group-addon" id="ToClnderDate" style="border: 1px solid #dadbdc;padding:5px 10px;border-left: 0;">
+                                <i class="fas fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                        <label id="lblErrMsgToDate" style="display:none;padding:0;">Kindly Select To Date</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 padding">
+                        <div class="pull-right">
+                            <button id="ViewData" class="excelbutton" style="margin:0;background-color:#277dc7;border-color:#277dc7; float: none;">View Earning</button>
+                            <button id="ExportEarningCSV" class="excelbutton" style="margin-right:0; float: none;">
+                                <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll" id="dvFundingRequest" style="display:none">
+                    <div class="table-responsive">
+                        <table id="tbl_EarningVenderwise" class="table table-responsive table-hover table-bordered internalusermtable">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" /></th>
+                                    <th>Vendor Name</th>
+                                    <th>Number of Discount Offered Invoices</th>
+                                    <th>Invoices Amount</th>
+                                    <th>Invoice Approved Amount</th>
+                                    <th>Amount Paid</th>
+                                    <th>Earning</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-xs-12 footer-btn">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-4 padding">
+                                        <label class="footer-label">Total Number of Invoices: <span id="lbltotalnoinvoices"></span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 padding">
+                                        <label class="footer-label">Total Invoice Amount:  <span id="lbltotalinvoiceamount"></span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 padding">
+                                        <label class="footer-label">Total Approved Invoice Amount: <span id="lblapprovedinvoiceamount"></span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 padding">
+                                        <label class="footer-label">Total Amount Paid:<span id="lbltotalamountpaid"></span></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4 padding">
+                                        <label class="footer-label">Earning: <span id="lbltotalearning"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<div id="frview" class="modal fade frview" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="border: none;">
+                <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">RATE WISE CONVERSION</h4>
+            </div>
+            <div class="modal-body">
+                <div class="toggle-switch" style="margin-bottom: 0;">
+                    <label class="label-f">AMOUNT</label>
+                    <label class="switchs">
+                        <input type="checkbox" checked>
+                        <span class="slider round clsAmount" id="spSlider"></span>
+                    </label>
+                    <label class="label-r">PERCENTAGE</label>
+                </div>
+                <div class="frview-tab">
+                    <div id="dvFundingReqAmount" style="display:none">
+                        <table class="table table-responsive" id="tblFundingReqAmount">
+                            <thead>
+                                <tr>
+                                    <th>DISCOUNT RATE</th>
+                                    <th>Number of Invoices</th>
+                                    <th>Amount Paid</th>
+                                    <th>Earning</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="col-xs-12 col-sm-3 padding">
+                            <label class="footer-label">Total <span id="lblapprovedinvices"></span></label>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 padding">
+                            <label class="footer-label"><span id="lbldiscount"></span></label>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 padding">
+                            <label class="footer-label"><span id="lblpaidamount"></span></label>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 padding">
+                            <label class="footer-label"><span id="lblearning"></span></label>
+                        </div>
+                    </div>
+                    <div id="dvFundingReqPercentage" class="table-responsive">
+                        <table class="table table-responsive" id="tblFundingReqPercentage">
+                            <thead>
+                                <tr>
+                                    <th>DISCOUNT RATE</th>
+                                    <th>Number of Invoices</th>
+                                    <th>Amount Paid(%)</th>
+                                    <th>Earning (%)</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                        <div class="col-xs-12 col-sm-3 padding">
+                            <label class="footer-label">Total<span id="lblpercentdiscountrate"></span></label>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 padding">
+                            <label class="footer-label"><span id="lblpercentinvoicenumer"></span></label>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 padding">
+                            <label class="footer-label"><span id="lblamountpaid"></span></label>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 padding">
+                            <label class="footer-label"><span id="lblpercentearning"></span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn submit-button" style="margin: 0;" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

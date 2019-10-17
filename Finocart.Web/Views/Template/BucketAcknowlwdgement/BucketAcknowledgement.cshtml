@@ -1,0 +1,44 @@
+﻿
+<!DOCTYPE html>
+<h1>EmailTemplate</h1>
+
+<html>
+
+<body>
+    <div class="container">
+        <h4>Dear @@User@@,</h4>
+        <p>Invoices have been addded into bucket to give a discount.Below are the details:</p>
+        <p>
+            <table id="tblMailDiscAckTable">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Invoice No.
+                    </th>
+                    <th>
+                        Bucket Id
+                    </th>
+                    <th>
+                        Bucket Name
+                    </th>
+                    <th>
+                        Discount offered
+                    </th>
+                    <th>
+                        Valid Upto Date
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                </tr>
+               
+                @@sTextBody@@
+            </table>
+        </p>
+        
+    </div>
+</body>
+</html>
+

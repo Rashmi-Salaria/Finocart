@@ -1,0 +1,224 @@
+﻿@model Finocart.Model.HolidayList
+@{
+    ViewData["Title"] = "HolidayList";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Microsoft.AspNetCore.Http;
+<style>
+    .hide_column {
+        display: none;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+<script src="~/AnchorCompany/HolidayList.js"></script>
+<script>
+    var GetHolidayListData = '@Url.Action("GetHolidayListing", "AnchorCompany")';
+</script>
+@using (Html.BeginForm("HolidayList", "AnchorCompany", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitRegister" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (Context.Session.GetString("Role") == "SuperAdmin")
+    {
+        <div class="main-inner-section">
+
+            <div class="content-upper-section">
+                <div class="tabsec-main">
+
+                    <div class="tab-content">
+                        <div id="eInvoices" class="tab-pane fade in active">
+
+                            <div class="row" id="eAnchorCompInvoices">
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                    <div class="search-box-main clearfix">
+                                        <h4 style="font-size:15px;font-weight:bold;">Holiday List</h4>
+
+                                        <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                            @Html.TextBox("txtSearchfield", null, new { placeholder = "Search", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                        </div>
+
+                                        
+                                        
+                                        <div class="col-xs-12 col-sm-8 col-md-8 padding">
+                                            <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0px;">
+                                                <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                            </button>
+                                            <input type="button" class="btn submit-btn" data-toggle="modal" data-target="#holidayModal" style="float: right;border-radius:0;margin-right:15px;" id="btnAddNew" value="Add New" />
+                                            @*<button id="btnComapnyFilter" class="filterbtn">
+            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+        </button>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="main-table-box page-scroll" style="padding:15px;">
+                                        <div class="table-responsive">
+                                            <table id="tbl_HolidayList" class="table table-responsive table-hover table-bordered" style="width:100% !important">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:10%;display:none;">id</th>
+                                                        <th style="width:10%">Holiday date</th>
+                                                        <th style="width:10%">reason </th>
+                                                        <th style="width:13%">CreatedBy</th>
+                                                        <th style="width:12%">CreatedDate</th>
+                                                        <th style="width:10%">UpdatedBy</th>
+                                                        <th style="width:10%">UpdatedDate </th>
+                                                        <th style="width:10%">Action</th>
+
+                                                        @*<th style="width:10%">IsDelete </th>*@
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap -->
+        <!-- Modal Popup -->
+        <div id="holidayModal" class="modal fade" role="dialog">
+            <div class="modal-dialog" style="width: 500px;">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #e46734;border-radius: 5px 5px 0 0;">
+                        <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color:#fff;font-size: 14px;font-weight: 600;">Holiday List</h4>
+                    </div>
+                    <div class="modal-body clearfix">
+                        <input type="hidden" id="hdnRecordId" />
+                        <div class="form-group clearfix">
+                            <label class="control-label col-xs-12 col-sm-3" style="padding-top: 12px;">Holiday Date:</label>
+                            <label style="display:none;" id="divsuccess">@TempData["success"]</label>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class='input-group date' id="FromClender" style="display:table;">
+                                    @Html.EditorFor(m => m.Date, new { htmlAttributes = new { @class = "form-control", @placeholder = "Select date", @style = " ", @id = "txtDate" } })
+                                    <span class="input-group-addon adon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                                <label id="lblErrMsg" style="display:none;padding:0;color: red;">Kindly Select From Date</label>
+                            </div>
+                        </div>
+                        <div class="">
+                            <label class="control-label col-xs-12 col-sm-3" style="padding-top: 12px;">Reason:</label>
+                            <div class="col-xs-12 col-sm-9" id="FromReason">
+                                @Html.TextBoxFor(m => m.Reason, new { @class = "form-control", @placeholder = "Enter Reason", @maxLength = "500", autocomplete = "off", @style = "min-width: 100%;", @id = "txtReason" })
+                                <label id="lblreason" style="display:none;padding:0;color: red;">Please enter reason</label>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-xs-12 col-sm-6 ana-fr">
+                            <input class="cancel-btn" type="reset" id="btnCancel" style="" data-dismiss="modal" value="Cancel" />
+                        </div>
+                        <div class="col-xs-12 col-sm-6 ana-fr">
+                            <input class="submit-btn" type="submit" id="btnSubmit" style="float: left;" value="Submit" />
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+
+    @*</div>*@
+    <script>
+
+        //location.reload(true);
+       
+        $(function () {
+            $("#btnAddNew").click(function () {
+                debugger;
+                $('#txtDate').val('');
+                $('#txtReason').val('');
+            });
+
+            
+            $("#btnSubmit").click(function (e) {
+
+                debugger;
+                var holidaydate = $('#txtDate').val();
+                var reason = $('#txtReason').val();
+
+                var count = 0;
+                $('.cls-error').text('');
+                if (Reason == '') {
+                    $('#lblreason').text('Enter  reason');
+                    count++;
+                }
+
+                else {
+                    //return false;
+                }
+                debugger;
+
+                var iHolidayId = $("#hdnRecordId").val();
+                var url = "";
+                if (iHolidayId == 0) {
+                    url = "../AnchorCompany/InsertHolidate";
+                } else {
+                    url = "../AnchorCompany/EditHolidate";
+                }
+
+
+                //var Holidate = $('#txtDate').val().split('/')[1] + '/' + $('#txtDate').val().split('/')[0] + '/' + $('#txtDate').val().split('/')[2];
+                var Holidate = $('#txtDate').val().split('/')[2] + '-' + $('#txtDate').val().split('/')[1] + '-' + $('#txtDate').val().split('/')[0];
+                var Reason = $('#txtReason').val();
+                if (Holidate != 0 && Reason != 0) {
+                    debugger;
+                    $.ajax({
+
+                        url: url,
+                        type: "Post",
+                        dataType: "json",
+                        data: { ID: iHolidayId, Holidate: Holidate, Reason: Reason },
+
+                    });
+
+
+                }
+                else {
+                    debugger;
+                    if (holidaydate == 0 || holidaydate == undefined || holidaydate == '') {
+                        $("#lblErrMsg").show();
+                        e.preventDefault();
+                    }
+                    else {
+                        $("#lblErrMsg").hide();
+                    }
+                    if (reason == 0 || reason == undefined || reason == '') {
+                        $("#lblreason").show();
+                        e.preventDefault();
+                    }
+                    else {
+                        $("#lblreason").hide();
+                    }
+                }
+
+
+            });
+            $("#btnCancel").click(function (e) {
+                debugger;
+                $('#txtDate').val('');
+                $('#txtReason').val('');
+            });
+        });
+    </script>
+}
+

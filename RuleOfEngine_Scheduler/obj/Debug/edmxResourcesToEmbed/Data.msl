@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinocartDemo1ModelStoreContainer" CdmEntityContainer="FinocartDemo1Entities">
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="LoginAttempt" ColumnName="LoginAttempt" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="InterestedAs" ColumnName="InterestedAs" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="Pan_number" ColumnName="Pan_number" />
+          <ScalarProperty Name="Contact_Title" ColumnName="Contact_Title" />
+          <ScalarProperty Name="Contact_Name" ColumnName="Contact_Name" />
+          <ScalarProperty Name="Contact_Designation" ColumnName="Contact_Designation" />
+          <ScalarProperty Name="Contact_email" ColumnName="Contact_email" />
+          <ScalarProperty Name="Contact_mobile" ColumnName="Contact_mobile" />
+          <ScalarProperty Name="Contact_Comments" ColumnName="Contact_Comments" />
+          <ScalarProperty Name="PercentageRate" ColumnName="PercentageRate" />
+          <ScalarProperty Name="InvoiceLimitAmt" ColumnName="InvoiceLimitAmt" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Contact_CIN" ColumnName="Contact_CIN" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+          <ScalarProperty Name="IsCritical" ColumnName="IsCritical" />
+          <ScalarProperty Name="InvAmtLimitStatus" ColumnName="InvAmtLimitStatus" />
+          <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+          <ScalarProperty Name="MSME" ColumnName="MSME" />
+          <ScalarProperty Name="UANNumber" ColumnName="UANNumber" />
+          <ScalarProperty Name="InternalFundLimit" ColumnName="InternalFundLimit" />
+          <ScalarProperty Name="BankLimit" ColumnName="BankLimit" />
+          <ScalarProperty Name="AnchorRate" ColumnName="AnchorRate" />
+          <ScalarProperty Name="IsLimitUnlimited" ColumnName="IsLimitUnlimited" />
+          <ScalarProperty Name="FactoryOrReverseFactory" ColumnName="FactoryOrReverseFactory" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="PaymentDays" ColumnName="PaymentDays" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnchorNotifications">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.AnchorNotification">
+        <MappingFragment StoreEntitySet="AnchorNotification">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ReadOn" ColumnName="ReadOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AnchrNotificationID" ColumnName="AnchrNotificationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="Limits" ColumnName="Limits" />
+          <ScalarProperty Name="UTRDetails" ColumnName="UTRDetails" />
+          <ScalarProperty Name="FinoLimUnLim" ColumnName="FinoLimUnLim" />
+          <ScalarProperty Name="Earning" ColumnName="Earning" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UploadDocument" ColumnName="UploadDocument" />
+          <ScalarProperty Name="UploadInvoice" ColumnName="UploadInvoice" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="AnchorCompID" ColumnName="AnchorCompID" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LookupDetails">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.LookupDetail">
+        <MappingFragment StoreEntitySet="LookupDetails">
+          <ScalarProperty Name="LookupFor" ColumnName="LookupFor" />
+          <ScalarProperty Name="LookupValue" ColumnName="LookupValue" />
+          <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="LoginAttempt" ColumnName="LoginAttempt" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="AccessViewID" ColumnName="AccessViewID" />
+          <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+          <ScalarProperty Name="RolesAccess" ColumnName="RolesAccess" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModuleMasters">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.ModuleMaster">
+        <MappingFragment StoreEntitySet="ModuleMaster">
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentDueTodayTemplates">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.PaymentDueTodayTemplate">
+        <MappingFragment StoreEntitySet="PaymentDueTodayTemplate">
+          <ScalarProperty Name="Template" ColumnName="Template" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SetBankAmountLimits">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.SetBankAmountLimit">
+        <MappingFragment StoreEntitySet="SetBankAmountLimit">
+          <ScalarProperty Name="KYCStatus" ColumnName="KYCStatus" />
+          <ScalarProperty Name="Remaining_avail_bal" ColumnName="Remaining_avail_bal" />
+          <ScalarProperty Name="Approvaldate" ColumnName="Approvaldate" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="ODBD" ColumnName="ODBD" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ValidityFromto" ColumnName="ValidityFromto" />
+          <ScalarProperty Name="ModifiedUserName" ColumnName="ModifiedUserName" />
+          <ScalarProperty Name="AnchorEmail" ColumnName="AnchorEmail" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="Documentation" ColumnName="Documentation" />
+          <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
+          <ScalarProperty Name="Additional_document" ColumnName="Additional_document" />
+          <ScalarProperty Name="Draw_funds" ColumnName="Draw_funds" />
+          <ScalarProperty Name="Validity_upto" ColumnName="Validity_upto" />
+          <ScalarProperty Name="Interest_rate" ColumnName="Interest_rate" />
+          <ScalarProperty Name="Utilized_Limits" ColumnName="Utilized_Limits" />
+          <ScalarProperty Name="Available_Limits" ColumnName="Available_Limits" />
+          <ScalarProperty Name="Anchor_Name" ColumnName="Anchor_Name" />
+          <ScalarProperty Name="Anchor_id" ColumnName="Anchor_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankNotifications">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.BankNotification">
+        <MappingFragment StoreEntitySet="BankNotification">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ReadOn" ColumnName="ReadOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="BankNotificationID" ColumnName="BankNotificationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankSetLimitMailTemplates">
+      <EntityTypeMapping TypeName="FinocartDemo1Model.BankSetLimitMailTemplate">
+        <MappingFragment StoreEntitySet="BankSetLimitMailTemplate">
+          <ScalarProperty Name="Template" ColumnName="Template" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

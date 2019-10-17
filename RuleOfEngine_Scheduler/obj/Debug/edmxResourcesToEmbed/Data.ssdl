@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinocartDemo1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AnchorNotification">
+    <Key>
+      <PropertyRef Name="AnchrNotificationID" />
+    </Key>
+    <Property Name="AnchrNotificationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="RoleID" Type="bigint" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="IsRead" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ReadOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="BankNotification">
+    <Key>
+      <PropertyRef Name="BankNotificationID" />
+    </Key>
+    <Property Name="BankNotificationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="RoleID" Type="bigint" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="IsRead" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ReadOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="BankSetLimitMailTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Template" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company_name" Type="varchar" MaxLength="250" />
+    <Property Name="Login_Id" Type="varchar" MaxLength="70" />
+    <Property Name="Password" Type="varchar" MaxLength="150" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="InterestedAs" Type="int" />
+    <Property Name="CompanyType" Type="int" />
+    <Property Name="Pan_number" Type="varchar" MaxLength="10" />
+    <Property Name="Contact_Title" Type="varchar" MaxLength="5" />
+    <Property Name="Contact_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Contact_Designation" Type="varchar" MaxLength="50" />
+    <Property Name="Contact_email" Type="varchar" MaxLength="150" />
+    <Property Name="Contact_mobile" Type="varchar" MaxLength="15" />
+    <Property Name="Contact_Comments" Type="varchar" MaxLength="500" />
+    <Property Name="PercentageRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="InvoiceLimitAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="Contact_CIN" Type="varchar" MaxLength="50" />
+    <Property Name="IsTemporaryPassword" Type="bit" />
+    <Property Name="IsCritical" Type="bit" />
+    <Property Name="InvAmtLimitStatus" Type="int" />
+    <Property Name="NoOfDays" Type="bigint" />
+    <Property Name="MSME" Type="varchar" MaxLength="10" />
+    <Property Name="UANNumber" Type="varchar" MaxLength="50" />
+    <Property Name="InternalFundLimit" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="BankLimit" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="AnchorRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsLimitUnlimited" Type="bit" />
+    <Property Name="FactoryOrReverseFactory" Type="bigint" />
+    <Property Name="status" Type="int" />
+    <Property Name="PaymentDays" Type="int" />
+    <Property Name="LoginAttempt" Type="int" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PONumber" Type="varchar(max)" />
+    <Property Name="PODate" Type="datetime" />
+    <Property Name="InvoiceNo" Type="varchar(max)" />
+    <Property Name="VendorID" Type="int" />
+    <Property Name="AnchorCompID" Type="int" Nullable="false" />
+    <Property Name="InvoiceAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentDueDate" Type="datetime" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Days" Type="bigint" />
+    <Property Name="InvoiceStatus" Type="int" />
+    <Property Name="RejectionReason" Type="varchar(max)" />
+    <Property Name="ApprovedAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UploadInvoice" Type="varchar(max)" />
+    <Property Name="UploadDocument" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="InvoiceApprovePayDays" Type="int" />
+    <Property Name="InvoiceApprovalDate" Type="datetime" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="AmountPaid" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Earning" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FinoLimUnLim" Type="varchar" MaxLength="50" />
+    <Property Name="UTRDetails" Type="varchar(max)" />
+    <Property Name="Limits" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="LookupDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LookupKey" Type="varchar" MaxLength="150" />
+    <Property Name="LookupValue" Type="varchar" MaxLength="250" />
+    <Property Name="LookupFor" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ModuleMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModuleName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PaymentDueTodayTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Template" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="SetBankAmountLimit">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Anchor_id" Type="int" Nullable="false" />
+    <Property Name="Anchor_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Available_Limits" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Utilized_Limits" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Interest_rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Validity_upto" Type="datetime" />
+    <Property Name="Draw_funds" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Additional_document" Type="text" />
+    <Property Name="NumberOfDays" Type="int" />
+    <Property Name="Comment" Type="text" />
+    <Property Name="RequestStatus" Type="varchar" MaxLength="50" />
+    <Property Name="Documentation" Type="varchar" MaxLength="255" />
+    <Property Name="BankName" Type="varchar" MaxLength="50" />
+    <Property Name="AnchorEmail" Type="varchar" MaxLength="150" />
+    <Property Name="ModifiedUserName" Type="varchar" MaxLength="150" />
+    <Property Name="ValidityFromto" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ODBD" Type="varchar" MaxLength="2" />
+    <Property Name="userid" Type="int" />
+    <Property Name="Approvaldate" Type="datetime" />
+    <Property Name="Remaining_avail_bal" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="KYCStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar(max)" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Designation" Type="varchar" MaxLength="50" />
+    <Property Name="RolesAccess" Type="varchar" MaxLength="50" />
+    <Property Name="RoleAccessID" Type="int" />
+    <Property Name="AccessViewID" Type="int" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="PANNumber" Type="varchar" MaxLength="50" />
+    <Property Name="IsTemporaryPassword" Type="bit" Nullable="false" />
+    <Property Name="LoginAttempt" Type="int" />
+  </EntityType>
+  <Association Name="FK_Invoice_ModuleMaster">
+    <End Role="ModuleMaster" Type="Self.ModuleMaster" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="InvoiceStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_LookupDetails">
+    <End Role="LookupDetails" Type="Self.LookupDetails" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="AccessViewID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinocartDemo1ModelStoreContainer">
+    <EntitySet Name="AnchorNotification" EntityType="Self.AnchorNotification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankNotification" EntityType="Self.BankNotification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankSetLimitMailTemplate" EntityType="Self.BankSetLimitMailTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupDetails" EntityType="Self.LookupDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleMaster" EntityType="Self.ModuleMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentDueTodayTemplate" EntityType="Self.PaymentDueTodayTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SetBankAmountLimit" EntityType="Self.SetBankAmountLimit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Invoice_ModuleMaster" Association="Self.FK_Invoice_ModuleMaster">
+      <End Role="ModuleMaster" EntitySet="ModuleMaster" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_LookupDetails" Association="Self.FK_User_LookupDetails">
+      <End Role="LookupDetails" EntitySet="LookupDetails" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

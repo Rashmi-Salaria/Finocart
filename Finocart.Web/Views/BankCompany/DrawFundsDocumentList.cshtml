@@ -1,0 +1,149 @@
+﻿@model List<Finocart.CustomModel.BankDocumnet>
+@{
+    ViewData["Title"] = "DrawFundsDocumentList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    var GetUploadData = '@Url.Action("GetUploadDocumentList", "BankCompany")';
+</script>
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<a class="backbtn" href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div style="display:none" id="divsuccess">@TempData["successmsg"]</div>
+                        <div class="main-table-box page-scroll">
+                            <div class="table-responsive">
+                                @using (@Html.BeginForm("UploadDocument", "BankCompany", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <table id="document_tb" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                        <thead>
+                                            <tr>
+                                                <th hidden>ID</th>
+                                                <th>Document Name</th>
+                                                <th>Document Description (File Name)</th>
+                                                @if (ViewBag.Status != "Approved")
+                                                {
+                                                    <th style="width:10%">Actions</th>
+                                                }
+                                                <th>Uploaded Date</th>
+                                                <th>Status</th>
+                                                <th style="width:12%">Download</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @if (Model != null)
+                                            {
+                                                for (var i = 0; i < Model.Count; i++)
+                                                {
+                                                    <tr id="@Model[i].DocumentType_ID">
+
+                                                        <td style="display:none;">@Model[i].DocumentType_ID</td>
+
+                                                        @if (i < 4)
+                                                        {
+                                                            <td>@Model[i].Document_Name<label style="color:red;font-size: 15px;">*</label></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@Model[i].Document_Name</td>
+                                                        }
+                                                        <td>@Model[i].Document_Description</td>
+
+                                                        @if (ViewBag.Status != "Approved")
+                                                        {
+                                                            <td style="width:10%; text-align: left; white-space: initial;">
+
+                                                                <input type="file" name="@Model[i].DocumentType_ID" id="myfile_@i" data-id="@Model[i].DocumentType_ID" class="uploadfileclass" multiple style="border: 1px solid#ddd; float:left;" />
+                                                                <input type="hidden" id="DocumentType_ID" name="DocumentType_ID" value="@Model[i].DocumentType_ID" />
+                                                                <input type="hidden" id="BankID" name="BankID" value="@ViewBag.Bank" />
+                                                                <input type="hidden" id="BankName" name="BankName" value="@ViewBag.BankName" />
+                                                                <label id="error_@i" style="color:red;"></label>
+                                                            </td>
+                                                        }
+                                                        <td>
+                                                            @Model[i].Uploaded_Date
+                                                        </td>
+                                                        <td>
+                                                            @Model[i].Status
+                                                        </td>
+                                                        <td>
+                                                            @*@if (!string.IsNullOrEmpty(Convert.ToString(Model[i].FilePath)))
+                                                                {*@
+                                                            <a href='@Url.Action("DrawFundsDocumentView", "BankCompany")?DocumentTypeID=@Model[i].DocumentType_ID'><img src='/Finocart/Content/images/shape-4.png' title='View' class='img-responsive' /></a>
+                                                            @*}*@
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </tbody>
+                                    </table><br />
+                                    <input type="submit" value="Save and SendMail" id="btnUpload" class="btn btn-primary blue" style="float:left;margin-left:10px;" />
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+@*</div>*@
+<script src="~/BankCompany/DrawFundsDocumentList.js"></script>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+    });
+    function myFunction(e, id) {
+        debugger;
+        //$("#btnsave").click(function (evt) {
+        var DocumentType_ID = id;
+        var BankName = $("#BankName").val();
+        var fileUpload = $("#" + e.id).get(0);
+        var files = fileUpload.files;
+        alert(fileUpload);
+        var data = new FormData();
+        for (var i = 0; i < files.length; i++) {
+            data.append(files[i].name, files[i]);
+            debugger;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/BankCompany/Document_SubmitAsync?BankName=" + BankName + "&&DocumentType_ID=" + DocumentType_ID + "",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (message) {
+                alert(message);
+                $("#myfile").val('');
+            },
+            //error: function () {
+            //    alert("There was error uploading files!");
+            //}
+        });
+
+
+    }
+
+
+
+</script>
+

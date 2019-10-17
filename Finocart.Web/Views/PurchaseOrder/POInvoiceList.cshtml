@@ -1,0 +1,70 @@
+﻿@model Tuple<Finocart.CustomModel.InvoiceModel, IEnumerable<Finocart.Model.ModuleMaster>>
+
+@{
+    ViewData["Title"] = "Invoice Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/PurchaseOrder/PurchaseOrderList.js"></script>
+<script>
+    var GetInvoiceListByPOId = '@Url.Action("getInvoiceListByPOId", "PurchaseOrder")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        <input type="text" class="searchTerm" id="txt_InvoiceName" placeholder="Search by Invoice Name" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <select id="ddl_Status" class="selectstatus" type="button" data-toggle="dropdown">
+                            <option value=0>Select Status</option>
+                            @foreach (var item in Model.Item2)
+                            {
+                                <option value='@item.ID'>@item.Value</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <input type="hidden" class="searchTerm" id="PONumber" placeholder="Search by Name" value="@Model.Item1.PONumber" />
+                        <table id="tbl_InvoiceListByPO" class="table table-responsive table-hover table-bordered internalusermtable">
+                            <thead>
+                                <tr>
+                                    <th>PO ID</th>
+                                    <th>Invoice ID</th>
+                                    <th>Vendor Name</th>
+                                    <th>Invoice Creation Date</th>
+                                    <th>Invoice Amount</th>
+                                    <th>Discount Rate</th>
+                                    <th>Days</th>
+                                    <th>Payment Due Date</th>
+                                    <th>Invoice Status with Date</th>
+                                    <th>Reason for Rejection</th>
+                                    <th>Amount Approved</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Finocart_V1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Login_Id" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InterestedAs" Type="Int32" />
+    <Property Name="CompanyType" Type="Int32" />
+    <Property Name="Pan_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Title" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PercentageRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InvoiceLimitAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Contact_CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsTemporaryPassword" Type="Boolean" />
+    <Property Name="IsCritical" Type="Boolean" />
+    <Property Name="InvAmtLimitStatus" Type="Int32" />
+    <Property Name="NoOfDays" Type="Int64" />
+    <Property Name="MSME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UANNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LookupDetail" Relationship="Self.FK_Company_LookupDetails" FromRole="Company" ToRole="LookupDetails" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoice_Company" FromRole="Company" ToRole="Invoice" />
+    <Property Name="InternalFundLimit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BankLimit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="AnchorRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsLimitUnlimited" Type="Boolean" />
+    <Property Name="FactoryOrReverseFactory" Type="Int64" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="PaymentDays" Type="Int32" />
+    <Property Name="LoginAttempt" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PONumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PODate" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VendorID" Type="Int32" />
+    <Property Name="AnchorCompID" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentDueDate" Type="DateTime" Precision="3" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Days" Type="Int64" />
+    <Property Name="InvoiceStatus" Type="Int32" />
+    <Property Name="RejectionReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ApprovedAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UploadInvoice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UploadDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceApprovePayDays" Type="Int32" />
+    <Property Name="InvoiceApprovalDate" Type="DateTime" Precision="3" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Earning" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Invoice_Company" FromRole="Invoice" ToRole="Company" />
+    <NavigationProperty Name="ModuleMaster" Relationship="Self.FK_Invoice_ModuleMaster" FromRole="Invoice" ToRole="ModuleMaster" />
+    <Property Name="FinoLimUnLim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UTRDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Limits" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="LookupDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LookupKey" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="LookupValue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LookupFor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Companies" Relationship="Self.FK_Company_LookupDetails" FromRole="LookupDetails" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="ModuleMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoice_ModuleMaster" FromRole="ModuleMaster" ToRole="Invoice" />
+  </EntityType>
+  <EntityType Name="VendorAssociatedCompany">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Company_LookupDetails">
+    <End Role="LookupDetails" Type="Self.LookupDetail" Multiplicity="0..1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="InvAmtLimitStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="AnchorCompID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_ModuleMaster">
+    <End Role="ModuleMaster" Type="Self.ModuleMaster" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="InvoiceStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Finocart_V1Entities8" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Companies" EntityType="Self.Company" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="LookupDetails" EntityType="Self.LookupDetail" />
+    <EntitySet Name="ModuleMasters" EntityType="Self.ModuleMaster" />
+    <EntitySet Name="VendorAssociatedCompanies" EntityType="Self.VendorAssociatedCompany" />
+    <AssociationSet Name="FK_Company_LookupDetails" Association="Self.FK_Company_LookupDetails">
+      <End Role="LookupDetails" EntitySet="LookupDetails" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_Company" Association="Self.FK_Invoice_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_ModuleMaster" Association="Self.FK_Invoice_ModuleMaster">
+      <End Role="ModuleMaster" EntitySet="ModuleMasters" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <FunctionImport Name="proc_InsertInvoiceData">
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="PODate" Mode="In" Type="DateTime" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceAmt" Mode="In" Type="Decimal" />
+      <Parameter Name="PaymentDueDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ApprovedAmt" Mode="In" Type="Decimal" />
+      <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_InsertVendorData">
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="PanNumber" Mode="In" Type="String" />
+      <Parameter Name="MIME" Mode="In" Type="String" />
+      <Parameter Name="UANNumber" Mode="In" Type="String" />
+      <Parameter Name="ContactPersonName" Mode="In" Type="String" />
+      <Parameter Name="ContactPersonDesignation" Mode="In" Type="String" />
+      <Parameter Name="EmailID" Mode="In" Type="String" />
+      <Parameter Name="ContactNumber" Mode="In" Type="String" />
+      <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_UpdateExcelData">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="LogPath" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_getVendorRegisterEmailTemplate" ReturnType="Collection(String)">
+      <Parameter Name="LookupFor" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="VendorRegisterMailTemplates" EntityType="Finocart_V1Model.VendorRegisterMailTemplate" />
+    <FunctionImport Name="Proc_getLookupDetailsByGroup" ReturnType="Collection(Finocart_V1Model.Proc_getLookupDetailsByGroup_Result)">
+      <Parameter Name="LookupFor" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_InsertExcelData">
+      <Parameter Name="FullPath" Mode="In" Type="String" />
+      <Parameter Name="FileName" Mode="In" Type="String" />
+      <Parameter Name="Upload" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int64" />
+      <Parameter Name="CompanyName" Mode="In" Type="String" />
+      <Parameter Name="LogPath" Mode="In" Type="String" />
+      <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="InvoiceMailTemplates" EntityType="Finocart_V1Model.InvoiceMailTemplate" />
+    <EntitySet Name="UploadExcelPaths" EntityType="Finocart_V1Model.UploadExcelPath" />
+  </EntityContainer>
+  <EntityType Name="VendorRegisterMailTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Template" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="Proc_getLookupDetailsByGroup_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="LookupKey" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="LookupValue" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="LookupFor" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="InvoiceMailTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Template" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TableTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UploadExcelPath">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Uploaded" Type="Int64" />
+    <Property Name="Remaining" Type="Int64" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyID" Type="Int64" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int64" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int64" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="Logs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

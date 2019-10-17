@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewData["Title"] = "DrawFundsHistoryview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="main-inner-section">
+    <a class="backbtn" href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+    <div class="content-upper-section" id="AnchorCompany">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="search-box-main clearfix">
+                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                    @Html.TextBox("txt_BankName", null, new { placeholder = "Search by Bank Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                    @Html.TextBox("txt_Draw_funds", null, new { placeholder = "Search by Draw Funds", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                    <button id="btnInvoiceFilter" class="filterbtn">
+                        <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-table-box page-scroll">
+                        <div class="table-responsive">
+                            <table id="FundsHistoryView" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name of Bank</th>
+                                        <th>Facility</th>
+                                        <th>Draw Funds INR</th>
+                                        <th>Interest Rate</th>
+                                        @*<th>For Months</th>*@
+                                        <th>Validity Upto</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+       $('#FundsHistoryView').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "dom": '"ltipr"',
+            "scrollX": false,
+            "ajax": {
+                "url": "../FundsHistoryviewList",
+                "type": "POST",
+                "datatype": "json",
+            },
+            "columns": [
+                { "data": "id", "name": "id", "autoWidth": true }, //index 1
+                { "data": "bankName", "name": "BankName", "autoWidth": true },
+                { "data": "odbd", "name": "odbd", "autoWidth": true },
+                { "data": "draw_funds", "name": "Draw_funds", "autoWidth": true },
+                { "data": "interest_rate", "name": "Interest_rate", "autoWidth": true },
+                //{ "data": "interest_rate_month", "name": "Interest_rate_month", "autoWidth": true },//index 2
+                {
+                    "data": "validity_upto", "name": "Validity_upto", "autoWidth": true, "format": "dd/MM/YYYY"  }, //index 3
+                { "data": "status", "name": "Status", "autoWidth": true }
+
+
+            ],
+            "columnDefs": [{
+                "targets": 0,
+                "searchable": false,
+                "orderable": false,
+                "className": "dt-body-center",
+                
+            },
+            {
+                    "targets": 0,
+                   
+                }
+            ],
+            "order": [
+                [1, "asc"],
+            ],
+        });
+
+        oTable1 = $('#FundsHistoryView').DataTable();
+        $('#btnInvoiceFilter').click(function () {
+            oTable1.columns(1).search($('#txt_BankName').val().trim());
+            oTable1.columns(3).search($('#txt_Draw_funds').val().trim());
+            oTable1.draw();
+        });
+        $('.searchTerm').on('keyup', function () {
+            oTable1.columns(1).search($('#txt_BankName').val().trim());
+            oTable1.columns(3).search($('#txt_Draw_funds').val().trim());
+            oTable1.draw();
+        });
+    })
+    
+</script>

@@ -1,0 +1,153 @@
+﻿@model Tuple<Finocart.CustomModel.CriticalVendorsModel, IEnumerable<Finocart.CustomModel.VendorsDropDownModel>, IEnumerable<Finocart.Model.LookupDetails>>
+@{
+    ViewData["Title"] = "CriticalVendors";
+}
+
+<script src="~/AnchorCompany/CriticalVendors.js"></script>
+<script>
+    var GetCriticalVendorsList = '@Url.Action("GetCriticalVendorsList", "AnchorCompDashboard")';
+    var AddCriticalVendors = '@Url.Action("AddCriticalVendors", "AnchorCompDashboard")';
+    var DeleteCriticalVendor = '@Url.Action("DeleteCriticalVendors", "AnchorCompDashboard")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="btnAddNew" data-toggle="modal" data-target="#CriticalVendors" class="adduserbutton">
+                            <img src="~/Content/images/plusicon.png" class="img-responsive" style="display: inline;" />Add Critical Vendors
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <input type="text" class="searchTerm" id="txt_VendorCompanyName" placeholder="Search by Vendor Company Name" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <input type="text" class="searchTerm" id="txt_InvoiceLimitValue" placeholder="Search by Total Invoice Amount" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportCriticalVendorsCSV" class="excelbutton" style="margin-right:0;">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        <button id="btnVendorsFilter" class="filterbtn">
+                            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="tbl_CriticalVendors" class="table table-responsive table-bordered table-hover tbl_UserList">
+                            <thead>
+                                <tr>
+                                    <th>Vendor Name</th>
+                                    <th>Vendor ID</th>
+                                    <th>Critical Discount Percentage</th>
+                                    <th>Invoice Amount Limit (Yes/ No)</th>
+                                    <th>Invoice Amount Limit Value</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("AddCriticalVendors", "AnchorCompDashboard", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitLogin" }))
+{ 
+    <div id="CriticalVendors" class="modal fade" role="dialog">
+        <div class="modal-dialog addcricpop" id="myModalDialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body" style="background: #f2f2f2;margin: 15px 15px 0 15px;">
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-5">
+                            <label>Vendor Name:</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-7">
+                           <select class="searchTerm form-control" id="ddl_Vendors">
+                                <option value=0>Select Vendor</option>
+                                @foreach (var item in Model.Item2)
+                                {
+                                    <option value='@item.CompanyID'>@item.CompanyName</option>
+                                }
+                            </select>
+                            <label id="lblVnameErr"  style="font-family:sans-serif;font-size:12px;color:red;display:none;">Kindly Enter Name   </label>
+                            @Html.Hidden("CompanyID", Model.Item1.CompanyID)
+                        </div>
+
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-5">
+                            <label>Enter Critical Discount Percentage:</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-7">
+                            @Html.TextBox("PercentageRate", Model.Item1.PercentageRate, new { @class = "form-control", placeholder = "Discount", name = "PercentageRate", Type = "Number", min = "0", Max = "100" })
+                            <label id="lblDisCntErr" class="error" style="font-family:sans-serif;font-size:12px;color:red;display:none;">Kindly Enter Discount</label>
+                        </div>
+
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-5">
+                            <label>Invoice Limit:</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-7">
+                           <select class="searchTerm form-control" id="ddl_InvoiceLimit">
+                                <option value=0>Select Invoice Limit</option>
+                                @foreach (var item in Model.Item3)
+                                {
+                                    <option value='@item.Id'>@item.LookupValue</option>
+                                }
+                            </select>
+                            <label id="lblInvcLimitErr" class="error" style="font-family:sans-serif;font-size:12px;color:red;display:none;">Kindly Select Invoice   </label>
+                            @Html.Hidden("Status", Model.Item1.Status)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-12 col-sm-5">
+                            <label>
+                                Invoice Amount Limit Value:
+                            </label>
+                        </div>
+                        <div class="col-xs-12 col-sm-7">
+                            @Html.TextBox("InvoiceLimitAmt", Model.Item1.InvoiceLimitAmt, new { @class = "form-control", placeholder = "Invoice Amount Limit Value", type = "number", })
+                            <label id="lblInvcAmntlmitErr" class="error" style="font-family:sans-serif;font-size:12px;color:red;display:none;">Kindly Select Amount</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn confirmbutton" id="BtnClose" style="margin:0;">Close</button>
+                    <button type="submit" class="btn confirmbutton" id="BtnSave">Add Vendor</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function () {
+    var AddResult = '@(TempData["AddResult"])';
+    var DeleteResult='@(TempData["DeleteResult"])';
+    if (AddResult == 1) {
+        Common.CustomSuccessNotify("Record saved");
+    }
+    if (DeleteResult == 1) {
+        Common.CustomSuccessNotify("Record deleted");
+    }
+
+        $("#ddl_Vendors").change(function () {
+            $("#CompanyID").val($("#ddl_Vendors").val());
+        });
+
+        $("#ddl_InvoiceLimit").change(function () {
+            $("#Status").val($("#ddl_InvoiceLimit").val());
+        });
+    });
+    </script>
+}

@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "DrawFunds";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<script>
+    $("tbody").sortable({
+        placeholder: "bg-warning",
+        stop: function (event, tr) {
+            $("tr").each(function (index, element) {
+                var hiddenInput = $(element).children(".index").first();
+                hiddenInput.text(index)
+
+            });
+        }
+
+    });
+</script>
+
+<script src="~/BankCompany/FundsRequestFromBankList.js"></script>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div class="row" id="">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll" style="padding:15px;">
+                            <h4 style="font-size:15px;font-weight:bold;">Draw Funds</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll">
+                            <div class="table-responsive">
+                                <table id="DrawFundsList_tb" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th hidden>ID</th>
+                                            <th>Name of Bank</th>
+                                            <th>Facility</th>
+                                            <th>Total Available Limit (INR)</th>
+                                            <th>Rate (% P.A.)</th>
+                                            <th>Validity From</th>
+                                            <th>Validity Upto</th>
+                                            <th>Total Draw Funds (INR)</th>
+                                            <th>Remaining available limit (INR)</th>
+                                            <th style="width:10%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 footer-btn">
+                        <div class="col-xs-12 col-sm-4 padding">
+                            <label class="footer-label">Total Requested Drawn Funds: <span id="lblapprovedamount"></span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+
+</div>
+<script src="~/BankCompany/FundsRequestFromBank.js"></script>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Finocart.CustomModel.AnchorCompDropDownModel>
+
+@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="~/Vendor/Analytics.js"></script>
+@*<script src="~/AnchorCompany/LostOpportunities.js"></script>*@
+<script>
+    var GetLostOpportunitiesList = '@Url.Action("GetLostOpportunitiesList", "VendorAnalytics")';
+</script>
+<style>
+    .hide-column {
+        display: none;
+    }
+
+    .main-table-box .table-bordered > tbody > tr > td, .main-table-box .table-bordered > tbody > tr > th, .main-table-box .table-bordered > tfoot > tr > td, .main-table-box .table-bordered > tfoot > tr > th, .main-table-box .table-bordered > thead > tr > td, .main-table-box .table-bordered > thead > tr > th {
+        border: 1px solid #d8d8d8;
+        border-bottom: 1px solid #d8d8d8;
+        border-right: 0;
+    }
+</style>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <h4 style="font-size:15px;font-weight:bold;">Lost Opportunities</h4>
+                    <div class="col-md-12 col-sm-12 col-xs-12 padding" style="display: inline;">
+                        @*<a href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>*@
+                        <h3 style="display: inline;margin-right: 5px;" class="heading-list"></h3>
+
+                        <div class="col-xs-12 col-sm-2 ana-lps" style="float: none;display: inline-table;padding:0;vertical-align: top;">
+                            <div class="input-group">
+                                <select id="ddl_AnchorComp" class="selectstatus" type="button" data-toggle="dropdown" style="padding: 6px 10px;">
+
+                                    <option value=0>Select Customer Company</option>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value='@item.CompanyID'>@item.CompanyName</option>
+                                    }
+                                </select>
+                            </div>
+                            <label id="lblAchrCmpny" style="display:none;">Kindly Select Company</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 ana-lp" style="float: none;display: inline-table;padding:0;">
+                            <div class='input-group date' id="lstOprtFrmdat">
+                                <input placeholder="Select from date" style="border-right: 1px solid #dadbdc;min-width: 100%;margin-bottom:0;" type="text" class="searchTerm" id="FromDate" />@*<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>*@
+                                <span class="input-group-addon" style="border: 1px solid #dadbdc;padding: 10px;border-left: 0;">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <label id="lblErrMsg" style="display:none;">Kindly Select from Date</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 ana-lp" style="float: none;display: inline-table;padding:0;">
+                            <div class='input-group date' id="lstOprtTodat">
+                                <input placeholder="Select to date" style="border-right: 1px solid #dadbdc;min-width: 100%;;margin-bottom:0;" type="text" class="searchTerm" id="ToDate" />@*<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>*@
+                                <span class="input-group-addon" style="border: 1px solid #dadbdc;padding: 10px;border-left: 0;">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <label id="lblErrMsgToDate" style="display:none;">Kindly Select To Date</label>
+                        </div>
+
+
+                        @*<button id="ExportInvoiceCSV" class="excelbutton" style="margin-right: 0;">
+            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+        </button>*@
+
+                        <button id="btnInvoiceFilter" class="filterbtn">
+                            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="table-icons" style="display:none;">
+                    <ul>
+                        <li><a href="@Url.Action("ExportUsersData", "User")"><i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="Export To Excel"></i></a></li>
+                        <li><a href="#"><img src="~/Content/images/mrge.png" class="img-responsive" data-toggle="modal" data-target="#mergeline" id="BtnMerge" data-toggle="tooltip" title="Merge Tool" /></a></li>
+                        <li><a href="#"><img src="~/Content/images/split.png" class="img-responsive" data-toggle="modal" data-target="#sliptrows" id="BtnSplitNew" data-toggle="tooltip" title="Split Tool" /></a></li>
+                    </ul>
+                </div>
+                <div class="main-table-box page-scroll" id="dvLostOpportunities" style="display:none">
+                    <div class="table-responsive">
+                        <table id="tbl_LostOpportunitiesList" class="table table-responsive table-hover table-bordered tbl_UserList">
+                            <thead>
+                                <tr class="first-tr">
+                                    <th colspan="2">Total No. of Inv Approved</th>
+                                    <th colspan="2">No. of Inv Offered for Discount</th>
+                                    <th colspan="1">% of Discount Offered</th>
+                                    <th colspan="3">% of Approval</th>
+                                </tr>
+                                <tr class="sec-tr">
+                                    <th style="display:none"></th>
+                                    <th>No. of Invoices</th>
+                                    <th>Approved Amt (INR)</th>
+                                    <th>Number of Inv</th>
+                                    <th>Amt offered (INR)</th>
+                                    <th></th>
+                                    <th>Amt Received (INR)</th>
+                                    <th>% of Success on Approved Amt</th>
+                                    <th>% Success on Discount Offered Amt</th>
+                                    <th style="display:none"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

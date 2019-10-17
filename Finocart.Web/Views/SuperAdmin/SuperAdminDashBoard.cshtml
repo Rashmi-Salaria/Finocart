@@ -1,0 +1,185 @@
+﻿@{
+    ViewData["Title"] = "SuperAdminDashBord";
+}
+
+<style>
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 50px;
+        bottom: 0;
+        background-color: limegreen;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 17px;
+            width: 17px;
+            border-radius: 50px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #ff4b4b;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #ff4b4b;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+    .charts-section .charts-title {
+        position: relative;
+        overflow: hidden;
+        background-color: #454545;
+        padding: 13px 10px 10px 10px;
+        border: 1px solid #ececec;
+        border-bottom: 1px solid #a2a2a2;
+        width: 100%;
+    }
+
+    .charts-title .form-control-graph {
+        width: 130px;
+        padding: 4px;
+        font-size: 14px;
+        color: #ffffff;
+        margin-left: 5px;
+        background-color: #a2a2a2;
+        outline: none;
+        border: 1px solid #fff;
+        height: 30px;
+        line-height: 36px;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+
+    .charts-section .charts-title h5 {
+        display: table;
+        float: left;
+        margin: 0;
+        line-height: 2;
+        color: #ffffff;
+        text-transform: capitalize;
+        font-weight: 600;
+    }
+
+    .charts-section .chart-div {
+        height: 315px;
+        text-align: center;
+        border: 1px solid #ececec;
+        font-weight: bold;
+        background-color: #454545;
+        color: #ffffff;
+        padding-top: 15px;
+        border-top: 0;
+        width: 100%;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .hide_column {
+        display: none;
+    }
+</style>
+
+@*<script>
+    var GetDashboardlist = '@Url.Action("GetDashboardlist", "VendorDashboard")';
+</script>*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+@*<script src="~/Vendor/FinoAssist.js"></script>
+<script src="~/Vendor/VendorDashboard.js"></script>
+<script src="~/Vendor/VendorDashboardGraph.js"></script>*@
+@*<script>
+    var GetAnchorCompListByVendorID = '@Url.Action("GetAnchorCompListByVendorID", "Vendor")';
+    var GetDiscAnchorCompListByVendorID = '@Url.Action("GetDiscAnchorCompListByVendorID", "Vendor")';
+    var GetEligibleInvoicesList = '@Url.Action("GetEligibleInvoicesList", "Vendor")';
+    var GetLastSearchhistory = '@Url.Action("GetLastSearchhistory", "Invoice")';
+    var InsertbucketDetails = '@Url.Action("InsertBucketDetails", "Vendor")';
+    var GetDiscountOfferedInvList = '@Url.Action("GetDiscountOfferedInvList", "Vendor")';
+    var GetInvoicesListByAmount = '@Url.Action("GetInvoicesListByAmount", "Vendor")';
+    var GetBucketList = '@Url.Action("getBucketList", "BucketManagement")';
+    var GetInvoicesByAmount = '@Url.Action("GetInvoicesByAmount", "Vendor")';
+    var InsertbucketDetails = '@Url.Action("InsertBucketDetails", "Vendor")';
+    var MaxAvailableAmount = '@Url.Action("GetMaximumAvailAmtForAnchComp", "Vendor")';
+    var GetMaximumAvailAmtByAmount = '@Url.Action("GetMaximumAvailAmtByAmount", "Vendor")';
+    var GetMinFundPaymentDate = '@Url.Action("GetMinFundPaymentDate", "Vendor")';
+</script>*@
+
+<div class="row">
+    <div class="top-boxes clearfix">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            @*<a href="#" onclick="location.href='@Url.Action("GetReceivableDue","Vendor")'">*@
+            <div class="box1">
+                <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                    <img src="~/Content/images/box-1.png" class="img-responsive" />
+                    <p>Vendor Count</p>
+                </h4>
+                <h4>@ViewBag.vendercount</h4>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="box2">
+                <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                    <img src="~/Content/images/box-2.png" class="img-responsive" />
+                    <p>Anchor Comapny Count</p>
+                </h4>
+                <h4>
+                    @ViewBag.AnchorCompanylist
+                </h4>
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="box2">
+                <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                    <img src="~/Content/images/box-2.png" class="img-responsive" />
+                    <p>Bank Count</p>
+                </h4>
+                <h4>
+                    @ViewBag.BankCompany
+                </h4>
+            </div>
+
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            @*<a href="#" onclick="location.href='@Url.Action("GetReceivableDue","Vendor")'">*@
+            <div class="box1">
+                <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                    <img src="~/Content/images/box-1.png" class="img-responsive" />
+                    <p>Vendor and Anchor Company Count</p>
+                </h4>
+                <h4>@ViewBag.AnchorVendorcount </h4>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+

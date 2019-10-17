@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewData["Title"] = "Invoice History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Vendor/InvoiceHistory.js"></script>
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<script>
+    var GetInvoiceHistory = '@Url.Action("GetInvoiceHistory", "Vendor")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+
+        <div class="tabsec-main">
+
+            <div class="tab-content">
+
+                <div class="row" id="eAnchorCompInvoices">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="search-box-main clearfix" style="padding: 15px 15px 0;">
+                            <h4 style="font-size:15px;font-weight:bold;">Invoices Status (History)</h4>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    @Html.DropDownList("pagechange5",new List<SelectListItem>
+                                     {
+                                      new SelectListItem{ Text="Invoices Status",Value="1"},
+                                      new SelectListItem{ Text="Receivables Due Today in INR",Value="2"},
+                                      new SelectListItem{ Text="Awaited Approval in INR",Value="3"},
+                                      new SelectListItem{ Text="Amount Approved Today in INR",Value="4"},
+                                      new SelectListItem{ Text="Available for Funding Today in INR",Value="5"},
+
+                                      }, new { @class = "searchTerm ext-box", @style = "border-right: 1px solid #dadbdc;max-width: 100%;" })
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    @Html.TextBox("txt_CompanyName", null, new { placeholder = "Search by Anchor Company Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    @Html.TextBox("txt_TotalApprovedINV", null, new { placeholder = "Search by Total Invoice Amount", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+
+                                    <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+
+                                </div>
+                                @*<div class="col-xs-12 col-sm-4 col-md-4">
+                                    <h6 style="margin: 5px 0 0;font-size:11px;">Invoices Status</h6>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll">
+                            <div class="table-responsive">
+                                <input type="hidden" id="companyID" />
+                                <input type="hidden" id="companyInvoicesID" />
+                                <table id="tbl_InvoiceHistory" class="table table-responsive table-hover table-bordered tbl_UserList">
+                                    <thead>
+                                        <tr>
+                                            @*<th><input type="checkbox" id="AnchorComp-select-all" /></th>*@
+
+                                            @*<th>Anchor Company Name</th>*@
+                                            <th>PO ID</th>
+                                            <th>Inv ID</th>
+                                            <th>Inv Date</th>
+                                            <th>Inv. Amt(INR)</th>
+                                            <th>Inv Approved Amt(INR)</th>
+                                            <th>Discount Offered</th>
+                                            <th>Discount Offered On</th>
+                                            <th>Status</th>
+                                            <th>Discount Approved On</th>
+                                            <th>Disbursement Amt (Based on Approval T+X)</th>
+                                            <th>Discount Amt(INR)</th>
+                                            <th>UTR Details if Paid</th>
+                                            <th>Finoassist/Select Invoices</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 footer-btn">
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4 padding">
+                                            <label class="footer-label">Total Number of Invoices: <span id="lbTotalInvoices"></span></label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 padding">
+                                            <label class="footer-label">Total Invoice Amount (INR): <span id="lbTotalInvoicesAmt"></span></label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 padding">
+                                            <label class="footer-label">Total Invoice Approved Amount (INR): <span id="lbTotalInvoicesAppAmt"></span></label>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

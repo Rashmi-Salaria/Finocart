@@ -1,0 +1,85 @@
+﻿@model Finocart.CustomModel.FundsWithdrwanHistory
+@{
+    ViewData["Title"] = "FundsWithdrawnHistoryView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="search-box-main clearfix">
+                
+                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                    <a class="backbtn" href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                    <h4> Bank Name: @ViewBag.name</h4>
+                </div>
+            </div>
+        </div>
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-table-box page-scroll">
+                        <div class="table-responsive">
+                            @Html.HiddenFor(m => m.id)
+                            @Html.HiddenFor(m=>m.BankName)
+                            <table id="FundsWidthdrawnView" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Anchor Company</th>
+                                        <th>Date Of Spent</th>
+                                        <th>Amount Spent</th>
+                                        <th>Balance Amount</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        debugger
+        $('#FundsWidthdrawnView').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "dom": '"ltipr"',
+            "scrollX": false,
+            "ajax": {
+                "url": "../FundsWithdrawnHistoryViewList",
+                "data": { id: $("#id").val(), BankName: $("#BankName").val() },
+                "type": "POST",
+                "datatype": "json",
+            },
+            "columns": [
+                { "data": "id", "name": "id", "autoWidth": true }, //index 1
+                { "data": "anchor_Name", "name": "Anchor_Name", "autoWidth": true },
+                {
+                    "data": "approvaldate", "name": "Approvaldate", "autoWidth": true, "format": "dd/MM/YYYY"
+                },
+                { "data": "utilizedAmount", "name": "UtilizedAmount", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) },
+                { "data": "balance", "name": "Balance", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0)}//index 2
+
+
+
+
+            ],
+
+        });
+
+
+
+
+
+    })
+
+
+</script>

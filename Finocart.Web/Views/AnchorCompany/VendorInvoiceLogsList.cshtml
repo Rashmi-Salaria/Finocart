@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "Available For Funding";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/AnchorCompany/VendorInvoiceLogs.js"></script>
+<style>
+    /*.modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }*/
+
+    .upload {
+        float: none;
+    }
+
+    .dowte {
+        margin: 5px 0;
+    }
+</style>
+<script>
+    var GetUploadLogs = '@Url.Action("GetVendorInvoiceLogsList", "AnchorCompany")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+
+        <div class="tabsec-main">
+
+            <div class="tab-content">
+
+                <div class="row" id="eAnchorCompInvoices">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="search-box-main clearfix">
+                            <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                                @Html.TextBox("txt_Upload", null, new { placeholder = "Search by Upload", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                            </div>                           
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll">
+                            <div class="table-responsive">
+                                <table id="tbl_UploadList" class="table table-responsive table-hover table-bordered tbl_UserList">
+                                    <thead>
+                                        <tr>
+                                            <th>Anchor Company Name</th>
+                                            <th>Upload Excel Name</th>
+                                            <th>Upload</th>
+                                            <th>Created Date</th>
+                                            <th>Logs</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

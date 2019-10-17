@@ -1,0 +1,701 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AnchorRegisterController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\User\UserPageListing_1.cshtml" />
+    <Content Remove="wwwroot\Content\bootstrap-theme.css" />
+    <Content Remove="wwwroot\Content\bootstrap.css" />
+    <Content Remove="wwwroot\Content\bootstrap.min.css" />
+    <Content Remove="wwwroot\Content\css\custom-jqgrid.css" />
+    <Content Remove="wwwroot\Content\css\font-awesome.css" />
+    <Content Remove="wwwroot\Content\css\responsive.css" />
+    <Content Remove="wwwroot\Content\css\style.css" />
+    <Content Remove="wwwroot\Content\fonts\fontawesome-webfont.eot" />
+    <Content Remove="wwwroot\Content\fonts\fontawesome-webfont.svg" />
+    <Content Remove="wwwroot\Content\fonts\fontawesome-webfont.ttf" />
+    <Content Remove="wwwroot\Content\fonts\fontawesome-webfont.woff" />
+    <Content Remove="wwwroot\Content\fonts\fontawesome-webfont.woff2" />
+    <Content Remove="wwwroot\Content\fonts\FontAwesome.otf" />
+    <Content Remove="wwwroot\Content\fonts\generator_config.txt" />
+    <Content Remove="wwwroot\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Remove="wwwroot\Content\fonts\roboto-regular1-demo.html" />
+    <Content Remove="wwwroot\Content\fonts\roboto-regular1.woff" />
+    <Content Remove="wwwroot\Content\fonts\roboto-regular1.woff2" />
+    <Content Remove="wwwroot\Content\fonts\stylesheet.css" />
+    <Content Remove="wwwroot\Content\images\bg-icon.png" />
+    <Content Remove="wwwroot\Content\images\delete.png" />
+    <Content Remove="wwwroot\Content\images\dlt.png" />
+    <Content Remove="wwwroot\Content\images\down.png" />
+    <Content Remove="wwwroot\Content\images\edit.png" />
+    <Content Remove="wwwroot\Content\images\edit2.png" />
+    <Content Remove="wwwroot\Content\images\excelicon.png" />
+    <Content Remove="wwwroot\Content\images\filtericon.png" />
+    <Content Remove="wwwroot\Content\images\firestar-logo.png" />
+    <Content Remove="wwwroot\Content\images\home.png" />
+    <Content Remove="wwwroot\Content\images\leftarrow.png" />
+    <Content Remove="wwwroot\Content\images\log-off.png" />
+    <Content Remove="wwwroot\Content\images\login-diamond.jpg" />
+    <Content Remove="wwwroot\Content\images\logo.png" />
+    <Content Remove="wwwroot\Content\images\mrge-hover.png" />
+    <Content Remove="wwwroot\Content\images\mrge.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-12.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-13.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-16.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-17.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-19.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-25.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-26-.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-26-old.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-27.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-28.png" />
+    <Content Remove="wwwroot\Content\images\New folder\shape-29.png" />
+    <Content Remove="wwwroot\Content\images\plusicon.png" />
+    <Content Remove="wwwroot\Content\images\rectangle-1.png" />
+    <Content Remove="wwwroot\Content\images\rightarrow.png" />
+    <Content Remove="wwwroot\Content\images\searchicon.png" />
+    <Content Remove="wwwroot\Content\images\shape-2.png" />
+    <Content Remove="wwwroot\Content\images\shape-26.png" />
+    <Content Remove="wwwroot\Content\images\shape-3.png" />
+    <Content Remove="wwwroot\Content\images\shape-4.png" />
+    <Content Remove="wwwroot\Content\images\shape15.png" />
+    <Content Remove="wwwroot\Content\images\shape21.png" />
+    <Content Remove="wwwroot\Content\images\shape23.png" />
+    <Content Remove="wwwroot\Content\images\split-hover.png" />
+    <Content Remove="wwwroot\Content\images\split.png" />
+    <Content Remove="wwwroot\Content\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Remove="wwwroot\Content\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Remove="wwwroot\Content\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Remove="wwwroot\Content\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Remove="wwwroot\Content\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Remove="wwwroot\Content\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Remove="wwwroot\Content\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Remove="wwwroot\Content\images\ui-icons_217bc0_256x240.png" />
+    <Content Remove="wwwroot\Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Remove="wwwroot\Content\images\ui-icons_454545_256x240.png" />
+    <Content Remove="wwwroot\Content\images\ui-icons_469bdd_256x240.png" />
+    <Content Remove="wwwroot\Content\images\ui-icons_6da8d5_256x240.png" />
+    <Content Remove="wwwroot\Content\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Remove="wwwroot\Content\images\up.png" />
+    <Content Remove="wwwroot\Content\images\User.png" />
+    <Content Remove="wwwroot\Content\images\watercolor-paper.jpg" />
+    <Content Remove="wwwroot\Content\images\white_icon_256x240.png" />
+    <Content Remove="wwwroot\Content\jquery-customselect.css" />
+    <Content Remove="wwwroot\Content\jquery-customselect.js" />
+    <Content Remove="wwwroot\Content\jquery-ui-custom.css" />
+    <Content Remove="wwwroot\Content\jquery-ui.css" />
+    <Content Remove="wwwroot\Content\OperationalBranch.css" />
+    <Content Remove="wwwroot\Content\Site.css" />
+    <Content Remove="wwwroot\Content\theme.css" />
+    <Content Remove="wwwroot\Content\ui.jqgrid.css" />
+    <Content Remove="wwwroot\favicon.ico" />
+    <Content Remove="wwwroot\Scripts\JQueryUI_datepicker.js" />
+    <Content Remove="wwwroot\Vendor\VendorDashboardList.js.9440_1.56.partial" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Content\bootstrap-theme.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\bootstrap.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\bootstrap.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\css\custom-jqgrid.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\css\font-awesome.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\css\responsive.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\css\style.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\fontawesome-webfont.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\FontAwesome.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\generator_config.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\glyphicons-halflings-regular.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\roboto-regular1-demo.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\roboto-regular1.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\roboto-regular1.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\fonts\stylesheet.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\bg-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\delete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\dlt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\down.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\edit2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\excelicon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\filtericon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\firestar-logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\leftarrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\log-off.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\login-diamond.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\mrge-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\mrge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-12.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-13.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-17.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-19.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-25.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-26-.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-26-old.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-27.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-28.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\New folder\shape-29.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\plusicon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\rectangle-1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\rightarrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\searchicon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\shape-2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\shape-26.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\shape-3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\shape-4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\shape15.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\shape21.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\shape23.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\split-hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\split.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-bg_flat_55_fbec88_40x100.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-bg_glass_75_d0e5f5_1x400.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-bg_glass_85_dfeffc_1x400.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-bg_inset-hard_100_f5f8f9_1x100.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-bg_inset-hard_100_fcfdfd_1x100.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-icons_217bc0_256x240.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-icons_2e83ff_256x240.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-icons_454545_256x240.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-icons_469bdd_256x240.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-icons_6da8d5_256x240.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\ui-icons_d8e7f3_256x240.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\up.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\User.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\watercolor-paper.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\images\white_icon_256x240.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\jquery-customselect.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\jquery-customselect.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\jquery-ui-custom.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\jquery-ui.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\OperationalBranch.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\Site.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\theme.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Content\ui.jqgrid.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\Scripts\ai.0.22.9-build00167.js" />
+    <None Include="wwwroot\Scripts\ai.0.22.9-build00167.min.js" />
+    <None Include="wwwroot\Scripts\bootstrap.js" />
+    <None Include="wwwroot\Scripts\bootstrap.min.js" />
+    <None Include="wwwroot\Scripts\CommonScript.js" />
+    <None Include="wwwroot\Scripts\CommonValidations.js" />
+    <None Include="wwwroot\Scripts\Demo.js" />
+    <None Include="wwwroot\Scripts\grid.locale-en.js" />
+    <None Include="wwwroot\Scripts\InternalUserManagement.js" />
+    <None Include="wwwroot\Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="wwwroot\Scripts\jquery-1.10.2.js" />
+    <None Include="wwwroot\Scripts\jquery-1.10.2.min.js" />
+    <None Include="wwwroot\Scripts\jquery-1.10.2.min.map" />
+    <None Include="wwwroot\Scripts\jquery-1.11.0.min.js" />
+    <None Include="wwwroot\Scripts\jquery-ui.js" />
+    <None Include="wwwroot\Scripts\jquery.autocomplete.js" />
+    <None Include="wwwroot\Scripts\jquery.autocomplete.min.js" />
+    <None Include="wwwroot\Scripts\jquery.jqGrid.min.js" />
+    <None Include="wwwroot\Scripts\Jquery.number.js" />
+    <None Include="wwwroot\Scripts\jquery.numeric.js" />
+    <None Include="wwwroot\Scripts\jquery.validate-vsdoc.js" />
+    <None Include="wwwroot\Scripts\jquery.validate.js" />
+    <None Include="wwwroot\Scripts\jquery.validate.min.js" />
+    <None Include="wwwroot\Scripts\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\Scripts\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\Scripts\jstree.min.js" />
+    <None Include="wwwroot\Scripts\modernizr-2.6.2.js" />
+    <None Include="wwwroot\Scripts\respond.js" />
+    <None Include="wwwroot\Scripts\respond.min.js" />
+    <None Include="wwwroot\Scripts\test.js" />
+    <None Include="wwwroot\Scripts\UserMaster.js" />
+    <None Include="wwwroot\Scripts\_references.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.94.2" />
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.1" />
+    <PackageReference Include="EPPlus.Core" Version="1.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Finocart.BAL\Finocart.Services.csproj" />
+    <ProjectReference Include="..\Finocart.DBContext\Finocart.DBContext.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="ErrorLog\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Analyzers">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.analyzers\2.2.0\analyzers\dotnet\cs\Microsoft.AspNetCore.Mvc.Analyzers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Analyzers">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Analyzers">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Analyzers">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.entityframeworkcore.analyzers\2.1.1\analyzers\dotnet\cs\Microsoft.EntityFrameworkCore.Analyzers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="wwwroot\AnchorCompanyList\AncjorCompList.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\AnchorCompany\AnchorCompany.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\AnchorCompany\VendorInvoiceListjs.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\bootstrap-multiselect\css\bootstrap-multiselect.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\bootstrap-multiselect\js\bootstrap-multiselect.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Common.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Content\images\captcha.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Content\images\captcha2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Content\images\deletebox.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Content\images\Login-bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Content\images\login-left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Content\images\login-logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Content\images\upload.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Content\css\font-awesome.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\site.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\css\dataTables.bootstrap.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\css\dataTables.bootstrap4.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\css\dataTables.foundation.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\css\dataTables.jqueryui.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\css\dataTables.material.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\css\dataTables.semanticui.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\css\dataTables.uikit.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\css\jquery.dataTables.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\css\jquery.dataTables_themeroller.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\images\sort_asc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\images\sort_asc_disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\images\sort_both.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\images\sort_desc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\images\sort_desc_disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\js\dataTables.bootstrap.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\js\dataTables.bootstrap4.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\js\dataTables.dataTables.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\js\dataTables.foundation.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\js\dataTables.jqueryui.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\js\dataTables.material.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\js\dataTables.semanticui.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\js\dataTables.uikit.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\datatables\js\jquery.dataTables.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\InvoiceApprovalOrder\InvoiceApprovalOrder.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Invoice\InvoiceList.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\Account.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\site.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootsrap-notify\dist\js\bootstrap-notify.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootsrap-notify\dist\js\Gruntfile.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootsrap-notify\dist\js\package.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootsrap-notify\LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\dist\js\bootstrap.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootstrap\LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\dist\additional-methods.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\dist\jquery.validate.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery-validation\LICENSE.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery\dist\jquery.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\jquery\LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Notification\Notification.js">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\PurchaseOrder\PurchaseOrderList.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\ai.0.22.9-build00167.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\bootstrap-notify.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\bootstrap.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\CommonScript.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\CommonValidations.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\Demo.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\grid.locale-en.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\Gruntfile.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\InternalUserManagement.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\jquery-1.10.2.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\jquery-1.11.0.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\jquery-ui.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\jquery.autocomplete.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\jquery.jqGrid.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\Jquery.number.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\jquery.numeric.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\jquery.validate.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\jstree.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\modernizr-2.6.2.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\package.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\respond.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\test.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\UserMaster.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Scripts\_references.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\User\AddUserPage.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\User\UserListing.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Vendor\Vendor.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,44 @@
+﻿@model Finocart.Model.Invoice
+@{
+    ViewData["Title"] = "Invoice Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("SaveInvoice", "Invoice", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitGenerateQuote" }))
+{
+    <section>
+        <form>
+            <div>
+                <label>Purchase Order Number</label>
+                @Html.TextBoxFor(m => m.PONumber, new { @class = "form-control" })
+            </div>
+            <div>
+                <label>PO Date</label>
+                @Html.TextBoxFor(m => m.PODate, new { @class = "form-control" })
+            </div>
+            <div>
+                <label>Invoice Number</label>
+                @Html.TextBoxFor(m => m.InvoiceNo, new { @class = "form-control" })
+            </div>
+            <div>
+                <label>Invoice Amount</label>
+                @Html.TextBoxFor(m => m.InvoiceAmt, new { @class = "form-control" })
+            </div>
+            <div>
+                <label>Payment Due Date</label>
+                @Html.TextBoxFor(m => m.PaymentDueDate, new { @class = "form-control" })
+            </div>
+            <div>
+                <label>Discount Rate</label>
+                @Html.TextBoxFor(m => m.Discount, new { @class = "form-control" })
+            </div>
+            <div>
+                <label>Days</label>
+                @Html.TextBoxFor(m => m.Days, new { @class = "form-control" })
+            </div>
+            <div>
+                <input type="submit" value="Submit" />
+                <input type="button" value="Cancel" />
+            </div>
+        </form>
+    </section>
+}

@@ -1,0 +1,14 @@
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\Finocart_Scheduler.exe.config
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\Finocart_Scheduler.exe
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\Finocart_Scheduler.pdb
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\EntityFramework.dll
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\EntityFramework.SqlServer.dll
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\Microsoft.ApplicationBlocks.Data.dll
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\sapnco.dll
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\sapnco_utils.dll
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\EntityFramework.xml
+E:\Finocart_Scheduler\Finocart_Scheduler\bin\x64\Release\EntityFramework.SqlServer.xml
+E:\Finocart_Scheduler\Finocart_Scheduler\obj\x64\Release\Finocart_Scheduler.csproj.CoreCompileInputs.cache
+E:\Finocart_Scheduler\Finocart_Scheduler\obj\x64\Release\Finocart_Scheduler.csproj.CopyComplete
+E:\Finocart_Scheduler\Finocart_Scheduler\obj\x64\Release\Finocart_Scheduler.exe
+E:\Finocart_Scheduler\Finocart_Scheduler\obj\x64\Release\Finocart_Scheduler.pdb

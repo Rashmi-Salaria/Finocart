@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Finocart.CustomModel.AnchorCompListingModel>
+
+@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/AnchorCompany/AnchorCompany.js"></script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+       
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="search-box-main clearfix">
+                    <h4 style="font-size:15px;font-weight:bold;">CUSTOMER COMPANY</h4>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_CompanyName", null, new { placeholder = "Search by Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        <button id="ExportInvoiceCSV" class="excelbutton" style="margin-right:0;">
+                            <img src="~/Content/images/excelicon.png" class="img-responsive" title="Download Excel File" style="display: inline;" />
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="table-icons" style="display:none;">
+                    <ul>
+                        <li><a href="@Url.Action("ExportUsersData", "User")"><i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="Export To Excel"></i></a></li>
+                        <li><a href="#"><img src="~/Content/images/mrge.png" class="img-responsive" data-toggle="modal" data-target="#mergeline" id="BtnMerge" data-toggle="tooltip" title="Merge Tool" /></a></li>
+                        <li><a href="#"><img src="~/Content/images/split.png" class="img-responsive" data-toggle="modal" data-target="#sliptrows" id="BtnSplitNew" data-toggle="tooltip" title="Split Tool" /></a></li>
+                    </ul>
+                </div>
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="tbl_AnchorCompList" class="table table-responsive table-bordered table-hover tbl_UserList">
+                            <thead>
+                                <tr>
+                                    <th>Anchor Comp ID</th>
+                                    <th>Anchor Comp Name</th>
+                                    <th>Total Inv. Associated with</th>
+                                    <th>Inv. Amt(INR)</th>
+                                    <th>Approved Inv.</th>
+                                    <th>Pending Inv.</th>
+                                    <th>Rejected Inv.</th>
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

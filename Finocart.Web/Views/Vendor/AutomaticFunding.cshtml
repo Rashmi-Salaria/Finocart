@@ -1,0 +1,76 @@
+﻿@model Finocart.Model.AutoFunding
+
+
+@{
+    ViewData["Title"] = "AutomaticFunding";
+}
+
+@{
+    var data = ViewBag.DiscuntRate;
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="~/Vendor/AutomaticFunding.js"></script>
+
+<div class="main-sec">
+    <div class="row">
+        <div class="col-xs-12 col-sm-5" style="margin: auto;float: none;">
+            <div class="autofundbox">
+                <h4>Automatic Funding</h4>
+                <p>Please select automatic funding options</p>
+                <div class="btns-box">
+                    <button type="button" class="yesbtn" id="yesdiscuntRate">YES</button>
+                    <button type="button" class="nobtn" id="NodiscuntRate">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-5" style="margin: auto;float: none;display:none" id="DicntRateValdDiv">
+            <div class="changebox clearfix">
+                <h4>Dicounting Rate<span id="txtrate">@data.DiscuntRate</span></h4>
+                <h4>Dicounting Validity Date<span id="spndiscountdate">@data.DiscuntVlidDate.ToString("MM/dd/yyyy")</span></h4>
+
+                <button type="button" class="changebtn" data-toggle="modal" id="btnchange" data-target="#changebtn">Change</button>
+                <button type="button" class="changebtn" data-toggle="modal" id="BtnCancelBefrChng" style="margin-right: 15px;">Cancel</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div id="changebtn" class="modal fade" role="dialog" style="background: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body clearfix">
+                <button type="button" class="close new-close" data-dismiss="modal">×</button>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label>Funding Rate </label>
+                        <div class="input-group form-group clearfix">
+                            @Html.Hidden("autoid", (object)@data.AutoFudngId)
+                            @Html.TextBox("DiscuntRate", Model.DiscuntRate, new { @class = "form-control", placeholder = "Please Enter Discount Rate", @Style = "margin-bottom: 0;" })
+                        </div>
+                        <label id="lblRateMsgErr" style="font-family:sans-serif;font-size:12px;color:red;display:none">Please Enter valid discount rate</label>
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <label>Valid Date</label>
+                        <div class="input-group" style="display:table;">
+                            @Html.TextBox("DiscuntVlidDate", "", new { @class = "form-control", placeholder = "Please Enter Discount Validity Date", Style = "margin-bottom:0;" })
+                            <span class="input-group-addon" style="background: #e5e5e5;border: none;padding: 10px;">
+                                <i class="fas fa-calendar-alt" id="cal2"></i>
+                            </span>
+                        </div>
+                        <label id="lblDateErr" style="font-family:sans-serif;font-size:12px;color:red;display:none">Please select Valid Date</label>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="submit" class="confrmbtn" id="BtnCofirm" style="">Confirm</button>
+                        <button id="BtnCancel" class="confrmbtn" type="button" style="margin-right:15px;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

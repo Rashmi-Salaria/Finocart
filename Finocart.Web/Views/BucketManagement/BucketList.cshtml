@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Finocart.CustomModel.BucketManagementModel>
+
+@{
+    ViewData["Title"] = "Invoice Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/BucketManagement/BucketList.js"></script>
+<script>
+    var GetBucketList = '@Url.Action("getBucketList", "BucketManagement")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <input type="hidden" id="MaxSearchLimit" value="@TempData["MaxSearchCount"]"/>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        <input type="text" class="searchTerm" id="txt_AnchorName" placeholder="Search by Total Invoice Amount" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        <button id="btnFilter" class="filterbtn">
+                            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                        </button>
+                    </div>
+
+                </div>
+                <div class="search-box-main clearfix" id="dvMainlstSrch">
+                    <div class="col-xs-12 padding" id="dvlstSrch">
+                        Recent Searches <i class="fas fa-long-arrow-alt-right" style="margin-right:10px;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="tbl_Buckets" class="table table-responsive table-hover table-bordered internalusermtable">
+                            <thead>
+                                <tr>
+                                    <th><input type='checkbox' /></th>
+                                    <th>Disc. Bucket ID</th>
+                                    <th>Disc. Bucket Name</th>
+                                    <th>No. of Disc. Offered  Inv in Bucket</th>
+                                    <th>Total Inv. Amt in Disc. Bucket</th>
+                                    <th>Buckets's Disc. offered Date</th>
+                                    <th>Disc. Valid Upto</th>
+                                    <th>Status at Anchor Comp</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

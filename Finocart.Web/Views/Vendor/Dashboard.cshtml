@@ -1,0 +1,358 @@
+﻿@model IEnumerable<Finocart.CustomModel.AnchorCompListingModel>
+
+@{
+    ViewData["Title"] = "Vendor Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Vendor/Dashboard.js"></script>
+<script src="~/Vendor/DiscOfferedInv.js"></script>
+<script src="~/Vendor/VendorDashboardList.js"></script>
+<script>
+    var GetAnchorCompListByVendorID = '@Url.Action("GetAnchorCompListByVendorID", "Vendor")';
+    var GetDiscAnchorCompListByVendorID = '@Url.Action("GetDiscAnchorCompListByVendorID", "Vendor")';
+    var GetEligibleInvoicesList = '@Url.Action("GetEligibleInvoicesList", "Vendor")';
+    var GetLastSearchhistory = '@Url.Action("GetLastSearchhistory", "Invoice")';
+    var InsertbucketDetails = '@Url.Action("InsertBucketDetails", "Vendor")';
+    var GetDiscountOfferedInvList = '@Url.Action("GetDiscountOfferedInvList", "Vendor")';
+    var GetInvoicesListByAmount = '@Url.Action("GetInvoicesListByAmount", "Vendor")';
+    var GetInvoicesByAmount = '@Url.Action("GetInvoicesByAmount", "Vendor")';
+    var GetEligInvList = '@Url.Action("GetEligibleInvoices", "Vendor")';
+    var GetInvoiceJourneyHistory = '@Url.Action("GetInvoiceJourneyHistory","Vendor")';
+</script>
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+    .hide-column {
+        display: none;
+    }
+</style>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+
+        <div class="tabsec-main">
+            <ul class="nav nav-pills">        
+                <li class="active"><a data-toggle="pill" href="#eInvoices" id="liElgibleInvoice">Eligible Invoices</a></li>
+                <li><a data-toggle="pill" href="#dInvoices">Disount offered Invoices</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="eInvoices" class="tab-pane fade in active">
+                    <div class="row" id="eAnchorCompInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="search-box-main clearfix">
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_CompanyName", null, new { placeholder = "Search by Anchor Company Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_TotalApprovedINV", null, new { placeholder = "Search by Total Invoice Amount", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+                                  
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll">
+                                <div class="table-responsive">
+                                    <input type="hidden" id="companyInvoicesID" />
+                                    <input type="hidden" id="TotalCalcInvAmt" />
+                                    <table id="tbl_AnchorCompList" class="table table-responsive table-hover table-bordered tbl_UserList">
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" id="AnchorComp-select-all" /></th>
+                                                <th>Anchor Comp ID</th>
+                                                <th>Anchor Comp Name</th>
+                                                <th>No. of Approved Inv.</th>
+                                                <th>Total Inv. Amt (INR)</th>
+                                                <th>Approved Amt (INR)</th>
+                                                <th style="display:none">TotalInvoiceAmount(INR)</th>
+                                                <th style="display:none">TotalAppInvoiceAmount(INR)</th>
+                                                <th style="display:none">InvoiceCalculateAmount(INR)</th>
+                                                <th style="width:10%">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 footer-btn">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-5 padding form-group">
+                                        <label id="lblOfferDiscount" style="display:none;color:red">
+                                            Please select atleast one record
+                                        </label>
+                                        <div class="" style="padding-top:12px">
+
+                                            <button type="button" class="btn confirmbutton" id="btnOfferDiscount">Offer Discount</button>
+
+                                        </div>
+                                        <div>
+                                            <input type="hidden" id="lblcompany" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <div class="footer-label">
+                                                    <p>Total Number of Invoices: <span id="lbTotalInvoices"></span></p>
+                                                </div>
+                                                <div>
+                                                    <input type="hidden" id="hdnValuescompany" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <div class="footer-label">
+                                                    <p>Total Invoice Amount: <span id="lbTotalInvoicesAmt"></span></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <div class="footer-label">
+                                                    <p>Total Invoice Approved Amount: <span id="lbTotalInvoicesAppAmt"></span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <div class="footer-label">
+                                                    <p>Total Number of Selected Invoices: <span id="lbTotalSelectInvoices"></span></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <div class="footer-label">
+                                                    <p>Total Selected Invoice Amount: <span id="lbTotalSelectInvoicesAmt"></span></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <div class="footer-label">
+                                                    <p>Total Selected Invoice Approved Amount: <span id="lbTotalSelectInvoicesAppAmt"></span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="dInvoices" class="tab-pane fade">
+                    <div class="row" id="dOfferedInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="search-box-main clearfix">
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_DiscCompanyName", null, new { placeholder = "Search by Anchor Company Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                                    @Html.TextBox("txt_DiscTotalApprovedINV", null, new { placeholder = "Search by Total Invoice Amount", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-5 col-md-5 padding">
+                                    <button id="ExportDiscAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll">
+                                <div class="table-responsive">
+                                    <table id="tbl_DiscountAnchorCompList" class="table table-responsive table-hover table-bordered tbl_UserList">
+                                        <thead>
+                                            <tr>
+                                                <th>Anchor Comp ID</th>
+                                                <th>Anchor Comp Name</th>
+                                                <th>No. of Approved Inv.</th>
+                                                <th>Total Inv. Amt (INR)</th>
+                                                <th style="width:10%">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 footer-btn">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <p class="footer-label">Total Number of Invoices: <span id="lbTotalInvoices1"></span></p>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <p class="footer-label">Total Invoice Amount: <span id="lbTotalInvoicesAmt1"></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="OfferDiscount" class="modal fade" role="dialog">
+    <div class="modal-dialog" id="myModalDialog" style="width: 700px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="border: none;background: #e46734;border-radius: 5px 5px 0 0;">
+                <h4 class="modal-title" style="font-size:16px;color:#fff;font-weight: 600;">Offer Discount</h4>
+                <button type="button" id="closeDscntPopup" class="close new-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Total Number of Invoices Selected:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="text" class="searchTerm form-control" id="txt_TotalSelectInvoices" placeholder="Total Number of Invoices Selected" value="" readonly />
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Total Selected Invoice Amount:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label style="background: #fff;border-color: #fff;" class="searchTerm form-control" id="txt_TotalSelInvoicesAmount" placeholder="Total Selected Invoice Amount"></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Discount:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="number" class="searchTerm form-control" id="txt_OfferDiscount" placeholder="Discount" min="0" max="100" />
+                        <label id="lblDiscuntMsgErr" style="padding-left:8px;font-family:sans-serif;font-size:12px;color:red;display:none">Please Enter Discount Rate</label>
+                        <label id="lblInvldAmt" style="padding-left:8px;font-family:sans-serif;font-size:12px;color:red;display:none">In Valid Rate, It Must be 1 to 100</label>
+                    </div>
+                    <a href="#" id="OfferDiscountCompute">Compute</a>
+                    <div class="col-xs-12 col-sm-3">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Amount will disburse after discount:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label class="searchTerm form-control" id="txt_afterDiscount" placeholder="Amount will disburse after discount:"></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <h6 style="font-size: 9px;font-weight: bold;">Based on next approval date</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Discount Amount for selected invoices:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label class="searchTerm form-control" id="txt_OfferDiscountAmount" placeholder="Discount Amount for selected invoices"></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                    </div>
+                    <div>
+                        <input type="hidden" id="hdnValuesForTX" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+                <button type="button" class="btn confirmbutton" onclick="CompanyOfferDiscount()">Confirm</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="DiscInvoiceJourney" class="modal finoassist fade" role="dialog">
+    <div class="modal-dialog" id="invJourney">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <h4 class="modal-title" id="CompanyName"></h4>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="header-sec">
+                            <label>Invoice Journey : <span id="lblINVO"></span></label>
+                            <label>PO ID : <span id="lblPOID"></span></label>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="header-bottom-sec">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <label>Invoice Creation Date : <span id="lblInvCreateDate"></span></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <label>Discount Offered Date : <span id="lblDiscOfferedDate"></span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+            <div id="divPendingBox">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>PERSON NAME</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label id="lblPendingInvPersonName"></label>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5">
+                        <label>EMAIL ID</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label id="lblPendingInvEmailID"></label>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5">
+                        <label>REMARK</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label id="lblPendingInvRemark"></label>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5">
+                        <label>SENT TO</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label id="lblPendingInvSentTo"></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-5">
+                        <label>INVOICE STATUS </label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label id="lblPendingInvStatus"></label>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5">
+                        <label>DATE</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label id="lblPendingInvDate"></label>
+                    </div>
+                </div>
+                <div id="dvMaintainDiscInvJourney"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

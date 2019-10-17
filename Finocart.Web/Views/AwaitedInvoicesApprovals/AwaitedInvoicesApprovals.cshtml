@@ -1,0 +1,79 @@
+﻿@model Tuple<IEnumerable<Finocart.Model.ModuleMaster>, IEnumerable<Finocart.Model.SearchHistory>>
+@{
+    ViewData["Title"] = "AwaitedInvoicesApprovals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var GetAnchorCompListByVendorID = '@Url.Action("getAwaitedInvoiceList", "AwaitedInvoicesApprovals")';
+</script>
+<script src="~/AwaitedAnchCompList/AwaitedAnchrCompList.js"></script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding" >
+                        <select id="ddl_Status" class="selectstatus" type="button" data-toggle="dropdown">
+                            <option value=0>Select Status</option>
+                        </select>
+                    </div>
+                   <br /><br /><br />
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        <input type="text" class="searchTerm" id="txt_AnchorCompanyName" placeholder="Search by Anchor Company Name" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        <input type="text" class="searchTerm" id="txt_AppInvoiceAmnt" placeholder="Search by Total Invoice Amount" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                   
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportAwtedAppInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        
+                    </div>
+                </div>
+               
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="tbl_AwaitedInvoice" class="table table-responsive table-hover table-bordered internalusermtable">
+                            <thead>
+                                <tr>
+
+                                    <th><input type="checkbox" id="AnchorComp-select-all" /> Select All</th>
+                                    <th>Anchor Comp ID</th>
+                                    <th>Anchor Comp Name</th>
+                                    <th>No. of Disc. Offered Invoices </th>
+                                    <th>Total Inv. Amt</th>
+                                    <th>Total Approved Amt</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-12 footer-btn">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4 padding">
+                                    <label class="footer-label">Total Invoices: <span id="lbAwaitTotalInvoices"></span></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 padding">
+                                    <label class="footer-label">Total Invoice Amount: <span id="lbAwaitTotalInvoicesAmt"></span></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 padding">
+                                    <label class="footer-label">Total Invoice App Discount span: <span id="lblawitedAppAmnt"></span></label>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

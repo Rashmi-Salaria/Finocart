@@ -1,0 +1,1225 @@
+﻿
+<!DOCTYPE html>
+<html>
+@using Microsoft.AspNetCore.Http;
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Finocart.Web</title>
+
+    <link href="~/Content/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui-custom.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/custom-jqgrid.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="~/rangeslider.js/rangeslider.css" rel="stylesheet" />
+    <link href="~/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/datepicker/datepicker.min.css" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/Scripts/jquery-1.11.0.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+    <script src="~/Scripts/jquery.numeric.js"></script>
+    <script src="~/Scripts/CommonValidations.js"></script>
+    <script src="~/Scripts/CommonScript.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
+
+    <script src="~/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/bootstrap-notify.js"></script>
+
+    <script src="~/Common/Common.js"></script>
+    <script type="text/javascript" src="~/datepicker/datepicker.min.js"></script>
+    <script src="~/canvasjs/canvasjs.min.js"></script>
+    <script src="~/rangeslider.js/rangeslider.min.js"></script>
+    <script>
+        var Notifications = '@Url.Action("NotificationsList", "Notification")';
+    </script>
+    <style>
+        .breadcrumb {
+            padding: 8px 15px;
+            list-style: none;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            float: right;
+            margin: 0 5px 0 5px;
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            if (screen.width < 768) {
+                $("#clr").addClass("clearfix");
+            }
+            else {
+                $("#clr").removeClass("clearfix");
+            }
+            //$(window).resize(function () { location.reload(); });
+        })
+
+        $(document).ready(function () {
+
+            debugger;
+            $('#txtFeedbackMsg').val('');
+
+            setInterval(doDate, 1000);
+            $('a[data-toggle="collapse"]').click(function () {
+                //$('.hover-tabs').removeClass('in');
+                if ($(this).siblings('.hover-tabs').hasClass('in')) {
+                    $('.hover-tabs').removeClass('in');
+                    console.log('remove');
+                } else {
+                    $('.hover-tabs').removeClass('in');
+                    $(this).siblings('.hover-tabs').addClass('in');
+                    console.log('add');
+                }
+            });
+            $('.navbar-toggle').click(function () {
+                $('.hover-tabs').removeClass('in');
+            })
+            $('#btnFeedbackSubmit').click(function (e) {
+
+                debugger;
+                var CompanyName = $('#hdnCompanyName').val();
+                var CompanyId = $('#hdnCompanyId').val();
+
+                var objBugType = $("input[name='BugType']:checked").val();
+                var objDetail = $('#txtFeedbackMsg').val();
+
+                if (objBugType != undefined && objDetail != null) {
+                    $.ajax({
+                        url: "/AnchorCompany/InsertNotification",
+                        type: "POST",
+                        data: { BugType: objBugType, BugDetail: objDetail, CompanyName: CompanyName, CompanyId: CompanyId },
+
+                    });
+                }
+                else {
+
+                    debugger;
+                    if (objBugType == undefined || objBugType == 0 || objBugType == '') {
+                        $("#lblFeedbackMsgType").show();
+                        e.preventDefault();
+                    }
+                    else {
+                        $("#lblFeedbackMsgType").hide();
+                    }
+                    if (objDetail == undefined || objDetail == 0 || objDetail == '') {
+                        $("#lblFeedbackMsg").show();
+                        e.preventDefault();
+                    }
+                    else {
+                        $("#lblFeedbackMsg").hide();
+                    }
+                    e.preventDefault();
+                }
+
+            });
+            $('#btnFeedbackCancel').click(function () {
+                $('#txtFeedbackMsg').val('');
+                window.location.reload();
+
+            });
+            //set role wise Static Breadcrumb (ex..Home or Dashboard)
+            var home = $('._dashboard').text();
+            if (home == "Dashboard") {
+                $('#Defualt').text("Dashboard");
+                $('#Defualt').attr("href", "~/AnchorCompany/SuperAdminDashBoard");
+            }
+            //Anchor company Dashboard
+            else if (home == "HOME") {
+                $('#Defualt').text("Home");
+                $('#Defualt').attr("href", "~/AnchorCompany/AnchorDashboard");
+            }
+            else if (home == "INTERNAL USER MANAGEMENT") {
+                $('#Defualt').text("INTERNAL USER MANAGEMENT");
+                $('#Defualt').attr("href", "~/AnchorCompany/AnchorDashboard");
+            }
+            else if (home == "ANCHOR") {
+                $('#Defualt').text("Home");
+                $('#Defualt').attr("href", "~/AnchorCompany/AnchorDashboard");
+            }
+            else if (home == "VENDOR") {
+                $('#Defualt').text("INTERNAL USER MANAGEMENT");
+                $('#Defualt').attr("href", "~/AnchorCompany/AnchorDashboard");
+            }
+
+
+            $("#myNavbar .liHref .ulHref .notify").click(function () {
+                //alert($(this).text());
+                //alert(($(this).parents(".liHref").find('span').text()));
+
+                var subLICount = ($(this).parents(".ulHref").find('li').length);//Count LI length
+                var subULCount = ($(this).parents(".ulHref").length);//Count UL Length
+                var hasBreadCrumb = "";//make variable for checking if breadcrumb is already there or not
+
+                if (subLICount > 0) {
+                    for (i = 0; i <= subLICount; i++) {
+                        hasBreadCrumb = $('#Href_' + 0).text();
+                        if (hasBreadCrumb == "") {//Check Breadcrumb is not there then add breadCrumb
+                            $('#ulbreadcrumb').append("<li><a id='Href_" + i + "' href=''></a></li>");
+                            if (subULCount == i) {//check if UL is equal to LI then break loop
+                                break;
+                            }
+                        }
+                    }
+
+                    for (i = 0; i <= subLICount; i++) {
+                        var mainHref = ($(this).parents(".liHref").find('span').text());
+                        //var subHref1 = ($(this).parent().prev());
+                        var subHref = ($(this).text());
+                        var url = ($(this).attr('href'));
+                        //alert(url);
+                        $('#Href_' + i).text(mainHref);
+                        i++;
+                        $('#Href_' + i).text(subHref);
+                        $('#Href_' + i).attr("url", url);
+                        i--;
+                        break;
+                    }
+                }
+            });
+            $("#myNavbar .notify").click(function () {
+                //alert($(this).text());
+                var Defualturl = ($(this).attr('href'));// gets url of clicked li
+                //alert(Defualturl);
+                var HrefText = ($(this).text()); // gets text contents of clicked li
+                // alert(HrefText);
+                $('#lblNavname').text(HrefText);
+                if (HrefText == "VENDOR" || HrefText == "UPLOAD EXCEL LOGS LIST" || HrefText == "DASHBOARD" || HrefText == "REGISTER" || HrefText == "FACTORING" || HrefText == "AUDIT LOG LISTING" || HrefText == "CONTROL PANEL" || HrefText == "Customer COMPANY " || HrefText == "Disbursements") {
+                    $('#ulbreadcrumb').append("<li><a id='mainHref' href=''></a></li>");
+                    $('#mainHref').text(HrefText);
+                    $('#mainHref').attr("url", Defualturl);
+                }
+
+            });
+
+        });
+
+        function doDate() {
+            var str = "";
+
+            var days = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+            var months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+
+            var now = new Date();
+            if (now.getSeconds() >= 10) {
+                str += days[now.getDay()] + ", " + now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear() + " " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+            }
+            else {
+                str += days[now.getDay()] + ", " + now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear() + " " + now.getHours() + ":" + now.getMinutes() + ":0" + now.getSeconds();
+            }
+            document.getElementById("txt").innerHTML = str;
+        }
+
+    </script>
+
+
+
+
+    <environment include="Development">
+
+    </environment>
+    <environment exclude="Development">
+
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body oncontextmenu="@(!System.Diagnostics.Debugger.IsAttached?"return false;":"return true;")">
+
+    <div class="main-body-bg">
+        <div class="wrapper">
+            <div class="container-fluid padding">
+                <!-- header[START] -->
+                <header class="header-top">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 logo-box middle-icon-box">
+                            <a href="#"><img src="~/Content/images/logo.png" alt="FinoCart" class="img-responsive" /></a>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12 right-sec-box pull-right">
+                            <div class="row">
+                                @*<div class="col-xs-6 col-sm-3 col-md-1 col-lg-1" style="margin-top: 7px;">
+                                @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Vendor")
+                                {
+                                    <a class="backbtn" href="~/Vendor/VendorDashboardMain"><img src="~/Content/images/Home-icon.png" alt="icon missing" /></a>
+                                }
+                                @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Anchor Company")
+                                {
+                                    <a class="backbtn" href="~/AnchorCompany/AnchorDashboard"><img src="~/Content/images/Home-icon.png" alt="icon missing" /></a>
+                                }
+                                @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Both")
+                                {
+                                    <a class="backbtn" href="~/AnchorCompany/AnchorDashboard"><img src="~/Content/images/Home-icon.png" alt="icon missing" /></a>
+
+                                }
+                                @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Bank")
+                                {
+                                    <a class="backbtn" href="~/BankCompany/BankDashboard"><img src="~/Content/images/home.png" alt="icon missing" /></a>
+
+                                }
+                            </div>*@
+                                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                    @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Vendor Company")
+                                    {
+                                        <a class="backbtn" href="~/Vendor/VendorDashboardMain"><img src="~/Content/images/Home-icon.png" alt="icon missing" /></a>
+                                    }
+                                    @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Anchor Company")
+                                    {
+                                        <a class="backbtn" href="~/AnchorCompany/AnchorDashboard"><img src="~/Content/images/Home-icon.png" alt="icon missing" /></a>
+                                    }
+                                    @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Both")
+                                    {
+                                        <a class="backbtn" href="~/AnchorCompany/AnchorDashboard"><img src="~/Content/images/Home-icon.png" alt="icon missing" /></a>
+
+                                    }
+                                    @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Bank")
+                                    {
+                                        <a class="backbtn" href="~/BankCompany/BankDashboard"><img src="~/Content/images/home.png" alt="icon missing" /></a>
+
+                                    }
+
+                                    <div class="loger">
+                                        <h4>WELCOME</h4>
+                                        @*<h3 >@Context.Session.GetString("UserName")</h3>*@
+                                        @if (@Context.Session.GetString("Role") == "MasterAdmin" || @Context.Session.GetString("Role") == "InternalUser")
+                                        {
+                                            <h3>@Context.Session.GetString("Companyname")</h3>
+                                        }
+                                        else
+                                        {
+                                            <h3>@Context.Session.GetString("LoginName")</h3>
+                                        }
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-md-5 col-lg-4">
+                                    <div class="custom-clock" id="txt"></div>
+
+                                </div>
+                                <div id="clr"></div>
+
+                                @*<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                                <div style="margin-top: 22px;font-weight: 600;color: #e56734;">
+                                    @if (@Context.Session.GetString("Role") == "MasterAdmin")
+                                    {
+                                        <h6 style="font-weight: 600;text-align: center;">@Context.Session.GetString("CompanyType")</h6>
+                                    }
+                                    @if (@Context.Session.GetString("Role") == "InternalUser")
+                                    {
+                                        <h6 style="font-weight: 600;text-align: center;">@Context.Session.GetString("RoleAccess")</h6>
+                                    }
+
+                                </div>
+
+                            </div>*@
+                                <div class="col-xs-12 col-sm-5 col-md-4 col-lg-5 log-out-box">
+
+                                    <div class="navbar-header">
+                                        <ul class="nav nav-info">
+
+                                            <li class="dropdown-modal user-info-section">
+                                                <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+
+                                                    <span class="user-name big-logo">
+                                                        @Context.Session.GetString("LoginName")
+                                                    </span>
+
+                                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                    <div class="user-icon">
+                                                        <img class="img-responsive" src="~/Content/images/log-off.png" alt="User Image">
+                                                    </div>
+                                                </a>
+
+                                                <ul class="user-menu dropdown-menu-right dropdown-menu user-drp-dwn" style="min-width: 100%;">
+
+                                                    @if (@Context.Session.GetString("Role") == "SuperAdmin")
+                                                    {
+                                                        <li>
+                                                            @Html.ActionLink("Change Password", "ChangePasswordNew", "Common", null, new { @class = "navbar-brand" })
+                                                            @Html.ActionLink("Logout", "SuperAdminLogOff", "Account", null, new { @class = "navbar-brand" })
+                                                        </li>
+                                                    }
+                                                    @if (@Context.Session.GetString("Role") == "InternalUser")
+                                                    {
+                                                        <li>
+                                                            @Html.ActionLink("Profile", "Profile", "AnchorCompany", null, new { @class = "navbar-brand" })
+                                                            @Html.ActionLink("Change Password", "ChangePasswordNew", "Common", null, new { @class = "navbar-brand" })
+                                                            @Html.ActionLink("Logout", "VendorLogOff", "Account", null, new { @class = "navbar-brand" })
+
+                                                        </li>
+                                                    }
+                                                    @if (@Context.Session.GetString("Role") == "MasterAdmin")
+                                                    {
+                                                        <li>
+                                                            @Html.ActionLink("Profile", "Profile", "AnchorCompany", null, new { @class = "navbar-brand" })
+                                                            @Html.ActionLink("Change Password", "ChangePasswordNew", "Common", null, new { @class = "navbar-brand" })
+                                                            @Html.ActionLink("Logout", "AdminLogOff", "Account", null, new { @class = "navbar-brand" })
+                                                            @*<a href='../Account/SuperAdminLogOff'><i class="fa fa-power-off"></i>Logout</a>*@
+
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div style="float: right; display: flex;">
+                                        <div style="margin-top: 13px;font-weight: 600;color: #e56734;">
+                                            @if (@Context.Session.GetString("Role") == "MasterAdmin")
+                                            {
+                                                <h6 style="font-weight: 700; text-transform: uppercase; text-align: center;">@Context.Session.GetString("CompanyType")</h6>
+                                            }
+                                            @if (@Context.Session.GetString("Role") == "InternalUser")
+                                            {
+                                                if (@Context.Session.GetString("RoleAccess") == "Anchor Company")
+                                                {
+                                                    <h6 style="font-weight: 700; text-transform: uppercase; text-align: center;">Customer Company</h6>
+                                                }
+                                                else
+                                                {
+                                                    <h6 style="font-weight: 700; text-transform: uppercase; text-align: center;">@Context.Session.GetString("RoleAccess")</h6>
+                                                }
+                                            }
+
+                                        </div>
+
+                                        <div class="middle-icon-box data-toggle-btn-box" id="dvNotification">
+                                            <ul style="display:inline-flex;">
+                                                <li class="dropdown-modal user-info-section notify">
+                                                    <a data-toggle="dropdown" id="btnNotification" href="#" class="dropdown-toggle" style="position: relative;">
+                                                        <i class="fas fa-bell" aria-hidden="true"></i>
+                                                        <span id="notificationCount" class="count" style="display: none;"></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- header[END] -->
+            </div>
+
+            <div class="container-fluid padding">
+
+                <div class="main-content-section">
+                    <div class="">
+                        <div class="col-md-12 col-sm-12 col-xs-12 sidebar-section openSidebar padding">
+                            <aside class="sidebig">
+                                <div class="sidebar-section-inner">
+                                    <div class="middle-icon-box data-toggle-btn-box clearfix">
+                                        <div>
+                                            <span class="navbar-toggle"><a href="#"><i class="fas fa-bars"></i></a></span>
+                                        </div>
+                                    </div>
+                                    <nav class="navbar navbar-inverse">
+                                        <div class="container-fluid padding">
+                                            <div class="padding" id="myNavbar">
+                                                <input type="hidden" id="hdnRole" value="@Context.Session.GetString("Role")" />
+                                                <input type="hidden" id="hdnRoleAccess" value="@Context.Session.GetString("RoleAccess")" />
+                                                <ul class="nav navbar-nav">
+                                                    @if (Context.Session.GetString("Role") == "SuperAdmin")
+                                                    {
+                                                        <li class="liHref"><a href="~/AnchorCompany/SuperAdminDashBoard/" class="notify"><img src="~/Content/images/dashboard.png" class="img-responsive" title="DashBoard" /><span class="_dashboard">Dashboard</span></a></li>
+                                                        <li><a href="~/AnchorCompany/register/" class="notify"><img src="~/Content/images/User.png" class="img-responsive" title="Register" /><span>REGISTER</span></a></li>
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/User.png" class="img-responsive" title="User Listing" /><span>Company Listing</span></a>
+                                                            <div id="invoicedet" class="collapse hover-tabs">
+                                                                <ul class="inner-nav ulHref">
+                                                                    <li><a href="~/AnchorCompany/Factoring" class="notify">Factoring</a></li>
+                                                                    <li><a href="~/AnchorCompany/ReverseFactoring" class="notify">Reverse Factoring</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="breadcrumb-item">
+                                                            <a href="~/AnchorCompany/HolidayList"><img src="~/Content/images/shape15.png" class="img-responsive" title="holidaylist" /><span>HOLIDAY LIST</span></a>
+                                                        </li>
+                                                        @*<a href="~/AnchorCompany/CompanyList/"><img src="~/Content/images/User.png" class="img-responsive" title="User Listing" /><span>USER LISTING</span></a></li>*@
+                                                        @*<li><a href="~/AnchorCompany/AuditTrailLogList/" class="notify"><img src="~/Content/images/User.png" class="img-responsive" title="Audit Log Listing" /><span class="long-menu">AUDIT LOG LISTING</span></a></li>*@
+                                                        <li><a href="~/AnchorCompany/SendGridEdit/" class="notify"><img src="~/Content/images/User.png" class="img-responsive" title="Control Panel Listing" /><span>CONTROL PANEL</span></a></li>
+                                                        <li><a href="~/AnchorCompany/Notification" class="notify"><img src="~/Content/images/User.png" class="img-responsive" title="Notification Listing" />Notification</a></li>
+                                                        <li><a href="~/AnchorCompany/AuditTrailHistory" class="notify"><img src="~/Content/images/User.png" class="img-responsive" title="Notification Listing" />Audit Trail History</a></li>
+                                                    }
+                                                    @if (Context.Session.GetString("Role") == "MasterAdmin")
+                                                    {
+                                                        <li class="liHref"><a href="~/User/UserList" class="notify"><img src="~/Content/images/User.png" class="img-responsive" title="Internal User Management" /><span class="_dashboard long-menu">INTERNAL USER MANAGEMENT</span></a></li>
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/setting.png" class="img-responsive" title="Settings" /><span>SETTINGS</span></a>
+                                                            <div id="setting" class="collapse hover-tabs">
+                                                                <ul class="inner-nav ulHref">
+                                                                    <li><a href="~/Notification/NotificationList" class="notify">NotiFication</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                    @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Vendor Company")
+                                                    {
+                                                        <li class="liHref"><a href="~/Vendor/VendorDashboardMain" class="notify"><img src="~/Content/images/shape-5.png" class="img-responsive" title="Home" /><span class="_dashboard">Dashboard</span></a></li>
+                                                        <li class="liHref">
+                                                            <a href="~/AnchorCompany/AnchorCompListByVendorID" class="notify"><img src="~/Content/images/shape21.png" class="img-responsive" title="Anchor Company" /><span>Customer COMPANY</span> </a>
+                                                        </li>
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/shape15.png" class="img-responsive" title="Invoice Details" /><span>INVOICE DETAILS</span></a>
+                                                            <div id="invoicedet" class="collapse hover-tabs">
+                                                                <ul class="inner-nav ulHref">
+                                                                    <li><a href="~/Vendor/GetReceivableDue" class="notify">Receivables Due Today</a></li>
+                                                                    <li><a href="~/VendorDashboard/InvoicesAwaitedApprovals" class="notify">Awaited Approval</a></li>
+                                                                    <li><a href="~/Vendor/Availableforfunding" class="notify">Available for Funding Today</a></li>
+                                                                    <li><a href="~/Vendor/InvoiceListBytodaysdate" class="notify">Amount Approved Today</a></li>
+                                                                    <li><a href="~/Vendor/InvoiceHistory" class="notify">Invoices Status (History)</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/analytics.png" class="img-responsive" title="Analytics" /><span>ANALYTICS</span></a>
+                                                            <div id="analytics" class="collapse hover-tabs">
+                                                                <ul class="inner-nav ulHref" id="ulListFunding">
+                                                                    <li><a href="~/VendorAnalytics/AnalyticsFundingRequest" id="fndingbtn" class="notify">Funding Request</a></li>
+                                                                    <li><a href="~/VendorAnalytics/AnalyticsLostOpp" class="notify">Lost Opportunities</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/setting.png" class="img-responsive" title="Settings" /><span>SETTINGS</span></a>
+                                                            <div id="setting" class="collapse hover-tabs">
+                                                                <ul class="inner-nav">
+                                                                    <li><a href="~/Notification/NotificationList">NotiFication</a></li>
+                                                                    <li><a data-toggle="modal" data-target="#notificationModal">Support</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="breadcrumb-item">
+                                                            <a href="~/AnchorCompany/AnchorHolidayList"><img src="~/Content/images/shape15.png" class="img-responsive" title="holidaylist" /><span>HOLIDAY LIST</span></a>
+                                                        </li>
+                                                    }
+                                                    @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Anchor Company")
+                                                    {
+
+                                                        <li class="breadcrumb-item liHref">
+                                                            <a href="~/AnchorCompany/AnchorDashboard" class="notify"><img src="~/Content/images/shape-5.png" class="img-responsive" title="Dashboard" /><span class="_dashboard">Dashboard</span></a>
+                                                        </li>
+                                                        <li class="breadcrumb-item liHref">
+                                                            <a href="~/AnchorCompany/VendorListing" class="notify"><img src="~/Content/images/shape21.png" class="img-responsive" title="Vendor" /><span>VENDOR</span></a>
+                                                        </li>
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/analytics.png" class="img-responsive" title="Analytics" id="textMainMenu" /><span>FINOCREDIT</span></a>
+                                                            <div id="analytics" class="collapse hover-tabs">
+                                                                <ul class="inner-nav ulHref">
+                                                                    <li><a href="~/BankCompany/DrawFundsList" class="notify" id="txtDrawFundsList">Upload KYC</a></li>
+                                                                    <li><a href="~/BankCompany/DrawFunds" class="notify" id="txtFundsRequestFromBank">Draw Funds</a></li>
+                                                                    @*<li><a href="~/BankCompany/FundsWithdrawnHistory" class="notify">Funds History</a></li>*@
+                                                                    <li> <a href="~/BankCompany/DrawFundsHistoryList" class="notify" id="txtDrawFundsHistoryList">Draw Funds Request History</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        @*<li>
+                <a data-toggle="collapse"><img src="~/Content/images/history.png" class="img-responsive" title="History" /><span class="long-menu">FUNDS WITHDRAW HISTORY</span></a>
+                <div id="history" class="collapse hover-tabs">
+                    <ul class="inner-nav ulHref">
+
+                    </ul>
+                </div>
+            </li>*@
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/shape15.png" class="img-responsive" title="Invoice Details" /><span>INVOICE DETAILS</span></a>
+                                                            <div id="invoicedet" class="collapse hover-tabs ">
+                                                                <ul class="inner-nav ulHref">
+                                                                    <li><a href="~/AnchorCompDashboard/AwaitedInvoiceApproval" class="notify">Invoices Pending for Action</a></li>
+                                                                    <li><a href="~/AnchorCompDashboard/InvoiceApprovedToday" class="notify">Invoices Approved Today</a></li>
+                                                                    <li><a href="~/AnchorCompDashboard/PaymentDueToday" class="notify">Payable Due Today</a></li>
+                                                                    <li><a href="~/AnchorCompDashboard/InvoiceHistory" class="notify">Invoices Status (Audit Trail)</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/analytics.png" class="img-responsive" title="Analytics" /><span>ANALYTICS</span></a>
+                                                            <div id="analytics" class="collapse hover-tabs">
+                                                                <ul class="inner-nav ulHref">
+                                                                    <li><a href="~/AnchorCompDashboard/VenderwiseEarning" class="notify">Earning</a></li>
+                                                                    <li><a href="~/AnchorAnalytics/AnchorLostOpportunities" class="notify">Lost Opportunities</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/setting.png" class="img-responsive" title="Setting" /><span>Setting</span></a>
+                                                            <div id="notification" class="collapse hover-tabs">
+                                                                <ul class="inner-nav">
+                                                                    <li><a href="~/AnchorCompDashboard/AnchorNotificationList">NotiFication</a></li>
+                                                                    <li><a data-toggle="modal" data-target="#notificationModal">Support</a></li>
+                                                                    <li><a data-toggle="modal" data-target="#myModalDialog" id="menuSetLimites">Set Limit</a></li>
+                                                                    <li><a href="~/BankCompany/SetLimitHistory">Set Limit [History]</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="breadcrumb-item">
+                                                            <a href="~/AnchorCompany/VendorInvoiceLogsListing"><img src="~/Content/images/shape21.png" class="img-responsive" title="Vendor" /><span class="long-menu">UPLOAD EXCEL LOGS LIST</span></a>
+                                                        </li>
+
+                                                        <li class="breadcrumb-item">
+                                                            <a href="~/AnchorCompany/AnchorHolidayList"><img src="~/Content/images/shape15.png" class="img-responsive" title="holidaylist" /><span>HOLIDAY LIST</span></a>
+                                                        </li>
+
+                                                    }
+
+
+                                                    @*-----------Added By Tarique-------*@
+
+                                                    @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Both")
+                                                    {
+                                                        <li>
+                                                            <a data-toggle="collapse"><img src="~/Content/images/shape15.png" class="img-responsive" title="Invoice Details" /><span class="_dashboard">ANCHOR</span></a>
+                                                            <div id="invoicedet1" class="collapse hover-tabs">
+                                                                <ul class="inner-nav">
+                                                                    <li><a href="~/AnchorCompany/AnchorDashboard"><img src="~/Content/images/shape-5.png" class="img-responsive" title="Dashboard" /><span>Dashboard</span></a></li>
+                                                                    <li>
+                                                                        <a href="~/AnchorCompany/VendorListing"><img src="~/Content/images/shape21.png" class="img-responsive" title="Vendor" /><span>VENDOR</span></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a data-toggle="collapse"><img src="~/Content/images/shape15.png" class="img-responsive" title="Invoice Details" /><span>INVOICE DETAILS</span></a>
+                                                                        <div id="invoicedet" class="collapse hover-tabs">
+                                                                            <ul class="inner-nav">
+                                                                                <li><a href="~/AnchorCompDashboard/PaymentDueToday">Payable Due Today</a></li>
+                                                                                <li><a href="~/AnchorCompDashboard/AwaitedInvoiceApproval">Invoices Pending for Action</a></li>
+                                                                                <li><a href="~/AnchorCompDashboard/InvoiceApprovedToday">Invoices Approved Today</a></li>
+                                                                                <li><a href="~/AnchorCompDashboard/InvoiceHistory">Invoices Status (Audit Trail)</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a data-toggle="collapse"><img src="~/Content/images/analytics.png" class="img-responsive" title="Analytics" /><span>ANALYTICS</span></a>
+                                                                        <div id="analytics" class="collapse hover-tabs">
+                                                                            <ul class="inner-nav">
+                                                                                <li><a href="~/VendorAnalytics/AnalyticsFundingRequest">Earning</a></li>
+                                                                                <li><a href="~/AnchorAnalytics/AnchorLostOpportunities">Lost Opportunities</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a data-toggle="collapse"><img src="~/Content/images/setting.png" class="img-responsive" title="Setting" /><span>Setting</span></a>
+                                                                        <div id="notification" class="collapse hover-tabs">
+                                                                            <ul class="inner-nav">
+                                                                                <li><a href="~/Notification/NotificationList">Notification</a></li>
+                                                                                <li><a data-toggle="modal" data-target="#notificationModal">Support</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="breadcrumb-item">
+                                                                        <a href="~/AnchorCompany/HolidayList"><img src="~/Content/images/shape15.png" class="img-responsive" title="holidaylist" /><span>HOLIDAY LIST</span></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a data-toggle="collapse"><img src="~/Content/images/shape15.png" class="img-responsive" title="Invoice Details" /><span>VENDOR</span></a>
+                                                            <div id="invoicedet2" class="collapse hover-tabs">
+                                                                <ul class="inner-nav">
+                                                                    <li><a href="~/Vendor/VendorDashboardMain"><img src="~/Content/images/shape-5.png" class="img-responsive" title="Dashboard" /><span>Dashboard</span></a></li>
+                                                                    <li>
+                                                                        <a href="~/AnchorCompany/AnchorCompListByVendorID"><img src="~/Content/images/shape21.png" class="img-responsive" title="Anchor Company" /><span>Customer COMPANY</span> </a>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        <a data-toggle="collapse"><img src="~/Content/images/shape15.png" class="img-responsive" title="Invoice Details" /><span>INVOICE DETAILS</span></a>
+                                                                        <div id="invoicedet3" class="collapse hover-tabs">
+                                                                            <ul class="inner-nav">
+                                                                                <li><a href="~/Vendor/GetReceivableDue">Receivables Due Today</a></li>
+                                                                                <li><a href="~/VendorDashboard/InvoicesAwaitedApprovals">Awaited Approval</a></li>
+                                                                                <li><a href="~/Vendor/Availableforfunding">Available for Funding Today</a></li>
+                                                                                <li><a href="~/Vendor/InvoiceListBytodaysdate">Amount Approved Today</a></li>
+                                                                                <li><a href="~/Vendor/InvoiceHistory">Invoices Status (History)</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+
+                                                                    <li>
+
+                                                                        <a data-toggle="collapse"><img src="~/Content/images/analytics.png" class="img-responsive" title="Analytics" /><span>ANALYTICS</span></a>
+                                                                        <div id="analytics1" class="collapse hover-tabs">
+                                                                            <ul class="inner-nav" id="ulListFunding">
+                                                                                <li><a href="~/VendorAnalytics/AnalyticsFundingRequest" id="fndingbtn">Funding Request</a></li>
+                                                                                <li><a href="~/VendorAnalytics/AnalyticsLostOpp">Lost Opportunities</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a data-toggle="collapse"><img src="~/Content/images/setting.png" class="img-responsive" title="Settings" /><span>SETTINGS</span></a>
+                                                                        <div id="setting" class="collapse hover-tabs">
+                                                                            <ul class="inner-nav">
+                                                                                <li><a href="~/Notification/NotificationList">Notification</a></li>
+                                                                                <li><a href="#">Support</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="breadcrumb-item">
+                                                                        <a href="~/AnchorCompany/HolidayList"><img src="~/Content/images/shape15.png" class="img-responsive" title="holidaylist" /><span>HOLIDAY LIST</span></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+
+                                                    }
+
+                                                    @if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Bank")
+                                                    {
+                                                        <li class="liHref"><a href="~/BankCompany/BankDashboard"><img src="~/Content/images/shape-5.png" class="img-responsive" title="Dashboard" /><span class="_dashboard">Dashboard</span></a></li>
+                                                        <li class="liHref">
+
+                                                            <a data-toggle="collapse"><img src="~/Content/images/shape21.png" class="img-responsive" title="Anchor Listing" /><span>Anchor Listing</span></a>
+                                                            <div id="anchorListing1" class="collapse hover-tabs">
+                                                                <ul class="inner-nav ulHref">
+                                                                    <li><a href="~/BankCompany/BankAnchorList" class="notify">New Anchor</a></li>
+                                                                    <li><a href="~/BankCompany/BankLimitAnchorListing" class="notify">Limits</a></li>
+                                                                    <li><a href="~/BankCompany/KycUploadListdata" class="notify">KYC Documents</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+
+                                                        <li class="liHref">
+                                                            <a href="~/BankCompany/DisbursementsListing" class="notify"><img src="~/Content/images/shape21.png" class="img-responsive" title="Vendor" /><span>Disbursements</span></a>
+                                                        </li>
+
+                                                        <li class="liHref">
+                                                            <a data-toggle="collapse"><img src="~/Content/images/setting.png" class="img-responsive" title="Setting" /><span>Setting</span></a>
+                                                            <div id="notification" class="collapse hover-tabs">
+                                                                <ul class="inner-nav ulHref">
+                                                                    <li><a href="~/Notification/NotificationList" class="notify">Notification</a></li>
+                                                                    <li><a data-toggle="modal" data-target="#notificationModal">Support</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        @*<li class="breadcrumb-item">
+                <a href="~/AnchorCompany/HolidayList"><img src="~/Content/images/shape15.png" class="img-responsive" title="holidaylist" /><span>HOLIDAY LIST</span></a>
+            </li>*@
+                                                        <li class="breadcrumb-item">
+                                                            <a href="~/BankCompany/BankHolidayList"><img src="~/Content/images/shape15.png" class="img-responsive" title="holidaylist" /><span>HOLIDAY LIST</span></a>
+                                                        </li>
+
+                                                    }
+                                                </ul>
+                                                @*<label id="lbldefultvalue" style="display:none">1</label>*@
+                                            </div>
+                                        </div>
+                                    </nav>
+
+                                    <div class="footer-abt">
+                                        <ul>
+                                            <li><a href="https://www.finocart.com/about-us" target="_blank" style="display:block;width:auto;">ABOUT US<span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </aside>
+                            <div class="col-xs-12 ">
+                                <ul class="breadcrumb" id="ulbreadcrumb">
+                                    <li><a id="Defualt" href=""></a></li>
+                                </ul>
+                            </div>
+                            @*<label style="margin-left:86%;" id="dynemicBredCrumbs">Dynemic</label>*@
+                            <div class="right-section-box">
+                                <div class="breadcrumb-custom">
+                                    <label id="lblNavname" style="width: auto;padding: 0;float: right;"></label>
+                                </div>
+                                <div class="">
+                                    @RenderBody()
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade engine-modal" id="myModalDialog" role="dialog" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog addengine">
+
+                    <!-- Modal content-->
+                    <form>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">SET LIMIT</h4>
+                            </div>
+                            <div class="modal-body engine-box">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-9">
+                                        <div class="form-group">
+                                            <label>A. limit</label>
+                                            <input type="text" id="Internalfund" name="model_popup" placeholder="From Internal Fund" onkeypress="return isNumberKey(event)" class="form-control col-sm-3 sumtotal" />
+                                            <label id="lblAnchorInternalFund" class="cls-error" style="color:red;display:none;"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3">
+                                        <input id="IschkUnlimited" type="checkbox" style="position: relative; top: 18px;" /><label style="padding: 28px 0 0 15px;">Unlimited</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label>B. Anchor Percentage</label>
+                                            <input type="text" id="Anchor_Percentage" name="model_popup" placeholder="Anchor Percentage" onkeypress="return isNumberKey(event)" class="form-control" max='100' />
+                                            <label id="lblAnchorPercentageError" class="cls-error" style="color:red;display:none;"></label>
+                                            <label id="lblrule_percentageError" class="error" style="color:red;display: none;">Please Enter Value</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label>Payment Days</label>
+                                            <input type="text" id="anchorPaymentDays" name="model_popup" placeholder="Anchor Payment Days" onkeypress="return isNumberKey(event)" class="form-control" maxlength="3" max='100' />
+                                            <label id="lblAnchorPaymentDays" class="cls-error" style="color:red;display:none;"></label>
+                                            <label id="lblrule_paymentDaysError" class="error" style="color:red;display: none;">Please Enter Value</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <label>Note : Fill All Details</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-close" style="margin:0;" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn confirmbutton" id="submit_set_limits">Submit</button>
+                                @*<input type="submit" value="Submit" class="btn confirmbutton" id="submit_rule_engine" onclick="window.location.href='<%= Url.Action("Dashboard", "AnchorCompany") %>';"/>*@
+                                @*<input type="submit" value="Submit" class="btn confirmbutton" onclick="@("window.location.href='" + @Url.Action("AnchorDashboard", "AnchorCompany") + "'");" />*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @* <div id="notificationModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog" style="width: 600px;">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header" style="background: #e46734;border-radius: 5px 5px 0 0;">
+                                    <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="color:#fff;font-size: 14px;font-weight: 600;">Feedback</h4>
+                                </div>
+                                <div class="modal-body clearfix">
+
+                                    <div class="form-group clearfix">
+                                        @Html.Hidden("hdnCompanyname",@Context.Session.GetString("Companyname"))
+                                        @Html.Hidden("hdnCompanyID",@Context.Session.GetString("CompanyID"))
+                                        <input type="hidden" name="CompanyName" value="@Context.Session.GetString("Companyname")" id="hdnCompanyName"/>
+                                        <input type="hidden" name="CompanyId" value="@Context.Session.GetInt32("CompanyID")" id="hdnCompanyId" />
+                                        <div class="col-xs-12 col-sm-9">
+                                            <label style="font-size:18px;margin-top: -10px;">Feedback Type :- </label>
+                                            @Html.RadioButtonFor(model => model.BugType, "Bug")
+                                            <label style="font-size:16px;margin-top: -10px;">Bug</label>
+                                            @Html.RadioButtonFor(model => model.BugType, "Enhancement")
+                                            <label style="font-size:16px;margin-top: -10px;">Enhancement</label>
+                                            <label id="lblFeedbackMsgType" style="display:none;padding:0;color: red;">Please Select Feedback Type</label>
+
+                                        </div>
+                            </div>
+                            <div class="">
+                                    <label class="control-label col-xs-12 col-sm-3" style="font-size:18px;">Details :- </label>
+                                    <div class="col-xs-12 col-sm-9" id="feedbackmsg">
+                                        @Html.TextBoxFor(m => m.FeedbackMsg, new { @class = "form-control", @placeholder = "Please write your feedback", @maxLength = "500", autocomplete = "off", @style = "min-width: 100%;", @id = "txtFeedbackMsg" })
+                                        <label id="lblFeedbackMsg" style="display:none;padding:0;color: red;">Please enter Feedback</label>
+                                    </div>
+
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-xs-12 col-sm-6 ana-fr">
+                                <input class="cancel-btn" type="reset" id="btnFeedbackCancel" style="" data-dismiss="modal" value="Cancel" />
+                            </div>
+                            <div class="col-xs-12 col-sm-6 ana-fr">
+                                <input class="submit-btn" type="submit" id="btnFeedbackSubmit" style="float: left;" value="Submit" data-dismiss="modal" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>*@
+            <script>
+                if ('@System.Diagnostics.Debugger.IsAttached' == 'False') {
+                    $(document).keydown(function (event) {
+                        if (event.keyCode == 123) {
+                            return false;
+                        }
+                        else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                            return false;
+                        }
+                    });
+
+                    $(document).on("contextmenu", function (e) {
+                        e.preventDefault();
+                    });
+                }
+            $('#btnNotification').click(function () {
+                url = "../Notification/AllNotificationsRead";
+
+                $.ajax({
+                    type: "get",
+                    url: url,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (result) {
+
+                    },
+                    error: function () {
+                        alert("Error occured!!")
+                    }
+                });
+
+                $("#notificationCount").hide();
+                $("#notificationCount").text('');
+            });
+
+            $('#model_engine').on("click", function () {
+                $("#status_no").prop("checked", true);
+                $("input[name='model_popup']").val('');
+
+                $("#lblrule_percentageError").hide();
+                $("#lblrule_limitError").hide();
+                $("#lblrule_limitError_radio").hide();
+                document.getElementById("rule_limit").readOnly = true;
+                $("#myModal").modal("show");
+            });
+
+                $("#submit_set_limits").click(function () {
+                    debugger;
+                var errormsg = false;
+                var PercentageRate = $("#Anchor_Percentage").val();
+                var PaymentDays = $("#anchorPaymentDays").val();
+                var InternalFundLimits = $("#Internalfund").val().replace(/\,/g, '');
+                var chkUnlimited = false;
+                if ($('#IschkUnlimited').is(":checked")) {
+                    // it is checked\
+                    chkUnlimited = true;
+                }
+                else {
+                    chkUnlimited = false;
+
+                    if ($("#Internalfund").val() == "" || $("#Internalfund").val() == "0") {
+                        $("#lblAnchorInternalFund").html('Please enter internal fund');
+                        errormsg = true;
+                    }
+                }
+
+                if ($("#Anchor_Percentage").val() == "" || $("#Anchor_Percentage").val() == "0") {
+                    $("#lblAnchorPercentageError").html('Please enter percent');
+                    errormsg = true;
+                }
+
+                if ($("#anchorPaymentDays").val() == "" || $("#anchorPaymentDays").val() == "0") {
+                    $("#lblAnchorPaymentDays").html('Please enter payment days');
+                    errormsg = true;
+                }
+                if (errormsg == true) {
+                    return false;
+                }
+                $.ajax({
+                    url: "../AnchorCompany/UpdateRecord",
+                    type: "POST",
+                    dataType: "json",
+                    data: { PercentageRate: PercentageRate, PaymentDays: PaymentDays, InternalFundLimits: InternalFundLimits, chkUnlimited: chkUnlimited },
+                    success: function (data) {
+                        if (data != null) {
+                            alert("Limits should be greater or equal to " + data)
+                        }
+                        else {
+                            alert("Record updated successfully");
+                            url = "../AnchorCompany/AnchorDashboard";
+                            window.location.href = url;
+                        }
+                    }
+
+                });
+
+                });
+                if ($("#hdnRole").val() == "InternalUser" && $("#hdnRoleAccess").val() == "Anchor Company")
+                {
+                  GetSetLimitsData();
+                }
+
+            $("#closed").click(function () {
+                            var TeamDetailPostBackURL = '../AnchorCompDashboard/GetRuleOfEngineData';
+                $.ajax({
+                            type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "json",
+                    success: function (data) {
+                        $('#Anchor_Percentage').val(data.percentageRate);
+                        $("#Internalfund").val(data.invoiceLimitAmt);
+                        $("#chkUnlimited").prop('checked', data.isLimitUnlimited);
+                        $("#anchorPaymentDays").val(data.paymentDays);
+
+                                    if (data.percentageRate == null || (data.internalFundLimit == null && data.isLimitUnlimited == false) || data.paymentDays == null) {
+                                        alert("You need to fill the detail in order to proceed.");
+                                        url = "../Account/UserLogin";
+                                        window.location.href = url;
+                                    }
+                                    else {
+                                        url = "../AnchorCompany/AnchorDashboard";
+                                        window.location.href = url;
+                                    }
+                                },
+                    error: function () {
+                                    alert("Dynamic content load failed.");
+                                }
+                            });
+                        });
+
+            $("#Internalfund").keyup(function () {
+                $("#lblAnchorInternalFund").html('');
+                        });
+
+            $("#Anchor_Percentage").keyup(function () {
+                $("#lblAnchorPercentageError").html('');
+                        });
+
+            $("#anchorPaymentDays").keyup(function () {
+                $("#lblAnchorPaymentDays").html('');
+                        });
+
+            $("#IschkUnlimited").change(function () {
+                $("#lblAnchorInternalFund").html('');
+                if ($('#IschkUnlimited').prop('checked') == true) {
+                    $("#Internalfund").prop("disabled", true);
+                    $("#Internalfund").val('');
+                  }
+                else {
+                    $("#Internalfund").prop("disabled", false);
+                }
+
+            });
+
+            $("#menuSetLimites").click(function () {
+                            GetSetLimitsData();
+                        });
+
+                function GetSetLimitsData() {
+                var TeamDetailPostBackURL = '@Url.Action("GetRuleOfEngineData", "AnchorCompDashboard")';
+
+                $.ajax({
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "json",
+                    success: function (data) {
+                        if (data.isLimitUnlimited == true) {
+                            $("#Internalfund").prop("disabled", true);
+                        }
+                        $('#Anchor_Percentage').val(data.percentageRate);
+                          if (data.internalFundLimit != null) {
+                            $("#Internalfund").val(data.internalFundLimit.toLocaleString('en'));
+                          }
+                        $("#IschkUnlimited").prop('checked', data.isLimitUnlimited);
+                        $("#anchorPaymentDays").val(data.paymentDays);
+
+                          if ($('#Anchor_Percentage').val() == "" || ($("#Internalfund").val() == "" && $('#IschkUnlimited').is(":checked") == false) || $("#anchorPaymentDays").val() == "") {
+                            $("#myModalDialog").modal("show");
+                        }
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+
+            }
+
+            function isNumberKey(evt) {
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode != 46 && charCode > 31
+                    && (charCode < 48 || charCode > 57))
+
+                    return false;
+
+                return true;
+            }
+            </script>
+        </body>
+        </html>
+        <script src="~/Notification/Notification.js"></script>
+        @*<script>
+                $('#btnNotification').click(function () {
+                    url = "../Notification/AllNotificationsRead";
+
+                    $.ajax({
+                        type: "get",
+                        url: url,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (result) {
+
+                        },
+                        error: function () {
+                            alert("Error occured!!")
+                        }
+                    });
+
+                    $("#notificationCount").hide();
+                    $("#notificationCount").text('');
+                });
+
+                $('#model_engine').on("click", function () {
+                    debugger;
+                    $("#status_no").prop("checked", true);
+                    $("input[name='model_popup']").val('');
+
+                    $("#lblrule_percentageError").hide();
+                    $("#lblrule_limitError").hide();
+                    $("#lblrule_limitError_radio").hide();
+                    document.getElementById("rule_limit").readOnly = true;
+                    $("#myModal").modal("show");
+                });
+
+                $("#submit_set_limits").click(function () {
+                    debugger;
+                    var errormsg = false;
+                    var PercentageRate = $("#Anchor_Percentage").val();
+                    var PaymentDays = $("#anchorPaymentDays").val();
+                    var InternalFundLimits = $("#Internalfund").val().replace(/\,/g, '');
+                    var chkUnlimited = false;
+                    if ($('#IschkUnlimited').is(":checked")) {
+                        // it is checked\
+                        chkUnlimited = true;
+                    }
+                    else {
+                        chkUnlimited = false;
+
+                        if ($("#Internalfund").val() == "" || $("#Internalfund").val() == "0") {
+                            $("#lblAnchorInternalFund").html('Please enter internal fund');
+                            errormsg = true;
+                        }
+                    }
+
+                    if ($("#Anchor_Percentage").val() == "" || $("#Anchor_Percentage").val() == "0") {
+                        $("#lblAnchorPercentageError").html('Please enter percent');
+                        errormsg = true;
+                    }
+
+                    if ($("#anchorPaymentDays").val() == "" || $("#anchorPaymentDays").val() == "0") {
+                        $("#lblAnchorPaymentDays").html('Please enter payment days');
+                        errormsg = true;
+                    }
+                    if (errormsg == true) {
+                        return false;
+                    }
+                    $.ajax({
+                        url: "../AnchorCompany/UpdateRecord",
+                        type: "POST",
+                        dataType: "json",
+                        data: { PercentageRate: PercentageRate, PaymentDays: PaymentDays, InternalFundLimits: InternalFundLimits, chkUnlimited: chkUnlimited },
+                        success: function () {
+                            alert("Record updated successfully");
+                            url = "../AnchorCompany/AnchorDashboard";
+                            window.location.href = url;
+                        }
+
+                    });
+
+                });
+                if (Context.Session.GetString("Role") == "InternalUser" && Context.Session.GetString("RoleAccess") == "Anchor Company")
+                {
+                      GetSetLimitsData();
+                }
+
+                $("#closed").click(function () {
+                                var TeamDetailPostBackURL = '../AnchorCompDashboard/GetRuleOfEngineData';
+                    $.ajax({
+                                type: "GET",
+                        url: TeamDetailPostBackURL,
+                        contentType: "application/json; charset=utf-8",
+                        datatype: "json",
+                        success: function (data) {
+                            $('#Anchor_Percentage').val(data.percentageRate);
+                            $("#Internalfund").val(data.internalFundLimit);
+                            $("#chkUnlimited").prop('checked', data.isLimitUnlimited);
+                            $("#anchorPaymentDays").val(data.paymentDays);
+
+                                        if (data.percentageRate == null || (data.internalFundLimit == null && data.isLimitUnlimited == false) || data.paymentDays == null) {
+                                            alert("You need to fill the detail in order to proceed.");
+                                            url = "../Account/UserLogin";
+                                            window.location.href = url;
+                                        }
+                                        else {
+                                            url = "../AnchorCompany/AnchorDashboard";
+                                            window.location.href = url;
+                                        }
+                                    },
+                        error: function () {
+                                        alert("Dynamic content load failed.");
+                                    }
+                                });
+                            });
+
+                $("#Internalfund").keyup(function () {
+                    $("#lblAnchorInternalFund").html('');
+                            });
+
+                $("#Anchor_Percentage").keyup(function () {
+                    $("#lblAnchorPercentageError").html('');
+                            });
+
+                $("#anchorPaymentDays").keyup(function () {
+                    $("#lblAnchorPaymentDays").html('');
+                            });
+
+                $("#IschkUnlimited").change(function () {
+                    $("#lblAnchorInternalFund").html('');
+                                if ($('#IschkUnlimited').prop('checked') == true) {
+                        $("#Internalfund").prop("disabled", true);
+                                }
+                    else {
+                        $("#Internalfund").prop("disabled", false);
+                                }
+
+                            });
+
+                $("#menuSetLimites").click(function () {
+                                GetSetLimitsData();
+                            });
+
+                            function GetSetLimitsData() {
+                                var TeamDetailPostBackURL = '@Url.Action("GetRuleOfEngineData", "AnchorCompDashboard")';
+
+                    $.ajax({
+                                type: "GET",
+                        url: TeamDetailPostBackURL,
+                        contentType: "application/json; charset=utf-8",
+                        datatype: "json",
+                        success: function (data) {
+                            $('#Anchor_Percentage').val(data.percentageRate);
+                                        if (data.internalFundLimit != null) {
+                                $("#Internalfund").val(data.internalFundLimit.toLocaleString('en'));
+                                        }
+                            $("#IschkUnlimited").prop('checked', data.isLimitUnlimited);
+                            $("#anchorPaymentDays").val(data.paymentDays);
+
+                                        if ($('#Anchor_Percentage').val() == "" || ($("#Internalfund").val() == "" && $('#IschkUnlimited').is(":checked") == false) || $("#anchorPaymentDays").val() == "") {
+                                $("#myModalDialog").modal("show");
+                            }
+                        },
+                        error: function () {
+                            alert("Dynamic content load failed.");
+                        }
+                    });
+
+                }
+
+                function isNumberKey(evt) {
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if (charCode != 46 && charCode > 31
+                        && (charCode < 48 || charCode > 57))
+
+                        return false;
+
+                    return true;
+                }
+            </script>*@
+
+

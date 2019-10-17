@@ -1,0 +1,1497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinocartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="EmailId" Type="varchar" MaxLength="100" />
+    <Property Name="PANNumber" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AnchorCompanies">
+    <Key>
+      <PropertyRef Name="AnchorCompID" />
+    </Key>
+    <Property Name="AnchorCompID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AnchorCompName" Type="varchar(max)" />
+    <Property Name="ContactName" Type="varchar" MaxLength="500" />
+    <Property Name="ContactNo" Type="varchar" MaxLength="20" />
+    <Property Name="EmailID" Type="varchar(max)" />
+    <Property Name="InvoiceAssWith" Type="bigint" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="bigint" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AnchorCompanyDocument">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="varchar(max)" />
+    <Property Name="AnchorCompanyId" Type="bigint" />
+    <Property Name="DocumentTypeId" Type="bigint" />
+    <Property Name="UploadedBy" Type="int" />
+    <Property Name="UploadedOn" Type="datetime" />
+    <Property Name="LocalFolderFileName" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="AnchorNotification">
+    <Key>
+      <PropertyRef Name="AnchrNotificationID" />
+    </Key>
+    <Property Name="AnchrNotificationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="RoleID" Type="bigint" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="IsRead" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ReadOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AutoFundingRate">
+    <Key>
+      <PropertyRef Name="AutoFudngId" />
+    </Key>
+    <Property Name="AutoFudngId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiscuntRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="DiscuntVlidDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BucketManagement">
+    <Key>
+      <PropertyRef Name="BucketID" />
+    </Key>
+    <Property Name="BucketID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BucketName" Type="varchar(max)" />
+    <Property Name="BucketStatus" Type="int" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ValidUptoDate" Type="datetime" />
+    <Property Name="BucketCreatedDate" Type="datetime" />
+    <Property Name="BucketCreatedBy" Type="bigint" />
+    <Property Name="BucketModifiedBy" Type="bigint" />
+    <Property Name="BucketModifiedAt" Type="datetime" />
+    <Property Name="DisbursementAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DiscountAmt" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company_name" Type="varchar" MaxLength="250" />
+    <Property Name="Login_Id" Type="varchar" MaxLength="70" />
+    <Property Name="Password" Type="varchar" MaxLength="150" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="InterestedAs" Type="int" />
+    <Property Name="CompanyType" Type="int" />
+    <Property Name="Pan_number" Type="varchar" MaxLength="10" />
+    <Property Name="Contact_Title" Type="varchar" MaxLength="5" />
+    <Property Name="Contact_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Contact_Designation" Type="varchar" MaxLength="50" />
+    <Property Name="Contact_email" Type="varchar" MaxLength="150" />
+    <Property Name="Contact_mobile" Type="varchar" MaxLength="15" />
+    <Property Name="Contact_Comments" Type="varchar" MaxLength="500" />
+    <Property Name="PercentageRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="InvoiceLimitAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="Contact_CIN" Type="varchar" MaxLength="50" />
+    <Property Name="IsTemporaryPassword" Type="bit" />
+    <Property Name="IsCritical" Type="bit" />
+    <Property Name="InvAmtLimitStatus" Type="int" />
+    <Property Name="NoOfDays" Type="bigint" />
+  </EntityType>
+  <EntityType Name="CompanyDocuments">
+    <Key>
+      <PropertyRef Name="CompanyDocument_ID" />
+    </Key>
+    <Property Name="CompanyDocument_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="DocumentType" Type="int" />
+    <Property Name="DocumentName" Type="varchar" MaxLength="500" />
+    <Property Name="DocumentURL" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="EmailTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateKey" Type="varchar" MaxLength="50" />
+    <Property Name="Subject" Type="varchar" MaxLength="100" />
+    <Property Name="BodyContent" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="nchar" MaxLength="10" />
+    <Property Name="Salary" Type="decimal" Precision="16" Scale="0" />
+  </EntityType>
+  <EntityType Name="ErrorTracer">
+    <Key>
+      <PropertyRef Name="ErrorID" />
+    </Key>
+    <Property Name="ErrorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ErrorNumber" Type="int" />
+    <Property Name="ErrorState" Type="int" />
+    <Property Name="ErrorSeverity" Type="int" />
+    <Property Name="ErrorLine" Type="int" />
+    <Property Name="ErrorProc" Type="varchar(max)" />
+    <Property Name="ErrorMsg" Type="varchar(max)" />
+    <Property Name="UserName" Type="varchar(max)" />
+    <Property Name="HostName" Type="varchar(max)" />
+    <Property Name="ErrorDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FinocartMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="EmailId" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsTemporaryPassword" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Finocart_V1.dbo.ForgetPasswordMailTemplate' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ForgetPasswordMailTemplate">
+          <Property Name="Template" Type="nvarchar(max)" />
+        </EntityType>-->
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PONumber" Type="varchar(max)" />
+    <Property Name="PODate" Type="datetime" />
+    <Property Name="InvoiceNo" Type="varchar(max)" />
+    <Property Name="VendorID" Type="int" />
+    <Property Name="AnchorCompID" Type="int" Nullable="false" />
+    <Property Name="InvoiceAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentDueDate" Type="datetime" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Days" Type="bigint" />
+    <Property Name="InvoiceStatus" Type="int" />
+    <Property Name="RejectionReason" Type="varchar(max)" />
+    <Property Name="ApprovedAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UploadInvoice" Type="varchar(max)" />
+    <Property Name="UploadDocument" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="InvoiceApprovePayDays" Type="int" />
+    <Property Name="InvoiceApprovalDate" Type="datetime" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="AmountPaid" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Earning" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="InvoiceApprovalOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="FromAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ToAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ApprovedBy" Type="int" />
+    <Property Name="Users" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="InvoiceBucket">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BucketID" Type="bigint" Nullable="false" />
+    <Property Name="InvoiceID" Type="bigint" />
+    <Property Name="DisbursementAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DiscountAmt" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="InvoiceJourneyHistory">
+    <Key>
+      <PropertyRef Name="InvoiceJourneyID" />
+    </Key>
+    <Property Name="InvoiceJourneyID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceID" Type="bigint" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="InvoiceStatus" Type="int" />
+    <Property Name="InvoiceUpdatedBy" Type="int" Nullable="false" />
+    <Property Name="InvoiceUpdatedAt" Type="datetime" />
+    <Property Name="RejectionReason" Type="varchar(max)" />
+    <Property Name="BucketID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="LogManagement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ControllerName" Type="varchar" MaxLength="50" />
+    <Property Name="MethodName" Type="varchar" MaxLength="50" />
+    <Property Name="ErrorMessage" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ErrorLine" Type="bigint" />
+  </EntityType>
+  <EntityType Name="LookupDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LookupKey" Type="varchar" MaxLength="150" />
+    <Property Name="LookupValue" Type="varchar" MaxLength="250" />
+    <Property Name="LookupFor" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ModuleMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModuleName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="NotificationID" />
+    </Key>
+    <Property Name="NotificationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="IsRead" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ReadOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProcedureErrorTracer">
+    <Key>
+      <PropertyRef Name="ErrorID" />
+    </Key>
+    <Property Name="ErrorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ErrorNumber" Type="int" />
+    <Property Name="ErrorState" Type="int" />
+    <Property Name="ErrorSeverity" Type="int" />
+    <Property Name="ErrorLine" Type="int" />
+    <Property Name="ErrorProc" Type="varchar(max)" />
+    <Property Name="ErrorMsg" Type="varchar(max)" />
+    <Property Name="UserName" Type="varchar(max)" />
+    <Property Name="HostName" Type="varchar(max)" />
+    <Property Name="ErrorDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Finocart_V1.dbo.RegisterMailTemplate' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="RegisterMailTemplate">
+          <Property Name="Template" Type="nvarchar(max)" />
+        </EntityType>-->
+  <EntityType Name="RolesAccessMaster">
+    <Key>
+      <PropertyRef Name="RoleAccessID" />
+    </Key>
+    <Property Name="RoleAccessID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Permission" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Finocart_V1.dbo.Salary' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Salary">
+          <Property Name="Id" Type="int" />
+          <Property Name="Salary" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+  <EntityType Name="SAPConfiguration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppServerHost" Type="varchar" MaxLength="500" />
+    <Property Name="ClientID" Type="int" />
+    <Property Name="SystemNumber" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Language" Type="varchar" MaxLength="20" />
+    <Property Name="IdentificationName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SearchHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageName" Type="varchar" MaxLength="50" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="SearchKeyValue" Type="varchar(max)" />
+    <Property Name="MaxSearchLimit" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar(max)" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Designation" Type="varchar" MaxLength="50" />
+    <Property Name="RolesAccess" Type="varchar" MaxLength="50" />
+    <Property Name="RoleAccessID" Type="int" />
+    <Property Name="AccessViewID" Type="int" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="PANNumber" Type="varchar" MaxLength="50" />
+    <Property Name="IsTemporaryPassword" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Finocart_V1.dbo.UserMailTemplate' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="UserMailTemplate">
+          <Property Name="Template" Type="nvarchar(max)" />
+        </EntityType>-->
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+    </Key>
+    <Property Name="VendorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VendorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaxLimit" Type="int" />
+    <Property Name="VendorStatus" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedAt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="bigint" />
+    <Property Name="ContactPersonName" Type="varchar" MaxLength="50" />
+    <Property Name="ContactPersonNumber" Type="int" />
+    <Property Name="ContactPersonEmailId" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="PANNumber" Type="varchar" MaxLength="25" />
+    <Property Name="ContactPersonDesignation" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="IsTemporaryPassword" Type="bit" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+  </EntityType>
+  <EntityType Name="VendorAssociatedCompany">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VendorId" Type="int" Nullable="false" />
+    <Property Name="CompanyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VendorDiscMap">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="DiscountAmt" Type="bigint" />
+    <Property Name="IsDiscountApplied" Type="bit" />
+    <Property Name="VendorID" Type="int" />
+  </EntityType>
+  <EntityType Name="VendorDocument">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="varchar(max)" />
+    <Property Name="VendorID" Type="bigint" />
+    <Property Name="DocumentTypeId" Type="bigint" />
+    <Property Name="UploadedBy" Type="int" />
+    <Property Name="UploadedOn" Type="datetime" />
+    <Property Name="LocalFolderFileName" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Company_LookupDetails">
+    <End Role="LookupDetails" Type="Self.LookupDetails" Multiplicity="0..1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="InvAmtLimitStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_ModuleMaster">
+    <End Role="ModuleMaster" Type="Self.ModuleMaster" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="InvoiceStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceJourneyHistory_ModuleMaster">
+    <End Role="ModuleMaster" Type="Self.ModuleMaster" Multiplicity="0..1" />
+    <End Role="InvoiceJourneyHistory" Type="Self.InvoiceJourneyHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="InvoiceJourneyHistory">
+        <PropertyRef Name="InvoiceStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVendorDet_VendorStatus">
+    <End Role="ModuleMaster" Type="Self.ModuleMaster" Multiplicity="0..1" />
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vendor">
+        <PropertyRef Name="VendorStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_LookupDetails">
+    <End Role="LookupDetails" Type="Self.LookupDetails" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="AccessViewID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="fn_getAnalyticsInvoicesAmt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="Page" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_getAnalyticsInvoicesAppAmt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="Page" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_getAnalyticsInvoicesCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Page" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_getapprovaldate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
+    <Parameter Name="NoOfDaysToAdd" Type="int" Mode="In" />
+    <Parameter Name="startDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_getApprovedInvAmtAppToday" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_getBucketWiseDisbAmtAppToday" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="BucketID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="fn_getDisbAmtApproveToday" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_getDisbursementAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_getFundRequestAppAmt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="Discount" Type="decimal" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_getInvoiceAmt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="Page" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_getInvoiceAmtount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_getInvoiceApprovedAmt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="Page" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_getInvoiceDisbAmtAppToday" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="BucketID" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="fn_getInvoicesCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_getPaidAMT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_getRecInvoicesCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_getTentativePaymentDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
+    <Parameter Name="NoOfDaysToAdd" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_getTodayDisbAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_getTodayInvoiceAppAmt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_getTodayInvoiceAppCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_getTotalInvoicesCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="Page" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="VendorId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_udfGetInvoiceJourneyForEligibleInv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InvoiceId" Type="bigint" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="InvoiceStatus" Type="int" />
+          <Property Name="Email" Type="int" />
+          <Property Name="UserName" Type="int" />
+          <Property Name="invoicestatusvalue" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="int" />
+          <Property Name="InvoiceStatusText" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="CreatedUser" Type="int" />
+          <Property Name="CreatedDate" Type="int" />
+          <Property Name="SentToPerson" Type="int" />
+          <Property Name="Company_name" Type="varchar" MaxLength="250" />
+          <Property Name="InvoiceCreatedDate" Type="datetime" />
+          <Property Name="PONumber" Type="varchar(max)" />
+          <Property Name="PaymentDueDate" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetFunding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AutoFudngId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="IsEmailExistOrNot2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="poc_getAnchorCompDropDown" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="poc_getEmployeeData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="poc_getVendorDropDown" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchorCompID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Pro_GetInvoiceListAwaiteApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="Company_name" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalInvoiceAmount" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_AddFundingRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Rate" Type="decimal" Mode="In" />
+    <Parameter Name="Date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="proc_AddInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PONumber" Type="varchar(max)" Mode="In" />
+    <Parameter Name="PODate" Type="datetime" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="AnchorCompName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceAmt" Type="varchar" Mode="In" />
+    <Parameter Name="PaymentDueDate" Type="datetime" Mode="In" />
+    <Parameter Name="Discount" Type="int" Mode="In" />
+    <Parameter Name="Days" Type="int" Mode="In" />
+    <Parameter Name="UploadInvoice" Type="varchar" Mode="In" />
+    <Parameter Name="UploadDocument" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_AddUpdateCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="Company_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Login_Id" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="Address" Type="varchar" Mode="In" />
+    <Parameter Name="InterestedAS" Type="int" Mode="In" />
+    <Parameter Name="CompanyType" Type="int" Mode="In" />
+    <Parameter Name="Pan_Number" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_CIN" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Title" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Designation" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Email" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Mobile" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Comment" Type="varchar" Mode="In" />
+    <Parameter Name="CreatedBy" Type="int" Mode="In" />
+    <Parameter Name="UpdatedBy" Type="int" Mode="In" />
+    <Parameter Name="ReturnCompanyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_AddUpdateCriticalVendors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="InvAmtLimitStatus" Type="bigint" Mode="In" />
+    <Parameter Name="PercentageRate" Type="decimal" Mode="In" />
+    <Parameter Name="InvoiceLimitAmt" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="proc_AddUpdateInvoiceApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApprovalID" Type="int" Mode="In" />
+    <Parameter Name="FromAmount" Type="decimal" Mode="In" />
+    <Parameter Name="ToAmount" Type="decimal" Mode="In" />
+    <Parameter Name="ApprovedBy" Type="int" Mode="In" />
+    <Parameter Name="Users" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_AddUpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="varchar" Mode="In" />
+    <Parameter Name="Designation" Type="varchar" Mode="In" />
+    <Parameter Name="RolesAccess" Type="int" Mode="In" />
+    <Parameter Name="CreatedBy" Type="bigint" Mode="In" />
+    <Parameter Name="UpdatedBy" Type="bigint" Mode="In" />
+    <Parameter Name="AccessViewID" Type="int" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_AnchorCompDropDown" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_AnchorGetNotificationDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="Notification" Type="varchar(max)" Mode="In" />
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Role" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="Password" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_CheckAdminLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InputCredential" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_CheckLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailID" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_CheckLoginV1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PANNumber" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_CheckPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Role" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_CheckSuperAdminLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailId" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_CheckUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailId" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_CommonUseSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ModuleName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_deleteCriticalVendors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_deleteInvoiceApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApprovalID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_deleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Proc_DeleteVendorDocRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorDocId" Type="bigint" Mode="In" />
+    <Parameter Name="VendorDocFileName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_EditCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_EditInvoiceApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_EditUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetAnchorCompDocument" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchorCompanyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_GetAnchorCompDocUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="FileName" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetAnchorCompListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Page" Type="varchar(max)" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="Company_ID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Company_name" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalAppInvAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="IsTotalCount" Type="int" Mode="In" />
+    <Parameter Name="TotalAwaitedInvAmt" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetAnchorCompListing1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Page" Type="varchar(max)" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="Company_ID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Company_name" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalAppInvAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="IsTotalCount" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetAnchorDashboardCompListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Page" Type="varchar(max)" Mode="In" />
+    <Parameter Name="AnchCompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="Company_ID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Company_name" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalAppInvAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="IsTotalCount" Type="int" Mode="In" />
+    <Parameter Name="TotalAwaitedInvAmt" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Proc_getAnchorGraphDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SP_TYPE" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_GetAnchorInvoiceStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="bigint" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="VendorName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Invoicetotatalamt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceStatus" Type="varchar" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetAnchorLostOppListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchorCompID" Type="bigint" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="proc_GetAvailableForFunding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompanyName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Page" Type="varchar(max)" Mode="In" />
+    <Parameter Name="vendorId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_GetBucketDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_GetBucketDetView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="BucketID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_getCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SPType" Type="varchar" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="pageSize" Type="varchar" Mode="In" />
+    <Parameter Name="skip" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyName" Type="varchar" Mode="In" />
+    <Parameter Name="ContactPerson" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetContentForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetCriticalVendorsListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Company_ID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalInvAmtLimit" Type="varchar" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetDailyReceiveinvoiceDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetDashboardList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Page" Type="varchar(max)" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="Company_name" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalAppInvAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetDiscountOfferedInvoiceDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompanyName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="IsDiscountNull" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetEarningListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="proc_GetEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PROC_GetEmailIDByInvoiceId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InvoiceIdString" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_getEmployeeData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_getEmployeeData_Demo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Proc_GetFinoassistMinPaymentDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vendorId" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Proc_getForgetPasswordEmailTemplate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LookupFor" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetFundingReqAmtListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetFundingReqListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetFundingReqPercentListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="proc_GetInvoiceApprovalDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetInvoiceDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompanyName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceStatus" Type="varchar" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="IsDiscountNull" Type="smallint" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_GetInvoiceDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompanyName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceStatus" Type="varchar" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="IsDiscountNull" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="proc_GetInvoiceHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompanyName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Invoicetotatalamt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceStatus" Type="varchar" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetInvoiceJourneyHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InvoiceId" Type="bigint" Mode="In" />
+    <Parameter Name="PageName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetInvoiceListByAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vendorId" Type="bigint" Mode="In" />
+    <Parameter Name="sumAssuredAmount" Type="decimal" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="fundingDate" Type="datetime" Mode="In" />
+    <Parameter Name="discount" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetInvoiceListByAnchor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vendorId" Type="bigint" Mode="In" />
+    <Parameter Name="sumAssuredAmount" Type="decimal" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="fundingDate" Type="datetime" Mode="In" />
+    <Parameter Name="discount" Type="decimal" Mode="In" />
+    <Parameter Name="AnchorCompanyID" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Proc_getLookupDetailsByGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LookupFor" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetLostOppListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="ToDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="proc_GetMaxAvailableAmtByAnchorComp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VedorID" Type="int" Mode="In" />
+    <Parameter Name="AnchorCompanyID" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_GetMaxAvailableVendorAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VedorID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_GetNotificationDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="Notification" Type="varchar(max)" Mode="In" />
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_GetPan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PanNumber" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetPurchaseOrderDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompanyName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="IsDiscountNull" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="proc_GetPurchaseOrderDetByPONumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_getRegisterEmailTemplate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LookupFor" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetSAPConfigurationDataBasedOnKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="identificationKey" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetTodaysInvoiceDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompanyName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Approvedamt" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="IsDiscountNull" Type="smallint" Mode="In" />
+    <Parameter Name="Companyname" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_getUserEmailTemplate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LookupFor" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorApprovedTodayViewListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchCompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorID" Type="int" Mode="In" />
+    <Parameter Name="BucketID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalAppInvAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorBucketInvoiceViewListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchCompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="BucketID" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="POID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorBucketWiseDiscInvViewListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchCompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorID" Type="int" Mode="In" />
+    <Parameter Name="BucketID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="POID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorName" Type="varchar" Mode="In" />
+    <Parameter Name="VendorStatus" Type="int" Mode="In" />
+    <Parameter Name="IsDashboard" Type="bit" Mode="In" />
+    <Parameter Name="SearchName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetVendorDocumentDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorDocUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="FileName" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Proc_getVendorGraphDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SP_TYPE" Type="varchar" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorINVApprovedTodayListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchCompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalAppInvAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorInvAwaitedAppListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchCompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalAppInvAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorInvAwaitedAppViewListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchCompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorID" Type="int" Mode="In" />
+    <Parameter Name="BucketID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalAppInvAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetVendorInvoiceList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Proc_GetVendorList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="CompanyName" Type="varchar" Mode="In" />
+    <Parameter Name="InAmount" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorPaymentDueListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchCompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalAppInvAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetVendorPaymentDueViewListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchCompanyID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceID" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceAmt" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetViewAvailableForFunding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompanyName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Invoicetotatalamt" Type="varchar" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="IsDiscountNull" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="proc_GetViewAwaitInvoiceApproval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="AnchorCompanyName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Invoicetotatalamt" Type="varchar" Mode="In" />
+    <Parameter Name="PONumber" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="IsDiscountNull" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="proc_IfEmailIdExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailId" Type="varchar" Mode="In" />
+    <Parameter Name="Type" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_InsertAnchorCompanyDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchorCompanyId" Type="bigint" Mode="In" />
+    <Parameter Name="FileName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="DocumentTypeID" Type="bigint" Mode="In" />
+    <Parameter Name="UploadedBy" Type="bigint" Mode="In" />
+    <Parameter Name="LocalFolderFileName" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Proc_InsertErrorDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Proc_InsertInvoiceBucketDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BucketId" Type="bigint" Mode="In" />
+    <Parameter Name="BucketName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="BucketStatus" Type="int" Mode="In" />
+    <Parameter Name="Discount" Type="decimal" Mode="In" />
+    <Parameter Name="UserId" Type="bigint" Mode="In" />
+    <Parameter Name="ValidToDate" Type="datetime" Mode="In" />
+    <Parameter Name="InvoiceIdString" Type="varchar(max)" Mode="In" />
+    <Parameter Name="InvoiceStatus" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_InsertInvoiceData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PONumber" Type="varchar(max)" Mode="In" />
+    <Parameter Name="PODate" Type="datetime" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="VendorId" Type="bigint" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="int" Mode="In" />
+    <Parameter Name="InvoiceAmt" Type="varchar" Mode="In" />
+    <Parameter Name="PaymentDueDate" Type="datetime" Mode="In" />
+    <Parameter Name="ApprovedAmt" Type="decimal" Mode="In" />
+    <Parameter Name="PaymentDays" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_InsertVendorData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnchorCompID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="PanNumber" Type="varchar" Mode="In" />
+    <Parameter Name="ContactPersonName" Type="varchar" Mode="In" />
+    <Parameter Name="ContactPersonDesignation" Type="varchar" Mode="In" />
+    <Parameter Name="EmailID" Type="varchar" Mode="In" />
+    <Parameter Name="ContactNumber" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_InsertVendorDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="VendorName" Type="varchar" Mode="In" />
+    <Parameter Name="ContactNumber" Type="varchar" Mode="In" />
+    <Parameter Name="EmailID" Type="varchar" Mode="In" />
+    <Parameter Name="MaxLimit" Type="int" Mode="In" />
+    <Parameter Name="VendorStatus" Type="int" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="ContactPersonDesignation" Type="varchar" Mode="In" />
+    <Parameter Name="ContactPersonEmail" Type="varchar" Mode="In" />
+    <Parameter Name="ContactPersonNumber" Type="int" Mode="In" />
+    <Parameter Name="PANNumber" Type="varchar" Mode="In" />
+    <Parameter Name="ContactPersonName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_InsertVendorDocDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="FileName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="DocumentTypeID" Type="bigint" Mode="In" />
+    <Parameter Name="UploadedBy" Type="bigint" Mode="In" />
+    <Parameter Name="LocalFolderFileName" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_LoginCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Login_Id" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="Flag" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_MaintinSearchHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageName" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyId" Type="int" Mode="In" />
+    <Parameter Name="ColumnName" Type="varchar" Mode="In" />
+    <Parameter Name="SearchedValue" Type="varchar(max)" Mode="In" />
+    <Parameter Name="MaxSearchLimit" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Proc_MapInvoiceBucket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BucketID" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceID" Type="bigint" Mode="In" />
+    <Parameter Name="InvoiceIdString" Type="varchar(max)" Mode="In" />
+    <Parameter Name="BucketStatus" Type="int" Mode="In" />
+    <Parameter Name="BucketCreatedBy" Type="bigint" Mode="In" />
+    <Parameter Name="ReturnBucketID" Type="bigint" Mode="In" />
+    <Parameter Name="BucketName" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_MarkAllReadAnchorNotifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_MarkAllReadNotifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_OutputUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="UserName" Type="varchar(max)" Mode="In" />
+    <Parameter Name="RoleAccess" Type="varchar" Mode="In" />
+    <Parameter Name="CompanyID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_RegisterCompanay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Company_name" Type="varchar" Mode="In" />
+    <Parameter Name="Login_Id" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="Address" Type="varchar" Mode="In" />
+    <Parameter Name="InterestedAs" Type="int" Mode="In" />
+    <Parameter Name="CompanyType" Type="int" Mode="In" />
+    <Parameter Name="Pan_number" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Title" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Designation" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_email" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_mobile" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Comments" Type="varchar" Mode="In" />
+    <Parameter Name="IsActive" Type="bit" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="CreatedDate" Type="datetime" Mode="In" />
+    <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
+    <Parameter Name="CreatedBy" Type="int" Mode="In" />
+    <Parameter Name="UpdatedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_RemoveVendorRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_RoleAccessDropDown" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_UpdateInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_UpdatePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Role" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="proc_UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="bigint" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mobile" Type="varchar" Mode="In" />
+    <Parameter Name="Designation" Type="varchar" Mode="In" />
+    <Parameter Name="RolesAccess" Type="varchar" Mode="In" />
+    <Parameter Name="UpdatedBy" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="proc_UploadAllVendorListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorId" Type="bigint" Mode="In" />
+    <Parameter Name="AnchorCompID" Type="bigint" Mode="In" />
+    <Parameter Name="POName" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNO" Type="varchar" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_UploadVendorListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorId" Type="varchar" Mode="In" />
+    <Parameter Name="POName" Type="varchar" Mode="In" />
+    <Parameter Name="InvoiceNO" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_VendorsDropDown" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CompanyID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="recievabledue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="bigint" Mode="In" />
+    <Parameter Name="Skip" Type="bigint" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="Anchorid" Type="int" Mode="In" />
+    <Parameter Name="Anchorname" Type="varchar(max)" Mode="In" />
+    <Parameter Name="TotalInvoiceAmount" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_SaveLogManagement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ControllerName" Type="varchar" Mode="In" />
+    <Parameter Name="ActionName" Type="varchar" Mode="In" />
+    <Parameter Name="Message" Type="nvarchar" Mode="In" />
+    <Parameter Name="ErrorLine" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Character" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Item" Type="nvarchar" MaxLength="1000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="UPDATEFUNDING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AutoFudngId" Type="bigint" Mode="In" />
+    <Parameter Name="DiscuntRate" Type="decimal" Mode="In" />
+    <Parameter Name="DiscuntVlidDate" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="FinocartModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnchorCompanies" EntityType="Self.AnchorCompanies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnchorCompanyDocument" EntityType="Self.AnchorCompanyDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnchorNotification" EntityType="Self.AnchorNotification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AutoFundingRate" EntityType="Self.AutoFundingRate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BucketManagement" EntityType="Self.BucketManagement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyDocuments" EntityType="Self.CompanyDocuments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmailTemplate" EntityType="Self.EmailTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ErrorTracer" EntityType="Self.ErrorTracer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FinocartMaster" EntityType="Self.FinocartMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceApprovalOrder" EntityType="Self.InvoiceApprovalOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceBucket" EntityType="Self.InvoiceBucket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceJourneyHistory" EntityType="Self.InvoiceJourneyHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogManagement" EntityType="Self.LogManagement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LookupDetails" EntityType="Self.LookupDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleMaster" EntityType="Self.ModuleMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProcedureErrorTracer" EntityType="Self.ProcedureErrorTracer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolesAccessMaster" EntityType="Self.RolesAccessMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SAPConfiguration" EntityType="Self.SAPConfiguration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SearchHistory" EntityType="Self.SearchHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendorAssociatedCompany" EntityType="Self.VendorAssociatedCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendorDiscMap" EntityType="Self.VendorDiscMap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendorDocument" EntityType="Self.VendorDocument" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Company_LookupDetails" Association="Self.FK_Company_LookupDetails">
+      <End Role="LookupDetails" EntitySet="LookupDetails" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_ModuleMaster" Association="Self.FK_Invoice_ModuleMaster">
+      <End Role="ModuleMaster" EntitySet="ModuleMaster" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceJourneyHistory_ModuleMaster" Association="Self.FK_InvoiceJourneyHistory_ModuleMaster">
+      <End Role="ModuleMaster" EntitySet="ModuleMaster" />
+      <End Role="InvoiceJourneyHistory" EntitySet="InvoiceJourneyHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVendorDet_VendorStatus" Association="Self.FK_tblVendorDet_VendorStatus">
+      <End Role="ModuleMaster" EntitySet="ModuleMaster" />
+      <End Role="Vendor" EntitySet="Vendor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_LookupDetails" Association="Self.FK_User_LookupDetails">
+      <End Role="LookupDetails" EntitySet="LookupDetails" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,67 @@
+﻿@model Finocart.CustomModel.VendorInvoiceApprovedTodayModel
+@{
+    ViewData["Title"] = "DiscInvoiceApprovedTodayView";
+}
+
+<style>
+    .hide_column {
+        display: none;
+    }
+</style>
+<script src="~/AnchorCompany/DiscInvoiceApprovedTodayView.js"></script>
+<script>
+    var GetInvoiceApprovedTodayViewList = '@Url.Action("GetInvoiceApprovedTodayViewList", "AnchorCompDashboard")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <h4 style="font-size:15px;font-weight:bold;">Invoices Approved Today</h4>
+                    <div class="col-xs-12 col-sm-1 col-md-1 padding">
+                        <a class="backbtn" onclick="BackBtn()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_BucketID", null, new { placeholder = "Search by Bucket ID", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_ApprovedAmt", null, new { placeholder = "Search by Approved Amount", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        <button id="btnBucketFilter" class="filterbtn">
+                            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        @Html.HiddenFor(m => m.VendorID)
+                        <table id="tbl_InvoiceApprovedTodayView" class="table table-responsive table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Discount Bucket ID</th>
+                                    <th>Discount Bucket Name</th>
+                                    <th style="display:none"></th>
+                                    <th>Number of Discounted Approved Invoices</th>
+                                    <th>Total Invoice Amount(INR)</th>
+                                    <th>Discount Offered on Date</th>
+                                    <th>Amount Payable(INR)</th>
+                                    <th>Your Earning(INR)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

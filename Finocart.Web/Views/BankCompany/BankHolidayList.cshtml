@@ -1,0 +1,27 @@
+﻿@model Finocart.Model.HolidayList
+@{
+    ViewData["Title"] = "BankHolidayList";
+}
+<script>
+    debugger;
+    var GetHolidayReasonListData = '@Url.Action("GetHolidayListing", "BankCompany")';
+</script>
+<script src="~/BankCompany/BankHolidayList.js"></script>
+<div class="">
+    <div class="main-table-box page-scroll" style="padding:15px;">
+        <h4 style="font-size:15px;font-weight:bold;">Holiday List</h4>
+        <div class="table-responsive">
+            <table id="tbl_HolidayRecord" class="table table-responsive table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width:10%">Holiday date</th>
+                        <th style="width:10%">reason </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

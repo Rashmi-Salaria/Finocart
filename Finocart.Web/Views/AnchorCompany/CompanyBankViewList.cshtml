@@ -1,0 +1,60 @@
+﻿@model Finocart.Model.CompanyBankView
+@{
+    ViewData["Title"] = "Company Bank View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/AnchorCompany/CompanyBankViewList.js"></script>
+<script>
+    var GetCompanyBank = '@Url.Action("GetCompanyBankViewList", "AnchorCompany")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div id="eInvoices" class="tab-pane fade in active">
+                    <div class="row" id="eAnchorCompInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="search-box-main clearfix">
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_CompanyNameSearch", null, new { placeholder = "Search", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+                                    @*<button id="btnComapnyFilter" class="filterbtn">
+            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+        </button>*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll">
+                                <div class="table-responsive">
+                                    <input type="hidden" id="hdnCompanyID" value="@Model.CompanyID"/>
+                                    <table id="tbl_CompanyBankViewList" class="table table-responsive table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%">Company Names</th>
+                                                <th style="width:10%">Bank Name</th>
+                                                <th style="width:13%">Available Limits (INR)</th>
+                                                <th style="width:12%">Utilized Limits (INR)</th>
+                                                <th style="width:10%">Interest</th>
+                                                <th style="width:20%">Validity</th>
+                                                <th style="width:15%">Draw Funds (INR)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

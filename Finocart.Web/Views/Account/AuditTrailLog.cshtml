@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .hide_column {
+        display: none;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="~/User/AuditTrailLog.js"></script>
+<script>
+    var GetAuditTrailLogData = '@Url.Action("GetAuditTrailList", "AnchorCompany")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div id="eInvoices" class="tab-pane fade in active">
+                    <div class="row" id="eAnchorCompInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="search-box-main clearfix">
+                                <div class="col-xs-12 col-sm-4 col-md-3 ana-fr" style="float: none;display: inline-table;">
+                                    <span class="input-group-addon datepic">
+                                        <label class="ana-lab">From:</label>
+                                    </span>
+                                    <div class='input-group date' id="FromClender">
+                                        <input placeholder="Select from date" style="border-right: 1px solid #dadbdc;min-width: 100%;margin: 0;" type="text" class="searchTerm" id="FundReqFromDate" readonly> @*<span class="searchButton" style="margin-right: 15px;"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>*@
+                                        <span class="input-group-addon" style="border: 1px solid #dadbdc;padding: 5px 10px;border-left: 0;">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <label id="lblErrMsg" style="display:none;padding:0;">Kindly Select From Date</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-3 ana-fr" style="float: none;display:inline-table;">
+                                    <span class="input-group-addon datepic">
+                                        <label class="ana-lab">To:</label>
+                                    </span>
+                                    <div class="input-group date" id="Toclender">
+
+                                        <input placeholder="Select to date" style="border-right: 1px solid #dadbdc;min-width: 100%;margin:0;" type="text" class="searchTerm" id="FundReqToDate" readonly />@*<span class="searchButton" style="margin-right: 15px;"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>*@
+                                        <span class="input-group-addon" id="ToClnderDate" style="border: 1px solid #dadbdc;padding:5px 10px;border-left: 0;">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <label id="lblErrMsgToDate" style="display:none;padding:0;">Kindly Select To Date</label>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-2 col-md-4 padding" style="float: right;">
+                                    @*<button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                        </button>*@
+                                    <button id="btnComapnyFilter" class="filterbtn" style="float: right;margin:0;">
+                                        <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll">
+                                <div class="table-responsive">
+                                    <table id="tbl_AuditTrailList" class="table table-responsive table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%">Module Name</th>
+                                                <th style="width:10%">Page Name</th>
+                                                <th style="width:13%">Log Date</th>
+                                                <th style="width:12%">User Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

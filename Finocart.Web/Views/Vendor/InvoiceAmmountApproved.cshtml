@@ -1,0 +1,373 @@
+﻿@model IEnumerable<Finocart.CustomModel.AnchorCompListingModel>
+
+@{
+    ViewData["Title"] = "Vendor Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Vendor/Invoicelist.js"></script>
+<script>
+    var GetInvoiceListByPOId = '@Url.Action("getInvoiceListByPOIdtodayes", "PurchaseOrder")';
+</script>
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+
+        <div class="tabsec-main">
+
+            <div class="tab-content">
+
+                <div class="row" id="eAnchorCompInvoices">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="search-box-main clearfix" style="padding: 15px 15px 0;">
+                            <h4 style="font-size:15px;font-weight:bold;">Amount Approved Today</h4>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    @Html.DropDownList("pagechange4",new List<SelectListItem>
+                                     {
+                                     new SelectListItem{ Text="Amount Approved Today in INR",Value="1"},
+                                      new SelectListItem{ Text="Invoices Status",Value="2"},
+                                      new SelectListItem{ Text="Receivables Due Today in INR",Value="3"},
+                                      new SelectListItem{ Text="Awaited Approval in INR",Value="4"},
+                                      new SelectListItem{ Text="Available for Funding Today in INR",Value="5"},
+
+                                       }, new { @class = "searchTerm ext-box", @style = "border-right: 1px solid #dadbdc;max-width: 100%;" })
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    @Html.TextBox("txt_CompanyName", null, new { placeholder = "Search by Anchor Company Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    @Html.TextBox("txt_TotalApprovedINV", null, new { placeholder = "Search by Total Invoice Amount", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+
+                                    <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+
+                                </div>
+                                @*<div class="col-xs-12 col-sm-4 col-md-4">
+                                    <h6 style="margin: 5px 0 0;font-size:11px;">Invoices (Amount) Approved Today</h6>
+                                </div>*@
+                            </div>
+                        </div>
+                        </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="main-table-box page-scroll">
+                                        <div class="table-responsive">
+                                            <input type="hidden" id="companyID" />
+                                            <input type="hidden" id="companyInvoicesID" />
+                                            <table id="tbl_InvoiceListByPO" class="table table-responsive table-hover table-bordered tbl_UserList">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th>Anchor Comp ID</th>
+                                                        <th>Anchor Comp Name</th>
+                                                        <th>PO ID</th>
+                                                        <th>Inv ID</th>
+                                                        <th>Inv Date</th>
+                                                        <th>Inv. Amt(INR)</th>
+                                                        <th>Inv Approved Amt(INR)</th>
+                                                        <th>Disc. Offered Date</th>
+                                                        <th>Disc. Rate</th>
+                                                        <th>Disc. Amount(INR)</th>
+                                                        <th>Net Receivable Account(INR)</th>
+                                                        <th>Amount Likely to be received on</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 footer-btn">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-4 padding">
+                                                        <label class="footer-label">Total Number of Invoices: <span id="lbTotalInvoices"></span></label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-4 padding">
+                                                        <label class="footer-label">Total Invoice Amount (INR): <span id="lbTotalInvoicesAmt"></span></label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-4 padding">
+                                                        <label class="footer-label">Total Invoice Approved Amount (INR): <span id="lbTotalInvoicesAppAmt"></span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-4 padding">
+                                                        <label class="footer-label">Total Number of Selected Invoices: <span id="lbTotalSelectInvoices"></span></label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-4 padding">
+                                                        <label class="footer-label">Total Selected Invoice Amount (INR): <span id="lbTotalSelectInvoicesAmt"></span></label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-4 padding">
+                                                        <label class="footer-label">Total Selected Invoice Approved Amount (INR): <span id="lbTotalSelectInvoicesAppAmt"></span></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+        </div>
+    </div>
+</div>
+
+<div id="OfferDiscount" class="modal fade" role="dialog">
+    <div class="modal-dialog" id="myModalDialog" style="width: 700px;">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+           
+            <div class="modal-body" style="background: #f2f2f2;margin: 15px 15px 0 15px;">
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Total Number of Invoices Selected:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="text" class="searchTerm form-control" id="txt_TotalSelectInvoices" placeholder="Total Number of Invoices Selected" value="" />
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Total Selected Invoice Amount:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label style="background: #fff;border-color: #fff;" class="searchTerm form-control" id="txt_TotalInvoicesAmount" placeholder="Total Selected Invoice Amount"></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Discount:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="text" class="searchTerm form-control" id="txt_Discount" placeholder="Discount" />
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Valid To Date:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="date" class="searchTerm form-control" id="txt_ValidDateTime" placeholder="Valid To Date" />
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Amount will disburse after discount:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label class="searchTerm form-control" id="txt_afterDiscountAmount" placeholder="Amount will disburse after discount:"></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <h6 style="font-size: 9px;font-weight: bold;">Based on next approval date</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5">
+                        <label>Discount Amount for selected invoices:</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label class="searchTerm form-control" id="txt_DiscountAmountForInv" placeholder="Discount Amount for selected invoices"></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                    </div>
+                    <div>
+                        <input type="hidden" id="hdnValuesForTX" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+                <button type="button" class="btn confirmbutton" onclick="SetBucket()">Confirm</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+@*Fino Assist Section Start*@
+<div id="finoassist" class="modal fade finoassist" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Finoassist</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-7 col-md-7">
+                        <h5>Which date would you like to receive the funding, Please select</h5>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-5">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='date' id="txtDate" class="form-control frm-cntrl" />
+                            <span class="input-group-addon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-7 col-md-7">
+                        <h5>How Much Funding do you require?</h5>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-5">
+                        <div class='input-group date' id=''>
+                            <input type='text' id="txtRequireFund" class="form-control frm-cntrl" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>(Please note that we can only fund full invoices, so set the invoice and we will choose the most suitalble invoices to reach this amount)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="nav nav-pills">
+                            <li class="active"><a data-toggle="pill" href="#byamount">By Amount</a></li>
+                            <li><a data-toggle="pill" href="#byinvoice">By Invoice</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="byamount" class="tab-pane fade in active">
+                                <div class="row form-group">
+                                    <div class="col-xs-12">
+                                        <div id="audio-player-container">
+                                            <div class="audio-progress" id="audio-progress">
+                                                <div id="draggable-point" style="left:75%;position:absolute;" class="draggable ui-widget-content">
+                                                    <div id="audio-progress-handle"></div>
+                                                </div>
+                                                <div id="audio-progress-bar" class="bar" style="width:75%">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="posX"></div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>Maximum Available Amount</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <label id="maxAvailableAmount" style="padding:6px 12px;margin:0;">@ViewBag.MaxAvailableAmount</label>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>How much funding do you require now?</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <input type='number' id="txtFunding" class="form-control frm-cntrl" />
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>Please enter discount rate</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <input type='number' id="txtDiscount" class="form-control frm-cntrl" value="" />
+                                    </div>
+                                    <a href="#" id="DiscountCompute">Compute</a>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>Actual Amount You will receive after discount</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <input type='number' id="txtActualAmount" class="form-control frm-cntrl" value="" />
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <p style="margin: 0;font-size: 7px;">*calculation provided based on nearest discount approval date, It will be differ.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>Discount Amount</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <input type='number' id="txtDiscountAmount" class="form-control frm-cntrl" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="byinvoice" class="tab-pane fade">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="invoice_listing table-responsive">
+                                            <table id="tbl_DiscountByInvoice" class="table table-responsive table-bordered tbl_UserList dataTable no-footer">
+                                                <thead>
+                                                    <tr>
+                                                        <th><input id="chkSelectALL" type="checkbox" /></th>
+                                                        <th>Anchor Company ID</th>
+                                                        <th>Anchor Company Name</th>
+                                                        <th>Number of Approved Invoices</th>
+                                                        <th>Total Invoice Amount</th>
+                                                        <th style="width:10%">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="slctedinv">Proceed</button>
+                <button type="button" class="slctedinv" data-toggle="modal" data-target="#Invoices" style="margin-right:15px;" id="viewSelectedAmount">View Selected Invoices</button>
+            </div>
+            <div id="Invoices" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body" style="overflow-x: auto;">
+                            <table id="tbl_AnchorCompInvoices" class="table table-responsive table-bordered internalusermtable">
+                                <thead>
+                                    <tr>
+                                        <th>PO ID</th>
+                                        <th>Invoice ID</th>
+                                        <th>Anchor Company Name</th>
+                                        <th>Invoice  Date</th>
+                                        <th>Invoice Amount</th>
+                                        <th>Approved Amount</th>
+                                        <th>Payment Due Date</th>
+                                        <th>Invoice Status</th>
+                                      
+                                        <th>Discount Offered</th>
+                                        <th>Discount Amount</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>

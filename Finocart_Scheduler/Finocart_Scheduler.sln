@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finocart_Scheduler", "Finocart_Scheduler.csproj", "{A35CB27B-CE26-484C-AACC-BE19259E914B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A35CB27B-CE26-484C-AACC-BE19259E914B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35CB27B-CE26-484C-AACC-BE19259E914B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35CB27B-CE26-484C-AACC-BE19259E914B}.Debug|x64.ActiveCfg = Debug|x64
+		{A35CB27B-CE26-484C-AACC-BE19259E914B}.Debug|x64.Build.0 = Debug|x64
+		{A35CB27B-CE26-484C-AACC-BE19259E914B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35CB27B-CE26-484C-AACC-BE19259E914B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A35CB27B-CE26-484C-AACC-BE19259E914B}.Release|x64.ActiveCfg = Release|x64
+		{A35CB27B-CE26-484C-AACC-BE19259E914B}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B59EE52-000C-4D83-A6F9-8A14B618A54B}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://10.50.250.25:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = Finocart_Scheduler.csproj
+		SccProjectName0 = .
+		SccAuxPath0 = http://10.50.250.25:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+EndGlobal

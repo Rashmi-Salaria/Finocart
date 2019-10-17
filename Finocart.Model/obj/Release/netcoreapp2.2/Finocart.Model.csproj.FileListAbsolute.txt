@@ -1,0 +1,14 @@
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\bin\Release\netcoreapp2.2\Finocart.Model.deps.json
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\bin\Release\netcoreapp2.2\Finocart.Model.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\bin\Release\netcoreapp2.2\Finocart.Model.pdb
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\bin\Release\netcoreapp2.2\Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\bin\Release\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\bin\Release\netcoreapp2.2\Microsoft.AspNetCore.Mvc.ViewFeatures.xml
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\bin\Release\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.xml
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\obj\Release\netcoreapp2.2\Finocart.Model.csprojAssemblyReference.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\obj\Release\netcoreapp2.2\Finocart.Model.csproj.CoreCompileInputs.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\obj\Release\netcoreapp2.2\Finocart.Model.AssemblyInfoInputs.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\obj\Release\netcoreapp2.2\Finocart.Model.AssemblyInfo.cs
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\obj\Release\netcoreapp2.2\Finocart.Model.csproj.CopyComplete
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\obj\Release\netcoreapp2.2\Finocart.Model.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Model\obj\Release\netcoreapp2.2\Finocart.Model.pdb

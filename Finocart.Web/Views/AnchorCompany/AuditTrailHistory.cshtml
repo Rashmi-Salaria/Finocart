@@ -1,0 +1,125 @@
+﻿@model Finocart.CustomModel.TablesName
+@{
+    ViewData["Title"] = "AuditTrailHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="~/AnchorCompany/AuditTrailhistory.js"></script>
+@*<script src="~/AnchorCompany/AuditTrailHistoryListByTable.js"></script>*@
+<script>
+    debugger;
+    var GetAuditTrailHistoryList = '@Url.Action("GetAuditTrailHistoryList", "AnchorCompany")';
+    
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div id="eInvoices" class="tab-pane fade in active">
+                    <div class="row" id="eAnchorCompInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="search-box-main clearfix">
+                                <h4 style="font-size:15px;font-weight:bold;">Audit Trail History</h4>
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_CompanyNameSearch", null, new { placeholder = "Search", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-3 ana-fr" style="float: none;display: inline-table;">
+                                    <span class="input-group-addon datepic">
+                                        <label class="ana-lab">From:</label>
+                                    </span>
+                                    <div class='input-group date' id="FromClender">
+                                        <input placeholder="Select from date" style="border-right: 1px solid #dadbdc;min-width: 100%;margin: 0;" type="text" class="searchTerm" id="FundReqFromDate" readonly> @*<span class="searchButton" style="margin-right: 15px;"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>*@
+                                        <span class="input-group-addon" style="border: 1px solid #dadbdc;padding: 5px 10px;border-left: 0;">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <label id="lblErrMsg" style="display:none;padding:0;">Kindly Select From Date</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-3 ana-fr" style="float: none;display:inline-table;">
+                                    <span class="input-group-addon datepic">
+                                        <label class="ana-lab">To:</label>
+                                    </span>
+                                    <div class="input-group date" id="Toclender">
+
+                                        <input placeholder="Select to date" style="border-right: 1px solid #dadbdc;min-width: 100%;margin:0;" type="text" class="searchTerm" id="FundReqToDate" readonly />@*<span class="searchButton" style="margin-right: 15px;"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>*@
+                                        <span class="input-group-addon" id="ToClnderDate" style="border: 1px solid #dadbdc;padding:5px 10px;border-left: 0;">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <label id="lblErrMsgToDate" style="display:none;padding:0;">Kindly Select To Date</label>
+                                </div>
+                                <div style="float: right;">
+                                    <button id="btnComapnyFilter" class="filterbtn" style="float: right;margin:0;">
+                                        <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                                    </button>
+                                </div>
+                                <div style="margin-left: 1px;margin-top: 21px;">
+                                    @Html.DropDownListFor(modal =>modal.TableName, new SelectList(ViewBag.TableNameList, "TableName", "TableName"), "--Select TableName--", new { @class = "form-control", @id = "ddlTableList" })
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-3" style="margin-top: -45px;margin-left: 290px;">
+                                    @Html.DropDownListFor(modal =>modal.ColumnName, new SelectList(""), "--Select ColumnName1--", new { @class = "form-control", @id = "ddlColumnList" })
+                                </div>
+                                </div>
+
+                            </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll">
+                                <div class="table-responsive">
+                                    <table id="tbl_AuditTrailHistoryList" class="table table-responsive table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th hidden>AuditId</th>
+                                                <th>Table Name</th>
+                                                <th>Column Name</th>
+                                                <th>Old Value</th>
+                                                <th>New Value</th>
+                                                <th>Created By</th>
+                                                <th>Created On</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ddlColumnList").empty();
+        $("#ddlColumnList").append('<option value="0">--select ColumnName--</option>')
+        $('#ddlTableList').change(function () {
+            debugger;
+            $("#ddlColumnList").empty();
+
+            $.ajax({
+                type: "post",
+                url: "/AnchorCompany/GetColumnList",
+                datatype: "json",
+                data: { TableName: $("#ddlTableList").val() },
+                traditional: true,
+                success: function (lstGetColumnName) {
+                    debugger;
+                    
+                    $("#ddlColumnList").append('<option value="">--Select Column Name--</option>')
+                    $.each(lstGetColumnName, function (i, column) {
+                        
+                        $("#ddlColumnList").append('<option value="' + column.columnName + '">' + column.columnName + '</option>')
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve Columns List' + ex);
+                }
+            });
+            
+        });
+    });
+</script>
+

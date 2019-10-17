@@ -1,0 +1,68 @@
+﻿@model Finocart.CustomModel.FundsRequestHistory
+@{
+    ViewData["Title"] = "FundRequestView";
+}
+<script src="~/Bank/FundsRequestHistoryView.js"></script>
+
+<script>
+    var FundRequestView = '@Url.Action("FundRequestView", "BankCompany")';
+</script>
+
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div id="eInvoices" class="tab-pane fade in active">
+                    <div class="row" id="eAnchorCompInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="search-box-main clearfix">
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_InvoiceID", null, new { placeholder = "Search by Invoice ID", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_InvoiceAmt", null, new { placeholder = "Search by Invoice Amount", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+                                    <button id="btnInvoiceFilter" class="filterbtn">
+                                        <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll">
+                                <div class="table-responsive">
+                                    @Html.HiddenFor(m => m.Anchor_id)
+                                    <table id="tbl_FundsRequestListView" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                        <thead>
+                                            <tr>
+                                                <th>Name of Bank</th>
+                                                <th>Funds Requested</th>
+                                                <th>Rate</th>
+                                                <th>Validity Upto</th>
+                                                <th>Status</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

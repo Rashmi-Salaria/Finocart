@@ -1,0 +1,249 @@
+﻿@model Finocart.Model.Company
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .cls-error {
+        display: block;
+        color: red;
+    }
+
+    .cls-none {
+        display: none;
+    }
+</style>
+<script>
+    var CheckPan = '@Url.Action("CheckPan", "AnchorCompany")';
+    var CheckEmail = '@Url.Action("CheckEmail", "AnchorCompany")';
+
+    $(function () {
+        $("form").submit(function () {
+            var selTypeText = $("#InterestedAs option:selected").text();
+            $("#hidText").val(selTypeText);
+        });
+    });
+</script>
+<div class="main-inner-section">
+    @using (Html.BeginForm("UpdateProfile", "AnchorCompany", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitRegister" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="content-upper-section">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="main-head">
+                        <h2>Profile</h2>
+                    </div>
+                    <div style="display:none" id="divsuccess">@TempData["success"]</div>
+
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-content-box page-scroll">
+                        <div class="registration-form">
+                            <div class="row">
+                                @Html.HiddenFor(m => m.CompanyID)
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Company Name:</label>
+                                    @Html.TextBoxFor(m => m.Company_name, new { @class = "form-control", @placeholder = "Enter Company Name*", @maxLength = "250", autocomplete = "off", @disabled = "true" })
+                                    <label id="lblCompanyName" class="cls-error"></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Interested As:</label>
+                                    @Html.DropDownListFor(m => m.InterestedAs, new SelectList(ViewBag.LookUp, "ID", "LookUpValue"), "Interested As", new { @class = "form-control", @disabled = "true" })
+                                    <input type="hidden" id="hidText" name="hidText" />
+                                    <label id="lblInterestedas" class="cls-error"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">CIN Number:</label>
+                                    @Html.TextBoxFor(m => m.Contact_CIN, new { @class = "form-control", @placeholder = "Enter CIN Number*", @maxLength = "50", autocomplete = "off", @disabled = "true" })
+                                    <label id="lblCIN" class="cls-error"></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">PAN Number:</label>
+                                    @Html.TextBoxFor(m => m.Pan_number, new { @class = "form-control", @placeholder = "Enter PAN Number*", @maxLength = "10", autocomplete = "off", @disabled = "true" })
+                                    <label id="lblPan" class="cls-error"></label>
+
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Contact Person:</label>
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-3" style="padding-right:0;">
+                                            @Html.DropDownListFor(m=>m.Contact_Title, new List<SelectListItem>
+                                   {
+                                       new SelectListItem{ Text="Mr.", Value = "Mr." },
+                                       new SelectListItem{ Text="Ms.", Value = "Ms." },
+                                       new SelectListItem{ Text="Mrs.", Value = "Mrs." },
+
+                                   }, new { @class = "form-control"})
+
+
+                                        </div>
+                                        <div class="col-xs-8 col-sm-9" style="padding-left:5px;">
+                                            @Html.TextBoxFor(m => m.Contact_Name, new { @class = "form-control", @placeholder = "Name of Contact Person*", autocomplete = "off", @maxLength = "50" })
+                                            <label id="lblContactPerson" class="cls-error"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Designation:</label>
+                                    @Html.TextBoxFor(m => m.Contact_Designation, new { @class = "form-control", @placeholder = "Enter Designation*", autocomplete = "off", @maxLength = "50" })
+                                    <label id="lblDesignation" class="cls-error"></label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Address:</label>
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Enter Address", autocomplete = "off" })
+
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Email ID:</label>
+                                    @Html.TextBoxFor(m => m.Contact_email, new { @class = "form-control", @placeholder = "Enter Email ID*", @maxLength = "150", autocomplete = "off", @disabled = "true" })
+                                    <label id="lblEmail" class="cls-error"></label>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Comments:</label>
+                                    @Html.TextAreaFor(m => m.Contact_Comments, new { @class = "form-control", @placeholder = "Comments (If Any)", @maxLength = "500", autocomplete = "off" })
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Mobile Number:</label>
+                                    @Html.TextBoxFor(m => m.Contact_mobile, new { @class = "form-control", @placeholder = "Enter Mobile Number*", @maxLength = "10", autocomplete = "off" })
+                                    <label id="lblMobileNo" class="cls-error"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="submit-btn" type="submit" id="btnSubmit">Submit</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="cancel-btn" type="button" onclick="ClearAllControls(FormSubmitRegister)">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="~/AnchorCompany/AnchorCompany.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                var url = '@Url.Action("CompanyList", "AnchorCompany")';
+
+                if ($('#divsuccess').html() == 'success') {
+                    $('input[type="text"]').val('');
+                    $('#Contact_Comments').val('');
+                    alert("You have successfully registered. An email with credentials to login has been sent at your mailid.");
+                    location.href = url;
+                    $('#divsuccess').html('');
+
+                }
+
+            });
+            $(function () {
+                $("#btnSubmit").click(function (e) {
+
+                    var companyName = $('#Company_name').val();
+                    var CIN = $('#Contact_CIN').val();
+                    var panNumber = $('#Pan_number').val();
+                    var regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+                    var password = $('#Password').val();
+                    var confirmPassword = $('#Confirm_Password').val();
+                    var contactPerson = $('#Contact_Name').val();
+                    var confirmPassword = $('#Confirm_Password').val();
+                    var designation = $('#Contact_Designation').val();
+                    var email = $('#Contact_email').val();
+                    var mobile = $('#Contact_mobile').val();
+                    var SelInterestedAs = $("#InterestedAs").val();
+                    var count = 0;
+                    $('.cls-error').text('');
+                    if (companyName == '') {
+                        $('#lblCompanyName').text('Enter the Company name');
+                        count++;
+                    }
+                    if (CIN == '') {
+                        $('#lblCIN').text('Enter the CIN No');
+                        count++;
+                    }
+
+                    if (panNumber == '') {
+                        $('#lblPan').show();
+                        $('#lblPan').text('Enter the Pan number');
+                        count++;
+                    }
+                    //if (regpan.test(panNumber)) {
+
+                    //} else {
+                    //    $('#lblPan').show();
+                    //    $('#lblPan').text('Please enter valid Pan number');
+                    //}
+                    if (contactPerson == '') {
+                        $('#lblContactPerson').text('Enter the Contact person');
+                        count++;
+                    }
+                    if (designation == '') {
+                        $('#lblDesignation').text('Enter the Designation');
+                        count++;
+                    }
+                    if (email == '') {
+
+                        $('#lblEmail').show();
+                        $('#lblEmail').text('Enter the Email Id');
+                        count++;
+                    }
+                    if (mobile == '') {
+                        $('#lblMobileNo').text('Enter the Mobile No');
+                        count++;
+                    }
+
+                    if (email != '') {
+                        if (!IsEmail(email)) {
+                            $('#lblEmail').text('Please enter valid Email Id.');
+                            count++;
+                        }
+                        else {
+                            $('#lblEmail').text('');
+                        }
+                    }
+                    if (password != confirmPassword) {
+                        $('#lblconfirmPassword').text('Confirm password should match with password')
+                        count++;
+                    }
+                    if (SelInterestedAs == 0) {
+                        $("#lblInterestedas").text('Select at least one type');
+                        count++;
+                    }
+
+                    if (count == 0 && $('.cls-error').text() == '') {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
+
+            });
+
+
+            function ClearAllControls(formid) {
+                Common.ClearAllControls(formid)
+            }
+
+
+        </script>
+    }
+
+</div>
+
+
+

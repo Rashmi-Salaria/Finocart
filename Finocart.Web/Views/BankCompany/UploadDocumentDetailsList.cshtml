@@ -1,0 +1,48 @@
+﻿@model Finocart.CustomModel.KycUploadModel
+@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/BankCompany/UploadDocumentList.js"></script>
+<script>
+    var GetUploadData = '@Url.Action("GetUploadDocumentList", "BankCompany")';
+ 
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div id="eInvoices" class="tab-pane fade in active">
+                    <div class="row" id="eAnchorCompInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <a class="backbtn" href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                           
+                            <div class="main-table-box page-scroll">
+                                <label style="font-size: 15px;font-weight: bold;padding-top: 7px;padding-left: 12px;">Document Upload</label>
+                                <div class="table-responsive">
+                                    @Html.HiddenFor(m => m.CompanyID)
+                                    <table id="tbl_UploadDocumentList" class="table table-responsive table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%">Document Type</th>
+                                                <th style="width:10%">File Name</th>
+                                                <th style="width:12%">Download</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                    <input type="submit" value="Approve KYC" id="btnApproved" class="btn btn-primary blue" style="float:left;margin-left:10px;" />
+                                    <input type="submit" value="Reject KYC" id="btnReject" class="btn btn-primary blue" style="float:left;margin-left:10px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,200 @@
+﻿@model Finocart.CustomModel.DisbursementsModel
+@{
+
+    ViewData["Title"] = "ModifyLimit";
+}
+<div class="main-inner-section">
+    @using (Html.BeginForm("AddEditDisbursementData", "BankCompany", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitRegister" }))
+    {
+        <div class="content-upper-section">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="main-heads">
+                        <h2>@ViewBag.AnchorName</h2>
+                        <button type="button" class="close new-close" data-dismiss="modal">×</button>
+                    </div>
+                    <div style="display:none" id="divsuccess">@TempData["success"]</div>
+
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-content-box page-scroll">
+                        <div class="registration-form">
+                            <div class="row">
+                                @Html.HiddenFor(m => m.id)
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Draw Request:</label>
+                                    @Html.TextBoxFor(m => m.DrawRequestId, new { @class = "form-control", @placeholder = "Draw Request*", @maxLength = "250", autocomplete = "off", @id = "DrawRequestId" })
+                                    <label id="lblDrawRequest" class="cls-error" style="color:red;display:none">Enter Draw Request</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Anchor Company Name:</label>
+                                    @Html.TextBoxFor(m => m.AnchorName, new { @class = "form-control", @placeholder = "Enter Anchor Company Name*", @maxLength = "250", autocomplete = "off", @id = "AnchorName" })
+                                    <label id="lblAnchorName" class="cls-error" style="color:red;display:none">Enter Anchor Name</label>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Funds Request:</label>
+                                    @Html.TextBoxFor(m => m.FundsRequested, new { @class = "form-control", @placeholder = "Enter Funds Request*", @maxLength = "250", autocomplete = "off", @id = "FundsRequested", type = "number" })
+                                    <label id="lblFundsRequested" class="cls-error" style="color:red;display:none">Enter Funds Request</label>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Request Date:</label>
+                                    @Html.TextBoxFor(m => m.RequestDate, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Request Date*", @maxLength = "10", autocomplete = "off", @id = "ValidityuptoFrom", type = "text" })
+                                    <label id="lblRequestDate" class="cls-error" style="color:red;display:none">Enter Request Date</label>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Paid Amount:</label>
+                                    @Html.TextBoxFor(m => m.PaidAmount, new { @class = "form-control", @placeholder = "Enter Paid Amount*", @maxLength = "250", autocomplete = "off", @id = "PaidAmount", type = "number" })
+                                    <label id="lblPaidAmount" class="cls-error" style="color:red;display:none">Enter Paid Amount</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Paid Date:</label>
+                                    @Html.TextBoxFor(m => m.PaymentDate, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Paid Date*", @maxLength = "10", autocomplete = "off", @id = "PaidDate", type="text" })
+                                    <label id="lblPaymentDate" class="cls-error" style="color:red;display:none">Enter Paid Date</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Paid Status:</label>
+                                    <div class="">
+                                        @Html.DropDownListFor(m=>m.PaymentStatus, new List<SelectListItem>
+                               {
+                                   new SelectListItem{ Text="Transfer", Value = "Transfer" },
+                                   new SelectListItem{ Text="Pending", Value = "Pending" },
+
+                               }, new { @class = "form-control"})
+                                    </div>
+                                    <label id="lblCIN" class="cls-error"></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">UTR Details:</label>
+                                    @Html.TextBoxFor(m => m.UTRDetails, new { @class = "form-control", @placeholder = "Enter UTR Details*", @maxLength = "250", autocomplete = "off" })
+                                    <label id="lblCIN" class="cls-error"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="submit-btn" type="submit" id="btnSubmit">Submit</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="cancel-btn" type="button" onclick="ClearAllControls()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    $(document).ready(function () {
+
+            var date_input = $('#ValidityuptoFrom');
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            var dateToday = new Date();
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+                numberOfMonths: 2,
+                showButtonPanel: true,
+            })
+
+        var date_input = $('#PaidDate');
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            var dateToday = new Date();
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+                numberOfMonths: 2,
+                showButtonPanel: true,
+            })
+
+        if ($('#divsuccess').html() == 'success') {
+            $('input[type="text"]').val('');
+            $('#Contact_Comments').val('');
+            alert("Your sucessfully registers an Email have been send to your Mail Id");
+            $('#divsuccess').html('');
+
+        }
+
+    });
+    $('#btnSubmit').click(function (e) {
+    
+        if ($("#DrawRequestId").val() == 0 || $("#DrawRequestId").val() == '') {
+            $("#lblDrawRequest").show();
+            e.preventDefault();
+        }
+        else {
+            $("#lblDrawRequest").hide();
+        }
+
+        if ($("#AnchorName").val() == 0 || $("#AnchorName").val() == '') {
+            $("#lblAnchorName").show();
+            e.preventDefault();
+        }
+        else {
+            $("#lblAnchorName").hide();
+        }
+
+
+        if ($("#FundsRequested").val() == 0 || $("#FundsRequested").val() == '') {
+            $("#lblFundsRequested").show();
+            e.preventDefault();
+        }
+        else {
+            $("#lblFundsRequested").hide();
+        }
+
+        //if ($("#RequestDate").val() == 'undefined' || $("#RequestDate").val() == '') {
+        //    $("#lblRequestDate").show();
+        //    e.preventDefault();
+        //}
+        //else {
+        //    $("#lblRequestDate").hide();
+        //}
+      
+            if ($("#RequestDate").val() == 0 || $("#RequestDate").val() == '' || $("#RequestDate").val() == '1/1/0001 12:00:00 AM') {
+                $("#lblRequestDate").show();
+                e.preventDefault();
+            }
+            else {
+                $("#lblRequestDate").hide();
+            }
+      
+
+        if ($("#PaymentDate").val() == 'undefined' || $("#PaymentDate").val() == '' || $("#PaymentDate").val() == '1/1/0001 12:00:00 AM') {
+            $("#lblPaymentDate").show();
+            e.preventDefault();
+        }
+        else {
+            $("#lblPaymentDate").hide();
+        }
+
+        if ($("#PaidAmount").val() == 0 || $("#PaidAmount").val() == '') {
+            $("#lblPaidAmount").show();
+            e.preventDefault();
+        }
+        else {
+            $("#lblPaidAmount").hide();
+        }
+
+
+
+    });
+
+    function ClearAllControls() {
+        $('#myModalContent').html('');
+        $('#myModal').modal('hide');
+    }
+</script>

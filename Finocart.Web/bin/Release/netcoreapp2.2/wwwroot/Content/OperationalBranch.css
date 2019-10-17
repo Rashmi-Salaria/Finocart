@@ -1,0 +1,646 @@
+﻿
+
+
+label {
+    font-weight: normal;
+}
+
+.table1 {
+    background-color: #ffffff;
+    background-image: none;
+    border-left-color: #dddddd;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-top-color: #dddddd;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none;
+    /*height: 101px;*/
+    width: 414px;
+}
+
+.textcell {
+    background-color: #cccccc;
+    background-image: none;
+    border-bottom-color: #dddddd;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-right-color: #dddddd;
+    border-right-style: solid;
+    border-right-width: 1px;
+    font-family: Arial,Arial;
+    font-size: 9pt;
+    height: 14px;
+    line-height: 14px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    text-shadow: none;
+    width: 89px;
+    color: black;
+}
+
+.innerTextCell {
+    background-color: transparent;
+    background-image: none;
+    border-bottom-color: #dddddd;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-right-color: #dddddd;
+    border-right-style: solid;
+    border-right-width: 1px;
+    font-family: Arial,Arial;
+    font-size: 9pt;
+    height: 14px;
+    line-height: 14px;
+    padding-bottom: 1px;
+    padding-left: 3px;
+    padding-right: 0;
+    padding-top: 1px;
+    text-shadow: none;
+    width: 89px;
+}
+
+/*.textbox {
+    background-color: #ffffff;
+    background-image: none;
+    border-bottom-color: #c8c8c8;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #c8c8c8;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #c8c8c8;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: #c8c8c8;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none;
+    cursor: text;
+    height: 25px;
+    padding-left: 5px;
+    text-shadow: none;
+    width: 173px;
+}*/
+
+/*input[type="text"] {
+    background-color: #ffffff;
+    background-image: none;
+    border-bottom-color: #c8c8c8;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #c8c8c8;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #c8c8c8;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: #c8c8c8;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none;
+    cursor: text;
+    height: 25px;
+    padding-left: 5px;
+    text-shadow: none;
+    width: 173px;
+}*/
+
+.row1 {
+    display: flex; /* equal height of the children */
+    width: 100%;
+    /*margin-left: 3%;*/
+}
+
+.newCol1 {
+    width: 46% !important;
+    height: 305px;
+}
+
+.col11 {
+    /*flex: 1;*/ /* additionally, equal width */
+    float: left;
+    width: 52%;
+}
+
+.verticalLine {
+    background-color: #679868;
+    background-image: none;
+    border-bottom-color: #ffffff;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #ffffff;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #ffffff;
+    border-right-style: solid;
+    border-right-width: 1px;
+    box-shadow: none;
+    height: 24px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 90%;
+    text-align: center;
+}
+
+.headings {
+    color: #ffffff;
+    font-family: Arial,Arial;
+    font-size: 11pt;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0;
+    text-align: left;
+    text-decoration-color: -moz-use-text-color;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    vertical-align: middle;
+    margin-left: 2%;
+}
+
+.panel1 {
+    background-color: #dfeffc;
+    background-image: none;
+    border-bottom-color: #ffffff;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #ffffff;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #ffffff;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: #ffffff;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none;
+    height: 218px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 94%;
+    margin: 0 15px;
+    height: 100%;
+}
+
+/*.label1 {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    font-family: Arial,Arial;
+    font-size: 10pt;
+    height: 20px;
+    text-shadow: none;
+    transform: rotate(0deg);
+    width: 197px;
+}*/
+
+.rectangle {
+    background-color: #679868;
+    background-image: none;
+    box-shadow: none;
+    font-family: Arial,Arial;
+    font-size: 11pt;
+    height: 21px;
+    line-height: 20px;
+    text-shadow: none;
+    transform: rotate(0deg);
+    width: 440px;
+}
+
+.reportsManageSystemsetting {
+    margin-left:0 !important;
+    width: 47px !important;
+}
+
+.selectMargin {
+    margin-bottom: 2px;
+    margin-top: 2px;
+    width: 45px;
+    /*width: 28%;*/
+    border: 1px solid #c9d3e0;
+    height: 36px;
+    margin-left: 25px;
+}
+
+    .selectMargin:hover, .selectMargin:focus {
+        border-color: #8bb757;
+    }
+
+/*.buttonSave {
+    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    border-bottom-color: #cdcdcd;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #cdcdcd;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #cdcdcd;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: #cdcdcd;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: none;
+    font-family: Arial,Arial;
+    font-size: 11pt;
+    height: 23px;
+    text-shadow: none;
+    transform: rotate(0deg);
+    width: 86px;
+    margin-left: 45%;
+}*/
+
+.ui-jqgrid-bdiv {
+    width: 99.9% !important;
+}
+
+.ui-jqgrid-hbox table {
+    width: 100% !important;
+}
+
+table#tblBranchList {
+    width: 100% !important;
+}
+
+.ui-state-default.ui-jqgrid-hdiv {
+    width: 100% !important;
+}
+
+#gview_tblBranchList {
+    width: 100% !important;
+}
+
+#gbox_tblBranchList {
+    width: 100% !important;
+}
+
+.ui-jqgrid .ui-jqgrid-hbox {
+    padding-right: 0;
+}
+#tblRateStructureList tr td{padding:8px 5px !important}
+
+.ui-jqgrid-btable > tbody > tr.ui-widget-content.jqgrow.ui-row-ltr > td {
+    padding: 3px 2px !important;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th {
+    padding: 3px 2px !important;
+    /*height: 43px;*/
+}
+
+.editIcon {
+    margin-left: 0 !important;
+}
+
+#jqGridPager {
+    width: 100% !important;
+}
+
+/*.ui-jqgrid.ui-widget.ui-widget-content.ui-corner-all {
+    width: 100% !important;
+}
+
+.ui-jqgrid-view {
+    width: 100% !important;
+}*/
+
+.ui-state-default.ui-jqgrid-pager.ui-corner-bottom {
+    width: 100% !important;
+}
+
+.ui-th-column, .ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+    text-align: left;
+}
+
+.ui-jqgrid tr.ui-row-ltr td {
+    text-align: left !important;
+}
+
+.editable {
+    border: 1px solid #72879c;
+    border-radius: 4px;
+    color: #8d9aaa;
+    font-family: "Lato-bold",sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    height: 35px;
+    width: 100% !important;
+    box-shadow: none;
+    background-color: #ffffff;
+    background-image: none;
+    display: block;
+    line-height: 1.42857;
+    padding: 6px 7px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+    .editable:hover, .editable:focus {
+        border-color: #8bb757;
+    }
+/*.selectMargin{ border: 1px solid #c9d3e0;border-radius: 4px;color: #8d9aaa;font-family: "Lato-bold",sans-serif;font-size: 14px;font-weight: bold;height: 40px;width: 100% !important;box-shadow: none;background-color: #ffffff;background-image: none;display: block;line-height: 1.42857;    padding: 6px 12px;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;}*/
+#tblBranchService {
+    width: 99.9% !important;
+}
+
+th {
+    background: #6e7899 none repeat scroll 0 0 !important;
+    color: #ffffff !important;
+    font-family: "Lato-bold",sans-serif;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.ui-jqgrid-btable > tbody > tr.ui-widget-content.jqgrow.ui-row-ltr > td > select {
+    color: #8d9aaa;
+    font-size: 12px;
+    padding: 8px 2px !important;
+    text-transform: capitalize;
+}
+
+#ddlNameTitle1 {
+    padding: 8px 0 !important;
+}
+
+.ui-jqgrid-btable {
+    width: 99.9% !important;
+}
+
+.ui-pg-div.ui-pg-div {
+    min-width: 20px !important;
+    width: auto !important;
+}
+
+
+#tblBranchService > td > select {
+    padding: 2px !important;
+}
+/***For checkbox possible*****/
+/*.ui-jqgrid tr.ui-row-ltr td input[type="checkbox"]{margin:0 auto;width:100%}*/
+/*.ui-jqgrid .ui-jqgrid-bdiv{ overflow-x: hidden;}*/
+h3 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+
+.heading3 {
+    /*background-color: #ecf0f1 !important;
+    margin-bottom: 0;
+    margin-left: -5px;
+    margin-right: -3px;
+    padding: 10px 10px 13px;
+    color: #162454 !important;
+    font-size: 23px;*/
+
+    color: #162454;
+    background-color: #ECF0F1 !important;
+    padding: 10px 3px 10px;
+    margin-top: 0px;
+    font-size: 23px !important;
+    /*font-family: "Lato",sans-serif;*/
+}
+
+h3.heading3 a.pull-right {
+    margin-top: -5px !important;
+}
+
+.headingOp {
+    background-color: #ecf0f1 !important;
+    margin-bottom: 0;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 8px 10px 15px 10px;
+    color: #162454 !important;
+}
+
+.innner-tbl {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th div {
+    margin-top: 0;
+}
+
+.ui-jqgrid .ui-jqgrid-title {
+    font-size: 18px;
+}
+
+.mrgbtm {
+    margin: 0 0 10px;
+}
+
+/*********ui grid body color changed*******/
+#gview_tblContactDetails .ui-jqgrid-bdiv {
+    background: #fff;
+}
+
+#gview_tblAddressDetails .ui-jqgrid-bdiv {
+    background: #fff;
+}
+
+#gview_tblStock .ui-jqgrid-bdiv {
+    background: #fff;
+}
+
+#gview_tblContactDetails .ui-jqgrid-bdiv {
+    background: #fff;
+}
+
+/*****************Remove border of JQgrid table***********/
+/*#gbox_tblContactDetails.ui-widget-content {
+    border: 0 none;
+}*/
+
+/*#gbox_tblAddressDetails.ui-widget-content {
+    border: 0 none;
+}*/
+
+/*#gbox_tblBranchService.ui-widget-content {
+    border: 0 none;
+}*/
+
+/*#gbox_tblOperatinalBranch.ui-widget-content {
+    border: 0 none;
+}*/
+
+/*#gbox_tblReportDetails.ui-widget-content {
+    border: 0 none;
+}*/
+
+/*****************Remove border-radius of JQgrid table***********/
+.ui-corner-bottom, .ui-corner-left {
+    border-bottom-left-radius: 0;
+}
+
+.ui-corner-bottom, .ui-corner-right {
+    border-bottom-right-radius: 0;
+}
+
+.ui-corner-top, .ui-corner-right {
+    border-top-right-radius: 0;
+}
+
+.ui-corner-top, .ui-corner-left {
+    border-top-left-radius: 0;
+}
+
+/*****************Remove style of JQgrid pager***********/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #6e7899 !important;
+    color: #fff;
+}
+
+    .ui-state-default .ui-icon {
+        background-image: url('images/white_icon_256x240.png') !important;
+    }
+
+.ui-icon-seek-end {
+    background-position: -64px -160px !important;
+}
+
+.ui-icon-seek-next {
+    background-position: -32px -160px !important;
+}
+
+.ui-icon-seek-prev {
+    background-position: -48px -160px !important;
+}
+
+.ui-icon-seek-first {
+    background-position: -80px -160px !important;
+}
+
+.ui-widget-content {
+    /*background: #ffffff !important;*/
+    color: #222222;
+}
+
+.ui-jqgrid .ui-pg-input {
+    color: #222;
+}
+
+.ui-pg-button.ui-corner-all:hover {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 0 none;
+}
+
+h3 a.btn {
+    padding: 6px 12px 8px;
+}
+/*.ui-jqgrid .ui-jqgrid-bdiv {
+ overflow-y:hidden!important;}
+.ui-jqgrid-view {
+height:150px; overflow:auto;}*/
+
+/****For Single Tab****/
+.nav-tabs > li#HandOver, .nav-tabs > li#StockProcess {
+    float: left;
+    margin-bottom: -1px;
+    padding: 10px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#spinner1 {
+    width: 100%;
+    opacity: 0.6;
+    z-index: 100;
+    text-align: center;
+    vertical-align: middle;
+    height: 100%;
+    background-color: #000;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1050;
+    overflow-y: hidden !important;
+}
+
+    #spinner1 img {
+        margin: 30% auto !important;
+        width: 70px;
+    }
+
+.ajaxSpinner {
+    width: 100%;
+    opacity: 0.6;
+    z-index: 100;
+    text-align: center;
+    vertical-align: middle;
+    height: 100%;
+    background-color: #000;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1050;
+    overflow-y: hidden !important;
+}
+
+    .ajaxSpinner img {
+        margin: 30% auto !important;
+        width: 70px;
+    }
+
+.DisBgGray {
+    background-color: #eee;
+}
+
+.HideMousePointCl {
+    cursor: not-allowed;
+}
+
+#gview_tblServiceTeamType table tr.ui-jqgrid-labels th:first-child, #tblServiceTeamType tr td:first-child  {
+    width:10px !important;
+}
+
+#gview_tblPUDStockDetails .ui-jqgrid-hbox, #gview_tblEODClientServiceTeamType .ui-jqgrid-hbox , #gview_tblEODReports div.ui-jqgrid-hbox , #tblEODStockDetails tr td div.ui-jqgrid-hbox , #gview_tblEODOrderSLADetails .ui-jqgrid-hbox , #gview_tblRateEODServiceDefinition .ui-jqgrid-hbox , #gbox_tblEODServiceSchedule .ui-jqgrid-hbox , #gview_tblEODStockDetails .ui-jqgrid-hbox ,#gview_tblPUDClientServiceTeamType .ui-jqgrid-hbox , #gbox_tblPUDReports div.ui-jqgrid-hbox , #gbox_tblPUDBankBranch .ui-jqgrid-hbox, #gview_tblPUDServiceSchedule .ui-jqgrid-hbox, #gview_tblPUDOrderSLADetails .ui-jqgrid-hbox, #gview_tblRatePUDServiceDefinition .ui-jqgrid-hbox {
+    padding-right: 19px;
+}
+
+#tblPUDStockDetails tr td div.ui-jqgrid-hbox, #tblPUDProductGroups tbody tr td div.ui-jqgrid-hbox,#gview_tblPUDProductGroups div.ui-jqgrid-hbox{
+    padding-right: 1px;
+}
+
+#tblRatePUDServiceDefinition, #tblRateEODServiceDefinition {
+    margin-top: -19px;
+}
+
+th#tblPUDBankBranch_Delete, th#tblBankBranchMAI_Delete,th#tblRateMAIServiceDefinition_Delete,th#tblRateEODServiceDefinition_Delete , .ui-jqgrid-btable tbody tr.ui-widget-content.jqgrow.ui-row-ltr td:last-child , #tblRateEODServiceDefinition tr td #tblRateEODServiceDefinition_Delete ,th#tblRatePUDServiceDefinition_Delete, #tblPUDBankBranch tr td:last-child,.ui-jqgrid-btable > tbody > tr.ui-widget-content.jqgrow.ui-row-ltr > td:last-child {
+    border-right: 0px !important;
+}
+
+.ui-jqgrid-btable > tbody > tr.ui-widget-content.jqgrow.ui-row-ltr > td:last-child{border-right: 0 !important;}
+
+#tblPUDStockDetails tr td div.ui-jqgrid-bdiv,#tblPUDReports tr td div.ui-jqgrid-bdiv, #tblEODStockDetails tr td div.ui-jqgrid-bdiv, #tblEODReports tr td div.ui-jqgrid-bdiv{
+    overflow-y:hidden !important;
+}
+
+#gview_tblPUDServiceSchedule table th div{height:auto !important}
+
+#gview_tblPUDReports div.ui-jqgrid-bdiv, #gview_tblEODReports div.ui-jqgrid-bdiv {overflow-x: auto !important;}
+
+#gview_tblPUDClientOrderStatusReceipient .ui-jqgrid-hbox, #gview_tblPUDClientServiceOperationalSpecificSelection .ui-jqgrid-hbox, #gview_tblPUDClientServiceTimeNorm .ui-jqgrid-hbox, #gview_tblEODClientOrderStatusReceipient .ui-jqgrid-hbox{
+    padding-right: 17px;
+}
+
+#tblPUDReports tr td div.ui-jqgrid-hbox, #tblEODReports tr td div.ui-jqgrid-hbox{padding-right:2px !important;}
+
+#gbox_tblPUDClientOrderStatusReceipient div.ui-jqgrid-bdiv, #gbox_tblPUDClientServiceOperationalSpecificSelection div.ui-jqgrid-bdiv, #gbox_tblPUDClientServiceTimeNorm div.ui-jqgrid-bdiv{
+    overflow-x: hidden !important;
+}
+
+#gview_tblRatePUDServiceDefinition .ui-jqgrid-hbox {padding-right: 20px;}

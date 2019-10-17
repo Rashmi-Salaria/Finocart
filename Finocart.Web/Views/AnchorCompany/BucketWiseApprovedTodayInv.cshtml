@@ -1,0 +1,67 @@
+﻿@model Finocart.CustomModel.VendorInvApproveTodayViewModel
+@{
+    ViewData["Title"] = "BucketWiseApprovedTodayInv";
+}
+
+<script src="~/AnchorCompany/BucketWiseApprovedTodayInv.js"></script>
+<script>
+    var GetBucketWiseDiscInvViewList = '@Url.Action("GetBucketWiseDiscInvViewList", "AnchorCompDashboard")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <h4 style="font-size:15px;font-weight:bold;">Invoices Approved Today</h4>
+                    <div class="col-xs-12 col-sm-1 col-md-1 padding">
+                        <a class="backbtn" onclick="BackBtn()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_InvoiceID", null, new { placeholder = "Search by Invoice ID", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_POID", null, new { placeholder = "Search by Purchase Order", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        <button id="btnBucketFilter" class="filterbtn">
+                            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        @Html.HiddenFor(m => m.VendorID)
+                        @Html.HiddenFor(m => m.BucketID)
+                        <table id="tbl_BucketsWiseApprovedTodayInvoice" class="table table-responsive table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>PO ID</th>
+                                    <th>Invoice ID</th>
+                                    <th>Vendor Name</th>
+                                    <th>Invoice Creation Date</th>
+                                    <th>Invoice Amount</th>
+                                    <th>Approved Amount</th>
+                                    <th>Discount Rate</th>
+                                    <th>Discount Offered Dateth>
+                                    <th>Payment Due Date</th>
+                                    <th>Payment will be Due on (Based on T+X)</th>
+                                    <th>Payable Amount</th>
+                                    <th>Your Earning</th>
+                                  
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

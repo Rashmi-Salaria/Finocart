@@ -1,0 +1,124 @@
+﻿@model Finocart.Model.Vendor;
+
+@{
+    ViewBag.Title = "SuperAdmin Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@using (Html.BeginForm("ValidateSuperAdminLogOn", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitLogin", autocomplete = "on" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="login-box">
+        <div class="col-xs-12 logbox log-big">
+            <div class="login-box clearfix">
+                <div style="display: inline-flex;position: relative;">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding hidden-xs">
+                        <div class="left-box clearfix">
+
+                            <img src="~/Content/images/login-logo.png" class="img-responsive" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding" id="logsec">
+                        <div class="right-box">
+                            @*<form>*@
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h3>Login</h3>
+                                        <label class="log-valid" id="lblerror">@ViewBag.InvalidCredential</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        @if (ViewBag.EmailID != null)
+                                        {
+                                            <input type="text" value="@ViewBag.EmailID" class="form-control" placeholder="Email ID" />
+                                        }
+                                        else
+                                        {
+                                            @Html.TextBoxFor(m => m.EmailID, new { @class = "form-control", placeholder = "Email ID" })
+                                        }
+
+                                        <label class="log-valid" id="ErrEmailId" style="display:none">Email ID can't be left blank</label>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                                        <label class="log-valid" id="ErrPassword" style="display:none">Password can't be left blank</label>
+                                    </div>
+
+                                    <div class="col-xs-6">
+                                        @if (ViewBag.EmailID != null)
+                                        {
+                                            <p class="rem-me"><input id="chkIsRemember" type="checkbox" checked /><input type="hidden" id="IsRemember" value="1" name="IsRemember" /><label>Remember Me</label></p>
+                                        }
+                                        else
+                                        {
+                                            <p class="rem-me"><input id="chkIsRemember" type="checkbox" /><input type="hidden" id="IsRemember" value="0" name="IsRemember" /><label>Remember Me</label></p>
+                                        }
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <p class="frgt-pass"><a href="#" id="ForgotPassword">Forgot Password?</a></p>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        @Html.Partial("_GoogleCaptchaPartial")
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <button class="login-btn" type="button" id="Btn_Submit">Login</button>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6">
+                                                <button class="clear-btn" type="button" id="" onclick="ClearAllControls(FormSubmitLogin)">Clear</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @*</form>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+
+    $(document).ready(function () {
+        $("#ForgotPassword").click(function () {
+                var Role = btoa("SuperAdmin");
+                url = "@Url.Action("ForgetPassword", "Account")?Role=" + Role;
+                window.location.href = url;
+        })
+        $('#chkIsRemember').click(function () {
+            if ($('#chkIsRemember').is(':checked')) {
+                $('#IsRemember').val('1');
+            }
+            else {
+                $('#IsRemember').val('0');
+            }
+        });
+        //if (event.keyCode === 13) {
+        //    debugger;
+        //    event.preventDefault();
+        //    document.getElementById("Btn_Submit").click();
+        //}
+        //window.onload = $("Btn_Submit").focus().click;
+        $(document).on('keypress', function (e) {
+            if (e.which == 13) {
+                document.getElementById("Btn_Submit").focus();
+                event.preventDefault();
+               document.getElementById("Btn_Submit").click();
+            }
+        });
+
+        });
+
+</script>
+<style>
+    /*.g-recaptcha {
+        transform: scale(1.12);
+        transform-origin: 0 0;
+    }*/
+</style>
+
+
+

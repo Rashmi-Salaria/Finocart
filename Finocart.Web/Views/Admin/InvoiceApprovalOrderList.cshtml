@@ -1,0 +1,62 @@
+﻿   @{
+        ViewData["Title"] = "User";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+<script>
+    var GetInvoiceApprovedList = '@Url.Action("GetInvoiceApprovedList", "Admin")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <div class="col-xs-12 col-sm-2 col-md-2 padding">
+                        <button id="btnAddNew" class="adduserbutton">
+                            <img src="~/Content/images/plusicon.png" class="img-responsive" style="display: inline;" />Add user
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="tbl_InvoiceApprovedList" class="table table-responsive table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="display:none">User ID</th>
+                                    <th style="width:10%">From Amount</th>
+                                    <th style="width:13%">To Amount</th>
+                                    <th style="width:12%">Approved By</th>
+                                    <th style="width:10%">Users</th>
+                                    <th style="width:10%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/InvoiceApprovalOrder/InvoiceApprovalOrder.js"></script>
+<script src="~/Common/Common.js"></script>
+<script type="text/javascript">
+    var AddResult = '@(TempData["AddResult"])';
+    var UpdateResult = '@(TempData["UpdateResult"])';
+    var UpdateResult1 = '@ViewBag.UpdateResult';
+    var DeleteResult='@(TempData["DeleteResult"])';
+    if (AddResult == 1) {
+        Common.SuccessNotify();
+    }
+    if (UpdateResult == 1) {
+        Common.UpdateNotify();
+    }
+    if (DeleteResult == 1) {
+        Common.DeleteNotify();
+    }
+</script>
+
+
+

@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h3>
+    @ViewBag.EmployeeCount
+</h3>
+@using (Html.BeginForm("ExportData", "Employee", FormMethod.Post))
+{
+    <!-- form goes here -->
+    <input type="submit" value="Export" />
+}
+<form method="post" enctype="multipart/form-data"
+      asp-controller="Employee" asp-action="UploadVendorDocuemnts">
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Upload Image File (.png):</p>
+            <input type="file" name="formFile" />
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Upload File" />
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <span>@ViewBag.Message</span>
+    </div>
+</form>
+<hr/>
+Upload file data 
+<div>
+
+    <input type="file" id="myfile" name="vendorDocument"/>
+    <button type="button" class="btn btn-info" onclick="uploadcsvfile()"> Upload data </button>  
+
+</div>
+
+<script>
+    function uploadcsvfile() {
+        alert(1);
+        
+
+        var formData = new FormData();
+        formData.append('formFile', $('#myfile')[0].files[0]);
+
+        $.ajax({
+            url: "/Employee/UploadFileDatatoServer/",
+            type: "POST",
+            dataType: "json",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+
+            },
+            error: function (data) {
+
+            }
+        })
+    }
+</script>

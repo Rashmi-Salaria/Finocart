@@ -1,0 +1,13 @@
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\bin\Debug\Finocart.SAPService.exe.config
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\bin\Debug\Finocart.SAPService.exe
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\bin\Debug\Finocart.SAPService.pdb
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\bin\Debug\sapnco.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\bin\Debug\sapnco_utils.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\obj\Debug\Finocart.SAPService.csprojAssemblyReference.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\obj\Debug\Finocart.SAPService.ProjectInstaller.resources
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\obj\Debug\Finocart.SAPService.csproj.GenerateResource.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\obj\Debug\Finocart.SAPService.csproj.CoreCompileInputs.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\obj\Debug\Finocart.SAPService.csproj.CopyComplete
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\obj\Debug\Finocart.SAPService.exe
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.SAPService\obj\Debug\Finocart.SAPService.pdb

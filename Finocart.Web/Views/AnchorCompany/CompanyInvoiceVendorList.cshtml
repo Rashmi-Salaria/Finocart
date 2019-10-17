@@ -1,0 +1,79 @@
+﻿@model  Finocart.CustomModel.CompanyInvoiceListModel
+
+@{
+            ViewData["Title"] = "User";
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+<script>
+    var GetVendorInvoiceList = '@Url.Action("GetVendorInvoiceListByCompanyID", "AnchorCompany")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        
+                        @Html.TextBox("txt_UserName", null, new { placeholder = "Search by Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportCompanyInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        <button id="btnFilter" class="filterbtn">
+                            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="table-icons" style="display:none;">
+                    <ul>
+                        <li><a href="#"><img src="~/Content/images/mrge.png" class="img-responsive" data-toggle="modal" data-target="#mergeline" id="BtnMerge" data-toggle="tooltip" title="Merge Tool" /></a></li>
+                        <li><a href="#"><img src="~/Content/images/split.png" class="img-responsive" data-toggle="modal" data-target="#sliptrows" id="BtnSplitNew" data-toggle="tooltip" title="Split Tool" /></a></li>
+                    </ul>
+                </div>
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <input type="hidden" class="searchTerm" id="CompanyID" value="@Model.CompanyID" />
+                        <table id="tbl_CompanyInvoiceList" class="table table-responsive table-bordered table-hover tbl_UserList">
+                            <thead>
+                                <tr>
+                                    <th style="display:none">InvoiceID</th>
+                                    <th>InvoiceNo</th>
+                                    <th>VendorName</th>
+                                    <th>CompanyID</th>
+                                    <th>PONumber</th>
+                                    <th>PODate</th>
+                                    <th>Invoice Amount</th>
+                                    <th>Payment Due Date</th>
+                                    <th>Discount</th>
+                                    <th>Status</th>
+                                    <th>Rejection Reason</th>
+                                    <th>Approved Amount</th>
+                                    <th style="width:10%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/AnchorCompany/VendorInvoiceListjs.js"></script>
+<script>
+    $('#ExportCompanyInvoiceCSV').click(function () {
+            var CompanyID = $('#CompanyID').val();
+            url = '@Url.Action("ExportVendorInvoiceListByCompanyID","AnchorCompany")?CompanyID='+ CompanyID;
+            window.location.href = url;
+        });
+</script>
+
+
+
+
+

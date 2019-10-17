@@ -1,0 +1,121 @@
+﻿<div id="iDiscOfferedInv">
+    @model Tuple<IEnumerable<Finocart.Model.ModuleMaster>, IEnumerable<Finocart.Model.SearchHistory>, Finocart.CustomModel.InvoiceModel>
+
+    @{
+        ViewData["Title"] = "Invoice Page";
+        Layout = null;
+    }
+    <style>
+        .hide_column {
+            display: none;
+        }
+    </style>
+    <script src="~/Vendor/DiscOfferedInv.js"></script>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="search-box-main clearfix">
+                <h4 style="font-size:15px;font-weight:bold;">Anchor Company wise Discounted Invoices <span id="lblCompanyName"></span></h4>
+                <input type="hidden" id="MaxSearchLimit" value="@TempData["MaxSearchCount"]" />
+                <div class="col-xs-12 col-sm-1 col-md-1 padding">
+                    <a class="backbtn" onclick="BackToDiscOfferedInv()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                    <input type="text" class="searchTerm" id="txt_AnchorName" placeholder="Search by Name" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                    <input type="text" class="searchTerm" id="txt_TotalInvAmount" placeholder="Search by Total Invoice Amount" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5 padding">
+                    <button id="ExportDiscInvoiceCSV" class="excelbutton">
+                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="main-table-box page-scroll">
+                <div class="table-responsive">
+                    @Html.HiddenFor(m => m.Item3.CompanyId)
+                    <table id="tbl_DiscountOfferedInvDashboard" class="table table-responsive table-hover table-bordered internalusermtable">
+                        <thead>
+                            <tr>                            
+                                <th>PO ID</th>
+                                <th>Inv ID</th>
+                                <th>Anchor Comp Name</th>
+                                <th>Inv  Date</th>
+                                <th>Inv. Amt (INR)</th>
+                                <th>Approved Amt (INR)</th>
+                                <th>Disc. Rate</th>
+                                <th>Disc. Offered Date</th>
+                                @*<th>Disc. Valid Date</th>*@
+                                <th>Payment Due Date</th>
+                                <th>Inv Status</th>
+                                <th style="display:none">InvoiceID</th>
+                                <th style="display:none">Invoice Approve Pay Days(t+x calulation)</th>
+                                <th style="display:none">Invoice Approved Date</th>
+                                <th style="display:none">Formula Row</th>
+                                <th>CompanyId</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-12 footer-btn">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 padding">
+                                <label class="footer-label">Total Number of Invoices: <span id="TotalDiscInvCount"></span></label>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 padding">
+                                <label class="footer-label">Total Invoices Apporved Amount: <span id="TotalDiscInvAmount"></span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="DiscInvoiceJourney" class="modal finoassist fade" role="dialog">
+        <div class="modal-dialog" id="invJourney">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <h4 class="modal-title" id="CompanyName"></h4>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="header-sec">
+                                <label>Invoice Journey : <span>IN0045</span></label>
+                                <label>PO ID : <span id="lblPOID"></span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="header-bottom-sec">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <label>Invoice Creation Date : <span id="lblInvCreateDate"></span></label>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <label>Discount Offered Date : <span id="lblDiscOfferedDate"></span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div id="dvMaintainDiscInvJourney"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#lblCompanyName").text($('#tbl_EligibleInvDashboard').find('tr:eq(1)').children('td.clsCompanyName').text());
+        var TotalApprovedInvoices = '@ViewBag.TotalApprovedInvoices';
+    });
+    </script>
+</div>

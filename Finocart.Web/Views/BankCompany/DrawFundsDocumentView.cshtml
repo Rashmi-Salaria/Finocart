@@ -1,0 +1,53 @@
+﻿@model Finocart.CustomModel.GetDocument_Download
+@{
+    ViewData["Title"] = "DrawFundsHistoryList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+
+    .hide_column {
+        display: none;
+    }
+</style>
+<a class="backbtn" href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+<script src="~/BankCompany/DrawFundsDocumentView.js"></script>
+<script>
+    var DrawFundsDocumentView = '@Url.Action("DrawFundsDocumentViewList", "BankCompany")'
+    var Document_download = '@Url.Action("Document_download", "BankCompany")'
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div class="row" id="">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll" style="padding:15px;">
+                            <h4 style="font-size:15px;font-weight:bold;">Document Download</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll">
+                            <div class="table-responsive">
+                                @Html.HiddenFor(m => m.ID)
+                                <table id="DrawFundsDocumentView" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>File Name</th>
+                                            <th style="width:10%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

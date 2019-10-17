@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "DiscApprovalAwaitedInvoice";
+}
+
+<script src="~/AnchorCompany/DiscAwaitedInvoiceApproval.js"></script>
+<script>
+    var GetAwaitedInvoiceApprovalList = '@Url.Action("GetAwaitedInvoiceApprovalList", "AnchorCompDashboard")';
+</script>
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div id="eInvoices" class="tab-pane fade in active">
+                    <div class="row" id="eAnchorCompInvoices">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="search-box-main clearfix">
+                                <h4 style="font-size:15px;font-weight: bold;">Invoices Pending for Action</h4>
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_VendorName", null, new { placeholder = "Search by Vendor Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+                                @*<div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    @Html.TextBox("txt_TotalApprovedAmt", null, new { placeholder = "Search by Total Approved Amount", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>*@
+
+                                <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                                    <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="main-table-box page-scroll">
+                                <div class="table-responsive">
+                                    <table id="tbl_VendorAwaitedInvApprovalList" class="table table-responsive table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th hidden>Vendor ID</th>
+                                                <th>Vendor Company</th>
+                                                <th>Number of Discounted Invoices</th>
+                                                <th>Total Approved Amount(INR)</th>
+                                                <th style="width:10%">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 footer-btn">
+                                <div class="row">
+                                   <div class="col-xs-12 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <label class="footer-label">Total Invoices : <span id="lbAwaitTotalInvoices"></span></label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <label class="footer-label">Total Approved Amount (INR) : <span id="lbAwaitTotalApprovedAmt"></span></label>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

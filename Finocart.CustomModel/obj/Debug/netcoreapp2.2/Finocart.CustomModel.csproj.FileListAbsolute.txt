@@ -1,0 +1,16 @@
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\bin\Debug\netcoreapp2.2\Finocart.CustomModel.deps.json
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\bin\Debug\netcoreapp2.2\Finocart.CustomModel.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\bin\Debug\netcoreapp2.2\Finocart.CustomModel.pdb
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\bin\Debug\netcoreapp2.2\Finocart.Model.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Server.Kestrel.Core.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\bin\Debug\netcoreapp2.2\Finocart.Model.pdb
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Server.Kestrel.Core.xml
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.xml
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\obj\Debug\netcoreapp2.2\Finocart.CustomModel.csprojAssemblyReference.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\obj\Debug\netcoreapp2.2\Finocart.CustomModel.csproj.CoreCompileInputs.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\obj\Debug\netcoreapp2.2\Finocart.CustomModel.AssemblyInfoInputs.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\obj\Debug\netcoreapp2.2\Finocart.CustomModel.AssemblyInfo.cs
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\obj\Debug\netcoreapp2.2\Finocart.CustomModel.csproj.CopyComplete
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\obj\Debug\netcoreapp2.2\Finocart.CustomModel.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.CustomModel\obj\Debug\netcoreapp2.2\Finocart.CustomModel.pdb

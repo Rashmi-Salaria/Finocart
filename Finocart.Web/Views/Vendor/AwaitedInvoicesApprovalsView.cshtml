@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "Vendor Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Vendor/AwaitInvoiceApprovalView.js"></script>
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<script>
+    var GetViewAvailableforfunding = '@Url.Action("GetViewAvailableforfunding", "VendorDashboard")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompany">
+
+        <div class="tabsec-main">
+
+            <div class="tab-content">
+                <input type="hidden" value="@TempData["ID"]" id="hdncompany" />
+                <div class="row" id="eAnchorCompInvoices">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="search-box-main clearfix" style="padding: 15px 15px 0;">
+                            <h4 style="font-size:15px;font-weight:bold;">Anchor Company wise Approval Awaited Invoices</h4>
+                            <div class="row form-group ">
+                                <div class="col-xs-12 col-sm-1 col-md-1">
+                                    <a class="backbtn" onclick="BackBtn()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+
+                                    @Html.DropDownList("dropdownlist",new List<SelectListItem>
+                                     {
+                                      new SelectListItem{ Text="Receivables Due Today in INR",Value="1"},
+                                      new SelectListItem{ Text="Awaited Approval in INR",Value="2"},
+                                      new SelectListItem{ Text="Amount Approved Today in INR",Value="3"},
+                                      new SelectListItem{ Text="Available for Funding Today in INR",Value="4"},
+                                      new SelectListItem{ Text="Invoices Status",Value="5"}
+                                      }, new { @class = "searchTerm", @style = "border-right: 1px solid #dadbdc;max-width: 100%;" })
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    @Html.TextBox("txt_CompanyName", null, new { placeholder = "Search by Anchor Company Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    @Html.TextBox("txt_TotalApprovedINV", null, new { placeholder = "Search by Total Invoice Amount", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-2 col-md-2">
+                                    <button id="ExportAnchCompCSV" class="excelbutton" style="margin-right:0;">
+                                        <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll">                            
+                            <div class="table-responsive">
+                                <input type="hidden" id="companyID" />
+                                <input type="hidden" id="companyInvoicesID" />
+                                <div style="display: inline;position: absolute;top: 5px;left: 30px;z-index: 2;">
+                                    <label>@TempData["AnchorCompNames"]</label>
+                                </div>
+                                <table id="tbl_ViewAvailableforfunding" class="table table-responsive table-hover table-bordered tbl_UserList">
+                                    <thead>
+                                        <tr>
+                                            @*<th><input type="checkbox" id="AnchorComp-select-all" /></th>*@
+                                            <th>PO ID</th>
+                                            <th>
+                                                Inv ID
+
+                                            </th>
+                                            @*<th>Anchor Comp Name</th>*@
+                                            <th>
+                                                Inv Date
+
+                                            </th>
+                                            <th>
+                                                Inv. Amt(INR)
+                                            </th>
+                                            <th>
+                                                Approved Amt(INR)
+                                            </th>
+                                            <th>
+                                                Disc. Rate
+                                            </th>
+                                            <th>
+                                                Disc. Offered Date
+                                            </th>
+
+                                            <th>
+                                                Payment Due Date
+                                            </th>
+                                            <th>
+                                                Invoice Status
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 footer-btn">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4 padding">
+                                            <label class="footer-label">Total Number of Invoices: <span id="lbTotalInvoices"></span></label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 padding">
+                                            <label class="footer-label">Total Invoice Amount: <span id="lbTotalInvoicesAmt"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="EligibleInvoiceJourney" class="modal finoassist fade" role="dialog">
+    <div class="modal-dialog" id="invJourney">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <h4 class="modal-title" id="ElgibleInvCompanyName"></h4>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="header-sec">
+                            <label>PO ID : <span id="lblElgInvPOID"></span></label>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="dvMaintainEligibleInvJourney"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,155 @@
+﻿@model Finocart.Model.EditSendGridDetailsModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .cls-error {
+        display: block;
+        color: red;
+    }
+
+    .cls-none {
+        display: none;
+    }
+</style>
+<script>
+  
+</script>
+<div class="main-inner-section">
+    @using (Html.BeginForm("UpdateSendGrid", "AnchorCompany", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitRegister" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="content-upper-section">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="main-head" style="background: #fff;border-bottom: solid 1px #e3e3e3;padding: 15px;margin: 0 0 15px 0;border-radius: 0;">
+                        <h2>Send Grid Details</h2>
+                    </div>
+                    <div style="display:none" id="divsuccess">@TempData["success"]</div>
+
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-content-box page-scroll">
+                        <div class="registration-form">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">USER ID:</label>
+                                    @Html.TextBoxFor(m => m.UserId, new { @class = "form-control", @placeholder = "USER ID*", autocomplete = "off" })
+                                    <label id="lblUSER" class="cls-error"></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">PASSWORD:</label>
+                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "PASSWORD*", autocomplete = "off" })
+                                    <label id="lblPassword" class="cls-error"></label>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">HOST NAME:</label>
+                                    @Html.TextBoxFor(m => m.HostName, new { @class = "form-control", @placeholder = "HOST NAME", autocomplete = "off" })
+                                    <label id="lblHostName" class="cls-error"></label>
+
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">PORT NO:</label>
+                                    @Html.TextBoxFor(m => m.PortNO, new { @class = "form-control", @placeholder = "PORT NO*", autocomplete = "off" })
+                                    <label id="lblPortNo" class="cls-error"></label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="submit-btn" type="submit" id="btnSubmit">Submit</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="cancel-btn" type="button" onclick="ClearAllControls(FormSubmitRegister)">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+
+                if ($('#divsuccess').html() == 'success') {
+                    //$('input[type="text"]').val('');
+                    alert("Record save successfully.");
+                    location.href = url;
+                    $('#divsuccess').html('');
+
+                }
+
+            });
+            $(function () {
+                $("#btnSubmit").click(function (e) {
+
+                    var UserID = $('#UserId').val();
+                    var Password = $('#Password').val();
+                    var HostName = $('#HostName').val();
+                    var PortNO = $('#PortNO').val();
+
+                    var count = 0;
+                    $('.cls-error').text('');
+
+                    if (UserID == '') {
+                        $('#lblUSER').text('Enter the User Id');
+                        count++;
+                    }
+
+                    if (Password == '') {
+                        $('#lblPassword').text('Enter the Password');
+                        count++;
+                    }
+                    if (HostName == '') {
+                        $('#lblHostName').text('Enter the Host Name');
+                        count++;
+                    }
+
+                    if (PortNO == '') {
+                        $('#lblPortNo').text('Enter the Port No');
+                        count++;
+                    }
+
+                    if (count == 0 && $('.cls-error').text() == '') {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                });
+
+            });
+
+
+            function ClearAllControls(formid) {
+                Common.ClearAllControls(formid)
+            }
+
+
+        </script>
+        <script>
+            $("#UserId").keypress(function () {
+                $('#lblUSER').hide();
+            });
+            $("#Password").keypress(function () {
+                $('#lblPassword').hide();
+            });
+            $("#HostName").keypress(function () {
+                $('#lblHostName').hide();
+            });
+            $("#PortNO").keypress(function () {
+                $('#lblPortNo').hide();
+            });
+        </script>
+    }
+
+
+</div>
+
+
+

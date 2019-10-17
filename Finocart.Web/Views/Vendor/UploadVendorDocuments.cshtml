@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Finocart.Model.LookupDetails>
+@{
+    ViewData["Title"] = "UploadDocuments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    var DeleteVendorDoc="@Url.Action("DeleteVendorDoc", "Vendor")";
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="main-head">
+                    <h2>Upload Documents</h2>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-content-box page-scroll">
+                    <div class="up-tab-head">
+                        <h2>Upload Supporting Documents for your vendor</h2>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <label>Attachment Type<span style="color:red;">*</span></label>
+                            <div class="">
+                                <select name="documentname" class="form-control" id="selUpDoc">
+                                    <option value=0>Select Document Name</option>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value='@item.Id'>@item.LookupValue</option>
+                                    }
+                                </select>
+                                <label id="lblDocTypeError" class="error" style="color:red;display: none;">Select document type</label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <label>Document File Name</label>
+                            <div class="row">
+                                <div class="col-xs-12 docupload form-group">
+                                    <label>Choose file<input type="file" id="myfile" name="AnchorDocument" size="60"></label>
+                                    <button class="upload-btn" type="submit" id="" onclick="uploadcsvfile()"><img src="~/Content/images/upload.png" class="img-responsive" /></button>
+                                </div>
+                                <div class="col-xs-12">
+                                    <p style="font-size:11px;margin-bottom:15px;">
+                                        Please Upload Self Attested Scanned Copy (Only PDF) of supporting
+                                        documents
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="Vendoruploaddocuments" class="table table-responsive table-hover table-bordered uploaddocuments">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Document Type</th>
+                                    <th>Document Description (File Name)</th>
+                                    <th>Status</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Vendor/Vendor.js"></script>
+<script src="~/Common/Common.js"></script>
+<script type="text/javascript">
+    function uploadcsvfile() {
+        if ($("#selUpDoc").val() == 0) {
+            $("#lblDocTypeError").show();
+        }
+        var formData = new FormData();
+        formData.append('VendorDocument', $('#myfile')[0].files[0]);
+        formData.append('iDocumentTypeID', $("#selUpDoc").val());
+        $.ajax({
+            url: "/Vendor/UploadFileDatatoServer/",
+            type: "POST",
+            dataType: "json",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                
+
+                if (data.bResult == true) {
+                    Common.CustomSuccessNotify("Vendor document uploaded");
+                    location.reload();
+                }
+                else {
+                    Common.CustomErrorNotify(data.ReturnMessage);
+                    location.reload();
+                }
+            },
+            error: function (data) {
+
+            }
+        })
+    }
+</script>

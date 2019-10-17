@@ -1,0 +1,3 @@
+06/20/19 12:07:37 PM System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\P R O J E C T S\Finocart\Finocart_Scheduler\Logs\Info\'.
+   at Finocart_Scheduler.Microsoft.Logger.WriteLog(String logMessage, String type) in D:\P R O J E C T S\Finocart\Finocart_Scheduler\Finocart_Scheduler\Microsoft\Logger.cs:line 34
+   at Finocart_Scheduler.Program.Main(String[] args) in D:\P R O J E C T S\Finocart\Finocart_Scheduler\Finocart_Scheduler\Program.cs:line 24

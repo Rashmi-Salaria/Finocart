@@ -1,0 +1,57 @@
+SELECT Orders.OrderNumber, Orders.OrderGUID, Orders.ParentOrderNumber, Orders.StoreVersion, Orders.QuoteCheckout, Orders.IsNew, Orders.ShippedOn, Orders.CustomerID, Orders.CustomerGUID, Orders.Referrer, Orders.SkinID, 
+                  Orders.LastName, Orders.FirstName, Orders.Email, Orders.Notes, Orders.BillingEqualsShipping, Orders.BillingLastName, Orders.BillingFirstName, Orders.BillingCompany, Orders.BillingAddress1, Orders.BillingAddress2, 
+                  Orders.BillingSuite, Orders.BillingCity, Orders.BillingState, Orders.BillingZip, Orders.BillingCountry, Orders.BillingPhone, Orders.ShippingLastName, Orders.ShippingFirstName, Orders.ShippingCompany, Orders.ShippingResidenceType, 
+                  Orders.ShippingAddress1, Orders.ShippingAddress2, Orders.ShippingSuite, Orders.ShippingCity, Orders.ShippingState, Orders.ShippingZip, Orders.ShippingCountry, Orders.ShippingMethodID, Orders.ShippingMethod, 
+                  Orders.ShippingPhone, Orders.ShippingCalculationID, Orders.Phone, Orders.RegisterDate, Orders.AffiliateID, Orders.CouponCode, Orders.CouponType, Orders.CouponDescription, Orders.CouponDiscountAmount, 
+                  Orders.CouponDiscountPercent, Orders.CouponIncludesFreeShipping, Orders.OkToEmail, Orders.Deleted, Orders.CardType, Orders.CardName, Orders.CardNumber, Orders.CardExpirationMonth, Orders.CardExpirationYear, 
+                  Orders.CardStartDate, Orders.CardIssueNumber, Orders.OrderSubtotal, Orders.OrderTax, Orders.OrderShippingCosts, Orders.OrderTotal, Orders.PaymentGateway, Orders.AuthorizationCode, Orders.AuthorizationResult, 
+                  Orders.AuthorizationPNREF, Orders.TransactionCommand, Orders.OrderDate, Orders.LevelID, Orders.LevelName, Orders.LevelDiscountPercent, Orders.LevelDiscountAmount, Orders.LevelHasFreeShipping, 
+                  Orders.LevelAllowsQuantityDiscounts, Orders.LevelHasNoTax, Orders.LevelAllowsCoupons, Orders.LevelDiscountsApplyToExtendedPrices, Orders.LastIPAddress, Orders.PaymentMethod, Orders.OrderNotes, Orders.PONumber, 
+                  Orders.DownloadEmailSentOn, Orders.ReceiptEmailSentOn, Orders.DistributorEmailSentOn, Orders.ShippingTrackingNumber, Orders.ShippedVIA, Orders.CustomerServiceNotes, Orders.RTShipRequest, Orders.RTShipResponse, 
+                  Orders.TransactionState, Orders.AVSResult,  
+                  Orders.AffiliateCommissionRecorded, Orders.OrderOptions, Orders.OrderWeight, Orders.eCheckBankABACode, 
+                  Orders.eCheckBankAccountNumber, Orders.eCheckBankAccountType, Orders.eCheckBankName, Orders.eCheckBankAccountName, Orders.CarrierReportedRate, Orders.CarrierReportedWeight, Orders.LocaleSetting, 
+                  Orders.FinalizationData, Orders.ExtensionData, Orders.AlreadyConfirmed, Orders.CartType, Orders.THUB_POSTED_TO_ACCOUNTING, Orders.THUB_POSTED_DATE, Orders.THUB_ACCOUNTING_REF, Orders.Last4, 
+                  Orders.ReadyToShip, Orders.IsPrinted, Orders.AuthorizedOn, Orders.CapturedOn, Orders.RefundedOn, Orders.VoidedOn, Orders.FraudedOn, Orders.TrackingURL, Orders.ShippedEMailSentOn, Orders.InventoryWasReduced, 
+                  Orders.MaxMindFraudScore, Orders.MaxMindDetails, Orders.VATRegistrationID, Orders.Crypt, Orders.TransactionType, Orders.RecurringSubscriptionID, Orders.RecurringSubscriptionCommand, Orders.RecurringSubscriptionResult, 
+                  Orders.RelatedOrderNumber, Orders.EditedOn, Orders.BuySafeCommand, Orders.BuySafeResult, Orders.CouponDiscount, Orders.StoreID, Orders.ReceiptHtml, Orders.IsDropShipSelected, Orders.NetTermsOption, Orders.OrderStatus, 
+                  Orders_ShoppingCart.ShoppingCartRecID, Orders_ShoppingCart.ProductID, Orders_ShoppingCart.VariantID, Orders_ShoppingCart.Quantity, 
+                  Orders_ShoppingCart.ChosenColor, Orders_ShoppingCart.ChosenColorSKUModifier, Orders_ShoppingCart.ChosenSize, Orders_ShoppingCart.ChosenSizeSKUModifier, Orders_ShoppingCart.OrderedProductName, 
+                  Orders_ShoppingCart.OrderedProductVariantName, Orders_ShoppingCart.OrderedProductSKU, Orders_ShoppingCart.OrderedProductManufacturerPartNumber, Orders_ShoppingCart.OrderedProductWeight, 
+                  Orders_ShoppingCart.OrderedProductPrice, Orders_ShoppingCart.OrderedProductRegularPrice, Orders_ShoppingCart.OrderedProductSalePrice, Orders_ShoppingCart.OrderedProductExtendedPrice, 
+                  Orders_ShoppingCart.OrderedProductQuantityDiscountName, Orders_ShoppingCart.OrderedProductQuantityDiscountID, Orders_ShoppingCart.OrderedProductQuantityDiscountPercent, Orders_ShoppingCart.IsTaxable, 
+                  Orders_ShoppingCart.IsShipSeparately, Orders_ShoppingCart.IsDownload, Orders_ShoppingCart.DownloadLocation, Orders_ShoppingCart.FreeShipping, Orders_ShoppingCart.IsSecureAttachment, Orders_ShoppingCart.TextOption, 
+                   Orders_ShoppingCart.SubscriptionInterval, Orders_ShoppingCart.ShippingAddressID, Orders_ShoppingCart.ShippingDetail, 
+                  Orders_ShoppingCart.DistributorID, Orders_ShoppingCart.GiftRegistryForCustomerID,  
+                  Orders_ShoppingCart.SizeOptionPrompt, Orders_ShoppingCart.ColorOptionPrompt, Orders_ShoppingCart.TextOptionPrompt, Orders_ShoppingCart.CreatedOn, 
+                  Orders_ShoppingCart.SubscriptionIntervalType, Orders_ShoppingCart.CustomerEntersPrice, Orders_ShoppingCart.CustomerEntersPricePrompt, Orders_ShoppingCart.IsAKit, Orders_ShoppingCart.IsAPack, 
+                  Orders_ShoppingCart.IsSystem, Orders_ShoppingCart.TaxClassID, Orders_ShoppingCart.TaxRate, Orders_ShoppingCart.ChosenWidthSKUModifier, Orders_ShoppingCart.ChosenWidthList, Orders_ShoppingCart.WidthOptionPrompt, 
+                  Orders_ShoppingCart.EngravePrice, Orders_ShoppingCart.DiscountPrice, Orders_ShoppingCart.EngravingText, Orders_ShoppingCart.IsGift, Orders_ShoppingCart.EngravingFont,  
+                 Product.ProductGUID, Product.Name
+FROM     Orders INNER JOIN
+                  Orders_ShoppingCart ON Orders.OrderNumber = Orders_ShoppingCart.OrderNumber INNER JOIN
+                  Product ON Orders_ShoppingCart.ProductID = Product.ProductID
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+select  Top 10 * from ProductVariant
+
+select Top 10 * from Product
+
+
+
+SELECT  * FROM dbo.Orders o WHERE OrderNumber = 114677
+SELECT * FROM dbo.Orders_ShoppingCart osc WHERE osc.OrderNumber = 114677
+SELECT * FROM dbo.Product p WHERE p.ProductID = 486
+select * from ProductVariant where VariantID=1182
+
+select *  from Orders inner join Orders_ShoppingCart on Orders.OrderNumber=Orders_ShoppingCart.OrderNumber 
+inner join Product on Orders_ShoppingCart.ProductID=Product.ProductID
+
+SELECT * FROM dbo.Product p WHERE p.ProductID = 563
+			SELECT * FROM dbo.ProductVariant pv WHERE pv.VariantID = 1406
+			SELECT * FROM inventory
+
+

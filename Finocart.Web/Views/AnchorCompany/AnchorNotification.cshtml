@@ -1,0 +1,91 @@
+﻿@model Finocart.CustomModel.AnchorNotification
+@{
+    ViewData["Title"] = "AnchorNotification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <h4 style="font-size:15px;font-weight:bold;">Notification</h4>
+                    <div class="col-xs-12 col-sm-3 col-md-2 padding">
+                        <button id="MarkAllRead" class="adduserbutton">
+                            <img src="~/Content/images/plusicon.png" class="img-responsive" style="display: inline;" />Mark All Read
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        <input type="text" class="searchTerm" id="txt_Notification" placeholder="Search by Notification" /><span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                        <label id="lblErrMsgNotifn" style="color:red;font-size:12px;display:none;font-weight:500;padding-left: 57px;">Kindly Enter Notification</label>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding" style="float:right;">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="tbl_AnchorNotifications" class="table table-responsive table-hover table-bordered internalusermtable">
+                            <thead>
+                                <tr>
+                                    <th style="display:none">Created Date</th>
+                                    <th>Notification</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#tbl_AnchorNotifications').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "searching": true,
+            "dom": '"ltipr"',
+            "ajax": {
+                "url": "../AnchorCompDashboard/getAnchorNotificationList",
+                "type": "POST",
+                "datatype": "json",
+
+            },
+            "columns": [
+                { "data": "createdOn", "name": "CreatedOn", "autoWidth": true, "visible": false }, //index 0
+                { "data": "notifications", "name": "Notifications", "autoWidth": true } //index 1
+            ],
+        });
+
+        oTable = $('#tbl_AnchorNotifications').DataTable();
+        oTable.order([0, 'desc']).draw();
+        $('#btnFilter').click(function () {          
+            var val = ('#txt_Notification').val();
+            if (val == '') {
+                $('#lblErrMsgNotifn').show();
+            }
+            else {
+            oTable.columns(1).search($('#txt_Notification').val().trim());
+             oTable.draw();
+            }
+        });
+
+        $('#MarkAllRead').click(function () {
+            url = "../AnchorCompDashboard/AllAnchorNotificationsRead";
+            window.location.href = url;
+        });
+       
+    });
+
+    var UpdateResult = '@(TempData["UpdateResult"])';
+    if (UpdateResult > 0) {
+        Common.CustomSuccessNotify("Notifications read");
+    }
+</script>
+
+
+

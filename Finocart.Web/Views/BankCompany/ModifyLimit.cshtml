@@ -1,0 +1,132 @@
+﻿@model Finocart.CustomModel.SetBankAmountLimit
+@{
+
+    ViewData["Title"] = "ModifyLimit";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="~/Bank/BankSetLimit.js"></script>
+<head>
+    <link href="~/Content/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui-custom.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/custom-jqgrid.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="~/rangeslider.js/rangeslider.css" rel="stylesheet" />
+    <link href="~/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/datepicker/datepicker.min.css" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="main-inner-section">
+    @using (Html.BeginForm("BankModifyLimit", "BankCompany", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitRegister" }))
+    {
+        <div class="content-upper-section">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="main-heads">
+                        <button type="button" class="close new-close" data-dismiss="modal">×</button>
+                        <h2>Registration</h2>
+                    </div>
+                    <div style="display:none" id="divsuccess">@TempData["success"]</div>
+
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-content-box page-scroll">
+                        <div class="registration-form">
+                            <div class="row">
+                                @Html.HiddenFor(m => m.Anchor_id)
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Available Limit:</label>
+                                    @Html.TextBoxFor(m => m.Available_Limits, new { @class = "form-control", @placeholder = "Available Limit*", @maxLength = "250", autocomplete = "off" })
+                                    <label id="lblCompanyName" class="cls-error"></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Modified Limit:</label>
+                                    @Html.TextBoxFor(m => m.Utilized_Limits, new { @class = "form-control", @placeholder = "Enter Modified Limit*", @maxLength = "10", autocomplete = "off" })
+                                    <label id="lblPan" class="cls-error"></label>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Set Interest Rate(1 To 100):</label>
+                                    @Html.TextBoxFor(m => m.Interest_rate, new { @class = "form-control", @placeholder = "Enter Interest Rate*", @maxLength = "50", autocomplete = "off" })
+                                    <label id="lblCIN" class="cls-error"></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Interest Validity Upto:</label>
+                                    @Html.TextBoxFor(m => m.Validity_upto, new { @class = "form-control", @placeholder = "Enter Date*", @maxLength = "10", autocomplete = "off" })
+                                    <label id="lblPan" class="cls-error"></label>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Additional Document Required (if Any):</label>
+                                    @Html.TextBoxFor(m => m.Additional_document, new { @class = "form-control", @placeholder = "Enter Additional document*", @maxLength = "50", autocomplete = "off" })
+                                    <label id="lblCIN" class="cls-error"></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Number of Days Required for Approval:</label>
+                                    @Html.DropDownListFor(m => m.NumberOfDays, new SelectList(ViewBag.ApprovalDays, "Id", "NoOfDays"), "Number of Days Required for Approval", new { @class = "form-control" })
+                                    <label id="lblInterestedas" class="cls-error"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Comments, if any:</label>
+                                    @Html.TextBoxFor(m => m.Comment, new { @class = "form-control", @placeholder = "Enter Comments*", @maxLength = "50", autocomplete = "off" })
+                                    <label id="lblCIN" class="cls-error"></label>
+                                </div>
+                              
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="submit-btn" type="submit" id="btnSubmit">Submit</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="cancel-btn" type="button" onclick="ClearAllControls(FormSubmitRegister)">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="~/AnchorCompany/AnchorCompany.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                if ($('#divsuccess').html() == 'success') {
+                    $('input[type="text"]').val('');
+                    $('#Contact_Comments').val('');
+                    alert("Your sucessfully registers an Email have been send to your Mail Id");
+                    $('#divsuccess').html('');
+
+                }
+
+            });
+            $(function () {
+                $("#btnSubmit").click(function (e) {
+
+                
+
+            });
+
+
+            function ClearAllControls(formid) {
+                Common.ClearAllControls(formid)
+            }
+
+
+
+        </script>
+    }
+
+</div>
+
+

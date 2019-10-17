@@ -1,0 +1,2510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinocartModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="fn_udfGetInvoiceJourneyForEligibleInv_Result">
+    <Property Name="InvoiceStatus" Type="Int32" />
+    <Property Name="Email" Type="Int32" />
+    <Property Name="UserName" Type="Int32" />
+    <Property Name="invoicestatusvalue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="Int32" />
+    <Property Name="InvoiceStatusText" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedUser" Type="Int32" />
+    <Property Name="CreatedDate" Type="Int32" />
+    <Property Name="SentToPerson" Type="Int32" />
+    <Property Name="Company_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceCreatedDate" Type="DateTime" />
+    <Property Name="PONumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentDueDate" Type="DateTime" />
+  </ComplexType>
+  <ComplexType Name="SplitString_Result">
+    <Property Name="Item" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PANNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="AnchorCompanies">
+    <Key>
+      <PropertyRef Name="AnchorCompID" />
+    </Key>
+    <Property Name="AnchorCompID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnchorCompName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ContactName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EmailID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceAssWith" Type="Int64" />
+    <Property Name="CreatedBy" Type="Int64" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int64" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="AnchorCompanyDocument">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AnchorCompanyId" Type="Int64" />
+    <Property Name="DocumentTypeId" Type="Int64" />
+    <Property Name="UploadedBy" Type="Int32" />
+    <Property Name="UploadedOn" Type="DateTime" Precision="3" />
+    <Property Name="LocalFolderFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AnchorNotification">
+    <Key>
+      <PropertyRef Name="AnchrNotificationID" />
+    </Key>
+    <Property Name="AnchrNotificationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" />
+    <Property Name="RoleID" Type="Int64" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ReadOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="AutoFundingRate">
+    <Key>
+      <PropertyRef Name="AutoFudngId" />
+    </Key>
+    <Property Name="AutoFudngId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiscuntRate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="DiscuntVlidDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="BucketManagement">
+    <Key>
+      <PropertyRef Name="BucketID" />
+    </Key>
+    <Property Name="BucketID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BucketName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BucketStatus" Type="Int32" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ValidUptoDate" Type="DateTime" Precision="3" />
+    <Property Name="BucketCreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="BucketCreatedBy" Type="Int64" />
+    <Property Name="BucketModifiedBy" Type="Int64" />
+    <Property Name="BucketModifiedAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="InvoiceBucket" Relationship="Self.FK_InvoiceBucket_BucketManagement" FromRole="BucketManagement" ToRole="InvoiceBucket" />
+    <Property Name="DisbursementAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DiscountAmt" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Login_Id" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InterestedAs" Type="Int32" />
+    <Property Name="CompanyType" Type="Int32" />
+    <Property Name="Pan_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Title" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PercentageRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InvoiceLimitAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Contact_CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsTemporaryPassword" Type="Boolean" />
+    <Property Name="IsCritical" Type="Boolean" />
+    <Property Name="InvAmtLimitStatus" Type="Int32" />
+    <NavigationProperty Name="LookupDetails" Relationship="Self.FK_Company_LookupDetails" FromRole="Company" ToRole="LookupDetails" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK_Invoice_AnchorCompanies" FromRole="Company" ToRole="Invoice" />
+    <NavigationProperty Name="VendorDiscMap" Relationship="Self.FK_tblVendorDiscMap_CompanyID" FromRole="Company" ToRole="VendorDiscMap" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Company" FromRole="Company" ToRole="User" />
+    <NavigationProperty Name="VendorAssociatedCompany" Relationship="Self.FK_VendorAssociatedCompany_Company" FromRole="Company" ToRole="VendorAssociatedCompany" />
+    <NavigationProperty Name="VendorAssociatedCompany1" Relationship="Self.FK_VendorAssociatedCompany_Company1" FromRole="Company" ToRole="VendorAssociatedCompany" />
+    <Property Name="NoOfDays" Type="Int64" />
+  </EntityType>
+  <EntityType Name="CompanyDocuments">
+    <Key>
+      <PropertyRef Name="CompanyDocument_ID" />
+    </Key>
+    <Property Name="CompanyDocument_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="DocumentType" Type="Int32" />
+    <Property Name="DocumentName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DocumentURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EmailTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TemplateKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BodyContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Salary" Type="Decimal" Precision="16" Scale="0" />
+  </EntityType>
+  <EntityType Name="ErrorTracer">
+    <Key>
+      <PropertyRef Name="ErrorID" />
+    </Key>
+    <Property Name="ErrorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ErrorNumber" Type="Int32" />
+    <Property Name="ErrorState" Type="Int32" />
+    <Property Name="ErrorSeverity" Type="Int32" />
+    <Property Name="ErrorLine" Type="Int32" />
+    <Property Name="ErrorProc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorMsg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HostName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="FinocartMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsTemporaryPassword" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PONumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PODate" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VendorID" Type="Int32" />
+    <Property Name="AnchorCompID" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PaymentDueDate" Type="DateTime" Precision="3" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Days" Type="Int64" />
+    <Property Name="InvoiceStatus" Type="Int32" />
+    <Property Name="RejectionReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ApprovedAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UploadInvoice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UploadDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="InvoiceApprovePayDays" Type="Int32" />
+    <Property Name="InvoiceApprovalDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Invoice_AnchorCompanies" FromRole="Invoice" ToRole="Company" />
+    <NavigationProperty Name="ModuleMaster" Relationship="Self.FK_Invoice_ModuleMaster" FromRole="Invoice" ToRole="ModuleMaster" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Earning" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="InvoiceApprovalOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="FromAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ToAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ApprovedBy" Type="Int32" />
+    <Property Name="Users" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="InvoiceBucket">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BucketID" Type="Int64" Nullable="false" />
+    <Property Name="InvoiceID" Type="Int64" />
+    <NavigationProperty Name="BucketManagement" Relationship="Self.FK_InvoiceBucket_BucketManagement" FromRole="InvoiceBucket" ToRole="BucketManagement" />
+    <Property Name="DisbursementAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DiscountAmt" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="InvoiceJourneyHistory">
+    <Key>
+      <PropertyRef Name="InvoiceJourneyID" />
+    </Key>
+    <Property Name="InvoiceJourneyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="Int64" />
+    <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceStatus" Type="Int32" />
+    <Property Name="InvoiceUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceUpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="RejectionReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BucketID" Type="Int64" />
+    <NavigationProperty Name="ModuleMaster" Relationship="Self.FK_InvoiceJourneyHistory_ModuleMaster" FromRole="InvoiceJourneyHistory" ToRole="ModuleMaster" />
+  </EntityType>
+  <EntityType Name="LogManagement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ControllerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MethodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ErrorLine" Type="Int64" />
+  </EntityType>
+  <EntityType Name="LookupDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LookupKey" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="LookupValue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LookupFor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_Company_LookupDetails" FromRole="LookupDetails" ToRole="Company" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_LookupDetails" FromRole="LookupDetails" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ModuleMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK_Invoice_ModuleMaster" FromRole="ModuleMaster" ToRole="Invoice" />
+    <NavigationProperty Name="InvoiceJourneyHistory" Relationship="Self.FK_InvoiceJourneyHistory_ModuleMaster" FromRole="ModuleMaster" ToRole="InvoiceJourneyHistory" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_tblVendorDet_VendorStatus" FromRole="ModuleMaster" ToRole="Vendor" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="NotificationID" />
+    </Key>
+    <Property Name="NotificationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ReadOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ProcedureErrorTracer">
+    <Key>
+      <PropertyRef Name="ErrorID" />
+    </Key>
+    <Property Name="ErrorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ErrorNumber" Type="Int32" />
+    <Property Name="ErrorState" Type="Int32" />
+    <Property Name="ErrorSeverity" Type="Int32" />
+    <Property Name="ErrorLine" Type="Int32" />
+    <Property Name="ErrorProc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorMsg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HostName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RolesAccessMaster">
+    <Key>
+      <PropertyRef Name="RoleAccessID" />
+    </Key>
+    <Property Name="RoleAccessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Permission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SAPConfiguration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppServerHost" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ClientID" Type="Int32" />
+    <Property Name="SystemNumber" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Language" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IdentificationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SearchHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="SearchKeyValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MaxSearchLimit" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RolesAccess" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleAccessID" Type="Int32" />
+    <Property Name="AccessViewID" Type="Int32" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="PANNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsTemporaryPassword" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_User_Company" FromRole="User" ToRole="Company" />
+    <NavigationProperty Name="LookupDetails" Relationship="Self.FK_User_LookupDetails" FromRole="User" ToRole="LookupDetails" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+    </Key>
+    <Property Name="VendorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaxLimit" Type="Int32" />
+    <Property Name="VendorStatus" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int64" />
+    <Property Name="ContactPersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPersonNumber" Type="Int32" />
+    <Property Name="ContactPersonEmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="PANNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPersonDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsTemporaryPassword" Type="Boolean" Nullable="false" />
+    <Property Name="CompanyID" Type="Int32" />
+    <NavigationProperty Name="ModuleMaster" Relationship="Self.FK_tblVendorDet_VendorStatus" FromRole="Vendor" ToRole="ModuleMaster" />
+    <NavigationProperty Name="VendorDiscMap" Relationship="Self.FK_tblVendorDiscMap_VendorID" FromRole="Vendor" ToRole="VendorDiscMap" />
+  </EntityType>
+  <EntityType Name="VendorAssociatedCompany">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_VendorAssociatedCompany_Company" FromRole="VendorAssociatedCompany" ToRole="Company" />
+    <NavigationProperty Name="Company1" Relationship="Self.FK_VendorAssociatedCompany_Company1" FromRole="VendorAssociatedCompany" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="VendorDiscMap">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="DiscountAmt" Type="Int64" />
+    <Property Name="IsDiscountApplied" Type="Boolean" />
+    <Property Name="VendorID" Type="Int32" />
+    <NavigationProperty Name="Company" Relationship="Self.FK_tblVendorDiscMap_CompanyID" FromRole="VendorDiscMap" ToRole="Company" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_tblVendorDiscMap_VendorID" FromRole="VendorDiscMap" ToRole="Vendor" />
+    <NavigationProperty Name="VendorDiscMap1" Relationship="Self.FK_tblVendorDiscMap_tblVendorDiscMap" FromRole="VendorDiscMap" ToRole="VendorDiscMap1" />
+    <NavigationProperty Name="VendorDiscMap2" Relationship="Self.FK_tblVendorDiscMap_tblVendorDiscMap" FromRole="VendorDiscMap1" ToRole="VendorDiscMap" />
+  </EntityType>
+  <EntityType Name="VendorDocument">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VendorID" Type="Int64" />
+    <Property Name="DocumentTypeId" Type="Int64" />
+    <Property Name="UploadedBy" Type="Int32" />
+    <Property Name="UploadedOn" Type="DateTime" Precision="3" />
+    <Property Name="LocalFolderFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_InvoiceBucket_BucketManagement">
+    <End Role="BucketManagement" Type="Self.BucketManagement" Multiplicity="1" />
+    <End Role="InvoiceBucket" Type="Self.InvoiceBucket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BucketManagement">
+        <PropertyRef Name="BucketID" />
+      </Principal>
+      <Dependent Role="InvoiceBucket">
+        <PropertyRef Name="BucketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Company_LookupDetails">
+    <End Role="LookupDetails" Type="Self.LookupDetails" Multiplicity="0..1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="InvAmtLimitStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_AnchorCompanies">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="AnchorCompID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVendorDiscMap_CompanyID">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="VendorDiscMap" Type="Self.VendorDiscMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="VendorDiscMap">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorAssociatedCompany_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="VendorAssociatedCompany" Type="Self.VendorAssociatedCompany" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="VendorAssociatedCompany">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorAssociatedCompany_Company1">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="VendorAssociatedCompany" Type="Self.VendorAssociatedCompany" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="VendorAssociatedCompany">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_ModuleMaster">
+    <End Role="ModuleMaster" Type="Self.ModuleMaster" Multiplicity="0..1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="InvoiceStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceJourneyHistory_ModuleMaster">
+    <End Role="ModuleMaster" Type="Self.ModuleMaster" Multiplicity="0..1" />
+    <End Role="InvoiceJourneyHistory" Type="Self.InvoiceJourneyHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="InvoiceJourneyHistory">
+        <PropertyRef Name="InvoiceStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_LookupDetails">
+    <End Role="LookupDetails" Type="Self.LookupDetails" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LookupDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="AccessViewID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVendorDet_VendorStatus">
+    <End Role="ModuleMaster" Type="Self.ModuleMaster" Multiplicity="0..1" />
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModuleMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Vendor">
+        <PropertyRef Name="VendorStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVendorDiscMap_VendorID">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="0..1" />
+    <End Role="VendorDiscMap" Type="Self.VendorDiscMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorID" />
+      </Principal>
+      <Dependent Role="VendorDiscMap">
+        <PropertyRef Name="VendorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblVendorDiscMap_tblVendorDiscMap">
+    <End Role="VendorDiscMap" Type="Self.VendorDiscMap" Multiplicity="1" />
+    <End Role="VendorDiscMap1" Type="Self.VendorDiscMap" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="VendorDiscMap">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VendorDiscMap1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinocartEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="AnchorCompanies" EntityType="Self.AnchorCompanies" />
+    <EntitySet Name="AnchorCompanyDocument" EntityType="Self.AnchorCompanyDocument" />
+    <EntitySet Name="AnchorNotification" EntityType="Self.AnchorNotification" />
+    <EntitySet Name="AutoFundingRate" EntityType="Self.AutoFundingRate" />
+    <EntitySet Name="BucketManagement" EntityType="Self.BucketManagement" />
+    <EntitySet Name="Company" EntityType="Self.Company" />
+    <EntitySet Name="CompanyDocuments" EntityType="Self.CompanyDocuments" />
+    <EntitySet Name="EmailTemplate" EntityType="Self.EmailTemplate" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="ErrorTracer" EntityType="Self.ErrorTracer" />
+    <EntitySet Name="FinocartMaster" EntityType="Self.FinocartMaster" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" />
+    <EntitySet Name="InvoiceApprovalOrder" EntityType="Self.InvoiceApprovalOrder" />
+    <EntitySet Name="InvoiceBucket" EntityType="Self.InvoiceBucket" />
+    <EntitySet Name="InvoiceJourneyHistory" EntityType="Self.InvoiceJourneyHistory" />
+    <EntitySet Name="LogManagement" EntityType="Self.LogManagement" />
+    <EntitySet Name="LookupDetails" EntityType="Self.LookupDetails" />
+    <EntitySet Name="ModuleMaster" EntityType="Self.ModuleMaster" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" />
+    <EntitySet Name="ProcedureErrorTracer" EntityType="Self.ProcedureErrorTracer" />
+    <EntitySet Name="RolesAccessMaster" EntityType="Self.RolesAccessMaster" />
+    <EntitySet Name="SAPConfiguration" EntityType="Self.SAPConfiguration" />
+    <EntitySet Name="SearchHistory" EntityType="Self.SearchHistory" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="Vendor" EntityType="Self.Vendor" />
+    <EntitySet Name="VendorAssociatedCompany" EntityType="Self.VendorAssociatedCompany" />
+    <EntitySet Name="VendorDiscMap" EntityType="Self.VendorDiscMap" />
+    <EntitySet Name="VendorDocument" EntityType="Self.VendorDocument" />
+    <AssociationSet Name="FK_InvoiceBucket_BucketManagement" Association="Self.FK_InvoiceBucket_BucketManagement">
+      <End Role="BucketManagement" EntitySet="BucketManagement" />
+      <End Role="InvoiceBucket" EntitySet="InvoiceBucket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Company_LookupDetails" Association="Self.FK_Company_LookupDetails">
+      <End Role="LookupDetails" EntitySet="LookupDetails" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_AnchorCompanies" Association="Self.FK_Invoice_AnchorCompanies">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVendorDiscMap_CompanyID" Association="Self.FK_tblVendorDiscMap_CompanyID">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="VendorDiscMap" EntitySet="VendorDiscMap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Company" Association="Self.FK_User_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorAssociatedCompany_Company" Association="Self.FK_VendorAssociatedCompany_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="VendorAssociatedCompany" EntitySet="VendorAssociatedCompany" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorAssociatedCompany_Company1" Association="Self.FK_VendorAssociatedCompany_Company1">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="VendorAssociatedCompany" EntitySet="VendorAssociatedCompany" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_ModuleMaster" Association="Self.FK_Invoice_ModuleMaster">
+      <End Role="ModuleMaster" EntitySet="ModuleMaster" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceJourneyHistory_ModuleMaster" Association="Self.FK_InvoiceJourneyHistory_ModuleMaster">
+      <End Role="ModuleMaster" EntitySet="ModuleMaster" />
+      <End Role="InvoiceJourneyHistory" EntitySet="InvoiceJourneyHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_LookupDetails" Association="Self.FK_User_LookupDetails">
+      <End Role="LookupDetails" EntitySet="LookupDetails" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVendorDet_VendorStatus" Association="Self.FK_tblVendorDet_VendorStatus">
+      <End Role="ModuleMaster" EntitySet="ModuleMaster" />
+      <End Role="Vendor" EntitySet="Vendor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVendorDiscMap_VendorID" Association="Self.FK_tblVendorDiscMap_VendorID">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="VendorDiscMap" EntitySet="VendorDiscMap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblVendorDiscMap_tblVendorDiscMap" Association="Self.FK_tblVendorDiscMap_tblVendorDiscMap">
+      <End Role="VendorDiscMap" EntitySet="VendorDiscMap" />
+      <End Role="VendorDiscMap1" EntitySet="VendorDiscMap" />
+    </AssociationSet>
+    <FunctionImport Name="fn_udfGetInvoiceJourneyForEligibleInv" IsComposable="true" ReturnType="Collection(FinocartModel.fn_udfGetInvoiceJourneyForEligibleInv_Result)">
+      <Parameter Name="InvoiceId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(FinocartModel.SplitString_Result)">
+      <Parameter Name="Input" Mode="In" Type="String" />
+      <Parameter Name="Character" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetFunding" ReturnType="Collection(FinocartModel.GetFunding_Result)">
+      <Parameter Name="AutoFudngId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="IsEmailExistOrNot2" ReturnType="Collection(Int32)">
+      <Parameter Name="EmailID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="poc_getAnchorCompDropDown" ReturnType="Collection(FinocartModel.poc_getAnchorCompDropDown_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="poc_getEmployeeData" ReturnType="Collection(FinocartModel.poc_getEmployeeData_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="poc_getVendorDropDown" ReturnType="Collection(FinocartModel.poc_getVendorDropDown_Result)">
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Pro_GetInvoiceListAwaiteApproval" ReturnType="Collection(FinocartModel.Pro_GetInvoiceListAwaiteApproval_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="Company_name" Mode="In" Type="String" />
+      <Parameter Name="TotalInvoiceAmount" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_AddFundingRate">
+      <Parameter Name="Rate" Mode="In" Type="Decimal" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="proc_AddInvoice">
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="PODate" Mode="In" Type="DateTime" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompName" Mode="In" Type="String" />
+      <Parameter Name="InvoiceAmt" Mode="In" Type="String" />
+      <Parameter Name="PaymentDueDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Discount" Mode="In" Type="Int32" />
+      <Parameter Name="Days" Mode="In" Type="Int32" />
+      <Parameter Name="UploadInvoice" Mode="In" Type="String" />
+      <Parameter Name="UploadDocument" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_AddUpdateCompany">
+      <Parameter Name="CompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="Company_Name" Mode="In" Type="String" />
+      <Parameter Name="Login_Id" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="InterestedAS" Mode="In" Type="Int32" />
+      <Parameter Name="CompanyType" Mode="In" Type="Int32" />
+      <Parameter Name="Pan_Number" Mode="In" Type="String" />
+      <Parameter Name="Contact_CIN" Mode="In" Type="String" />
+      <Parameter Name="Contact_Title" Mode="In" Type="String" />
+      <Parameter Name="Contact_Name" Mode="In" Type="String" />
+      <Parameter Name="Contact_Designation" Mode="In" Type="String" />
+      <Parameter Name="Contact_Email" Mode="In" Type="String" />
+      <Parameter Name="Contact_Mobile" Mode="In" Type="String" />
+      <Parameter Name="Contact_Comment" Mode="In" Type="String" />
+      <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+      <Parameter Name="UpdatedBy" Mode="In" Type="Int32" />
+      <Parameter Name="ReturnCompanyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_AddUpdateCriticalVendors" ReturnType="Collection(String)">
+      <Parameter Name="CompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="InvAmtLimitStatus" Mode="In" Type="Int64" />
+      <Parameter Name="PercentageRate" Mode="In" Type="Decimal" />
+      <Parameter Name="InvoiceLimitAmt" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="proc_AddUpdateInvoiceApproved">
+      <Parameter Name="ApprovalID" Mode="In" Type="Int32" />
+      <Parameter Name="FromAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="ToAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="ApprovedBy" Mode="In" Type="Int32" />
+      <Parameter Name="Users" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_AddUpdateUser" ReturnType="Collection(String)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Designation" Mode="In" Type="String" />
+      <Parameter Name="RolesAccess" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedBy" Mode="In" Type="Int64" />
+      <Parameter Name="UpdatedBy" Mode="In" Type="Int64" />
+      <Parameter Name="AccessViewID" Mode="In" Type="Int32" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_AnchorCompDropDown" ReturnType="Collection(FinocartModel.proc_AnchorCompDropDown_Result)" />
+    <FunctionImport Name="proc_AnchorGetNotificationDet" ReturnType="Collection(FinocartModel.proc_AnchorGetNotificationDet_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="Notification" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_ChangePassword">
+      <Parameter Name="Role" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_CheckAdminLogin" ReturnType="Collection(FinocartModel.proc_CheckAdminLogin_Result)">
+      <Parameter Name="InputCredential" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_CheckLogin" ReturnType="Collection(FinocartModel.proc_CheckLogin_Result)">
+      <Parameter Name="EmailID" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_CheckLoginV1" ReturnType="Collection(FinocartModel.proc_CheckLoginV1_Result)">
+      <Parameter Name="PANNumber" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_CheckPassword" ReturnType="Collection(String)">
+      <Parameter Name="Role" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_CheckSuperAdminLogin" ReturnType="Collection(FinocartModel.proc_CheckSuperAdminLogin_Result)">
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_CheckUserLogin" ReturnType="Collection(FinocartModel.proc_CheckUserLogin_Result)">
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_CommonUseSP">
+      <Parameter Name="ModuleName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_deleteCriticalVendors">
+      <Parameter Name="CompanyID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_deleteInvoiceApproval">
+      <Parameter Name="ApprovalID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_deleteUser">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_DeleteVendorDocRecord">
+      <Parameter Name="VendorDocId" Mode="In" Type="Int64" />
+      <Parameter Name="VendorDocFileName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_EditCompany" ReturnType="Collection(FinocartModel.proc_EditCompany_Result)">
+      <Parameter Name="CompanyID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_EditInvoiceApproved" ReturnType="Collection(FinocartModel.proc_EditInvoiceApproved_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_EditUser" ReturnType="Collection(FinocartModel.proc_EditUser_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetAmountDiscountRatewise" ReturnType="Collection(FinocartModel.Proc_GetAmountDiscountRatewise_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetAmountDiscountRatewiseInPercent" ReturnType="Collection(FinocartModel.Proc_GetAmountDiscountRatewiseInPercent_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetAnchorCompDocument" ReturnType="Collection(FinocartModel.Proc_GetAnchorCompDocument_Result)">
+      <Parameter Name="AnchorCompanyId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetAnchorCompDocUser" ReturnType="Collection(FinocartModel.proc_GetAnchorCompDocUser_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="FileName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetAnchorCompListing" ReturnType="Collection(FinocartModel.Proc_GetAnchorCompListing_Result)">
+      <Parameter Name="Page" Mode="In" Type="String" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Company_ID" Mode="In" Type="String" />
+      <Parameter Name="Company_name" Mode="In" Type="String" />
+      <Parameter Name="TotalAppInvAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="IsTotalCount" Mode="In" Type="Int32" />
+      <Parameter Name="TotalAwaitedInvAmt" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetAnchorCompListing1">
+      <Parameter Name="Page" Mode="In" Type="String" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Company_ID" Mode="In" Type="String" />
+      <Parameter Name="Company_name" Mode="In" Type="String" />
+      <Parameter Name="TotalAppInvAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="IsTotalCount" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetAnchorDashboardCompListing" ReturnType="Collection(FinocartModel.Proc_GetAnchorDashboardCompListing_Result)">
+      <Parameter Name="Page" Mode="In" Type="String" />
+      <Parameter Name="AnchCompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="Company_ID" Mode="In" Type="String" />
+      <Parameter Name="Company_name" Mode="In" Type="String" />
+      <Parameter Name="TotalAppInvAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="IsTotalCount" Mode="In" Type="Int32" />
+      <Parameter Name="TotalAwaitedInvAmt" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_getAnchorGraphDet" ReturnType="Collection(FinocartModel.Proc_getAnchorGraphDet_Result)">
+      <Parameter Name="SP_TYPE" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetAnchorInvoiceStatus" ReturnType="Collection(FinocartModel.proc_GetAnchorInvoiceStatus_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int64" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="Invoicetotatalamt" Mode="In" Type="String" />
+      <Parameter Name="InvoiceStatus" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetAnchorLostOppListing" ReturnType="Collection(FinocartModel.Proc_GetAnchorLostOppListing_Result)">
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="CompanyID" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetAvailableForFunding" ReturnType="Collection(FinocartModel.proc_GetAvailableForFunding_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompanyName" Mode="In" Type="String" />
+      <Parameter Name="InvoiceAmt" Mode="In" Type="String" />
+      <Parameter Name="Page" Mode="In" Type="String" />
+      <Parameter Name="vendorId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetBucketDet" ReturnType="Collection(FinocartModel.proc_GetBucketDet_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetBucketDetView" ReturnType="Collection(FinocartModel.proc_GetBucketDetView_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="BucketID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_getCompany" ReturnType="Collection(FinocartModel.proc_getCompany_Result)">
+      <Parameter Name="SPType" Mode="In" Type="String" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="pageSize" Mode="In" Type="String" />
+      <Parameter Name="skip" Mode="In" Type="String" />
+      <Parameter Name="CompanyName" Mode="In" Type="String" />
+      <Parameter Name="ContactPerson" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetContentForUser" ReturnType="Collection(FinocartModel.proc_GetContentForUser_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetCriticalVendorsListing" ReturnType="Collection(FinocartModel.Proc_GetCriticalVendorsListing_Result)">
+      <Parameter Name="Company_ID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="TotalInvAmtLimit" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetDailyReceiveinvoiceDetails" ReturnType="Collection(FinocartModel.proc_GetDailyReceiveinvoiceDetails_Result)">
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetDashboardList" ReturnType="Collection(FinocartModel.Proc_GetDashboardList_Result)">
+      <Parameter Name="Page" Mode="In" Type="String" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Company_name" Mode="In" Type="String" />
+      <Parameter Name="TotalAppInvAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetDiscountOfferedInvoiceDet" ReturnType="Collection(FinocartModel.proc_GetDiscountOfferedInvoiceDet_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompanyName" Mode="In" Type="String" />
+      <Parameter Name="InvoiceAmt" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="IsDiscountNull" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetEarningListing" ReturnType="Collection(FinocartModel.Proc_GetEarningListing_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetEmail" ReturnType="Collection(FinocartModel.proc_GetEmail_Result)">
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PROC_GetEmailIDByInvoiceId" ReturnType="Collection(FinocartModel.PROC_GetEmailIDByInvoiceId_Result)">
+      <Parameter Name="InvoiceIdString" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_getEmployeeData" ReturnType="Collection(FinocartModel.proc_getEmployeeData_Result)">
+      <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_getEmployeeData_Demo" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="Proc_getForgetPasswordEmailTemplate" ReturnType="Collection(String)">
+      <Parameter Name="LookupFor" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetFundingReqAmtListing" ReturnType="Collection(FinocartModel.Proc_GetFundingReqAmtListing_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="CompanyID" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetFundingReqListing">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetFundingReqPercentListing" ReturnType="Collection(FinocartModel.Proc_GetFundingReqPercentListing_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="CompanyID" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetInvoiceApprovalDet" ReturnType="Collection(FinocartModel.proc_GetInvoiceApprovalDet_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetInvoiceDet" ReturnType="Collection(FinocartModel.proc_GetInvoiceDet_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompanyName" Mode="In" Type="String" />
+      <Parameter Name="InvoiceStatus" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="IsDiscountNull" Mode="In" Type="Int16" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetInvoiceDetails" ReturnType="Collection(FinocartModel.proc_GetInvoiceDetails_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompanyName" Mode="In" Type="String" />
+      <Parameter Name="InvoiceStatus" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="IsDiscountNull" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetInvoiceHistory" ReturnType="Collection(FinocartModel.proc_GetInvoiceHistory_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompanyName" Mode="In" Type="String" />
+      <Parameter Name="Invoicetotatalamt" Mode="In" Type="String" />
+      <Parameter Name="InvoiceStatus" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetInvoiceJourneyHistory" ReturnType="Collection(FinocartModel.Proc_GetInvoiceJourneyHistory_Result)">
+      <Parameter Name="InvoiceId" Mode="In" Type="Int64" />
+      <Parameter Name="PageName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetInvoiceListByAmount" ReturnType="Collection(FinocartModel.Proc_GetInvoiceListByAmount_Result)">
+      <Parameter Name="vendorId" Mode="In" Type="Int64" />
+      <Parameter Name="sumAssuredAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="fundingDate" Mode="In" Type="DateTime" />
+      <Parameter Name="discount" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_getLookupDetailsByGroup" ReturnType="Collection(FinocartModel.Proc_getLookupDetailsByGroup_Result)">
+      <Parameter Name="LookupFor" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetLostOppListing" ReturnType="Collection(FinocartModel.Proc_GetLostOppListing_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="CompanyID" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetMaxAvailableVendorAmount" ReturnType="Collection(Decimal)">
+      <Parameter Name="VedorID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetNotificationDet" ReturnType="Collection(FinocartModel.proc_GetNotificationDet_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="Notification" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetPan" ReturnType="Collection(FinocartModel.proc_GetPan_Result)">
+      <Parameter Name="PanNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetPurchaseOrderDet" ReturnType="Collection(FinocartModel.proc_GetPurchaseOrderDet_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompanyName" Mode="In" Type="String" />
+      <Parameter Name="InvoiceAmt" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="IsDiscountNull" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetPurchaseOrderDetByPONumber" ReturnType="Collection(FinocartModel.proc_GetPurchaseOrderDetByPONumber_Result)">
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_getRegisterEmailTemplate" ReturnType="Collection(String)">
+      <Parameter Name="LookupFor" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetSAPConfigurationDataBasedOnKey" ReturnType="Collection(FinocartModel.Proc_GetSAPConfigurationDataBasedOnKey_Result)">
+      <Parameter Name="identificationKey" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetTodaysInvoiceDet" ReturnType="Collection(FinocartModel.proc_GetTodaysInvoiceDet_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompanyName" Mode="In" Type="String" />
+      <Parameter Name="Approvedamt" Mode="In" Type="String" />
+      <Parameter Name="InvoiceAmt" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="IsDiscountNull" Mode="In" Type="Int16" />
+      <Parameter Name="Companyname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_getUserEmailTemplate" ReturnType="Collection(String)">
+      <Parameter Name="LookupFor" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorApprovedTodayViewListing" ReturnType="Collection(FinocartModel.proc_GetVendorApprovedTodayViewListing_Result)">
+      <Parameter Name="AnchCompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorID" Mode="In" Type="Int32" />
+      <Parameter Name="BucketID" Mode="In" Type="String" />
+      <Parameter Name="TotalAppInvAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorBucketInvoiceViewListing" ReturnType="Collection(FinocartModel.proc_GetVendorBucketInvoiceViewListing_Result)">
+      <Parameter Name="AnchCompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="BucketID" Mode="In" Type="Int64" />
+      <Parameter Name="InvoiceID" Mode="In" Type="String" />
+      <Parameter Name="POID" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorBucketWiseDiscInvViewListing" ReturnType="Collection(FinocartModel.proc_GetVendorBucketWiseDiscInvViewListing_Result)">
+      <Parameter Name="AnchCompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorID" Mode="In" Type="Int32" />
+      <Parameter Name="BucketID" Mode="In" Type="String" />
+      <Parameter Name="InvoiceID" Mode="In" Type="String" />
+      <Parameter Name="POID" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorDet">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="VendorStatus" Mode="In" Type="Int32" />
+      <Parameter Name="IsDashboard" Mode="In" Type="Boolean" />
+      <Parameter Name="SearchName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetVendorDocumentDet" ReturnType="Collection(FinocartModel.Proc_GetVendorDocumentDet_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorDocUser" ReturnType="Collection(FinocartModel.proc_GetVendorDocUser_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="FileName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_getVendorGraphDet" ReturnType="Collection(FinocartModel.Proc_getVendorGraphDet_Result)">
+      <Parameter Name="SP_TYPE" Mode="In" Type="String" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorINVApprovedTodayListing" ReturnType="Collection(FinocartModel.proc_GetVendorINVApprovedTodayListing_Result)">
+      <Parameter Name="AnchCompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="TotalAppInvAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorInvAwaitedAppListing" ReturnType="Collection(FinocartModel.proc_GetVendorInvAwaitedAppListing_Result)">
+      <Parameter Name="AnchCompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="TotalAppInvAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorInvAwaitedAppViewListing" ReturnType="Collection(FinocartModel.proc_GetVendorInvAwaitedAppViewListing_Result)">
+      <Parameter Name="AnchCompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorID" Mode="In" Type="Int32" />
+      <Parameter Name="BucketID" Mode="In" Type="String" />
+      <Parameter Name="TotalAppInvAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetVendorInvoiceList" ReturnType="Collection(FinocartModel.Proc_GetVendorInvoiceList_Result)">
+      <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetVendorList" ReturnType="Collection(FinocartModel.Proc_GetVendorList_Result)">
+      <Parameter Name="CompanyID" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="CompanyName" Mode="In" Type="String" />
+      <Parameter Name="InAmount" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorPaymentDueListing" ReturnType="Collection(FinocartModel.proc_GetVendorPaymentDueListing_Result)">
+      <Parameter Name="AnchCompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="TotalAppInvAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetVendorPaymentDueViewListing" ReturnType="Collection(FinocartModel.proc_GetVendorPaymentDueViewListing_Result)">
+      <Parameter Name="AnchCompanyID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="InvoiceID" Mode="In" Type="String" />
+      <Parameter Name="InvoiceAmt" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetViewAvailableForFunding" ReturnType="Collection(FinocartModel.proc_GetViewAvailableForFunding_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompanyName" Mode="In" Type="String" />
+      <Parameter Name="Invoicetotatalamt" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="IsDiscountNull" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetViewAwaitInvoiceApproval" ReturnType="Collection(FinocartModel.proc_GetViewAwaitInvoiceApproval_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="AnchorCompanyName" Mode="In" Type="String" />
+      <Parameter Name="Invoicetotatalamt" Mode="In" Type="String" />
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="IsDiscountNull" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="proc_IfEmailIdExists" ReturnType="Collection(FinocartModel.proc_IfEmailIdExists_Result)">
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+      <Parameter Name="Type" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_InsertAnchorCompanyDoc">
+      <Parameter Name="AnchorCompanyId" Mode="In" Type="Int64" />
+      <Parameter Name="FileName" Mode="In" Type="String" />
+      <Parameter Name="DocumentTypeID" Mode="In" Type="Int64" />
+      <Parameter Name="UploadedBy" Mode="In" Type="Int64" />
+      <Parameter Name="LocalFolderFileName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_InsertErrorDetails" />
+    <FunctionImport Name="Proc_InsertInvoiceBucketDet">
+      <Parameter Name="BucketId" Mode="In" Type="Int64" />
+      <Parameter Name="BucketName" Mode="In" Type="String" />
+      <Parameter Name="BucketStatus" Mode="In" Type="Int32" />
+      <Parameter Name="Discount" Mode="In" Type="Decimal" />
+      <Parameter Name="UserId" Mode="In" Type="Int64" />
+      <Parameter Name="ValidToDate" Mode="In" Type="DateTime" />
+      <Parameter Name="InvoiceIdString" Mode="In" Type="String" />
+      <Parameter Name="InvoiceStatus" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_InsertInvoiceData" ReturnType="Collection(Int32)">
+      <Parameter Name="PONumber" Mode="In" Type="String" />
+      <Parameter Name="PODate" Mode="In" Type="DateTime" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="VendorId" Mode="In" Type="Int64" />
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int32" />
+      <Parameter Name="InvoiceAmt" Mode="In" Type="String" />
+      <Parameter Name="PaymentDueDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ApprovedAmt" Mode="In" Type="Decimal" />
+      <Parameter Name="PaymentDays" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_InsertVendorData">
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="PanNumber" Mode="In" Type="String" />
+      <Parameter Name="ContactPersonName" Mode="In" Type="String" />
+      <Parameter Name="ContactPersonDesignation" Mode="In" Type="String" />
+      <Parameter Name="EmailID" Mode="In" Type="String" />
+      <Parameter Name="ContactNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_InsertVendorDet">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="ContactNumber" Mode="In" Type="String" />
+      <Parameter Name="EmailID" Mode="In" Type="String" />
+      <Parameter Name="MaxLimit" Mode="In" Type="Int32" />
+      <Parameter Name="VendorStatus" Mode="In" Type="Int32" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="ContactPersonDesignation" Mode="In" Type="String" />
+      <Parameter Name="ContactPersonEmail" Mode="In" Type="String" />
+      <Parameter Name="ContactPersonNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PANNumber" Mode="In" Type="String" />
+      <Parameter Name="ContactPersonName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_InsertVendorDocDet">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="FileName" Mode="In" Type="String" />
+      <Parameter Name="DocumentTypeID" Mode="In" Type="Int64" />
+      <Parameter Name="UploadedBy" Mode="In" Type="Int64" />
+      <Parameter Name="LocalFolderFileName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_LoginCompany" ReturnType="Collection(FinocartModel.proc_LoginCompany_Result)">
+      <Parameter Name="Login_Id" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Flag" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_MaintinSearchHistory" ReturnType="Collection(FinocartModel.Proc_MaintinSearchHistory_Result)">
+      <Parameter Name="PageName" Mode="In" Type="String" />
+      <Parameter Name="CompanyId" Mode="In" Type="Int32" />
+      <Parameter Name="ColumnName" Mode="In" Type="String" />
+      <Parameter Name="SearchedValue" Mode="In" Type="String" />
+      <Parameter Name="MaxSearchLimit" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_MapInvoiceBucket">
+      <Parameter Name="BucketID" Mode="In" Type="Int64" />
+      <Parameter Name="InvoiceID" Mode="In" Type="Int64" />
+      <Parameter Name="InvoiceIdString" Mode="In" Type="String" />
+      <Parameter Name="BucketStatus" Mode="In" Type="Int32" />
+      <Parameter Name="BucketCreatedBy" Mode="In" Type="Int64" />
+      <Parameter Name="ReturnBucketID" Mode="In" Type="Int64" />
+      <Parameter Name="BucketName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_MarkAllReadAnchorNotifications">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_MarkAllReadNotifications">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_OutputUser" ReturnType="Collection(FinocartModel.proc_OutputUser_Result)">
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="RoleAccess" Mode="In" Type="String" />
+      <Parameter Name="CompanyID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_RegisterCompanay">
+      <Parameter Name="Company_name" Mode="In" Type="String" />
+      <Parameter Name="Login_Id" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="InterestedAs" Mode="In" Type="Int32" />
+      <Parameter Name="CompanyType" Mode="In" Type="Int32" />
+      <Parameter Name="Pan_number" Mode="In" Type="String" />
+      <Parameter Name="Contact_Title" Mode="In" Type="String" />
+      <Parameter Name="Contact_Name" Mode="In" Type="String" />
+      <Parameter Name="Contact_Designation" Mode="In" Type="String" />
+      <Parameter Name="Contact_email" Mode="In" Type="String" />
+      <Parameter Name="Contact_mobile" Mode="In" Type="String" />
+      <Parameter Name="Contact_Comments" Mode="In" Type="String" />
+      <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
+      <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+      <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+      <Parameter Name="UpdatedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_RemoveVendorRecord">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_RoleAccessDropDown" ReturnType="Collection(FinocartModel.proc_RoleAccessDropDown_Result)" />
+    <FunctionImport Name="proc_UpdateInvoice" />
+    <FunctionImport Name="proc_UpdatePassword">
+      <Parameter Name="Role" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_UpdateUser">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Designation" Mode="In" Type="String" />
+      <Parameter Name="RolesAccess" Mode="In" Type="String" />
+      <Parameter Name="UpdatedBy" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="proc_UploadVendorListing" ReturnType="Collection(FinocartModel.proc_UploadVendorListing_Result)">
+      <Parameter Name="VendorId" Mode="In" Type="String" />
+      <Parameter Name="POName" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_VendorsDropDown" ReturnType="Collection(FinocartModel.proc_VendorsDropDown_Result)">
+      <Parameter Name="CompanyID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="recievabledue" ReturnType="Collection(FinocartModel.recievabledue_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="Int64" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="Anchorid" Mode="In" Type="Int32" />
+      <Parameter Name="Anchorname" Mode="In" Type="String" />
+      <Parameter Name="TotalInvoiceAmount" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getEmployees" ReturnType="Collection(FinocartModel.sp_getEmployees_Result)" />
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FinocartModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FinocartModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SaveLogManagement">
+      <Parameter Name="ControllerName" Mode="In" Type="String" />
+      <Parameter Name="ActionName" Mode="In" Type="String" />
+      <Parameter Name="Message" Mode="In" Type="String" />
+      <Parameter Name="ErrorLine" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="UPDATEFUNDING">
+      <Parameter Name="AutoFudngId" Mode="In" Type="Int64" />
+      <Parameter Name="DiscuntRate" Mode="In" Type="Decimal" />
+      <Parameter Name="DiscuntVlidDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetFinoassistMinPaymentDate" ReturnType="Collection(DateTime)">
+      <Parameter Name="vendorId" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_GetInvoiceListByAnchor" ReturnType="Collection(FinocartModel.Proc_GetInvoiceListByAnchor_Result)">
+      <Parameter Name="vendorId" Mode="In" Type="Int64" />
+      <Parameter Name="sumAssuredAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+      <Parameter Name="fundingDate" Mode="In" Type="DateTime" />
+      <Parameter Name="discount" Mode="In" Type="Decimal" />
+      <Parameter Name="AnchorCompanyID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetMaxAvailableAmtByAnchorComp" ReturnType="Collection(Decimal)">
+      <Parameter Name="VedorID" Mode="In" Type="Int32" />
+      <Parameter Name="AnchorCompanyID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_UploadAllVendorListing" ReturnType="Collection(FinocartModel.proc_UploadAllVendorListing_Result)">
+      <Parameter Name="VendorId" Mode="In" Type="Int64" />
+      <Parameter Name="AnchorCompID" Mode="In" Type="Int64" />
+      <Parameter Name="POName" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNO" Mode="In" Type="String" />
+      <Parameter Name="Skip" Mode="In" Type="Int64" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="sortBy" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetFunding_Result">
+    <Property Type="Int64" Name="AutoFudngId" Nullable="false" />
+    <Property Type="Decimal" Name="DiscuntRate" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="DiscuntVlidDate" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="poc_getAnchorCompDropDown_Result">
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="poc_getEmployeeData_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="Salary" Nullable="true" Precision="16" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="poc_getVendorDropDown_Result">
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="Pro_GetInvoiceListAwaiteApproval_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="AnchorCompID" Nullable="false" />
+    <Property Type="String" Name="Company_name" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="TotalApprovedAmount" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="TotalInvoiceAmount" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="NOFDiscountOffrInvcs" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_AnchorCompDropDown_Result">
+    <Property Type="Int32" Name="AnchorCompID" Nullable="false" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_AnchorGetNotificationDet_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="AnchrNotificationID" Nullable="false" />
+    <Property Type="String" Name="Notifications" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+    <Property Type="Int64" Name="UserID" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_CheckAdminLogin_Result">
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PANNumber" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Role" Nullable="true" MaxLength="250" />
+    <Property Type="Boolean" Name="IsTemporaryPassword" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_CheckLogin_Result">
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsTemporaryPassword" Nullable="false" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="Int32" Name="RoleAccessID" Nullable="true" />
+    <Property Type="String" Name="RoleAccess" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="proc_CheckLoginV1_Result">
+    <Property Type="Int32" Name="VendorId" Nullable="false" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PANNumber" Nullable="true" MaxLength="25" />
+    <Property Type="Boolean" Name="IsTemporaryPassword" Nullable="false" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_CheckSuperAdminLogin_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EmailId" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsTemporaryPassword" Nullable="false" />
+    <Property Type="Boolean" Name="IsDelete" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_CheckUserLogin_Result">
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="true" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Designation" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RolesAccess" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="RoleAccessID" Nullable="true" />
+    <Property Type="Int32" Name="AccessViewID" Nullable="true" />
+    <Property Type="Int32" Name="RoleID" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="Boolean" Name="IsDelete" Nullable="true" />
+    <Property Type="String" Name="PANNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsTemporaryPassword" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_EditCompany_Result">
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="Company_name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Login_Id" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="Int32" Name="InterestedAs" Nullable="true" />
+    <Property Type="Int32" Name="CompanyType" Nullable="true" />
+    <Property Type="String" Name="Pan_number" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Contact_Title" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="Contact_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Contact_Designation" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Contact_email" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Contact_mobile" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Contact_Comments" Nullable="true" MaxLength="500" />
+    <Property Type="Decimal" Name="PercentageRate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="InvoiceLimitAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsDelete" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="String" Name="Contact_CIN" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsTemporaryPassword" Nullable="true" />
+    <Property Type="Boolean" Name="IsCritical" Nullable="true" />
+    <Property Type="Int32" Name="InvAmtLimitStatus" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_EditInvoiceApproved_Result">
+    <Property Type="Int32" Name="ApprovalID" Nullable="false" />
+    <Property Type="Decimal" Name="FromAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ToAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="ApprovedBy" Nullable="true" />
+    <Property Type="String" Name="ApprovedByName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Users" Nullable="true" />
+    <Property Type="String" Name="UsersName" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_EditUser_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Designation" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="String" Name="RolesAccess" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="RoleAccessID" Nullable="true" />
+    <Property Type="Int32" Name="AccessViewID" Nullable="true" />
+    <Property Type="String" Name="LookupValue" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Password" Nullable="true" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetAmountDiscountRatewise_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="SequenceNumber" Nullable="true" />
+    <Property Type="Int32" Name="AnchorCompID" Nullable="false" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="InvoiceCount" Nullable="true" />
+    <Property Type="Decimal" Name="AmountPaid" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Earning" Nullable="true" Precision="19" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetAmountDiscountRatewiseInPercent_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="SequenceNumber" Nullable="true" />
+    <Property Type="Int32" Name="AnchorCompID" Nullable="false" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="InvoiceCount" Nullable="true" />
+    <Property Type="Decimal" Name="AmountPaid" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Earning" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetAnchorCompDocument_Result">
+    <Property Type="Int64" Name="DocID" Nullable="false" />
+    <Property Type="String" Name="FileName" Nullable="true" />
+    <Property Type="String" Name="DocumentType" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="proc_GetAnchorCompDocUser_Result">
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="String" Name="FileName" Nullable="true" />
+    <Property Type="Int64" Name="AnchorCompanyId" Nullable="true" />
+    <Property Type="Int64" Name="DocumentTypeId" Nullable="true" />
+    <Property Type="Int32" Name="UploadedBy" Nullable="true" />
+    <Property Type="DateTime" Name="UploadedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="LocalFolderFileName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetAnchorCompListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="Company_name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Contact_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Contact_mobile" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Contact_email" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="ApprovedInv" Nullable="true" />
+    <Property Type="Int32" Name="RejectedInv" Nullable="true" />
+    <Property Type="Int32" Name="PendingInv" Nullable="true" />
+    <Property Type="Int32" Name="Location" Nullable="true" />
+    <Property Type="Int32" Name="TotalInvoice" Nullable="true" />
+    <Property Type="Decimal" Name="TotalInvoiceAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalInvoiceAppAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="PendingDiscInv" Nullable="true" />
+    <Property Type="Decimal" Name="AwaitTotalInvoiceAppAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AwaitTotalInvoiceAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetAnchorDashboardCompListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="Company_name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Contact_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Contact_mobile" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Contact_email" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="ApprovedInv" Nullable="true" />
+    <Property Type="Int32" Name="RejectedInv" Nullable="true" />
+    <Property Type="Int32" Name="PendingInv" Nullable="true" />
+    <Property Type="Int32" Name="Location" Nullable="true" />
+    <Property Type="Int32" Name="TotalInvoice" Nullable="true" />
+    <Property Type="Decimal" Name="TotalInvoiceAmount" Nullable="true" Precision="19" Scale="2" />
+    <Property Type="Decimal" Name="TotalInvoiceAppAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="PendingDiscInv" Nullable="true" />
+    <Property Type="Decimal" Name="AwaitTotalInvoiceAppAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AwaitTotalInvoiceAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_getAnchorGraphDet_Result">
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="proc_GetAnchorInvoiceStatus_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="UTRDetails" Nullable="true" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DiscountBucketBucketName" Nullable="true" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="InvoiceApprovedAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AmountPaid" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Earnings" Nullable="true" Precision="19" Scale="2" />
+    <Property Type="String" Name="DiscountDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="IPAddress" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetAnchorLostOppListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="Int32" Name="NoOfDiscInvoice" Nullable="true" />
+    <Property Type="Decimal" Name="TotalDiscAppAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalAppCount" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedDiscInvAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DiscOffPercent" Nullable="true" Precision="38" Scale="16" />
+    <Property Type="Decimal" Name="AmountPaid" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AmountEarned" Nullable="true" Precision="19" Scale="2" />
+    <Property Type="Decimal" Name="OppLostOnAmt" Nullable="true" Precision="19" Scale="2" />
+    <Property Type="Decimal" Name="PerOppLost" Nullable="true" Precision="38" Scale="15" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetAvailableForFunding_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="InvoiceNo" Nullable="true" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetBucketDet_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="SequenceNumber" Nullable="true" />
+    <Property Type="Int64" Name="BucketID" Nullable="false" />
+    <Property Type="String" Name="BucketName" Nullable="true" />
+    <Property Type="Int32" Name="TotalInvoiceCount" Nullable="true" />
+    <Property Type="Decimal" Name="TotalInvoiceAmt" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="DateTime" Name="BucketCreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ValidUptoDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="AnchorCompStatus" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="AnchorCompName" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceNo" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceAmt" Nullable="true" />
+    <Property Type="Int32" Name="ApprovedAmt" Nullable="true" />
+    <Property Type="Int32" Name="Discount" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetBucketDetView_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="SequenceNumber" Nullable="true" />
+    <Property Type="Int64" Name="BucketID" Nullable="false" />
+    <Property Type="String" Name="BucketName" Nullable="true" />
+    <Property Type="Int32" Name="TotalInvoiceCount" Nullable="true" />
+    <Property Type="Int32" Name="TotalInvoiceAmt" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="AnchorCompStatus" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="BucketCreatedDate" Nullable="true" />
+    <Property Type="Int32" Name="ValidUptoDate" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_getCompany_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="LookupKey" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="LookupValue" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="LookupFor" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="proc_GetContentForUser_Result">
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="true" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Designation" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RolesAccess" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="RoleAccessID" Nullable="true" />
+    <Property Type="Int32" Name="AccessViewID" Nullable="true" />
+    <Property Type="Int32" Name="RoleID" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="Boolean" Name="IsDelete" Nullable="true" />
+    <Property Type="String" Name="PANNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsTemporaryPassword" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetCriticalVendorsListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="Company_name" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="PercentageRate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="InvAmtLimitStatus" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="InvoiceLimitAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetDailyReceiveinvoiceDetails_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetDashboardList_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="Company_name" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="TotalInvoice" Nullable="true" />
+    <Property Type="Decimal" Name="TotalInvoiceAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetDiscountOfferedInvoiceDet_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="Days" Nullable="true" />
+    <Property Type="DateTime" Name="PaymentDueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="InvStatus" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+    <Property Type="DateTime" Name="InvoiceApprovalDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="Decimal" Name="invoicediscount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="BucketID" Nullable="false" />
+    <Property Type="DateTime" Name="BucketCreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ValidToDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="BucketName" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetEarningListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="InvoiceCount" Nullable="true" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="InvoiceApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AmountPaid" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Earning" Nullable="true" Precision="19" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetEmail_Result">
+    <Property Type="Int32" Name="IsExistEmailId" Nullable="true" />
+    <Property Type="Int32" Name="IsExistPan" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PROC_GetEmailIDByInvoiceId_Result">
+    <Property Type="Int64" Name="Column1" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="true" />
+    <Property Type="String" Name="EmailId" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="Company_ContactName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Company_name" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="ValidToDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="DiscountPercentage" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="BucketID" Nullable="false" />
+    <Property Type="String" Name="BucketName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_getEmployeeData_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="Salary" Nullable="true" Precision="16" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetFundingReqAmtListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="SequenceNumber" Nullable="true" />
+    <Property Type="Int32" Name="AnchorCompID" Nullable="false" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="RejectedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="PendingAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Total" Nullable="true" Precision="20" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetFundingReqPercentListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="SequenceNumber" Nullable="true" />
+    <Property Type="Int32" Name="AnchorCompID" Nullable="false" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="RejectedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="PendingAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetInvoiceApprovalDet_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="ApprovalID" Nullable="false" />
+    <Property Type="Decimal" Name="FromAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ToAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="ApprovedBy" Nullable="true" />
+    <Property Type="String" Name="ApprovedByName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Users" Nullable="true" />
+    <Property Type="String" Name="UsersName" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetInvoiceDet_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="Days" Nullable="true" />
+    <Property Type="String" Name="PaymentDueDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="InvStatus" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+    <Property Type="String" Name="InvoiceApprovalDate" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="Int32" Name="DiscountAmt" Nullable="true" />
+    <Property Type="Int32" Name="DisbursementAmt" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetInvoiceDetails_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="Days" Nullable="true" />
+    <Property Type="DateTime" Name="PaymentDueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="InvStatus" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+    <Property Type="DateTime" Name="InvoiceApprovalDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetInvoiceHistory_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="DiscountDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="InvoiceApprovalDate" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="DiscountAmt" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="DisbursementAmt" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Int32" Name="AmountPaid" Nullable="true" />
+    <Property Type="Int32" Name="UTRDetails" Nullable="true" />
+    <Property Type="String" Name="InvoiceStatus" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DiscountBucketBucketName" Nullable="true" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetInvoiceJourneyHistory_Result">
+    <Property Type="Int32" Name="InvoiceStatus" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="invoicestatusvalue" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Remark" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="InvoiceStatusText" Nullable="true" MaxLength="43" />
+    <Property Type="String" Name="CreatedUser" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SentToPerson" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Company_name" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="InvoiceCreatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="Int32" Name="PaymentDueDate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetInvoiceListByAmount_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="true" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="Days" Nullable="true" />
+    <Property Type="DateTime" Name="PaymentDueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="InvoiceStatus" Nullable="true" />
+    <Property Type="String" Name="InvStatus" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+    <Property Type="DateTime" Name="InvoiceApprovalDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="DiscountAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DisbursementAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_getLookupDetailsByGroup_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="LookupKey" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="LookupValue" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="LookupFor" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetLostOppListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="Int32" Name="NoOfInvoice" Nullable="true" />
+    <Property Type="Decimal" Name="TotalAppAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="NoOfDiscInvoices" Nullable="true" />
+    <Property Type="Decimal" Name="TotalDiscAppAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedInv" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DiscOffPercent" Nullable="true" Precision="38" Scale="16" />
+    <Property Type="Decimal" Name="SuccAppAmtPercent" Nullable="true" Precision="38" Scale="16" />
+    <Property Type="Decimal" Name="SuccDiscAmtPercent" Nullable="true" Precision="38" Scale="16" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetNotificationDet_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="NotificationID" Nullable="false" />
+    <Property Type="String" Name="Notifications" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+    <Property Type="Int64" Name="UserID" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetPan_Result">
+    <Property Type="Int32" Name="IsExistPan" Nullable="true" />
+    <Property Type="Int32" Name="IsExistEmailId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_GetPurchaseOrderDet_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="Days" Nullable="true" />
+    <Property Type="DateTime" Name="PaymentDueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="InvStatus" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+    <Property Type="DateTime" Name="InvoiceApprovalDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="Decimal" Name="invoicediscount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="BucketID" Nullable="false" />
+    <Property Type="DateTime" Name="BucketCreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ValidToDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="BucketName" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetPurchaseOrderDetByPONumber_Result">
+    <Property Type="Int32" Name="NoOfInvoices" Nullable="true" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="TotalInvoiceAmount" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="false" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetSAPConfigurationDataBasedOnKey_Result">
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="String" Name="AppServerHost" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="ClientID" Nullable="true" />
+    <Property Type="Int32" Name="SystemNumber" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Language" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IdentificationName" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="proc_GetTodaysInvoiceDet_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="Days" Nullable="true" />
+    <Property Type="String" Name="PaymentDueDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="InvStatus" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+    <Property Type="String" Name="InvoiceApprovalDate" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="Decimal" Name="invoicediscount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="BucketID" Nullable="false" />
+    <Property Type="String" Name="BucketCreatedDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ValidToDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="BucketName" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetVendorApprovedTodayViewListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="BucketID" Nullable="false" />
+    <Property Type="String" Name="BucketName" Nullable="true" />
+    <Property Type="Int32" Name="VendorID" Nullable="true" />
+    <Property Type="Int32" Name="TotalInvoiceCount" Nullable="true" />
+    <Property Type="Decimal" Name="TotalApprovedAmt" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="DateTime" Name="DiscOfferedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="TotalDisbAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Earning" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetVendorBucketInvoiceViewListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="String" Name="POID" Nullable="true" />
+    <Property Type="String" Name="InvoiceID" Nullable="true" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="InvoiceCreationDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="DiscountOfferedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="PaymentDueDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="DiscountValidUpto" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetVendorBucketWiseDiscInvViewListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="InvoiceCreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DiscountRate" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="DiscountOfferedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="PaymentDueDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="PayableAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Earning" Nullable="true" Precision="19" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetVendorDocumentDet_Result">
+    <Property Type="Int64" Name="DocID" Nullable="false" />
+    <Property Type="String" Name="FileName" Nullable="true" />
+    <Property Type="String" Name="DocumentType" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="proc_GetVendorDocUser_Result">
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="String" Name="FileName" Nullable="true" />
+    <Property Type="Int64" Name="VendorID" Nullable="true" />
+    <Property Type="Int64" Name="DocumentTypeId" Nullable="true" />
+    <Property Type="Int32" Name="UploadedBy" Nullable="true" />
+    <Property Type="DateTime" Name="UploadedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="LocalFolderFileName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_getVendorGraphDet_Result">
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="proc_GetVendorINVApprovedTodayListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="VendorID" Nullable="false" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="TotalDiscAppToday" Nullable="true" />
+    <Property Type="Decimal" Name="TotalApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalDisbAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Earning" Nullable="true" Precision="19" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetVendorInvAwaitedAppListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="VendorID" Nullable="false" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="TotalInvoiceCount" Nullable="true" />
+    <Property Type="Decimal" Name="TotalApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetVendorInvAwaitedAppViewListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="BucketID" Nullable="false" />
+    <Property Type="String" Name="BucketName" Nullable="true" />
+    <Property Type="Int32" Name="VendorID" Nullable="true" />
+    <Property Type="Int32" Name="TotalInvoiceCount" Nullable="true" />
+    <Property Type="Decimal" Name="TotalApprovedAmt" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="DateTime" Name="DiscOfferedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="DiscValidUpto" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetVendorInvoiceList_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="PODate" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="INVStatus" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="PaymentDueDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetVendorList_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="VendorId" Nullable="false" />
+    <Property Type="String" Name="Company_name" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Contact_mobile" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Contact_email" Nullable="true" MaxLength="150" />
+    <Property Type="Decimal" Name="InvoiceLimitAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="InvAmtLimitStatus" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetVendorPaymentDueListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="VendorID" Nullable="false" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="NoOfInvoices" Nullable="true" />
+    <Property Type="Decimal" Name="TotalInvoiceAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalInvoiceAppAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="AmountPaymenttoday" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Earning" Nullable="true" Precision="19" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetVendorPaymentDueViewListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="SequenceNumber" Nullable="true" />
+    <Property Type="Int32" Name="VendorID" Nullable="true" />
+    <Property Type="String" Name="POID" Nullable="true" />
+    <Property Type="String" Name="InvoiceID" Nullable="true" />
+    <Property Type="DateTime" Name="InvoiceDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Earning" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="NetPayableAmt" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetViewAvailableForFunding_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="Days" Nullable="true" />
+    <Property Type="String" Name="PaymentDueDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="InvStatus" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+    <Property Type="String" Name="InvoiceApprovalDate" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="Int32" Name="DiscountAmt" Nullable="true" />
+    <Property Type="Int32" Name="DisbursementAmt" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_GetViewAwaitInvoiceApproval_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="SequenceNumber" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="false" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CreatedDate" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="PaymentDueDate" Nullable="true" MaxLength="30" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="InvStatus" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="BucketCreatedDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ValidUptoDate" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_IfEmailIdExists_Result">
+    <Property Type="Int32" Name="IsExistEmailId" Nullable="true" />
+    <Property Type="Int32" Name="IsExistPan" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_LoginCompany_Result">
+    <Property Type="String" Name="Login_ID" Nullable="true" MaxLength="70" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="Proc_MaintinSearchHistory_Result">
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="String" Name="SearchKeyValue" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_OutputUser_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Designation" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="String" Name="RolesAccess" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="RoleAccessID" Nullable="true" />
+    <Property Type="Int32" Name="AccessViewID" Nullable="true" />
+    <Property Type="String" Name="LookupValue" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Password" Nullable="true" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_RoleAccessDropDown_Result">
+    <Property Type="Int32" Name="RoleAccessID" Nullable="false" />
+    <Property Type="String" Name="Permission" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="proc_UploadVendorListing_Result">
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="PODate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="InvoiceAmt" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="PaymentDueDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ApprovedAmt" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="InvoiceStatus" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_VendorsDropDown_Result">
+    <Property Type="Int32" Name="CompanyID" Nullable="false" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="recievabledue_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int32" Name="AnchorID" Nullable="true" />
+    <Property Type="String" Name="Anchorname" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="NoOfInvoices" Nullable="true" />
+    <Property Type="Decimal" Name="TotalInvoiceAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="AmountReceiabletoday" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getEmployees_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LastName" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="Salary" Nullable="true" Precision="16" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Proc_GetInvoiceListByAnchor_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="Int64" Name="InvoiceID" Nullable="true" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="AnchorCompName" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int64" Name="Days" Nullable="true" />
+    <Property Type="DateTime" Name="PaymentDueDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="RejectionReason" Nullable="true" />
+    <Property Type="Decimal" Name="ApprovedAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="InvoiceStatus" Nullable="true" />
+    <Property Type="String" Name="InvStatus" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+    <Property Type="DateTime" Name="InvoiceApprovalDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="DiscountAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DisbursementAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_UploadAllVendorListing_Result">
+    <Property Type="Int64" Name="Row" Nullable="true" />
+    <Property Type="String" Name="PONumber" Nullable="true" />
+    <Property Type="String" Name="PODate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="InvoiceAmt" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="PaymentDueDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="ApprovedAmt" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="InvoiceStatus" Nullable="true" />
+    <Property Type="Int32" Name="InvoiceApprovePayDays" Nullable="true" />
+    <Property Type="Int32" Name="TotalRecord" Nullable="true" />
+    <Property Type="Int32" Name="FilteredRecord" Nullable="true" />
+  </ComplexType>
+</Schema>

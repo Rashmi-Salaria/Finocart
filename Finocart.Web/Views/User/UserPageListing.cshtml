@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Finocart.Model.RolesAccessMaster>
+
+@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    var GetUserList = '@Url.Action("GetUserList", "User")';
+    var AddUser = '@Url.Action("AddUser", "User")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12"><label style="font-size:20px;">Internal User Management</label></div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="search-box-main clearfix">
+
+                    <div class="col-xs-12 col-sm-2 col-md-2 padding">
+                        <button id="btnAddNew" class="adduserbutton">
+                            <img src="~/Content/images/plusicon.png" class="img-responsive" style="display: inline;" />Add user
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_UserName", null, new { placeholder = "Search by Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        @Html.TextBox("txt_RoleAccess", null, new { placeholder = "Search by RoleAcess", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        <button id="btnFilter" class="filterbtn" style="margin-right:15px;">
+                            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="table-icons" style="display:none;">
+                    <ul>
+                        <li><a href="@Url.Action("ExportUsersData", "User")"><i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="Export To Excel"></i></a></li>
+                        <li><a href="#"><img src="~/Content/images/mrge.png" class="img-responsive" data-toggle="modal" data-target="#mergeline" id="BtnMerge" data-toggle="tooltip" title="Merge Tool" /></a></li>
+                        <li><a href="#"><img src="~/Content/images/split.png" class="img-responsive" data-toggle="modal" data-target="#sliptrows" id="BtnSplitNew" data-toggle="tooltip" title="Split Tool" /></a></li>
+                    </ul>
+                </div>
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="tbl_UserList" class="table table-responsive table-hover table-bordered tbl_UserList custom-table">
+                            <thead>
+                                <tr>
+                                    <th style="display:none">User ID</th>
+                                    <th style="width:10%">Name</th>
+                                    <th style="width:13%">Email</th>
+                                    <th style="width:12%">Mobile Number</th>
+                                    <th style="width:10%">Designation</th>
+                                    <th style="width:20%">Role Access</th>
+                                    <th style="width:20%">Role</th>
+                                    <th style="width:11%">Created At</th>
+                                    <th style="width:10%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/User/UserListing.js"></script>
+
+<script type="text/javascript">
+    
+    var AddResult = '@(TempData["AddResult"])';
+    var UpdateResult = '@(TempData["UpdateResult"])';
+    var UpdateResult1 = '@ViewBag.UpdateResult';
+    var DeleteResult = '@(TempData["DeleteResult"])';
+   
+    if (AddResult == 1) {
+        alert("New User Added Successfully.Email Notification have been sent with Company ID and Registration Llink Using which User will able to Register with Portal and Set Password for Future Portal Usage");
+        //Common.SuccessNotify();
+    }
+    if (UpdateResult == 1) {
+        alert("User record updated Successfully")
+        //Common.CustomSuccessNotify("User record updated");
+    }
+    if (DeleteResult == 1) {
+        Common.CustomSuccessNotify("User record deleted");
+    }
+    
+
+</script>
+
+
+

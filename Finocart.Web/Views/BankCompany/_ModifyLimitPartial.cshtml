@@ -1,0 +1,561 @@
+﻿@*@model Finocart.CustomModel.SetBankAmountLimit*@
+@model Tuple<Finocart.CustomModel.SetBankAmountLimit, IEnumerable<Finocart.CustomModel.BankDocumnet>, IEnumerable<Finocart.Model.LookupDetails>>
+@{
+
+    ViewData["Title"] = "ModifyLimit";
+}
+
+<script>
+    var CheckFromToDate = '@Url.Action("CheckFromToDate", "BankCompany")';
+</script>
+<div class="main-inner-section">
+    @using (Html.BeginForm("BankModifyLimit", "BankCompany", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitRegister" }))
+    {
+        <div class="content-upper-section">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="main-heads">
+                        <button type="button" class="close new-close" data-dismiss="modal">×</button>
+                        <h2>@ViewBag.AnchorName</h2>
+                    </div>
+                    <div style="display:none" id="divsuccess">@TempData["success"]</div>
+
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-content-box page-scroll">
+                        <div class="registration-form">
+                            <div class="row">
+                                @Html.Hidden("PageName", Model.Item1.PageName)
+                                @Html.Hidden("Id", Model.Item1.Id)
+                                @Html.Hidden("Anchor_id", Model.Item1.Anchor_id)
+                                @Html.Hidden("AnchorEmail", Model.Item1.AnchorEmail)
+                                @Html.Hidden("ModifiedUserName", Model.Item1.ModifiedUserName)
+                                @Html.Hidden("Anchor_Name", Model.Item1.Anchor_Name)
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Available Limit: <span style="color:red;">*</span></label>
+                                    @Html.TextBox("Available_Limits", Model.Item1.Available_Limits, new { @class = "form-control", @placeholder = "Available Limit", @maxLength = "250", autocomplete = "off", @id = "AvailableLimits", type = "number" })
+                                    @*@Html.TextBoxFor(m => m.Item1.Available_Limits, new { @class = "form-control", @placeholder = "Available Limit", @maxLength = "250", autocomplete = "off", @id = "AvailableLimits", type = "number" })*@
+                                    <label id="lblAvailabeLimit" class="cls-error" style="color:red;display:none">Enter Limit</label>
+                                </div>
+                                @* <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Modified Limit:</label>
+                                    @Html.TextBoxFor(m => m.Utilized_Limits, new { @class = "form-control", @placeholder = "Enter Modified Limit", @maxLength = "250", autocomplete = "off", @id = "UtilizedLimits", type = "number" })
+                                    <label id="lblModifyLimit" class="cls-error" style="color:red;display:none">Enter Modified Limit</label>
+
+                                                        </div>*@
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Set Interest Rate(1 To 100):</label>
+                                    @Html.TextBox("Interest_rate", Model.Item1.Interest_rate, new { @class = "form-control col-sm-3", @placeholder = "Enter Interest Rate", @maxLength = "5", oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", autocomplete = "off", @id = "Interestrate", type = "number", max = "100", min = "0" })
+                                    @*@Html.TextBoxFor(m => m.Item1.Interest_rate, new { @class = "form-control col-sm-3", @placeholder = "Enter Interest Rate", @maxLength = "250", autocomplete = "off", @id = "Interestrate", type = "number", oninput = "validity.valid||(value='')", max = "100", min = "0" })*@
+                                    @*<label>For</label>
+                                        @Html.TextBoxFor(m => m.Interest_rate_month, new { @class = "form-control col-sm-3", @placeholder = "Enter Interest Rate", @maxLength = "250", autocomplete = "off", @id = "Interestratemonth", type = "number", oninput = "validity.valid||(value='')", max = "12", min = "1" })*@
+
+
+                                    <label id="lblIntresrRateError" class="cls-error" style="color:red;display:none">Enter the below 100 Interest Rate</label>
+                                </div>
+                            </div>
+                            <div class="row">
+
+
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Interest Validity From Date: <span style="color:red;">*</span></label>
+                                    @Html.TextBox("ValidityFromto", Model.Item1.ValidityFromto, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Validity From Date*", @maxLength = "10", autocomplete = "off", @id = "Validitydate", type = "text" })
+                                    @*@Html.TextBoxFor(m => m.Item1.ValidityFromto, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Validity From Date*", @maxLength = "10", autocomplete = "off", @id = "Validitydate", type = "text" })*@
+                                    <span class="" style="border: 1px solid #dadbdc;padding: 10px;border-left: 0;display:none">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
+                                    <label id="lblValidDateErrorFrom" class="cls-error" style="color:red;display:none">Enter From Valid  Date</label>
+
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Interest Validity Upto: <span style="color:red;">*</span></label>
+                                    @Html.TextBox("Validity_upto", Model.Item1.Validity_upto, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Date", @maxLength = "10", autocomplete = "off", @id = "Validitydate1", type = "text" })
+                                    @*@Html.TextBoxFor(m => m.Item1.Validity_upto, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Date", @maxLength = "10", autocomplete = "off", @id = "Validitydate1", type = "text" })*@
+                                    <span class="" style="border: 1px solid #dadbdc;padding: 10px;border-left: 0;display:none">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
+                                    <label id="lblValidDateErrorTo" class="cls-error" style="color:red;display:none">Enter To Valid  Date</label>
+
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Select Value: <span style="color:red;">*</span></label>
+                                    @*@Html.DropDownList("ODBD", Model.Item1.ODBD, "Select Value", new { @class = "form-control", @id = "OD_BD" })*@
+                                    <select id="ddl_ODBD" class="form-control" type="button" data-toggle="dropdown">
+                                        <option value='Select Value'>Select Value</option>
+                                        @foreach (var item in Model.Item3)
+                                        {
+                                            <option value='@item.LookupValue'>@item.LookupValue</option>
+                                        }
+                                    </select>
+                                    @Html.Hidden("ODBD", Model.Item1.ODBD)
+                                    @*@Html.DropDownListFor(m => m.Item1.ODBD, new SelectList(ViewBag.ODBD), "Select Value", new { @class = "form-control", @id = "OD_BD" })*@
+                                    <span class="" style="border: 1px solid #dadbdc;padding: 10px;border-left: 0;display:none">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
+                                    <label id="lblSelValue" class="cls-error" style="color:red;display:none">Select Value</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Number of Days Required for Approval: <span style="color:red;">*</span></label>
+                                    @*@Html.DropDownList("NumberOfDays", new SelectList(ViewBag.ApprovalDays, "Id", "NoOfDays"), "Number of Days Required for Approval", new { @class = "form-control", @id = "Number_Of_Days" })*@
+                                    @Html.TextBox("NumberOfDays", Model.Item1.NumberOfDays, new { @class = "form-control", @id = "Number_Of_Days" })
+                                    @*@Html.DropDownListFor(m => m.Item1.NumberOfDays, new SelectList(ViewBag.ApprovalDays, "Id", "NoOfDays"), "Number of Days Required for Approval", new { @class = "form-control", @id = "Number_Of_Days" })*@
+                                    <label id="lblDaysError" class="cls-error" style="color:red;display:none">Enter Days</label>
+                                </div>
+                                @*<div class="col-xs-12 col-sm-6">
+                                        <label class="control-label">Additional Document Required (if Any):</label>
+                                        @Html.TextBoxFor(m => m.Additional_document, new { @class = "form-control", @placeholder = "Enter Additional document", @maxLength = "250", autocomplete = "off", @id = "Additionaldocument" })
+                                        <label id="lblDocumnet" class="cls-error" style="color:red;display:none"></label>
+                                        @Html.DropDownListFor(m=>m.Additional_document, new SelectList(""), new { @class = "form-control", @id = "ddldocumentdetail",multiple = "multiple" })
+                                    </div>*@
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <label class="control-label">Comments, if any:</label>
+                                    @Html.TextBox("Comment", Model.Item1.Comment, new { @class = "form-control", @placeholder = "Enter Comments", @maxLength = "250", autocomplete = "off" })
+                                    @*@Html.TextBoxFor(m => m.Item1.Comment, new { @class = "form-control", @placeholder = "Enter Comments", @maxLength = "250", autocomplete = "off" })*@
+                                    <label id="lblCIN" class="cls-error"></label>
+                                </div>
+                                @if (ViewBag.KYCStatus != "Approved")
+                                {
+                                    if (Model.Item1.KYCStatus != 1)
+                                    {
+                                        <div class="col-xs-12 col-sm-6">
+                                            <label class="btn btn-success" id="btnAdditionaldoc" style="margin-top:23px;height: 50px;padding-top: 15px;">Need Additional Document</label>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                            @if (ViewBag.KYCStatus != "Approved")
+                            {
+                                <div class="row">
+                                    <table class="tbll">
+                                        @if (Model.Item1.Id == 0 && Model.Item1.KYCStatus != 1)
+                                        {
+                                            <tr class="cloneme clsDocList">
+                                                <td>
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <input type="hidden" name="DocumentType_ID" value="0" />
+                                                        @*<label class="control-label">Document Name</label>*@
+                                                        @*@Html.TextBoxFor(m => Model.Item1.Additional_document, new { @class = "form-control clsDocName", @placeholder = "Enter Document Name", @maxLength = "250", autocomplete = "off", @style = "width: 546px;" })*@
+                                                        <input type="text" name="Document_Name" class="form-control clsDocName" placeholder="Enter Document Name" maxLength="250" autocomplete="off" style="width: 546px;" />
+                                                        @*<label id="lblDocname" class="cls-error"></label>*@
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        @*<label class="control-label">Document Name</label>*@
+                                                        @*@Html.TextBoxFor(m => m.Item2.ElementAt(i).Document_Description, new { @class = "form-control clsDocDesc", @placeholder = "Enter Document Description", @maxLength = "250", autocomplete = "off", @style = "width: 490px;" })*@
+                                                        <input type="text" name="Document_Description" class="form-control clsDocDesc" placeholder="Enter Document Description" maxLength="250" autocomplete="off" style="width: 490px;" />
+                                                        @*<label id="lblDocdescription" class="cls-error"></label>*@
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            if (Model.Item1.KYCStatus != 1)
+                                            {
+                                                for (int i = 0; i < Model.Item2.Count(); i++)
+                                                {
+
+                                                    <tr class="cloneme clsDocList">
+                                                        <td>
+                                                            <div class="col-xs-12 col-sm-6">
+                                                                @Html.HiddenFor(m => m.Item2.ElementAt(i).DocumentType_ID)
+                                                                @*<label class="control-label">Document Name</label>*@
+                                                                @Html.TextBoxFor(m => m.Item2.ElementAt(i).Document_Name, new { @class = "form-control clsDocName", @placeholder = "Enter Document Name", @maxLength = "250", autocomplete = "off", @style = "width: 546px;" })
+                                                                @*<label id="lblDocname" class="cls-error"></label>*@
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="col-xs-12 col-sm-6">
+                                                                @*<label class="control-label">Document Name</label>*@
+                                                                @Html.TextBoxFor(m => m.Item2.ElementAt(i).Document_Description, new { @class = "form-control clsDocDesc", @placeholder = "Enter Document Description", @maxLength = "250", autocomplete = "off", @style = "width: 490px;" })
+                                                                @*<label id="lblDocdescription" class="cls-error"></label>*@
+                                                            </div>
+                                                        </td>
+                                                        @if (i > 0)
+                                                        {
+                                                            <td><img src='/Content/images/delete.png' title="Delete" class='img-responsive rmv' style='padding-bottom:12px;' id="@Model.Item2.ElementAt(i).DocumentType_ID" /></td>
+                                                        }
+                                                    </tr>
+
+                                                }
+                                            }
+
+                                        }
+                                    </table>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="submit-btn" type="submit" id="btnSubmit">Submit</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <button class="cancel-btn" type="button" onclick="ClearAllControls()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    $(document).ready(function () {
+        debugger;
+        var iTotal = 1;
+
+        $("#btnAdditionaldoc").click(function () {
+            debugger;
+            if (iTotal < 100000) {
+                var $clone = $('table.tbll tr.cloneme:first').clone();
+                $clone.find("input:hidden").val('0');
+                $clone.find(':text').val('');
+
+                console.log($clone);
+                $clone.append("<td><img  src='/Content/images/delete.png' title='Delete' class='img-responsive rmv' style='padding-bottom:12px;' /></td>");
+
+                $('table.tbll').append($clone);
+
+                iTotal = iTotal + 1;
+            } else {
+                alert("Maximum 5 documents allow to upload!");
+                return false;
+
+            }
+
+        });
+
+        $('.tbll').on('click', '.rmv', function () {
+            debugger;
+            //alert("wee");
+
+            var parent = $(this);
+            var documentTypeId = this.id;
+
+            if (documentTypeId != "") {
+                if (confirm('Are you sure want delete record?')) {
+                    //$(this).closest('tr').remove();
+                    $.ajax({
+
+                        type: "POST",
+                        url: '@Url.Action("DeleteDocumentDetail", "BankCompany")?documentTypeId=' + btoa(documentTypeId),
+                        contentType: "application/json; charset=utf-8",
+                        //data: { documentTypeId: btoa(documentTypeId) },
+                        datatype: "json",
+                        async: false,
+                        success: function (data) {
+                            debugger;
+                            if (data == 1) {
+                                parent.closest('tr').remove();
+                            }
+                            else {
+                                return false;
+                            }
+
+                        },
+
+                        error: function () {
+                            alert("Dynamic content load failed.");
+                        }
+
+                    });
+                }
+            }
+            else {
+                parent.closest('tr').remove();
+            }
+        });
+        //$.ajax({
+        //    url: "/BankCompany/GetDocumentDetaillst",
+
+        //    type: "Get",
+        //    contentType: "application/json; charset=utf-8",
+        //    success: function (lstDocumentdetail) {
+        //        debugger;
+        //        $.each(lstDocumentdetail.data, function (i, documentlist) {
+        //            debugger;
+        //            $('#ddldocumentdetail').append('<option value ="' + documentlist.documentType_ID + '">' + documentlist.document_Name + '</option>');
+        //        });
+        //    },
+        //    error: function () { }
+        //});
+        var date_input = $('#Validitydate');
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var dateToday = new Date();
+        date_input.datepicker({
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            numberOfMonths: 2,
+            showButtonPanel: true,
+        })
+
+        var date_input = $('#Validitydate1');
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var dateToday = new Date();
+        date_input.datepicker({
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            numberOfMonths: 2,
+            showButtonPanel: true,
+        })
+
+        $("#AvailableLimits").keyup(function (e) {
+            if ($("#AvailableLimits").val() == 0 || $("#AvailableLimits").val() == '') {
+                $("#lblAvailabeLimit").show();
+                e.preventDefault();
+            }
+            else {
+                $("#lblAvailabeLimit").hide();
+            }
+        });
+
+        $("#UtilizedLimits").keyup(function (e) {
+            if ($("#UtilizedLimits").val() == 0 || $("#UtilizedLimits").val() == '') {
+                $("#lblModifyLimit").show();
+                e.preventDefault();
+            }
+            else {
+                $("#lblModifyLimit").hide();
+            }
+        });
+
+        $("#Interestrate").keyup(function (e) {
+            if ($("#Interestrate").val() == 0 || $("#Interestrate").val() == '') {
+                $("#lblIntresrRateError").show();
+                e.preventDefault();
+            }
+            else {
+                $("#lblIntresrRateError").hide();
+            }
+        });
+
+        //$("#Interestratemonth").keyup(function () {
+        //    if ($("#Interestratemonth").val() == 0 || $("#Interestratemonth").val() == '') {
+        //        $("#lblIntresrRateError").show();
+        //        e.preventDefault();
+        //    }
+        //    else {
+        //        $("#lblIntresrRateError").hide();
+        //    }
+        //});
+
+
+        $("#Validitydate").keyup(function (e) {
+            if ($("#Validitydate").val() == 0 || $("#ValidityFromto").val() == '' || $("#ValidityFromto").val() == '1/1/0001 12:00:00 AM') {
+                $("#lblValidDateErrorFrom").show();
+                e.preventDefault();
+            }
+            else {
+                $("#lblValidDateErrorFrom").hide();
+            }
+        });
+
+        $("#Validitydate1").keyup(function (e) {
+            if ($("#Validitydate1").val() == 0 || $("#Validityupto").val() == '' || $("#Validityupto").val() == '1/1/0001 12:00:00 AM') {
+                $("#lblValidDateErrorTo").show();
+                e.preventDefault();
+            }
+            else {
+                $("#lblValidDateErrorTo").hide();
+            }
+        });
+
+
+        $("#Number_Of_Days").change(function () {
+            if ($("#Number_Of_Days").val() == "Number of Days Required for Approval" || $("#Number_Of_Days").val() == '') {
+                $("#lblDaysError").show();
+                e.preventDefault();
+            }
+            else {
+                $("#lblDaysError").hide();
+            }
+        });
+
+        $('#btnSubmit').click(function (e) {
+            var errormsg = false;
+            if ($("#AvailableLimits").val() == 0 || $("#AvailableLimits").val() == '') {
+                $("#lblAvailabeLimit").show();
+                e.preventDefault();
+                errormsg = true;
+            }
+            else {
+                $("#lblAvailabeLimit").hide();
+            }
+
+            if ($("#UtilizedLimits").val() == 0 || $("#UtilizedLimits").val() == '') {
+                $("#lblModifyLimit").show();
+                e.preventDefault();
+                errormsg = true;
+            }
+            else {
+                $("#lblModifyLimit").hide();
+            }
+
+
+            if ($("#Interestrate").val() == 0 || $("#Interestrate").val() == '') {
+                $("#lblIntresrRateError").show();
+                e.preventDefault();
+                errormsg = true;
+            }
+            else {
+                $("#lblIntresrRateError").hide();
+            }
+
+            if ($("#OD_BD").val() == 0 || $("#OD_BD").val() == '') {
+                $("#lblSelValue").show();
+                e.preventDefault();
+                errormsg = true;
+            }
+            else {
+                $("#lblSelValue").hide();
+            }
+
+            if ($("#Interestratemonth").val() == 0 || $("#Interestratemonth").val() == '') {
+                $("#lblIntresrRateError").show();
+                e.preventDefault();
+                errormsg = true;
+            }
+            else {
+                $("#lblIntresrRateError").hide();
+            }
+
+            if ($("#Validitydate1").val() == 0 || $("#Validitydate1").val() == '' || $("#Validitydate1").val() == '1/1/0001 12:00:00 AM') {
+                $("#lblValidDateErrorFrom").show();
+                e.preventDefault();
+                errormsg = true;
+            }
+            else {
+                $("#lblValidDateErrorFrom").hide();
+            }
+
+            if ($("#Validitydate").val() == 0 || $("#Validitydate").val() == '' || $("#Validitydate").val() == '1/1/0001 12:00:00 AM') {
+                $("#lblValidDateErrorTo").show();
+                e.preventDefault();
+                errormsg = true;
+            }
+            else {
+                $("#lblValidDateErrorTo").hide();
+            }
+
+            if ($("#Number_Of_Days").val() == "Number of Days Required for Approval" || $("#Number_Of_Days").val() == '') {
+                $("#lblDaysError").show();
+                e.preventDefault();
+                errormsg = true;
+            }
+            else {
+                $("#lblDaysError").hide();
+            }
+            debugger;
+            var doclist = $('.clsDocList').length;
+            var docName = $('.clsDocName').val();
+            var docDesc = $('.clsDocDesc').val();
+            var textList = [];
+
+            debugger;
+
+            $(".clsDocList").each(function () {
+                var row = $(this);
+                var textDocName = $(this).find("td").eq(0).find(":text").val();
+                var txtDocDesc = $(this).find("td").eq(1).find(":text").val();
+                if (row.children('td').length > 0) {
+
+                    textList.push(textDocName + '|' + txtDocDesc);
+
+                    //textList.push(textDocName , txtDocDesc);
+                }
+                // alert("Document Name : " + textDocName + "; Document Desc :" + txtDocDesc);
+
+            });
+
+            if (errormsg == true) {
+                return false;
+            }
+            //var myList = getFirstCellTextList($('.clsDocList'));
+            //alert(myList);
+
+            //var row = $(this);
+            //if (row.children('td').length > 0) {
+            //    textList.push(row.children('td').eq(0).text());
+            //}
+
+            //$.each(this.cells, function () {
+            //    debugger;
+            //    alert($(this).find(".clsDocName").val());
+            //});
+            //return textList;
+
+
+
+            $.ajax({
+                type: "get",
+                url: CheckFromToDate,
+                data: { fromDate: $('#Validitydate').val(), toDate: $('#Validitydate1').val(), anchorCompId: $("#Anchor_id").val(), setLimitId: $("#Id").val(), lstDocumentData: JSON.stringify(textList) },
+                //data: JSON.stringify({
+                //    "fromDate": $('#Validitydate').val(), toDate: $('#Validitydate1').val(), anchorCompId: $("#Anchor_id").val(), setLimitId: $("#Id").val(), lstDocumentData: ingify(textList)
+                //}),
+                contentType: 'application/json; charset=utf-8',
+                async: false,
+                success: function (data) {
+                    debugger;
+                    if (data > 0) {
+                        alert('There is an active set limit assigned to the user. Please select another date range.')
+                        //window.location.reload();
+                        e.preventDefault();
+
+                    }
+                    else {
+                        alert("Record saved successfully");
+                    }
+
+                },
+                error: function () {
+                    alert("Error occured!!")
+                }
+            });
+
+        });
+
+        if ($('#divsuccess').html() == 'success') {
+            $('input[type="text"]').val('');
+            $('#Contact_Comments').val('');
+            alert("Your sucessfully registers an Email have been send to your Mail Id");
+            $('#divsuccess').html('');
+
+        }
+
+        //var ODBD = $("#ODBD").val().toUpperCase();
+        //if (ODBD == "OD") {
+        $("#ddl_ODBD option").filter(function () {
+            return $(this).val() == $("input[name=ODBD]").val();
+        }).prop('selected', true);
+        //}
+        //else if (ODBD == "BD") {
+        //    $("#ddl_ODBD option").filter(function () {
+        //        return $(this).val() == $("input[name=ODBD]").val();
+        //    }).prop('selected', true);
+        //}
+
+        $("#ddl_ODBD").change(function () {
+            $("#ODBD").val($(this).val());
+        });
+
+    });
+
+    function ClearAllControls() {
+        $('#myModalContent').html('');
+        $('#myModal').modal('hide');
+    }
+
+</script>
+

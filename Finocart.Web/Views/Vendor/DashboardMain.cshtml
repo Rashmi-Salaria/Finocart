@@ -1,0 +1,592 @@
+﻿@{
+    ViewData["Title"] = "DashboardMain";
+}
+@{
+
+    var data = ViewBag.DiscuntRate;
+}
+<style>
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 50px;
+        bottom: 0;
+        background-color: limegreen;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 17px;
+            width: 17px;
+            border-radius: 50px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #ff4b4b;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #ff4b4b;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    .charts-section .charts-title {
+        position: relative;
+        overflow: hidden;
+        background-color: #454545;
+        padding: 13px 10px 10px 10px;
+        border: 1px solid #ececec;
+        border-bottom: 1px solid #a2a2a2;
+        width: 100%;
+    }
+
+    .charts-title .form-control-graph {
+        /*width: 130px;*/
+        padding: 4px;
+        font-size: 14px;
+        color: #ffffff;
+        margin-left: 5px;
+        background-color: #a2a2a2;
+        outline: none;
+        border: 1px solid #fff;
+        height: 30px;
+        line-height: 36px;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+
+    .charts-section .charts-title h5 {
+        display: table;
+        float: left;
+        margin: 0;
+        line-height: 2;
+        color: #ffffff;
+        text-transform: capitalize;
+        font-weight: 600;
+    }
+
+    .charts-section .chart-div {
+        height: 315px;
+        text-align: center;
+        border: 1px solid #ececec;
+        font-weight: bold;
+        background-color: #454545;
+        color: #ffffff;
+        padding-top: 15px;
+        border-top: 0;
+        width: 100%;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+    /*.charts-section {
+        padding-right: 10px;
+    }
+
+        .charts-section + div {
+            padding-left: 10px;
+        }
+
+        .charts-section .charts-title {
+            position: relative;
+            overflow: hidden;
+            /*background-color: #454545;*/
+            padding: 13px 10px 10px 10px;
+            border: 1px solid #ececec;
+            /*border-bottom: 1px solid #a2a2a2;*/
+            border-bottom: 0px solid #a2a2a2;
+            width: 100%;
+            background-color: #194466;
+        }
+
+    .charts-title .form-control-graph {
+        /*width: 130px;*/
+        padding: 4px;
+        /*font-size: 14px;*/
+        color: #ffffff;
+        margin-left: 5px;
+        /*background-color: #a2a2a2;*/
+        outline: none;
+        /*border: 1px solid #fff;*/
+        height: 30px;
+        line-height: 36px;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        font-size: 10px;
+        text-transform: uppercase;
+        background-color: #194466;
+        border: 0px solid #fff;
+        letter-spacing: 1px;
+        width: 180px;
+    }
+
+    .charts-section .charts-title h5 {
+        display: table;
+        float: left;
+        margin: 0;
+        line-height: 2;
+        color: #ffffff;
+        /*text-transform: capitalize;*/
+        /*font-weight: 600;*/
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .charts-section .chart-div {
+        /*height: 315px;*/
+        text-align: center;
+        border: 1px solid #ececec;
+        font-weight: bold;
+        /*background-color: #454545;*/
+        color: #ffffff;
+        padding-top: 15px;
+        border-top: 0;
+        width: 100%;
+        /*margin-bottom: 20px;*/
+        overflow: hidden;
+        background-color: #194466;
+        height: 388px;
+    }
+
+    .hide_column {
+        display: none;
+    }
+</style>
+
+<script>
+    var GetDashboardlist = '@Url.Action("GetDashboardlist", "VendorDashboard")';
+</script>
+<script src="~/Scripts/fusioncharts.js"></script>
+<script src="~/Scripts/fusioncharts.theme.fusion.js"></script>
+<script type="text/javascript"
+        src="https://rawgit.com/fusioncharts/fusioncharts-jquery-plugin/develop/dist/fusioncharts.jqueryplugin.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="~/Vendor/FinoAssist.js"></script>
+<script src="~/Vendor/VendorDashboard.js"></script>
+<script src="~/Vendor/VendorDashboardGraph.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<script>
+    var GetAnchorCompListByVendorID = '@Url.Action("GetAnchorCompListByVendorID", "Vendor")';
+    var GetDiscAnchorCompListByVendorID = '@Url.Action("GetDiscAnchorCompListByVendorID", "Vendor")';
+    var GetEligibleInvoicesList = '@Url.Action("GetEligibleInvoicesList", "Vendor")';
+    var GetLastSearchhistory = '@Url.Action("GetLastSearchhistory", "Invoice")';
+    var InsertbucketDetails = '@Url.Action("InsertBucketDetails", "Vendor")';
+    var GetDiscountOfferedInvList = '@Url.Action("GetDiscountOfferedInvList", "Vendor")';
+    var GetInvoicesListByAmount = '@Url.Action("GetInvoicesListByAmount", "Vendor")';
+    var GetBucketList = '@Url.Action("getBucketList", "BucketManagement")';
+    var GetInvoicesByAmount = '@Url.Action("GetInvoicesByAmount", "Vendor")';
+    var InsertbucketDetails = '@Url.Action("InsertBucketDetails", "Vendor")';
+    var MaxAvailableAmount = '@Url.Action("GetMaximumAvailAmtForAnchComp", "Vendor")';
+    var GetMaximumAvailAmtByAmount = '@Url.Action("GetMaximumAvailAmtByAmount", "Vendor")';
+    var GetMinFundPaymentDate = '@Url.Action("GetMinFundPaymentDate", "Vendor")';
+</script>
+<h4 style="font-size:15px;font-weight:bold;">Dashboard</h4>
+<div class="row">
+    <div class="top-boxes clearfix">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <a href="#" onclick="location.href='@Url.Action("Availableforfunding","Vendor")'">
+                <div class="box4">
+                    <h4 style="font-size:20px !important;">
+                        <img src="~/Content/images/box-4.png" class="img-responsive" />
+                        <p>Available for funding today</p>
+                    </h4>
+                    <h4>INR @TempData["AVAILABLEFORFUNDINGTODAY"]</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <a href="#" onclick="location.href='@Url.Action("InvoicesAwaitedApprovals","VendorDashboard")'">
+                <div class="box2">
+                    <h4 style="font-size:20px !important;">
+                        <img src="~/Content/images/box-2.png" class="img-responsive" />
+                        <p>Awaited Approval</p>
+                    </h4>
+                    <h4>INR @TempData["AWAITEDAPPROVALININR"]</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <a href="#" onclick="location.href='@Url.Action("InvoiceListBytodaysdate","Vendor")'">
+                <div class="box3">
+                    <h4 style="font-size:20px !important;">
+                        <img src="~/Content/images/box-3.png" class="img-responsive" />
+                        <p>Amount Approved today</p>
+                    </h4>
+                    <h4>INR @TempData["AMOUNTAPPROVEDTODAYININR"]</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <a href="#" onclick="location.href='@Url.Action("GetReceivableDue","Vendor")'">
+                <div class="box1">
+                    <h4 style="font-size:20px !important;">
+                        <img src="~/Content/images/box-1.png" class="img-responsive" />
+                        <p>Receivables Due today</p>
+                    </h4>
+                    <h4>INR @TempData["RECEIVABLESDUETODAYININR"]</h4>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 charts-section">
+        <div class="charts-title">
+            <!-- Select Div Start -->
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Cash Flow</h5>
+                </div>
+                <div class="col-md-9 zindex5">
+                    <div class="form-inline rightAlign">
+                        <div class="form-group" style="float:right;">
+                            <select id="ddlGraphType" class="form-control-graph">
+                                <option value="1">Upcoming Receivables</option>
+                                <option value="2">Amount received</option>
+                            </select>
+                            <select id="ddlAnchrorCompany" class="form-control-graph"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- Select Div End -->
+        </div>
+
+        <div id="chart-container"></div>
+
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-6">
+        @*<div class="switchbox">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-12 col-md-6">
+                        <h3>Automatic<br /><span>funding</span></h3>
+                    </div>
+                    <div class="col-xs-6 col-sm-12 col-md-6 padding togsm">
+                        <h4>
+                            <label class="switch">
+                                <input class="switch-input" type="checkbox" checked='' id="chkswitch" />
+                                <span class="switch-label" data-on="Activated" data-off="Deactivated"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </h4>
+                    </div>
+                </div>
+                <label id="messagelbl" class="error" style="color:red;display: none;">Please Update Automatic Funding</label>
+            </div>*@
+        @*<div class="switchbtns">
+                <div class="col-xs-12 col-sm-6 padding pr-5">
+                    <button class="findasisbutton" data-toggle="modal" data-target="#finoassist" style="margin-bottom:20px;" id="Redirect_finoAssist">Fino Assist</button>
+                </div>
+                <div class="col-xs-12 col-sm-6 padding pl-5">
+                    <button class="findasisbutton2" id="Redirect_SelectInvoice"> Select Invoice</button>
+                </div>
+            </div>*@
+        <h4 style="margin-top: 0;font-size: 12px;">Top Anchor Companies (Buyers)</h4>
+        <div class="bottom-listing">
+            <div class="main-table-box page-scroll">
+                <div class="table-responsive vendor-tab ten-tab-scroll">
+                    <table id="DashboardMain" class="table table-responsive table-bordered table-hover internalusermtable">
+                        <thead>
+                            <tr>
+                                <th>Company ID</th>
+                                <th>Name</th>
+                                <th>Total Invoice</th>
+                                <th>Total Amount (INR)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="row">
+        <div class="col-xs-12">
+            bottom table
+        </div>
+    </div>*@
+@*Fino Assist Section Start*@
+<div id="finoassist" class="modal fade finoassist" role="dialog">
+    <div class="modal-dialog" style="margin-top:15px !important; margin-bottom: 15px !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close new-close" data-dismiss="modal" id="Btn_close">&times;</button>
+                <h4 class="modal-title">Fino Assist</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        @*<div class="col-xs-12 col-sm-7 col-md-9">*@
+                        <h5>Which date would you like to receive the funding?</h5>
+                        @*</div>*@
+                        @*<div class="col-xs-12 col-sm-5 col-md-3 form-group">*@
+                        <div class='input-group date' id="txtdate">
+                            <input type='text' id="txtFundingDate" class="form-control frm-cntrl" placeholder="Enter Date" readonly />
+                            <span class="input-group-addon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </span>
+
+                        </div>
+                        <label id="lbldateError" class="error" style="color:red;display: none;">Funding date cannot be empty</label>
+                        @*</div>*@
+                        @*<div class="col-xs-12 col-sm-7 col-md-9">*@
+                        <h5>How Much Funding do you require?</h5>
+                        @*</div>*@
+                        @*<div class="col-xs-12 col-sm-5 col-md-3">*@
+                        <div class='input-group date' id='' style="display: block;">
+                            <input id="txtRequireFund" class="form-control frm-cntrl" placeholder="Enter Amount" />
+                            <label id="lblamountError" class="error" style="color:red;display: none;">Funding amount cannot be empty</label>
+                            <label id="lblInvldNum" class="error" style="color:red;display: none;">Invalid Amount  </label>
+                        </div>
+                        @*</div>*@
+                        <div class="yellow-box">
+                            <div class="blue-info">
+                                <img src="~/Content/images/blue-info.png" title="Bank Info" alt="icon missing" />
+                            </div>
+                            <p>(Please note that we can only fund full invoices, so set the invoice and we will choose the most suitalble invoices to reach this amount)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <ul class="nav nav-pills">
+                            <li class="active"><a data-toggle="pill" href="#byamount" id="ByAmnt">By Amount</a></li>
+                            <li><a data-toggle="pill" href="#byinvoice" id="byAnchorCmpny">By Anchor Company</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="byamount" class="tab-pane fade in active">
+                                <div class="row form-group">
+                                    <div class="col-xs-12">
+                                        <div id="audio-player-container">
+                                            <input type="range" name="range" id="range" value="0" step="1" min="0" max="@ViewBag.MaxAvailableAmount">
+                                        </div>
+                                        <div id="posX"></div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5 style="margin: 6px 0;">Maximum Available Amount (INR)</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-6">
+                                        <label id="maxAvailableAmount" style="padding:6px 12px;margin:0;">@ViewBag.MaxAvailableAmount</label>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>How much funding do you require now?</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-6">
+                                        <input id="txtFunding" class="form-control frm-cntrl" />
+                                        <label id="lblfundingamountError" class="error" style="color:red;display: none;">Funding amount cannot be empty</label>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>Please enter discount rate</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-6">
+                                        <div>
+                                            <input type='number' id="txtDiscount" class="form-control frm-cntrl" value="" min="0" placeholder="Enter Discount Rate" />
+                                            <a href="#" id="DiscountCompute">Compute</a>
+                                        </div>
+                                        <label id="lblDiscountError" class="error" style="color:red;display: none;">Discount cannot be empty</label>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>Actual Amount You will receive after discount (INR)</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-6">
+                                        <input id="txtActualAmount" class="form-control frm-cntrl" value="" readonly placeholder="Actual Amount Recive" />
+                                        <div id="info-hover" data-toggle="tooltip" data-placement="top" title="Calculation provided based on nearest discount approval date, It will be differ.">
+                                            <img src="~/Content/images/blue-info.png" title="Bank Info" alt="icon missing" />
+                                        </div>
+                                    </div>
+                                    @*<div class="col-xs-12 col-sm-3 col-md-3">
+                                          <p style="margin: 0;font-size: 7px;">*calculation provided based on nearest discount approval date, It will be differ.</p>
+                                        </div>*@
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>Discount Amount (INR)</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-6">
+                                        <input id="txtDiscountAmount" class="form-control frm-cntrl" value="" readonly />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <h5>Total Approved Amount (INR)</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 col-md-6">
+                                        <input id="txtTotalApprovedAmount" class="form-control frm-cntrl" value="" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="byinvoice" class="tab-pane fade">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="invoice_listing table-responsive">
+                                            <input type="hidden" id="tabName" />
+                                            <input type="hidden" id="companyID" />
+                                            <table id="tbl_DiscountByInvoice" class="table table-responsive table-bordered tbl_UserList dataTable no-footer tblDiscountByInvoice">
+                                                <thead>
+                                                    <tr>
+                                                        <th><input id="chkSelectALL" type="checkbox" /></th>
+                                                        <th>Company ID</th>
+                                                        <th>Company Name</th>
+                                                        <th>Number of Approved Invoices</th>
+                                                        <th>Total Invoice Amount</th>
+                                                        <th style="display:none"></th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                            <label id="lblanchorCompError" class="error" style="color:red;display: none;">Please select at least one anchor company</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="text-align: center;">
+                <button type="button" class="slctedinv" data-toggle="modal" data-target="#Invoices" style="margin-right:17px; background: #00d38a;" id="viewSelectedAmount">View Selected Invoices</button>
+                <button type="button" class="slctedinv" data-toggle="modal" data-target="#InvoicesConfirm" id="ProceedSelInvoice">Proceed</button>
+                <button type="button" class="slctedinv" data-toggle="modal" style="margin-right:15px; display:none" id="ProceedSelAnchor">Proceed</button>
+            </div>
+            <div id="Invoices" class="modal fade" role="dialog">
+                <div class="modal-dialog" id="PopSeletedInvc" style="width:98%;">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border: none;">
+                            <button type="button" id="ClosePopSeletedInvc" class="close new-close">&times;</button>
+                        </div>
+                        <div class="modal-body" style="overflow-x: auto;">
+                            <table id="tbl_AnchorCompInvoices" class="table table-responsive table-bordered internalusermtable">
+                                <thead>
+                                    <tr>
+                                        <th>PO ID</th>
+                                        <th>Invoice ID</th>
+                                        <th>Anchor Company Name</th>
+                                        <th>Invoice  Date</th>
+                                        <th>Invoice Amount</th>
+                                        <th>Approved Amount</th>
+                                        <th>Payment Due Date</th>
+                                        <th>Invoice Status</th>
+                                        <th>Discount Offered</th>
+                                        <th>Discount Amount</th>
+                                        <th>Net of Discount Amount will be disburse</th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                            <div class="col-xs-12 footer-btn">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <div class="footer-label">
+                                                    <p>Total Approved Amount: <span id="lbTotalInvoices"></span></p>
+                                                </div>
+                                                <div>
+                                                    <input type="hidden" id="hdnValuescompany" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <div class="footer-label">
+                                                    <p>Total Discount Amount: <span id="lbTotalInvoicesAmt"></span></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4 padding">
+                                                <div class="footer-label">
+                                                    <p>Total Disbursement Amount: <span id="lbTotalInvoicesAppAmt"></span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="InvoicesConfirm" class="modal fade invoicesconfirm" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-header">
+                        <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-content" style="border: none;box-shadow: none;border-radius: 0 0 5px 5px;">
+                        <div class="modal-body" style="overflow-x: auto;">
+                            <p>Would you like to submit the request?</p>
+                            <div class="btns-box">
+                                <button type="button" class="yesbtn" id="yesSaveInvoice">YES</button>
+                                <button type="button" class="nobtn" id="NodiscuntRate" data-dismiss="modal">NO</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="fixed-icons">
+    <a href="#" class="outer-cntr green-bg" data-toggle="modal" data-target="#finoassist">
+        <div class="fixed-icon">
+            <img src="~/Content/images/info.png" title="Bank Info" alt="icon missing" />
+        </div>
+        <p class="moving-text">Fino Assist</p>
+    </a>
+
+    <a href="#" class="outer-cntr orange-bg" id="Redirect_SelectInvoice">
+        <div class="fixed-icon">
+            <img src="~/Content/images/docu.png" alt="icon missing" />
+        </div>
+        <p class="moving-text">Select Invoice</p>
+    </a>
+</div>
+
+@*Fino Assist End Here*@
+<script>
+    function GetHolidays() {
+        var dates = '@ViewBag.Holidays';
+        return dates.split(",");
+    }
+</script>

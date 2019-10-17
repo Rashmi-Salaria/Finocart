@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "FundsWithdrawnHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h1>FundsWithdrawnHistory</h1>*@
+<style>
+    .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+    }
+</style>
+<div class="main-inner-section">
+    <div class="content-upper-section" id="AnchorCompanylist">
+        <div class="tabsec-main">
+            <div class="tab-content">
+                <div class="row" id="">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll" style="padding:15px;">
+                            <h4 style="font-size:15px;font-weight:bold;">Funds History</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="main-table-box page-scroll">
+                            <div class="table-responsive">
+                                <table id="Fundwithdrawnlist" class="table table-responsive table-hover table-bordered tbl_UserList dataTable no-footer">
+                                    <thead>
+                                        <tr>
+                                            <th hidden>ID</th>
+                                            <th>Bank Name</th>
+                                            <th>Date of Amount Approved</th>
+                                            <th>Total Amount INR</th>
+                                            <th>Amount Utilized INR</th>
+                                            <th>Balance Amount INR</th>
+                                            <th style="width:10%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        debugger
+        $('#Fundwithdrawnlist').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "dom": '"ltipr"',
+            "scrollX": false,
+            "ajax": {
+                "url": "../BankCompany/FundsWithdrawnHistorylist",
+                "type": "POST",
+                "datatype": "json",
+                    },
+            "columns": [
+                { "data": "id", "name": "id", "autoWidth": true, "visible": false, "searchable": false }, //index 1
+                { "data": "bankName", "name": "BankName", "autoWidth": true },
+                {
+                    "data": "approvaldate", "name": "Approvaldate", "autoWidth": true, "format": "dd/MM/YYYY"
+                },
+                { "data": "totalAmount", "name": "TotalAmount", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) },
+                { "data": "utilizedAmount", "name": "UtilizedAmount", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0)},
+                { "data": "balance", "name": "Balance", "autoWidth": true, render: $.fn.dataTable.render.number(',', '.', 0) },//index 2
+
+                {
+                    "data": function (data, type, row) {
+                        return "<a href='../BankCompany/FundsWithdrawnHistoryView/?ID=" + data.id + "&BankName=" + data.bankName + "'><img src='../Content/images/shape-4.png' title='View' class='img-responsive' /></a>";
+                    }
+                }
+
+
+            ],
+
+        });
+
+
+
+
+
+    })
+
+   
+</script>

@@ -1,0 +1,14 @@
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\bin\Release\netcoreapp2.2\Finocart.Interface.deps.json
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\bin\Release\netcoreapp2.2\Finocart.Interface.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\bin\Release\netcoreapp2.2\Finocart.Interface.pdb
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\bin\Release\netcoreapp2.2\Finocart.CustomModel.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\bin\Release\netcoreapp2.2\Finocart.Model.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\bin\Release\netcoreapp2.2\Finocart.CustomModel.pdb
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\bin\Release\netcoreapp2.2\Finocart.Model.pdb
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\obj\Release\netcoreapp2.2\Finocart.Interface.csprojAssemblyReference.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\obj\Release\netcoreapp2.2\Finocart.Interface.csproj.CoreCompileInputs.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\obj\Release\netcoreapp2.2\Finocart.Interface.AssemblyInfoInputs.cache
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\obj\Release\netcoreapp2.2\Finocart.Interface.AssemblyInfo.cs
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\obj\Release\netcoreapp2.2\Finocart.Interface.csproj.CopyComplete
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\obj\Release\netcoreapp2.2\Finocart.Interface.dll
+D:\Rashmi\Projects\Finocart\Development_V1\Finocart\Finocart.Interface\obj\Release\netcoreapp2.2\Finocart.Interface.pdb

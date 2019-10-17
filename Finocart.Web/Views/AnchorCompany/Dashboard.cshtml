@@ -1,0 +1,320 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+<script src="~/Scripts/fusioncharts.js"></script>
+<script src="~/Scripts/fusioncharts.theme.fusion.js"></script>
+<script type="text/javascript"
+        src="https://rawgit.com/fusioncharts/fusioncharts-jquery-plugin/develop/dist/fusioncharts.jqueryplugin.min.js"></script>
+
+<style>
+
+
+    .charts-section .charts-title {
+        position: relative;
+        overflow: hidden;
+        background-color: #454545;
+        padding: 13px 10px 10px 10px;
+        border: 1px solid #ececec;
+        border-bottom: 1px solid #a2a2a2;
+        width: 100%;
+    }
+
+    .charts-title .form-control-graph {
+        /*width: 130px;*/
+        padding: 4px;
+        font-size: 14px;
+        color: #ffffff;
+        margin-left: 5px;
+        background-color: #a2a2a2;
+        outline: none;
+        border: 1px solid #fff;
+        height: 30px;
+        line-height: 36px;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+
+    .charts-section .charts-title h5 {
+        display: table;
+        float: left;
+        margin: 0;
+        line-height: 2;
+        color: #ffffff;
+        text-transform: capitalize;
+        font-weight: 600;
+    }
+
+    .charts-section .chart-div {
+        height: 315px;
+        text-align: center;
+        border: 1px solid #ececec;
+        font-weight: bold;
+        background-color: #454545;
+        color: #ffffff;
+        padding-top: 15px;
+        border-top: 0;
+        width: 100%;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .cls-error {
+        display: block;
+        color: red;
+    }
+</style>
+<script src="~/AnchorCompany/AnchorDashBoard.js"></script>
+<script src="~/AnchorCompany/Dashboard.js"></script>
+<script src="~/AnchorCompany/AnchorCompanyGraph.js"></script>
+<script>
+    var GetDiscAnchorCompListByVendorID = '@Url.Action("GetDiscAnchorCompListByVendorID", "AnchorCompany")';
+    var CheckAnchorRate = '@Url.Action("CheckAnchorRate", "AnchorCompany")';
+    var GetBankTotalFundLimits = '@Url.Action("GetBankTotalFundLimits", "BankCompany")';
+</script>
+<div class="row">
+    <h4 style="margin-left:13px;font-size:15px;font-weight:bold;">Dashboard</h4>
+
+    <div class="top-boxes clearfix anchor">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <a href="#" onclick="location.href='@Url.Action("PaymentDueToday","AnchorCompDashboard")'">
+                <div class="box1">
+                    <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                        <img src="~/Content/images/box-1.png" class="img-responsive" />
+                        <p>Payable Due today</p>
+                    </h4>
+                    <h4>INR @ViewData["PAYABLEDUETODAY"]</h4>
+                </div>
+            </a>
+            <div class="crlabels">
+                <p>Total Avil. Credit </p>
+                <span>(INR) :</span>
+                <label id="lblTotalAmount" name="lbltotalamount" style="padding-right:5px;"></label>
+            </div>
+
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+
+            <a href="#" onclick="location.href='@Url.Action("AwaitedInvoiceApproval","AnchorCompDashboard")'">
+                <div class="box2">
+                    <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                        <img src="~/Content/images/box-2.png" class="img-responsive" />
+                        <p>Invoices Pending For Action</p>
+
+                    </h4>
+                    <h4>INR @ViewData["AWAITEDAPPROVALININR"]</h4>
+                </div>
+            </a>
+            <div class="crlabels">
+                <p>Total Rmng Avil. Credit </p>
+                <span>(INR) :</span>
+                @*<input type="text" id="txtTotalAmount" disabled="disabled" value="" class="form-control col-sm-3 sumtotal">*@
+                <label id="lblTotalRemainAmount" name="lbltotalamount"></label>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+
+            <a href="#" onclick="location.href='@Url.Action("InvoiceApprovedToday","AnchorCompDashboard")'">
+                <div class="box3">
+                    <h4 style="font-size:20px !important;margin-bottom: 5px;">
+                        <img src="~/Content/images/box-3.png" class="img-responsive" />
+                        <p>Invoices Approved today</p>
+                    </h4>
+                    <h4>INR @ViewData["AMOUNTDUETODAYININR"]</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="switchbtns clearfix" style="margin-bottom: 10px;">
+                <div class="engine-box">
+                    <h3>VIEW CURRENT LIMIT</h3>
+                    <div class="row">
+                        <label class="col-xs-12 col-sm-12 col-md-6">Percent (p.a.)</label>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <input type="text" placeholder="Percentage" id="percentage_data" class="form-control" style="margin-bottom: 5px;" readonly />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-xs-12 col-sm-12 col-md-6">Total limit (INR)</label>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <input type="text" placeholder="Limit/Day" id="limit_data" class="form-control" readonly />
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="findasisbutton" id="model_engine" data-toggle="modal" data-target="#myModal" style="height:30px;">Modify</button>
+            </div>
+            @*<div class="switchbox">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-12 col-md-6">
+                            <h3>Critical<br /><span>Vendors</span></h3>
+                        </div>
+                        <div class="col-xs-6 col-sm-12 col-md-6 padding togsm">
+                            <h4>
+
+                                <label class="switch">
+                                    <input class="switch-input" type="checkbox" id="chkswitch" checked=''>
+                                    <span class="switch-label" data-on="Activated" data-off="Deactivated"></span>
+                                    <span class="switch-handle"></span>
+                                </label>
+                            </h4>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 charts-section">
+        <div class="charts-title">
+            <!-- Select Div Start -->
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Cash Flow</h5>
+                </div>
+                <div class="col-md-9 zindex5">
+                    <div class="form-inline rightAlign">
+                        <div class="form-group" style="float:right;">
+                            <select id="anchorPayableGraph" class="form-control-graph">
+                                <option value="1">Upcoming payable</option>
+                                <option value="2">Amount paid</option>
+                            </select>
+                            <select id="anchorPayableGraphVendors" class="form-control-graph"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- Select Div End -->
+        </div>
+
+        <div id="chart-container"></div>
+
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <h4 style="margin-top: 0;font-size: 12px;">Top Vendor Companies</h4>
+        <div class="bottom-listing">
+            <div class="main-table-box page-scroll ten-tab-scroll">
+                <div class="table-responsive">
+                    <table id="tbl_DiscountAnchorCompList" class="table table-responsive table-bordered table-hover internalusermtable">
+                        <thead>
+                            <tr>
+                                <th>Vendor Name</th>
+                                <th style="display:none;">Vendor ID</th>
+                                <th>Amount Paid (INR)</th>
+                                <th>Earning (INR)</th>
+                            </tr>
+
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Rule of Engine Model Popup-->
+<div class="modal fade engine-modal" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog addengine">
+
+        <!-- Modal content-->
+        <form>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <input type="hidden" value="@ViewBag.CompanyID" id="hdnCompanyID" />
+                    <button type="button" class="close new-close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">View Current Limit</h4>
+                </div>
+                <div class="modal-body engine-box">
+                    @*<div class="form-group">
+                            <input type="text" id="rule_percentage" name="model_popup" placeholder="Enter Percentage" onkeypress="return isNumberKey(event)" class="form-control" maxlength="3" max='100' />
+                            <label id="lblrule_percentageError" class="error" style="color:red;display: none;">Please Enter Value</label>
+                        </div>*@
+                    @*<div class="form-group">
+                            <input type="text" id="rule_limit" name="model_popup" placeholder="Enter Limit/Day" onkeypress="return isNumberKey(event)" class="form-control" />
+                            <label id="lblrule_limitError" class="error" style="color:red;display: none;">Please Enter Value</label>
+                            <label id="lblrule_limitError_radio" class="error" style="color:red;display: none;">Please Select Value</label>
+                        </div>*@
+                    @*<div class="form-group">
+                            <label><input style="vertical-align: bottom;margin-right: 5px;" type="radio" name="status" value="yes" id="status_yes">Yes</label>
+                            <label><input style="vertical-align: bottom;margin-right: 5px;" type="radio" name="status" value="no" id="status_no">No</label>
+                        </div>*@
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label>Total Limit:</label>
+                                <input class="form-control" id="rule_limit" disabled>
+                                <label id="lblrule_limitError_radio" class="error" style="color:red;display: none;">Please Select Value</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="form-group">
+                                <label>A. limit per day</label>
+                                <label>Internal funds (INR):</label>
+                                <input type="text" id="Internal_fund" name="model_popup" placeholder="From Internal Fund" onkeypress="return isNumberKey(event)" class="form-control sumtotal" readonly />
+                                <label id="lblrule_limitError" class="error" style="color:red;display: none;">Please enter limits per day</label>
+                            </div>
+                        </div>
+                        @*<div class="col-xs-12 col-sm-3">
+                                <input id="chkUnlimited" type="checkbox" style="position: relative;top: 18px;" /><label style="padding: 28px 0 0 15px;">Unlimited</label>
+                            </div>*@
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Funds from banks (INR):</label>
+                                <input type="text" id="FromBank" name="model_popup" placeholder="From Bank" onkeyup="return isNumberKey(event)" class="form-control sumtotal" readonly />
+                                <label id="lblTotalAvailLimitError" class="error" style="color:red;display: none;"></label>
+                            </div>
+                        </div>
+                        @*<div class="col-xs-12 col-sm-2">
+                                <input type="button" id="btnBankEdit" class="btn editbutton" value="Edit" />
+                            </div>*@
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label>B. Anchor Percentage</label>
+                                <input type="text" id="AnchorPercentage" name="model_popup" placeholder="Anchor Percentage" onkeypress="return isNumberKey(event)" class="form-control" max='100' readonly/>
+                                <label id="lblAnchorPercentage" class="cls-error"></label>
+                                <label id="lblrule_percentageError" class="error" style="color:red;display: none;">Please Enter Value</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnBankEdit" class="btn btn-editbutton" data-dismiss="modal" style="border-radius:0; margin-left:5px;padding: 12px;background-color:#1b9663;font-weight: 600;text-transform: uppercase;text-align: center;font-size: 10px;color: #ffffff;">Draw from bank</button>
+                    <button type="button" class="btn btn-close" data-dismiss="modal" style="margin-left:5px;">Close</button>
+
+                    @*<button type="button" class="btn editbutton" id="btnBankEdit">Draw from bank</button>*@
+                    @*<div class="col-xs-12 col-sm-2">
+                            <input type="button" id="btnBankEdit" class="btn editbutton" value="Edit" />
+                        </div>*@
+                </div>
+            </div>
+        </form>
+        <script type="text/javascript">
+            function txtTotalamount() {
+                var txtTotalamount_val = $("#Internal_fund").val();
+                //$("#txtTotalAmount").val(txtTotalamount_val);
+                $("#lblTotalAmount").text(txtTotalamount_val);
+
+            }
+                                                                                                    //$(document).ready(function () {
+                                                                                                    //    debugger;
+                                                                                                    //    var txtTotalamount_val = $("#Internal_fund").val();
+                                                                                                    //    $("#lblTotalAmount").show();
+                                                                                                    //    $("#lblTotalAmount").text(txtTotalamount_val);
+
+                                                                                                    //});
+        </script>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,14 @@
+select top 10 * from users
+
+select top 10 * from [dbo].[user_profiles]
+
+select top 10 * from [dbo].[states]
+
+select top 10 * from [dbo].[countries]
+
+
+select users.email,user_profiles.user_id,user_profiles.user_name,user_profiles.first_name,user_profiles.last_name,user_profiles.address1,user_profiles.address2,
+user_profiles.address3,user_profiles.city,
+user_profiles.state_id,states.name,user_profiles.country_id,countries.name,user_profiles.phone,user_profiles.dob,user_profiles.last_login
+from user_profiles inner join states on user_profiles.state_id=states.id inner join countries on user_profiles.country_id=countries.id inner join users
+on user_profiles.user_id=users.id

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3affb1b051d7475ea7d4ba70d3e5cc2a" Name="Diagram1" ZoomLevel="56">
+        <EntityTypeShape EntityType="FinocartDemo1Model.Company" Width="2.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinocartDemo1Model.AnchorNotification" Width="1.5" PointX="4.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FinocartDemo1Model.Invoice" Width="1.5" PointX="4.375" PointY="4.75" />
+        <EntityTypeShape EntityType="FinocartDemo1Model.LookupDetail" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FinocartDemo1Model.User" Width="1.5" PointX="8.625" PointY="7.375" />
+        <AssociationConnector Association="FinocartDemo1Model.FK_User_LookupDetails" />
+        <EntityTypeShape EntityType="FinocartDemo1Model.ModuleMaster" Width="1.5" PointX="2.125" PointY="10" />
+        <AssociationConnector Association="FinocartDemo1Model.FK_Invoice_ModuleMaster" />
+        <EntityTypeShape EntityType="FinocartDemo1Model.PaymentDueTodayTemplate" Width="1.5" PointX="6.375" PointY="3.75" />
+        <EntityTypeShape EntityType="FinocartDemo1Model.SetBankAmountLimit" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FinocartDemo1Model.BankNotification" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FinocartDemo1Model.BankSetLimitMailTemplate" Width="1.5" PointX="10.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

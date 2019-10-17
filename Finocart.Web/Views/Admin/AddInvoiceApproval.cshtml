@@ -1,0 +1,83 @@
+﻿@model Tuple<Finocart.CustomModel.InvoiceApprovalOrderModel, IEnumerable<Finocart.Model.LookupDetails>, IEnumerable<Finocart.Model.User>>
+@{
+    ViewData["Title"] = "AddInvoiceApproval";
+}
+<link href="~/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="~/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+
+@using (Html.BeginForm("AddInvoiceApproval", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSubmitLogin" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="main-inner-section">
+        <div class="content-upper-section">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="main-head">
+                        <h2>Add Invoice Approval User</h2>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="main-content-box page-scroll">
+                        <div class="registration-form">
+                            @Html.Hidden("ApprovalID", Model.Item1.ApprovalID)
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    @Html.TextBox("FromAmount", Model.Item1.FromAmount, new { @class = "form-control", placeholder = "From Amount*" })
+                                    <label id="lblFromAmountError" class="error" style="color:red;display: none;"></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    @Html.TextBox("ToAmount", Model.Item1.ToAmount, new { @class = "form-control", placeholder = "To Amount*" })
+                                    <label id="lblToAmountError" class="error" style="color:red;display: none;"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <select class="selectstatus form-control" id="ddl_ApprovedBy">
+                                        <option value=0>Select Approved By</option>
+                                        @foreach (var item in Model.Item2)
+                                        {
+                                            <option value='@item.Id'>@item.LookupValue</option>
+                                        }
+                                    </select>
+                                    <label id="lblApprovedByError" class="error" style="color:red;display: none;"></label>
+                                    @Html.Hidden("ApprovedBy", Model.Item1.ApprovedBy)
+                                    @Html.Hidden("ApprovedByName", Model.Item1.ApprovedByName)
+
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <select class="selectstatus form-control" id="ddl_User" style="display:none">
+                                        <option value=0>Select User</option>
+                                        @foreach (var item in Model.Item3)
+                                        {
+                                            <option value='@item.UserID'>@item.Name</option>
+                                        }
+                                    </select>
+                                    <select class="selectstatus form-control" id="ddl_MultiUser" multiple="multiple" style="display:none">
+                                       
+                                        @foreach (var item in Model.Item3)
+                                        {
+                                            <option value='@item.UserID'>@item.Name</option>
+                                        }
+                                    </select>
+                                    <label id="lblUserError" class="error" style="color:red;display: none;"></label>
+                                    @Html.Hidden("Users", Model.Item1.Users)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <button id="btnSave" class="submit-btn" type="submit">Submit</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <button id="btnCancel" class="cancel-btn" type="button">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/InvoiceApprovalOrder/InvoiceApprovalOrder.js"></script>
+  
+}

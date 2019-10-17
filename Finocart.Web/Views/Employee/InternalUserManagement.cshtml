@@ -1,0 +1,217 @@
+﻿@{
+    ViewBag.Title = "Internal User Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/InternalUserManagement.js"></script>
+<script type="text/javascript">
+    var GetOrderList = "@Url.Action("GetOrderList", "OrderList")";
+
+    var GetOrderListDetails = "@Url.Action("GetOrderListDetails", "OrderList")";
+
+    var UpdateData = "@Url.Action("UpdateData", "OrderList")";
+
+    var SplitData = "@Url.Action("SplitData", "OrderList")";
+
+    var CreateSO = "@Url.Action("CreateSO", "OrderList")";
+
+    var GetSONo = "@Url.Action("GetSONo", "OrderList")";
+
+    var SumColumnValues = "@Url.Action("CalculateSumToSplit", "OrderList")";
+
+</script>
+
+<button id="BtnCreateSO" style="display:none">Create Sales Order</button>
+<hidden id="HFOrderDetailsID" value=""></hidden>
+
+<hidden id="HFMMSize" value=""></hidden>
+<hidden id="HFTotalUnits" value=""></hidden>
+<hidden id="HFPointer" value=""></hidden>
+<hidden id="HFPcsUnit" value=""></hidden>
+
+<hidden id="HFPONo" value=""></hidden>
+<hidden id="HFSONo" value=""></hidden>
+
+<hidden id="HFSplitPcsUnit" value=""></hidden>
+<hidden id="HFSplitPcsUnitSum" value=""></hidden>
+<hidden id="HFSplitPcsUnitSumNew" value=""></hidden>
+
+
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="main-head">
+                    <h2>Internal User Management</h2>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <div class="col-xs-12 col-sm-2 col-md-2 padding">
+                        <button id="addbtn" class="adduserbutton">
+                            <img src="~/Content/images/plusicon.png" class="img-responsive" style="display: inline;" />Add user
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txtSearch", null, new { placeholder = "Search by Name", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <select class="selectstatus" id="selectstatus"><option value="0">Search by Status</option><option value="1">1</option><option value="2">2</option></select>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="excelbtn" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                        <button id="filterbtn" class="filterbtn">
+                            <img src="~/Content/images/filtericon.png" title="Filter" class="img-responsive" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="table-icons" style="display:none;">
+                    <ul>
+                        <li><a href="@Url.Action("ExportToExcel", "OrderList")"><i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="Export To Excel"></i></a></li>
+                        <li><a href="#"><img src="~/Content/images/mrge.png" class="img-responsive" data-toggle="modal" data-target="#mergeline" id="BtnMerge" data-toggle="tooltip" title="Merge Tool" /></a></li>
+                        <li><a href="#"><img src="~/Content/images/split.png" class="img-responsive" data-toggle="modal" data-target="#sliptrows" id="BtnSplitNew" data-toggle="tooltip" title="Split Tool" /></a></li>
+                    </ul>
+                </div>
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        <table id="internalusermtable" class="table table-responsive table-hover table-bordered internalusermtable">
+                            <tbody>
+                                <tr>
+                                    <th style="width:2%"><input type="checkbox" /></th>
+                                    <th style="width:10%">Name</th>
+                                    <th style="width:13%">Email</th>
+                                    <th style="width:12%">Mobile Number</th>
+                                    <th style="width:10%">Designation</th>
+                                    <th style="width:20%">Role Access</th>
+                                    <th style="width:11%">Created At</th>
+                                    <th style="width:10%">Actions</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td><label>Akash</label></td>
+                                    <td><label>akash@gmail.com</label></td>
+                                    <td><label>9876543210</label></td>
+                                    <td><label>Web Developer</label></td>
+                                    <td class="roleaccess"><input type="checkbox" /><label>Role Access</label><input type="checkbox" /><label>Role Access</label></td>
+                                    <td><label>20 / 6 / 2019</label></td>
+                                    <td><label><a href="#" class="actions-ico"><img src="~/Content/images/edit.png" title="Edit" class="img-responsive" /><img src="~/Content/images/delete.png" title="Delete" class="img-responsive" /></a></label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

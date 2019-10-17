@@ -1,0 +1,77 @@
+﻿@model Finocart.CustomModel.VendorAwaitedInvApprovalModel
+@{
+    ViewData["Title"] = "BucketWiselAwaitedInvoiceView";
+}
+<style>
+    .hide_column {
+        display: none;
+    }
+    .backbtn {display: inline-block; padding-top: 0;padding-bottom: 0;}
+</style>
+<script src="~/AnchorCompany/DiscAwaitedInvoiceApprovalView.js"></script>
+<script>
+    var GetAwaitedInvoiceApprovalViewList = '@Url.Action("GetAwaitedInvoiceApprovalViewList", "AnchorCompDashboard")';
+</script>
+<div class="main-inner-section">
+    <div class="content-upper-section">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box-main clearfix">
+                    <div class="col-xs-12 col-sm-1 col-md-1 padding">
+                        <a class="backbtn" href="javascript:history.back()"><i class="fas fa-long-arrow-alt-left" title="Go Back"></i></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_BucketID", null, new { placeholder = "Search by Bucket ID", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 padding">
+                        @Html.TextBox("txt_ApprovedAmt", null, new { placeholder = "Search by Approved Amount", @class = "searchTerm" })<span class="searchButton"><img src="~/Content/images/searchicon.png" class="img-responsive" style="display: inline;" /></span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 padding">
+                        <button id="ExportInvoiceCSV" class="excelbutton">
+                            <img src="~/Content/images/excelicon.png" title="Download Excel File" class="img-responsive" style="display: inline;" />
+                        </button>
+                       
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-table-box page-scroll">
+                    <div class="table-responsive">
+                        @Html.HiddenFor(m => m.VendorID)
+                        <table id="tbl_BucketsWiseAwaitedInvoiceView" class="table table-responsive table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Discount Bucket ID</th>
+                                    <th style="display:none"></th>
+                                    <th>Number of Discounted Invoices</th>
+                                    <th>Total Approved Amount(INR)</th>
+                                    <th>Discount Offered on Date</th>
+                                    <th>Discount Bucket Name</th>
+                                  
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-12 footer-btn">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4 padding">
+                                    <label class="footer-label">Total Invoices: <span id="lbAwaitTotalInvoices"></span></label>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 padding">
+                                    <label class="footer-label">Total Approved Amount: <span id="lbAwaitTotalApprovedAmt"></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,1882 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinocartModelStoreContainer" CdmEntityContainer="FinocartEntities">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="FinocartModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnchorCompanies">
+      <EntityTypeMapping TypeName="FinocartModel.AnchorCompanies">
+        <MappingFragment StoreEntitySet="AnchorCompanies">
+          <ScalarProperty Name="AnchorCompID" ColumnName="AnchorCompID" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="InvoiceAssWith" ColumnName="InvoiceAssWith" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnchorCompanyDocument">
+      <EntityTypeMapping TypeName="FinocartModel.AnchorCompanyDocument">
+        <MappingFragment StoreEntitySet="AnchorCompanyDocument">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="AnchorCompanyId" ColumnName="AnchorCompanyId" />
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="UploadedBy" ColumnName="UploadedBy" />
+          <ScalarProperty Name="UploadedOn" ColumnName="UploadedOn" />
+          <ScalarProperty Name="LocalFolderFileName" ColumnName="LocalFolderFileName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnchorNotification">
+      <EntityTypeMapping TypeName="FinocartModel.AnchorNotification">
+        <MappingFragment StoreEntitySet="AnchorNotification">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="AnchrNotificationID" ColumnName="AnchrNotificationID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ReadOn" ColumnName="ReadOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AutoFundingRate">
+      <EntityTypeMapping TypeName="FinocartModel.AutoFundingRate">
+        <MappingFragment StoreEntitySet="AutoFundingRate">
+          <ScalarProperty Name="AutoFudngId" ColumnName="AutoFudngId" />
+          <ScalarProperty Name="DiscuntRate" ColumnName="DiscuntRate" />
+          <ScalarProperty Name="DiscuntVlidDate" ColumnName="DiscuntVlidDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company">
+      <EntityTypeMapping TypeName="FinocartModel.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="LoginAttempt" ColumnName="LoginAttempt" />
+          <ScalarProperty Name="PaymentDays" ColumnName="PaymentDays" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="FactoryOrReverseFactory" ColumnName="FactoryOrReverseFactory" />
+          <ScalarProperty Name="IsLimitUnlimited" ColumnName="IsLimitUnlimited" />
+          <ScalarProperty Name="AnchorRate" ColumnName="AnchorRate" />
+          <ScalarProperty Name="BankLimit" ColumnName="BankLimit" />
+          <ScalarProperty Name="InternalFundLimit" ColumnName="InternalFundLimit" />
+          <ScalarProperty Name="UANNumber" ColumnName="UANNumber" />
+          <ScalarProperty Name="MSME" ColumnName="MSME" />
+          <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="InterestedAs" ColumnName="InterestedAs" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="Pan_number" ColumnName="Pan_number" />
+          <ScalarProperty Name="Contact_Title" ColumnName="Contact_Title" />
+          <ScalarProperty Name="Contact_Name" ColumnName="Contact_Name" />
+          <ScalarProperty Name="Contact_Designation" ColumnName="Contact_Designation" />
+          <ScalarProperty Name="Contact_email" ColumnName="Contact_email" />
+          <ScalarProperty Name="Contact_mobile" ColumnName="Contact_mobile" />
+          <ScalarProperty Name="Contact_Comments" ColumnName="Contact_Comments" />
+          <ScalarProperty Name="PercentageRate" ColumnName="PercentageRate" />
+          <ScalarProperty Name="InvoiceLimitAmt" ColumnName="InvoiceLimitAmt" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Contact_CIN" ColumnName="Contact_CIN" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+          <ScalarProperty Name="IsCritical" ColumnName="IsCritical" />
+          <ScalarProperty Name="InvAmtLimitStatus" ColumnName="InvAmtLimitStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyDocuments">
+      <EntityTypeMapping TypeName="FinocartModel.CompanyDocuments">
+        <MappingFragment StoreEntitySet="CompanyDocuments">
+          <ScalarProperty Name="CompanyDocument_ID" ColumnName="CompanyDocument_ID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+          <ScalarProperty Name="DocumentURL" ColumnName="DocumentURL" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailTemplate">
+      <EntityTypeMapping TypeName="FinocartModel.EmailTemplate">
+        <MappingFragment StoreEntitySet="EmailTemplate">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TemplateKey" ColumnName="TemplateKey" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="BodyContent" ColumnName="BodyContent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="FinocartModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorTracer">
+      <EntityTypeMapping TypeName="FinocartModel.ErrorTracer">
+        <MappingFragment StoreEntitySet="ErrorTracer">
+          <ScalarProperty Name="ErrorID" ColumnName="ErrorID" />
+          <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+          <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+          <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+          <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+          <ScalarProperty Name="ErrorProc" ColumnName="ErrorProc" />
+          <ScalarProperty Name="ErrorMsg" ColumnName="ErrorMsg" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="HostName" ColumnName="HostName" />
+          <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinocartMaster">
+      <EntityTypeMapping TypeName="FinocartModel.FinocartMaster">
+        <MappingFragment StoreEntitySet="FinocartMaster">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoice">
+      <EntityTypeMapping TypeName="FinocartModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="Limits" ColumnName="Limits" />
+          <ScalarProperty Name="UTRDetails" ColumnName="UTRDetails" />
+          <ScalarProperty Name="FinoLimUnLim" ColumnName="FinoLimUnLim" />
+          <ScalarProperty Name="Earning" ColumnName="Earning" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="AnchorCompID" ColumnName="AnchorCompID" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="UploadInvoice" ColumnName="UploadInvoice" />
+          <ScalarProperty Name="UploadDocument" ColumnName="UploadDocument" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceApprovalOrder">
+      <EntityTypeMapping TypeName="FinocartModel.InvoiceApprovalOrder">
+        <MappingFragment StoreEntitySet="InvoiceApprovalOrder">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="FromAmount" ColumnName="FromAmount" />
+          <ScalarProperty Name="ToAmount" ColumnName="ToAmount" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="Users" ColumnName="Users" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceJourneyHistory">
+      <EntityTypeMapping TypeName="FinocartModel.InvoiceJourneyHistory">
+        <MappingFragment StoreEntitySet="InvoiceJourneyHistory">
+          <ScalarProperty Name="InvoiceJourneyID" ColumnName="InvoiceJourneyID" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="InvoiceUpdatedBy" ColumnName="InvoiceUpdatedBy" />
+          <ScalarProperty Name="InvoiceUpdatedAt" ColumnName="InvoiceUpdatedAt" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogManagement">
+      <EntityTypeMapping TypeName="FinocartModel.LogManagement">
+        <MappingFragment StoreEntitySet="LogManagement">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="BrowserName" ColumnName="BrowserName" />
+          <ScalarProperty Name="UrlName" ColumnName="UrlName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LookupDetails">
+      <EntityTypeMapping TypeName="FinocartModel.LookupDetails">
+        <MappingFragment StoreEntitySet="LookupDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+          <ScalarProperty Name="LookupValue" ColumnName="LookupValue" />
+          <ScalarProperty Name="LookupFor" ColumnName="LookupFor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModuleMaster">
+      <EntityTypeMapping TypeName="FinocartModel.ModuleMaster">
+        <MappingFragment StoreEntitySet="ModuleMaster">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notification">
+      <EntityTypeMapping TypeName="FinocartModel.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ReadOn" ColumnName="ReadOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProcedureErrorTracer">
+      <EntityTypeMapping TypeName="FinocartModel.ProcedureErrorTracer">
+        <MappingFragment StoreEntitySet="ProcedureErrorTracer">
+          <ScalarProperty Name="ErrorID" ColumnName="ErrorID" />
+          <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+          <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+          <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+          <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+          <ScalarProperty Name="ErrorProc" ColumnName="ErrorProc" />
+          <ScalarProperty Name="ErrorMsg" ColumnName="ErrorMsg" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="HostName" ColumnName="HostName" />
+          <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolesAccessMaster">
+      <EntityTypeMapping TypeName="FinocartModel.RolesAccessMaster">
+        <MappingFragment StoreEntitySet="RolesAccessMaster">
+          <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SAPConfiguration">
+      <EntityTypeMapping TypeName="FinocartModel.SAPConfiguration">
+        <MappingFragment StoreEntitySet="SAPConfiguration">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AppServerHost" ColumnName="AppServerHost" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="SystemNumber" ColumnName="SystemNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="IdentificationName" ColumnName="IdentificationName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SearchHistory">
+      <EntityTypeMapping TypeName="FinocartModel.SearchHistory">
+        <MappingFragment StoreEntitySet="SearchHistory">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="SearchKeyValue" ColumnName="SearchKeyValue" />
+          <ScalarProperty Name="MaxSearchLimit" ColumnName="MaxSearchLimit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FinocartModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="FinocartModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="LoginAttempt" ColumnName="LoginAttempt" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="RolesAccess" ColumnName="RolesAccess" />
+          <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+          <ScalarProperty Name="AccessViewID" ColumnName="AccessViewID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vendor">
+      <EntityTypeMapping TypeName="FinocartModel.Vendor">
+        <MappingFragment StoreEntitySet="Vendor">
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="MaxLimit" ColumnName="MaxLimit" />
+          <ScalarProperty Name="VendorStatus" ColumnName="VendorStatus" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+          <ScalarProperty Name="ContactPersonNumber" ColumnName="ContactPersonNumber" />
+          <ScalarProperty Name="ContactPersonEmailId" ColumnName="ContactPersonEmailId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="ContactPersonDesignation" ColumnName="ContactPersonDesignation" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VendorAssociatedCompany">
+      <EntityTypeMapping TypeName="FinocartModel.VendorAssociatedCompany">
+        <MappingFragment StoreEntitySet="VendorAssociatedCompany">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VendorDiscMap">
+      <EntityTypeMapping TypeName="FinocartModel.VendorDiscMap">
+        <MappingFragment StoreEntitySet="VendorDiscMap">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="DiscountAmt" ColumnName="DiscountAmt" />
+          <ScalarProperty Name="IsDiscountApplied" ColumnName="IsDiscountApplied" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VendorDocument">
+      <EntityTypeMapping TypeName="FinocartModel.VendorDocument">
+        <MappingFragment StoreEntitySet="VendorDocument">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="UploadedBy" ColumnName="UploadedBy" />
+          <ScalarProperty Name="UploadedOn" ColumnName="UploadedOn" />
+          <ScalarProperty Name="LocalFolderFileName" ColumnName="LocalFolderFileName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="FinocartModel.Store.fn_udfGetInvoiceJourneyForEligibleInv" FunctionImportName="fn_udfGetInvoiceJourneyForEligibleInv">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.fn_udfGetInvoiceJourneyForEligibleInv_Result">
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="invoicestatusvalue" ColumnName="invoicestatusvalue" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="InvoiceStatusText" ColumnName="InvoiceStatusText" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="SentToPerson" ColumnName="SentToPerson" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="InvoiceCreatedDate" ColumnName="InvoiceCreatedDate" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="FinocartModel.Store.SplitString" FunctionImportName="SplitString">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.SplitString_Result">
+          <ScalarProperty Name="Item" ColumnName="Item" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetFunding" FunctionName="FinocartModel.Store.GetFunding">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.GetFunding_Result">
+          <ScalarProperty Name="AutoFudngId" ColumnName="AutoFudngId" />
+          <ScalarProperty Name="DiscuntRate" ColumnName="DiscuntRate" />
+          <ScalarProperty Name="DiscuntVlidDate" ColumnName="DiscuntVlidDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="IsEmailExistOrNot2" FunctionName="FinocartModel.Store.IsEmailExistOrNot2" />
+    <FunctionImportMapping FunctionImportName="poc_getAnchorCompDropDown" FunctionName="FinocartModel.Store.poc_getAnchorCompDropDown">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.poc_getAnchorCompDropDown_Result">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="poc_getEmployeeData" FunctionName="FinocartModel.Store.poc_getEmployeeData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.poc_getEmployeeData_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="poc_getVendorDropDown" FunctionName="FinocartModel.Store.poc_getVendorDropDown">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.poc_getVendorDropDown_Result">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Pro_GetInvoiceListAwaiteApproval" FunctionName="FinocartModel.Store.Pro_GetInvoiceListAwaiteApproval">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Pro_GetInvoiceListAwaiteApproval_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="AnchorCompID" ColumnName="AnchorCompID" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="TotalApprovedAmount" ColumnName="TotalApprovedAmount" />
+          <ScalarProperty Name="TotalInvoiceAmount" ColumnName="TotalInvoiceAmount" />
+          <ScalarProperty Name="NOFDiscountOffrInvcs" ColumnName="NOFDiscountOffrInvcs" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_AddFundingRate" FunctionName="FinocartModel.Store.proc_AddFundingRate" />
+    <FunctionImportMapping FunctionImportName="proc_AddInvoice" FunctionName="FinocartModel.Store.proc_AddInvoice" />
+    <FunctionImportMapping FunctionImportName="proc_AddUpdateCompany" FunctionName="FinocartModel.Store.proc_AddUpdateCompany" />
+    <FunctionImportMapping FunctionImportName="proc_AddUpdateCriticalVendors" FunctionName="FinocartModel.Store.proc_AddUpdateCriticalVendors" />
+    <FunctionImportMapping FunctionImportName="proc_AddUpdateInvoiceApproved" FunctionName="FinocartModel.Store.proc_AddUpdateInvoiceApproved" />
+    <FunctionImportMapping FunctionImportName="proc_AddUpdateUser" FunctionName="FinocartModel.Store.proc_AddUpdateUser" />
+    <FunctionImportMapping FunctionImportName="proc_AnchorCompDropDown" FunctionName="FinocartModel.Store.proc_AnchorCompDropDown">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_AnchorCompDropDown_Result">
+          <ScalarProperty Name="AnchorCompID" ColumnName="AnchorCompID" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_AnchorGetNotificationDet" FunctionName="FinocartModel.Store.proc_AnchorGetNotificationDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_AnchorGetNotificationDet_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="AnchrNotificationID" ColumnName="AnchrNotificationID" />
+          <ScalarProperty Name="Notifications" ColumnName="Notifications" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_ChangePassword" FunctionName="FinocartModel.Store.proc_ChangePassword" />
+    <FunctionImportMapping FunctionImportName="proc_CheckAdminLogin" FunctionName="FinocartModel.Store.proc_CheckAdminLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_CheckAdminLogin_Result">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_CheckLogin" FunctionName="FinocartModel.Store.proc_CheckLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_CheckLogin_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+          <ScalarProperty Name="RoleAccess" ColumnName="RoleAccess" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_CheckLoginV1" FunctionName="FinocartModel.Store.proc_CheckLoginV1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_CheckLoginV1_Result">
+          <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_CheckPassword" FunctionName="FinocartModel.Store.proc_CheckPassword" />
+    <FunctionImportMapping FunctionImportName="proc_CheckSuperAdminLogin" FunctionName="FinocartModel.Store.proc_CheckSuperAdminLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_CheckSuperAdminLogin_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_CheckUserLogin" FunctionName="FinocartModel.Store.proc_CheckUserLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_CheckUserLogin_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="RolesAccess" ColumnName="RolesAccess" />
+          <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+          <ScalarProperty Name="AccessViewID" ColumnName="AccessViewID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_CommonUseSP" FunctionName="FinocartModel.Store.proc_CommonUseSP" />
+    <FunctionImportMapping FunctionImportName="proc_deleteCriticalVendors" FunctionName="FinocartModel.Store.proc_deleteCriticalVendors" />
+    <FunctionImportMapping FunctionImportName="proc_deleteInvoiceApproval" FunctionName="FinocartModel.Store.proc_deleteInvoiceApproval" />
+    <FunctionImportMapping FunctionImportName="proc_deleteUser" FunctionName="FinocartModel.Store.proc_deleteUser" />
+    <FunctionImportMapping FunctionImportName="Proc_DeleteVendorDocRecord" FunctionName="FinocartModel.Store.Proc_DeleteVendorDocRecord" />
+    <FunctionImportMapping FunctionImportName="proc_EditCompany" FunctionName="FinocartModel.Store.proc_EditCompany">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_EditCompany_Result">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="InterestedAs" ColumnName="InterestedAs" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="Pan_number" ColumnName="Pan_number" />
+          <ScalarProperty Name="Contact_Title" ColumnName="Contact_Title" />
+          <ScalarProperty Name="Contact_Name" ColumnName="Contact_Name" />
+          <ScalarProperty Name="Contact_Designation" ColumnName="Contact_Designation" />
+          <ScalarProperty Name="Contact_email" ColumnName="Contact_email" />
+          <ScalarProperty Name="Contact_mobile" ColumnName="Contact_mobile" />
+          <ScalarProperty Name="Contact_Comments" ColumnName="Contact_Comments" />
+          <ScalarProperty Name="PercentageRate" ColumnName="PercentageRate" />
+          <ScalarProperty Name="InvoiceLimitAmt" ColumnName="InvoiceLimitAmt" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Contact_CIN" ColumnName="Contact_CIN" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+          <ScalarProperty Name="IsCritical" ColumnName="IsCritical" />
+          <ScalarProperty Name="InvAmtLimitStatus" ColumnName="InvAmtLimitStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_EditInvoiceApproved" FunctionName="FinocartModel.Store.proc_EditInvoiceApproved">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_EditInvoiceApproved_Result">
+          <ScalarProperty Name="ApprovalID" ColumnName="ApprovalID" />
+          <ScalarProperty Name="FromAmount" ColumnName="FromAmount" />
+          <ScalarProperty Name="ToAmount" ColumnName="ToAmount" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ApprovedByName" ColumnName="ApprovedByName" />
+          <ScalarProperty Name="Users" ColumnName="Users" />
+          <ScalarProperty Name="UsersName" ColumnName="UsersName" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_EditUser" FunctionName="FinocartModel.Store.proc_EditUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_EditUser_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="RolesAccess" ColumnName="RolesAccess" />
+          <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+          <ScalarProperty Name="AccessViewID" ColumnName="AccessViewID" />
+          <ScalarProperty Name="LookupValue" ColumnName="LookupValue" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetAnchorCompDocument" FunctionName="FinocartModel.Store.Proc_GetAnchorCompDocument">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetAnchorCompDocument_Result">
+          <ScalarProperty Name="DocID" ColumnName="DocID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetAnchorCompDocUser" FunctionName="FinocartModel.Store.proc_GetAnchorCompDocUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetAnchorCompDocUser_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="AnchorCompanyId" ColumnName="AnchorCompanyId" />
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="UploadedBy" ColumnName="UploadedBy" />
+          <ScalarProperty Name="UploadedOn" ColumnName="UploadedOn" />
+          <ScalarProperty Name="LocalFolderFileName" ColumnName="LocalFolderFileName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetAnchorCompListing" FunctionName="FinocartModel.Store.Proc_GetAnchorCompListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetAnchorCompListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="Contact_Name" ColumnName="Contact_Name" />
+          <ScalarProperty Name="Contact_mobile" ColumnName="Contact_mobile" />
+          <ScalarProperty Name="Contact_email" ColumnName="Contact_email" />
+          <ScalarProperty Name="ApprovedInv" ColumnName="ApprovedInv" />
+          <ScalarProperty Name="RejectedInv" ColumnName="RejectedInv" />
+          <ScalarProperty Name="PendingInv" ColumnName="PendingInv" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="TotalInvoice" ColumnName="TotalInvoice" />
+          <ScalarProperty Name="TotalInvoiceAmount" ColumnName="TotalInvoiceAmount" />
+          <ScalarProperty Name="TotalInvoiceAppAmount" ColumnName="TotalInvoiceAppAmount" />
+          <ScalarProperty Name="PendingDiscInv" ColumnName="PendingDiscInv" />
+          <ScalarProperty Name="AwaitTotalInvoiceAppAmount" ColumnName="AwaitTotalInvoiceAppAmount" />
+          <ScalarProperty Name="AwaitTotalInvoiceAmount" ColumnName="AwaitTotalInvoiceAmount" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetAnchorCompListing1" FunctionName="FinocartModel.Store.Proc_GetAnchorCompListing1" />
+    <FunctionImportMapping FunctionImportName="Proc_GetAnchorDashboardCompListing" FunctionName="FinocartModel.Store.Proc_GetAnchorDashboardCompListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetAnchorDashboardCompListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="Contact_Name" ColumnName="Contact_Name" />
+          <ScalarProperty Name="Contact_mobile" ColumnName="Contact_mobile" />
+          <ScalarProperty Name="Contact_email" ColumnName="Contact_email" />
+          <ScalarProperty Name="ApprovedInv" ColumnName="ApprovedInv" />
+          <ScalarProperty Name="RejectedInv" ColumnName="RejectedInv" />
+          <ScalarProperty Name="PendingInv" ColumnName="PendingInv" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="TotalInvoice" ColumnName="TotalInvoice" />
+          <ScalarProperty Name="TotalInvoiceAmount" ColumnName="TotalInvoiceAmount" />
+          <ScalarProperty Name="TotalInvoiceAppAmount" ColumnName="TotalInvoiceAppAmount" />
+          <ScalarProperty Name="PendingDiscInv" ColumnName="PendingDiscInv" />
+          <ScalarProperty Name="AwaitTotalInvoiceAppAmount" ColumnName="AwaitTotalInvoiceAppAmount" />
+          <ScalarProperty Name="AwaitTotalInvoiceAmount" ColumnName="AwaitTotalInvoiceAmount" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_getAnchorGraphDet" FunctionName="FinocartModel.Store.Proc_getAnchorGraphDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_getAnchorGraphDet_Result">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetAnchorInvoiceStatus" FunctionName="FinocartModel.Store.proc_GetAnchorInvoiceStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetAnchorInvoiceStatus_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UTRDetails" ColumnName="UTRDetails" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DiscountBucketBucketName" ColumnName="DiscountBucketBucketName" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="InvoiceApprovedAmount" ColumnName="InvoiceApprovedAmount" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="Earnings" ColumnName="Earnings" />
+          <ScalarProperty Name="DiscountDate" ColumnName="DiscountDate" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetAnchorLostOppListing" FunctionName="FinocartModel.Store.Proc_GetAnchorLostOppListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetAnchorLostOppListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="NoOfDiscInvoice" ColumnName="NoOfDiscInvoice" />
+          <ScalarProperty Name="TotalDiscAppAmt" ColumnName="TotalDiscAppAmt" />
+          <ScalarProperty Name="TotalAppCount" ColumnName="TotalAppCount" />
+          <ScalarProperty Name="ApprovedDiscInvAmt" ColumnName="ApprovedDiscInvAmt" />
+          <ScalarProperty Name="DiscOffPercent" ColumnName="DiscOffPercent" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="AmountEarned" ColumnName="AmountEarned" />
+          <ScalarProperty Name="OppLostOnAmt" ColumnName="OppLostOnAmt" />
+          <ScalarProperty Name="PerOppLost" ColumnName="PerOppLost" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetAvailableForFunding" FunctionName="FinocartModel.Store.proc_GetAvailableForFunding">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetAvailableForFunding_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetBucketDet" FunctionName="FinocartModel.Store.proc_GetBucketDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetBucketDet_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+          <ScalarProperty Name="BucketName" ColumnName="BucketName" />
+          <ScalarProperty Name="TotalInvoiceCount" ColumnName="TotalInvoiceCount" />
+          <ScalarProperty Name="TotalInvoiceAmt" ColumnName="TotalInvoiceAmt" />
+          <ScalarProperty Name="BucketCreatedDate" ColumnName="BucketCreatedDate" />
+          <ScalarProperty Name="ValidUptoDate" ColumnName="ValidUptoDate" />
+          <ScalarProperty Name="AnchorCompStatus" ColumnName="AnchorCompStatus" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetBucketDetView" FunctionName="FinocartModel.Store.proc_GetBucketDetView">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetBucketDetView_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+          <ScalarProperty Name="BucketName" ColumnName="BucketName" />
+          <ScalarProperty Name="TotalInvoiceCount" ColumnName="TotalInvoiceCount" />
+          <ScalarProperty Name="TotalInvoiceAmt" ColumnName="TotalInvoiceAmt" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="AnchorCompStatus" ColumnName="AnchorCompStatus" />
+          <ScalarProperty Name="BucketCreatedDate" ColumnName="BucketCreatedDate" />
+          <ScalarProperty Name="ValidUptoDate" ColumnName="ValidUptoDate" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_getCompany" FunctionName="FinocartModel.Store.proc_getCompany">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_getCompany_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+          <ScalarProperty Name="LookupValue" ColumnName="LookupValue" />
+          <ScalarProperty Name="LookupFor" ColumnName="LookupFor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetContentForUser" FunctionName="FinocartModel.Store.proc_GetContentForUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetContentForUser_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="RolesAccess" ColumnName="RolesAccess" />
+          <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+          <ScalarProperty Name="AccessViewID" ColumnName="AccessViewID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="IsTemporaryPassword" ColumnName="IsTemporaryPassword" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetCriticalVendorsListing" FunctionName="FinocartModel.Store.Proc_GetCriticalVendorsListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetCriticalVendorsListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="PercentageRate" ColumnName="PercentageRate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InvAmtLimitStatus" ColumnName="InvAmtLimitStatus" />
+          <ScalarProperty Name="InvoiceLimitAmt" ColumnName="InvoiceLimitAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetDailyReceiveinvoiceDetails" FunctionName="FinocartModel.Store.proc_GetDailyReceiveinvoiceDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetDailyReceiveinvoiceDetails_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetDashboardList" FunctionName="FinocartModel.Store.Proc_GetDashboardList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetDashboardList_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="TotalInvoice" ColumnName="TotalInvoice" />
+          <ScalarProperty Name="TotalInvoiceAmount" ColumnName="TotalInvoiceAmount" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetDiscountOfferedInvoiceDet" FunctionName="FinocartModel.Store.proc_GetDiscountOfferedInvoiceDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetDiscountOfferedInvoiceDet_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvStatus" ColumnName="InvStatus" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="invoicediscount" ColumnName="invoicediscount" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+          <ScalarProperty Name="BucketCreatedDate" ColumnName="BucketCreatedDate" />
+          <ScalarProperty Name="ValidToDate" ColumnName="ValidToDate" />
+          <ScalarProperty Name="BucketName" ColumnName="BucketName" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetEarningListing" FunctionName="FinocartModel.Store.Proc_GetEarningListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetEarningListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="InvoiceCount" ColumnName="InvoiceCount" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="InvoiceApprovedAmt" ColumnName="InvoiceApprovedAmt" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="Earning" ColumnName="Earning" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetEmail" FunctionName="FinocartModel.Store.proc_GetEmail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetEmail_Result">
+          <ScalarProperty Name="IsExistEmailId" ColumnName="IsExistEmailId" />
+          <ScalarProperty Name="IsExistPan" ColumnName="IsExistPan" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PROC_GetEmailIDByInvoiceId" FunctionName="FinocartModel.Store.PROC_GetEmailIDByInvoiceId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.PROC_GetEmailIDByInvoiceId_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="Company_ContactName" ColumnName="Company_ContactName" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="ValidToDate" ColumnName="ValidToDate" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+          <ScalarProperty Name="BucketName" ColumnName="BucketName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_getEmployeeData" FunctionName="FinocartModel.Store.proc_getEmployeeData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_getEmployeeData_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_getEmployeeData_Demo" FunctionName="FinocartModel.Store.proc_getEmployeeData_Demo" />
+    <FunctionImportMapping FunctionImportName="Proc_getForgetPasswordEmailTemplate" FunctionName="FinocartModel.Store.Proc_getForgetPasswordEmailTemplate" />
+    <FunctionImportMapping FunctionImportName="Proc_GetFundingReqAmtListing" FunctionName="FinocartModel.Store.Proc_GetFundingReqAmtListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetFundingReqAmtListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+          <ScalarProperty Name="AnchorCompID" ColumnName="AnchorCompID" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="RejectedAmt" ColumnName="RejectedAmt" />
+          <ScalarProperty Name="PendingAmt" ColumnName="PendingAmt" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetFundingReqListing" FunctionName="FinocartModel.Store.Proc_GetFundingReqListing" />
+    <FunctionImportMapping FunctionImportName="Proc_GetFundingReqPercentListing" FunctionName="FinocartModel.Store.Proc_GetFundingReqPercentListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetFundingReqPercentListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+          <ScalarProperty Name="AnchorCompID" ColumnName="AnchorCompID" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="RejectedAmt" ColumnName="RejectedAmt" />
+          <ScalarProperty Name="PendingAmt" ColumnName="PendingAmt" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetInvoiceApprovalDet" FunctionName="FinocartModel.Store.proc_GetInvoiceApprovalDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetInvoiceApprovalDet_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="ApprovalID" ColumnName="ApprovalID" />
+          <ScalarProperty Name="FromAmount" ColumnName="FromAmount" />
+          <ScalarProperty Name="ToAmount" ColumnName="ToAmount" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ApprovedByName" ColumnName="ApprovedByName" />
+          <ScalarProperty Name="Users" ColumnName="Users" />
+          <ScalarProperty Name="UsersName" ColumnName="UsersName" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetInvoiceDet" FunctionName="FinocartModel.Store.proc_GetInvoiceDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetInvoiceDet_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvStatus" ColumnName="InvStatus" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="DiscountAmt" ColumnName="DiscountAmt" />
+          <ScalarProperty Name="DisbursementAmt" ColumnName="DisbursementAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetInvoiceDetails" FunctionName="FinocartModel.Store.proc_GetInvoiceDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetInvoiceDetails_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvStatus" ColumnName="InvStatus" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetInvoiceHistory" FunctionName="FinocartModel.Store.proc_GetInvoiceHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetInvoiceHistory_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="DiscountDate" ColumnName="DiscountDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="DiscountAmt" ColumnName="DiscountAmt" />
+          <ScalarProperty Name="DisbursementAmt" ColumnName="DisbursementAmt" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="UTRDetails" ColumnName="UTRDetails" />
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="DiscountBucketBucketName" ColumnName="DiscountBucketBucketName" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetInvoiceJourneyHistory" FunctionName="FinocartModel.Store.Proc_GetInvoiceJourneyHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetInvoiceJourneyHistory_Result">
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="invoicestatusvalue" ColumnName="invoicestatusvalue" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="InvoiceStatusText" ColumnName="InvoiceStatusText" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="SentToPerson" ColumnName="SentToPerson" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="InvoiceCreatedDate" ColumnName="InvoiceCreatedDate" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetInvoiceListByAmount" FunctionName="FinocartModel.Store.Proc_GetInvoiceListByAmount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetInvoiceListByAmount_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="InvStatus" ColumnName="InvStatus" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="DiscountAmt" ColumnName="DiscountAmt" />
+          <ScalarProperty Name="DisbursementAmt" ColumnName="DisbursementAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_getLookupDetailsByGroup" FunctionName="FinocartModel.Store.Proc_getLookupDetailsByGroup">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_getLookupDetailsByGroup_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+          <ScalarProperty Name="LookupValue" ColumnName="LookupValue" />
+          <ScalarProperty Name="LookupFor" ColumnName="LookupFor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetLostOppListing" FunctionName="FinocartModel.Store.Proc_GetLostOppListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetLostOppListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="NoOfInvoice" ColumnName="NoOfInvoice" />
+          <ScalarProperty Name="TotalAppAmt" ColumnName="TotalAppAmt" />
+          <ScalarProperty Name="NoOfDiscInvoices" ColumnName="NoOfDiscInvoices" />
+          <ScalarProperty Name="TotalDiscAppAmt" ColumnName="TotalDiscAppAmt" />
+          <ScalarProperty Name="ApprovedInv" ColumnName="ApprovedInv" />
+          <ScalarProperty Name="DiscOffPercent" ColumnName="DiscOffPercent" />
+          <ScalarProperty Name="SuccAppAmtPercent" ColumnName="SuccAppAmtPercent" />
+          <ScalarProperty Name="SuccDiscAmtPercent" ColumnName="SuccDiscAmtPercent" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetMaxAvailableVendorAmount" FunctionName="FinocartModel.Store.proc_GetMaxAvailableVendorAmount" />
+    <FunctionImportMapping FunctionImportName="proc_GetNotificationDet" FunctionName="FinocartModel.Store.proc_GetNotificationDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetNotificationDet_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+          <ScalarProperty Name="Notifications" ColumnName="Notifications" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetPan" FunctionName="FinocartModel.Store.proc_GetPan">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetPan_Result">
+          <ScalarProperty Name="IsExistPan" ColumnName="IsExistPan" />
+          <ScalarProperty Name="IsExistEmailId" ColumnName="IsExistEmailId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetPurchaseOrderDet" FunctionName="FinocartModel.Store.proc_GetPurchaseOrderDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetPurchaseOrderDet_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvStatus" ColumnName="InvStatus" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="invoicediscount" ColumnName="invoicediscount" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+          <ScalarProperty Name="BucketCreatedDate" ColumnName="BucketCreatedDate" />
+          <ScalarProperty Name="ValidToDate" ColumnName="ValidToDate" />
+          <ScalarProperty Name="BucketName" ColumnName="BucketName" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetPurchaseOrderDetByPONumber" FunctionName="FinocartModel.Store.proc_GetPurchaseOrderDetByPONumber">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetPurchaseOrderDetByPONumber_Result">
+          <ScalarProperty Name="NoOfInvoices" ColumnName="NoOfInvoices" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="TotalInvoiceAmount" ColumnName="TotalInvoiceAmount" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_getRegisterEmailTemplate" FunctionName="FinocartModel.Store.Proc_getRegisterEmailTemplate" />
+    <FunctionImportMapping FunctionImportName="Proc_GetSAPConfigurationDataBasedOnKey" FunctionName="FinocartModel.Store.Proc_GetSAPConfigurationDataBasedOnKey">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetSAPConfigurationDataBasedOnKey_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AppServerHost" ColumnName="AppServerHost" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="SystemNumber" ColumnName="SystemNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="IdentificationName" ColumnName="IdentificationName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetTodaysInvoiceDet" FunctionName="FinocartModel.Store.proc_GetTodaysInvoiceDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetTodaysInvoiceDet_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvStatus" ColumnName="InvStatus" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="invoicediscount" ColumnName="invoicediscount" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+          <ScalarProperty Name="BucketCreatedDate" ColumnName="BucketCreatedDate" />
+          <ScalarProperty Name="ValidToDate" ColumnName="ValidToDate" />
+          <ScalarProperty Name="BucketName" ColumnName="BucketName" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_getUserEmailTemplate" FunctionName="FinocartModel.Store.Proc_getUserEmailTemplate" />
+    <FunctionImportMapping FunctionImportName="proc_GetVendorApprovedTodayViewListing" FunctionName="FinocartModel.Store.proc_GetVendorApprovedTodayViewListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetVendorApprovedTodayViewListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+          <ScalarProperty Name="BucketName" ColumnName="BucketName" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="TotalInvoiceCount" ColumnName="TotalInvoiceCount" />
+          <ScalarProperty Name="TotalApprovedAmt" ColumnName="TotalApprovedAmt" />
+          <ScalarProperty Name="DiscOfferedDate" ColumnName="DiscOfferedDate" />
+          <ScalarProperty Name="TotalDisbAmt" ColumnName="TotalDisbAmt" />
+          <ScalarProperty Name="Earning" ColumnName="Earning" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetVendorBucketInvoiceViewListing" FunctionName="FinocartModel.Store.proc_GetVendorBucketInvoiceViewListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetVendorBucketInvoiceViewListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="POID" ColumnName="POID" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="InvoiceCreationDate" ColumnName="InvoiceCreationDate" />
+          <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+          <ScalarProperty Name="ApprovedAmount" ColumnName="ApprovedAmount" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="DiscountOfferedDate" ColumnName="DiscountOfferedDate" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="DiscountValidUpto" ColumnName="DiscountValidUpto" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetVendorBucketWiseDiscInvViewListing" FunctionName="FinocartModel.Store.proc_GetVendorBucketWiseDiscInvViewListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetVendorBucketWiseDiscInvViewListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="InvoiceCreatedDate" ColumnName="InvoiceCreatedDate" />
+          <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+          <ScalarProperty Name="ApprovedAmount" ColumnName="ApprovedAmount" />
+          <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
+          <ScalarProperty Name="DiscountOfferedDate" ColumnName="DiscountOfferedDate" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="PayableAmount" ColumnName="PayableAmount" />
+          <ScalarProperty Name="Earning" ColumnName="Earning" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetVendorDet" FunctionName="FinocartModel.Store.proc_GetVendorDet" />
+    <FunctionImportMapping FunctionImportName="Proc_GetVendorDocumentDet" FunctionName="FinocartModel.Store.Proc_GetVendorDocumentDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetVendorDocumentDet_Result">
+          <ScalarProperty Name="DocID" ColumnName="DocID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetVendorDocUser" FunctionName="FinocartModel.Store.proc_GetVendorDocUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetVendorDocUser_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="UploadedBy" ColumnName="UploadedBy" />
+          <ScalarProperty Name="UploadedOn" ColumnName="UploadedOn" />
+          <ScalarProperty Name="LocalFolderFileName" ColumnName="LocalFolderFileName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_getVendorGraphDet" FunctionName="FinocartModel.Store.Proc_getVendorGraphDet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_getVendorGraphDet_Result">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetVendorINVApprovedTodayListing" FunctionName="FinocartModel.Store.proc_GetVendorINVApprovedTodayListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetVendorINVApprovedTodayListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="TotalDiscAppToday" ColumnName="TotalDiscAppToday" />
+          <ScalarProperty Name="TotalApprovedAmt" ColumnName="TotalApprovedAmt" />
+          <ScalarProperty Name="TotalDisbAmt" ColumnName="TotalDisbAmt" />
+          <ScalarProperty Name="Earning" ColumnName="Earning" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetVendorInvAwaitedAppListing" FunctionName="FinocartModel.Store.proc_GetVendorInvAwaitedAppListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetVendorInvAwaitedAppListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="TotalInvoiceCount" ColumnName="TotalInvoiceCount" />
+          <ScalarProperty Name="TotalApprovedAmt" ColumnName="TotalApprovedAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetVendorInvAwaitedAppViewListing" FunctionName="FinocartModel.Store.proc_GetVendorInvAwaitedAppViewListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetVendorInvAwaitedAppViewListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+          <ScalarProperty Name="BucketName" ColumnName="BucketName" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="TotalInvoiceCount" ColumnName="TotalInvoiceCount" />
+          <ScalarProperty Name="TotalApprovedAmt" ColumnName="TotalApprovedAmt" />
+          <ScalarProperty Name="DiscOfferedDate" ColumnName="DiscOfferedDate" />
+          <ScalarProperty Name="DiscValidUpto" ColumnName="DiscValidUpto" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetVendorInvoiceList" FunctionName="FinocartModel.Store.Proc_GetVendorInvoiceList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetVendorInvoiceList_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="INVStatus" ColumnName="INVStatus" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_GetVendorList" FunctionName="FinocartModel.Store.Proc_GetVendorList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetVendorList_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+          <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+          <ScalarProperty Name="Contact_mobile" ColumnName="Contact_mobile" />
+          <ScalarProperty Name="Contact_email" ColumnName="Contact_email" />
+          <ScalarProperty Name="InvoiceLimitAmt" ColumnName="InvoiceLimitAmt" />
+          <ScalarProperty Name="InvAmtLimitStatus" ColumnName="InvAmtLimitStatus" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetVendorPaymentDueListing" FunctionName="FinocartModel.Store.proc_GetVendorPaymentDueListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetVendorPaymentDueListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="NoOfInvoices" ColumnName="NoOfInvoices" />
+          <ScalarProperty Name="TotalInvoiceAmount" ColumnName="TotalInvoiceAmount" />
+          <ScalarProperty Name="TotalInvoiceAppAmt" ColumnName="TotalInvoiceAppAmt" />
+          <ScalarProperty Name="AmountPaymenttoday" ColumnName="AmountPaymenttoday" />
+          <ScalarProperty Name="Earning" ColumnName="Earning" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetVendorPaymentDueViewListing" FunctionName="FinocartModel.Store.proc_GetVendorPaymentDueViewListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetVendorPaymentDueViewListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="POID" ColumnName="POID" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="Earning" ColumnName="Earning" />
+          <ScalarProperty Name="NetPayableAmt" ColumnName="NetPayableAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetViewAvailableForFunding" FunctionName="FinocartModel.Store.proc_GetViewAvailableForFunding">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetViewAvailableForFunding_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvStatus" ColumnName="InvStatus" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="DiscountAmt" ColumnName="DiscountAmt" />
+          <ScalarProperty Name="DisbursementAmt" ColumnName="DisbursementAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetViewAwaitInvoiceApproval" FunctionName="FinocartModel.Store.proc_GetViewAwaitInvoiceApproval">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_GetViewAwaitInvoiceApproval_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvStatus" ColumnName="InvStatus" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="BucketCreatedDate" ColumnName="BucketCreatedDate" />
+          <ScalarProperty Name="ValidUptoDate" ColumnName="ValidUptoDate" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_IfEmailIdExists" FunctionName="FinocartModel.Store.proc_IfEmailIdExists">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_IfEmailIdExists_Result">
+          <ScalarProperty Name="IsExistEmailId" ColumnName="IsExistEmailId" />
+          <ScalarProperty Name="IsExistPan" ColumnName="IsExistPan" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_InsertAnchorCompanyDoc" FunctionName="FinocartModel.Store.Proc_InsertAnchorCompanyDoc" />
+    <FunctionImportMapping FunctionImportName="Proc_InsertErrorDetails" FunctionName="FinocartModel.Store.Proc_InsertErrorDetails" />
+    <FunctionImportMapping FunctionImportName="Proc_InsertInvoiceBucketDet" FunctionName="FinocartModel.Store.Proc_InsertInvoiceBucketDet" />
+    <FunctionImportMapping FunctionImportName="proc_InsertInvoiceData" FunctionName="FinocartModel.Store.proc_InsertInvoiceData" />
+    <FunctionImportMapping FunctionImportName="proc_InsertVendorData" FunctionName="FinocartModel.Store.proc_InsertVendorData" />
+    <FunctionImportMapping FunctionImportName="proc_InsertVendorDet" FunctionName="FinocartModel.Store.proc_InsertVendorDet" />
+    <FunctionImportMapping FunctionImportName="Proc_InsertVendorDocDet" FunctionName="FinocartModel.Store.Proc_InsertVendorDocDet" />
+    <FunctionImportMapping FunctionImportName="proc_LoginCompany" FunctionName="FinocartModel.Store.proc_LoginCompany">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_LoginCompany_Result">
+          <ScalarProperty Name="Login_ID" ColumnName="Login_ID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_MaintinSearchHistory" FunctionName="FinocartModel.Store.Proc_MaintinSearchHistory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_MaintinSearchHistory_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SearchKeyValue" ColumnName="SearchKeyValue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_MapInvoiceBucket" FunctionName="FinocartModel.Store.Proc_MapInvoiceBucket" />
+    <FunctionImportMapping FunctionImportName="proc_MarkAllReadAnchorNotifications" FunctionName="FinocartModel.Store.proc_MarkAllReadAnchorNotifications" />
+    <FunctionImportMapping FunctionImportName="proc_MarkAllReadNotifications" FunctionName="FinocartModel.Store.proc_MarkAllReadNotifications" />
+    <FunctionImportMapping FunctionImportName="proc_OutputUser" FunctionName="FinocartModel.Store.proc_OutputUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_OutputUser_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="RolesAccess" ColumnName="RolesAccess" />
+          <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+          <ScalarProperty Name="AccessViewID" ColumnName="AccessViewID" />
+          <ScalarProperty Name="LookupValue" ColumnName="LookupValue" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_RegisterCompanay" FunctionName="FinocartModel.Store.proc_RegisterCompanay" />
+    <FunctionImportMapping FunctionImportName="proc_RemoveVendorRecord" FunctionName="FinocartModel.Store.proc_RemoveVendorRecord" />
+    <FunctionImportMapping FunctionImportName="proc_RoleAccessDropDown" FunctionName="FinocartModel.Store.proc_RoleAccessDropDown">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_RoleAccessDropDown_Result">
+          <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+          <ScalarProperty Name="Permission" ColumnName="Permission" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_UpdateInvoice" FunctionName="FinocartModel.Store.proc_UpdateInvoice" />
+    <FunctionImportMapping FunctionImportName="proc_UpdatePassword" FunctionName="FinocartModel.Store.proc_UpdatePassword" />
+    <FunctionImportMapping FunctionImportName="proc_UpdateUser" FunctionName="FinocartModel.Store.proc_UpdateUser" />
+    <FunctionImportMapping FunctionImportName="proc_UploadVendorListing" FunctionName="FinocartModel.Store.proc_UploadVendorListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_UploadVendorListing_Result">
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_VendorsDropDown" FunctionName="FinocartModel.Store.proc_VendorsDropDown">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_VendorsDropDown_Result">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="recievabledue" FunctionName="FinocartModel.Store.recievabledue">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.recievabledue_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="AnchorID" ColumnName="AnchorID" />
+          <ScalarProperty Name="Anchorname" ColumnName="Anchorname" />
+          <ScalarProperty Name="NoOfInvoices" ColumnName="NoOfInvoices" />
+          <ScalarProperty Name="TotalInvoiceAmount" ColumnName="TotalInvoiceAmount" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="AmountReceiabletoday" ColumnName="AmountReceiabletoday" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="FinocartModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="FinocartModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="FinocartModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_getEmployees" FunctionName="FinocartModel.Store.sp_getEmployees">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.sp_getEmployees_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FinocartModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="FinocartModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FinocartModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="SP_SaveLogManagement" FunctionName="FinocartModel.Store.SP_SaveLogManagement" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FinocartModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="UPDATEFUNDING" FunctionName="FinocartModel.Store.UPDATEFUNDING" />
+    <FunctionImportMapping FunctionImportName="Proc_GetFinoassistMinPaymentDate" FunctionName="FinocartModel.Store.Proc_GetFinoassistMinPaymentDate" />
+    <FunctionImportMapping FunctionImportName="Proc_GetInvoiceListByAnchor" FunctionName="FinocartModel.Store.Proc_GetInvoiceListByAnchor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Proc_GetInvoiceListByAnchor_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="AnchorCompName" ColumnName="AnchorCompName" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="InvStatus" ColumnName="InvStatus" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="InvoiceApprovalDate" ColumnName="InvoiceApprovalDate" />
+          <ScalarProperty Name="DiscountAmt" ColumnName="DiscountAmt" />
+          <ScalarProperty Name="DisbursementAmt" ColumnName="DisbursementAmt" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetMaxAvailableAmtByAnchorComp" FunctionName="FinocartModel.Store.proc_GetMaxAvailableAmtByAnchorComp" />
+    <FunctionImportMapping FunctionImportName="proc_UploadAllVendorListing" FunctionName="FinocartModel.Store.proc_UploadAllVendorListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.proc_UploadAllVendorListing_Result">
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+          <ScalarProperty Name="ApprovedAmt" ColumnName="ApprovedAmt" />
+          <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+          <ScalarProperty Name="InvoiceApprovePayDays" ColumnName="InvoiceApprovePayDays" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="FilteredRecord" ColumnName="FilteredRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="BucketManagement">
+      <EntityTypeMapping TypeName="FinocartModel.BucketManagement">
+        <MappingFragment StoreEntitySet="BucketManagement">
+          <ScalarProperty Name="BucketModifiedAt" ColumnName="BucketModifiedAt" />
+          <ScalarProperty Name="BucketModifiedBy" ColumnName="BucketModifiedBy" />
+          <ScalarProperty Name="BucketCreatedBy" ColumnName="BucketCreatedBy" />
+          <ScalarProperty Name="BucketCreatedDate" ColumnName="BucketCreatedDate" />
+          <ScalarProperty Name="ValidUptoDate" ColumnName="ValidUptoDate" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="BucketStatus" ColumnName="BucketStatus" />
+          <ScalarProperty Name="BucketName" ColumnName="BucketName" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceBucket">
+      <EntityTypeMapping TypeName="FinocartModel.InvoiceBucket">
+        <MappingFragment StoreEntitySet="InvoiceBucket">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_HolidayList_Details" FunctionName="FinocartModel.Store.Get_HolidayList_Details">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinocartModel.Get_HolidayList_Details_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="SetBankAmountLimit">
+      <EntityTypeMapping TypeName="FinocartModel.SetBankAmountLimit">
+        <MappingFragment StoreEntitySet="SetBankAmountLimit">
+          <ScalarProperty Name="KYCStatus" ColumnName="KYCStatus" />
+          <ScalarProperty Name="Remaining_avail_bal" ColumnName="Remaining_avail_bal" />
+          <ScalarProperty Name="Approvaldate" ColumnName="Approvaldate" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="ODBD" ColumnName="ODBD" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ValidityFromto" ColumnName="ValidityFromto" />
+          <ScalarProperty Name="ModifiedUserName" ColumnName="ModifiedUserName" />
+          <ScalarProperty Name="AnchorEmail" ColumnName="AnchorEmail" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="Documentation" ColumnName="Documentation" />
+          <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
+          <ScalarProperty Name="Additional_document" ColumnName="Additional_document" />
+          <ScalarProperty Name="Draw_funds" ColumnName="Draw_funds" />
+          <ScalarProperty Name="Validity_upto" ColumnName="Validity_upto" />
+          <ScalarProperty Name="Interest_rate" ColumnName="Interest_rate" />
+          <ScalarProperty Name="Utilized_Limits" ColumnName="Utilized_Limits" />
+          <ScalarProperty Name="Available_Limits" ColumnName="Available_Limits" />
+          <ScalarProperty Name="Anchor_Name" ColumnName="Anchor_Name" />
+          <ScalarProperty Name="Anchor_id" ColumnName="Anchor_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HolidayList">
+      <EntityTypeMapping TypeName="FinocartModel.HolidayList">
+        <MappingFragment StoreEntitySet="HolidayList">
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

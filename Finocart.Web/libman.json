@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatables@1.10.19",
+      "destination": "wwwroot/datatables/",
+      "files": [
+        "js/jquery.dataTables.min.js",
+        "css/dataTables.bootstrap.css",
+        "css/dataTables.bootstrap.min.css",
+        "css/dataTables.bootstrap4.css",
+        "css/dataTables.bootstrap4.min.css",
+        "css/dataTables.foundation.css",
+        "css/dataTables.foundation.min.css",
+        "css/dataTables.jqueryui.css",
+        "css/dataTables.jqueryui.min.css",
+        "css/dataTables.material.css",
+        "css/dataTables.material.min.css",
+        "css/dataTables.semanticui.css",
+        "css/dataTables.semanticui.min.css",
+        "css/dataTables.uikit.css",
+        "css/dataTables.uikit.min.css",
+        "css/jquery.dataTables.css",
+        "css/jquery.dataTables.min.css",
+        "css/jquery.dataTables_themeroller.css",
+        "images/sort_asc.png",
+        "images/sort_asc_disabled.png",
+        "images/sort_both.png",
+        "images/sort_desc.png",
+        "images/sort_desc_disabled.png",
+        "js/dataTables.bootstrap.js",
+        "js/dataTables.bootstrap.min.js",
+        "js/dataTables.bootstrap4.js",
+        "js/dataTables.bootstrap4.min.js",
+        "js/dataTables.dataTables.js",
+        "js/dataTables.dataTables.min.js",
+        "js/dataTables.foundation.js",
+        "js/dataTables.foundation.min.js",
+        "js/dataTables.jqueryui.js",
+        "js/dataTables.jqueryui.min.js",
+        "js/dataTables.material.js",
+        "js/dataTables.material.min.js",
+        "js/dataTables.semanticui.js",
+        "js/dataTables.semanticui.min.js",
+        "js/dataTables.uikit.js",
+        "js/dataTables.uikit.min.js",
+        "js/jquery.dataTables.js"
+      ]
+    },
+    {
+      "library": "dropdown.js@0.0.2dev",
+      "destination": "wwwroot/dropdown.js/",
+      "files": [
+        "jquery.dropdown.min.js",
+        "jquery.dropdown.css",
+        "jquery.dropdown.js",
+        "jquery.dropdown.min.css",
+        "jquery.dropdown.min.css.map",
+        "jquery.dropdown.min.js.map"
+      ]
+    },
+    {
+      "library": "bootstrap-multiselect@0.9.15",
+      "destination": "wwwroot/bootstrap-multiselect/",
+      "files": [
+        "js/bootstrap-multiselect.min.js",
+        "js/bootstrap-multiselect.js",
+        "js/bootstrap-multiselect.min.js.map",
+        "css/bootstrap-multiselect.css"
+      ]
+    },
+    {
+      "library": "crypto-js@3.1.9-1",
+      "destination": "wwwroot/crypto-js/"
+    },
+    {
+      "library": "aes-js@3.1.2",
+      "destination": "wwwroot/aes-js/"
+    },
+    {
+      "library": "datepicker@0.6.5",
+      "destination": "wwwroot/datepicker/"
+    },
+    {
+      "library": "line-chart@2.0.28",
+      "destination": "wwwroot/line-chart/",
+      "files": [
+        "LineChart.min.js",
+        "LineChart-react.js",
+        "LineChart-react.min.js",
+        "LineChart.css",
+        "LineChart.js",
+        "LineChart.min.css"
+      ]
+    },
+    {
+      "library": "rangeslider.js@2.3.2",
+      "destination": "wwwroot/rangeslider.js/"
+    },
+    {
+      "library": "Chart.js@2.8.0",
+      "destination": "wwwroot/Chart.js/"
+    },
+    {
+      "library": "canvasjs@1.7.0",
+      "destination": "wwwroot/canvasjs/"
+    }
+  ]
+}
