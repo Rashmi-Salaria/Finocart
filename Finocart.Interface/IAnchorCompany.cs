@@ -332,7 +332,7 @@ namespace Finocart.Interface
 
         IEnumerable<HolidayListModel> GetAnchorHolidayListing(string sortBy, int pageSize, Int64 skip,string Reason,int? UserID);
 
-        int UpdateUTRDetails(InvoiceUTRDetails invoiceUTRDetails);
+        int UpdateUTRDetails(Int64 InvoiceID, string UTRDetails);
 
         /// <summary>
         /// Get Anchor Company Upcoming Invoice Payable Graph Details

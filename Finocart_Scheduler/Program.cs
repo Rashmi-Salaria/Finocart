@@ -73,27 +73,5 @@ namespace Finocart_Scheduler
             }
            
         }
-
-        //static void GetCombination(List<int> list)
-        //{
-        //    double count = Math.Pow(2, list.Count);
-        //    for (int i = 1; i <= count - 1; i++)
-        //    {
-        //        var a = 0;
-        //        string str = Convert.ToString(i, 2).PadLeft(list.Count, '0');
-        //        for (int j = 0; j < str.Length; j++)
-        //        {
-        //            if (str[j] == '1')
-        //            {
-        //                a = a + list[j];                        
-        //            }                    
-        //        }
-        //        if (a > 0)
-        //        {
-        //            Console.Write(a);
-        //        }
-        //        Console.WriteLine();
-        //    }
-        //}
     }
 }

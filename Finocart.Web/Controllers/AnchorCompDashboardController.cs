@@ -1551,7 +1551,7 @@ namespace Finocart.Web.Controllers
         #endregion
 
         [HttpPost]
-        public JsonResult UpdateUTRDetails(InvoiceUTRDetails invoiceUTRDetails)
+        public JsonResult UpdateUTRDetails(Int64 InvoiceID,string UTRDetails)
         {
             string ActionName = this.ControllerContext.RouteData.Values["action"].ToString();
             string ControllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
@@ -1564,7 +1564,7 @@ namespace Finocart.Web.Controllers
                 Int32? UserId = HttpContext.Session.GetInt32("UserID");
                 //disbursementData.CreatedBy = UserId;
                 // disbursementData.UpdatedBy = UserId;
-                Result = _AnchorCompanyRepository.UpdateUTRDetails(invoiceUTRDetails);
+                Result = _AnchorCompanyRepository.UpdateUTRDetails(InvoiceID,UTRDetails);
             }
             catch (Exception ex)
             {

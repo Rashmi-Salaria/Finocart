@@ -1311,7 +1311,7 @@ namespace Finocart.Services
         }
 
 
-        public int UpdateUTRDetails(InvoiceUTRDetails invoiceUTRDetails)
+        public int UpdateUTRDetails(Int64 InvoiceID, string UTRDetails)
         {
             int result = 0;
 
@@ -1319,8 +1319,8 @@ namespace Finocart.Services
             {
                 RepositoryService<SetBankAmountLimit> obj = new RepositoryService<SetBankAmountLimit>(_vContext);
                 ICollection<SqlParameter> parameters = new List<SqlParameter>();
-                parameters.Add(SQLHelper.SqlInputParam("@InvoiceID", invoiceUTRDetails.InvoiceID, System.Data.SqlDbType.BigInt));
-                parameters.Add(SQLHelper.SqlInputParam("@UTRDetails", invoiceUTRDetails.UTRDetails, System.Data.SqlDbType.VarChar));
+                parameters.Add(SQLHelper.SqlInputParam("@InvoiceID",InvoiceID, System.Data.SqlDbType.BigInt));
+                parameters.Add(SQLHelper.SqlInputParam("@UTRDetails",UTRDetails, System.Data.SqlDbType.VarChar));
 
 
                 result = obj.ExecuteSqlCommand("proc_UpdateInvoiceUTRDetails @InvoiceID, @UTRDetails", parameters.ToArray());

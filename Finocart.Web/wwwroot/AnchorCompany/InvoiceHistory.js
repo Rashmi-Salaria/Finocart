@@ -65,7 +65,7 @@
                     //var month1 = date1.getMonth() + 1;
                     //date1 = date1.getDate().toString() + "/" + (month1.length > 1 ? month1 : "0" + month1) + "/" + date1.getFullYear();
                     if (data.status == "Approved" && date1 >= date) {
-                        return "<a href='#' id='btnModify' class='actions-ico' data-id=" + data.invoiceID + " data-UTRDetails=" + data.utrDetails + " data-toggle='modal' data-target='#InvoiceUTRDetails'><img  src='../Content/images/edit.png' title='Edit' class='img-responsive' /></a>";
+                        return "<a href='#' id='btnModify' class='ModifyRecord actions-ico' data-id=" + data.invoiceID + " data-UTRDetails=" + data.utrDetails + " data-toggle='modal' data-target='#InvoiceUTRDetails'><img  src='../Content/images/edit.png' title='Edit' class='img-responsive' /></a>";
                     }
                     else {
                         return null;
@@ -115,7 +115,16 @@
             $("#lbTotalEarningAmt").text(TotalEarningAmt);
         }
     });
+    
+    //$("#btnModify").click(function (e) {
+    $(".ModifyRecord").click(function (e) {
+      
+        var $buttonClicked = $(this);
+      
+        $("#InvoiceID").val($buttonClicked.attr('data-id'));
+        $("#UTRDetails").val($buttonClicked.attr('data-UTRDetails'));
 
+    });
     oTable1 = $('#tbl_InvoiceStatus').DataTable();
     $('#btnInvoiceFilter').click(function () {
         oTable1.columns(2).search($('#txt_VendorName').val().trim());
@@ -149,11 +158,11 @@
     $("#btnSubmit").click(function (e) {
         debugger
         //var cheklimit = '../BankCompany/GetAvailableLimit';
-
-        //var $buttonClicked = $(this);
-        var InvoiceID = $('#InvoiceID').val()
+        var $buttonClicked = $(this);
+        var id = $buttonClicked.attr('data-id');
+        var InvoiceID = $('#InvoiceID').val();
         var UTRDetails = $('#UTRDetails').val();
-
+        
         if (UTRDetails === "") {
             $('#lblAvailabeLimit').show();
             return false;
@@ -171,9 +180,5 @@
         });
     });
 
-    $("#btnModify").click(function (e) {
-        var $buttonClicked = $(this);
-        $("#InvoiceID").val($buttonClicked.attr('data-id'));
-        $("#UTRDetails").val($buttonClicked.attr('data-UTRDetails'));
-    });
+
 });

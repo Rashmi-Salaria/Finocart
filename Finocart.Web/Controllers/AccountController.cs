@@ -815,7 +815,7 @@ namespace Finocart.Web.Controllers
                 var Name = "";
                 string ID = "";
 
-                //// string randomPassword = _CommonRepository.GeneratePassword();
+                string randomPassword = _CommonRepository.GeneratePassword();
                 // string EncryptToken = SecurityHelperService.Encrypt(Token);
                 string EmailID = objForgetPassword.EmailID.Trim();
                 var data = Encoding.UTF8.GetBytes(objForgetPassword.RoleName);
@@ -896,7 +896,7 @@ namespace Finocart.Web.Controllers
                     body = body.Replace("@@ProjectName@@", "Finocart");
                     body = body.Replace(EMAIL_TOKEN_PAYMENT_LINK, paymentLink);
                     body = body.Replace("http://dotnet.brainvire.com/Finocart/Account/AdminLogin", paymentLink);
-                    // body = body.Replace("@@Password@@", randomPassword);
+                    body = body.Replace("@@Password@@", randomPassword);
                     IEnumerable<LookupDetails> lookupDetails = _lookUpRepository.getLookupDetailByKey("SMTPInfo");
                     _CommonRepository.SendEmail(lookupDetails, emailToAddress, subject, body, true);
                     TempData["MailSuccess"] = "Mail sent successfully";
